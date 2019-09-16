@@ -17,7 +17,4 @@ interface RoleDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(plants: List<Role>)
-
-    @Query("DELETE FROM roles")
-    fun deleteAllRoles()
 }
