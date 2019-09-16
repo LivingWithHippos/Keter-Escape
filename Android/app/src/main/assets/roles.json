@@ -1,0 +1,14 @@
+{
+  "roles": [
+    {
+      "name": "Guard",
+      "group": "Foundation",
+      "description": "Your are part of the basic foundation personnel. Protect scientists and escort D-Class around."
+    },
+    {
+      "name": "SCP-173",
+      "group": "SCP",
+      "description": "Euclid. Made of concrete and rebar. Extremely hostile. Cannot move within line of sight, but will attack and snap the neck when not watched."
+    }
+  ]
+}
