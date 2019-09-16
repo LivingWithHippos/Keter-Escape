@@ -12,6 +12,6 @@ class Role (
     val name: String,
     @ColumnInfo(name = "roledescription")
     val description: String,
-    @ColumnInfo(name = "roletype")
-    val type: Int
+    @ColumnInfo(name = "rolegroup")
+    val type: String
 )
