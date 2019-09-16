@@ -28,6 +28,7 @@ ext {
 
     workVersion = '2.2.0'
     roomVersion = '2.2.0-rc01'
+    gsonVersion = '2.8.2'
     archLifecycleVersion = '2.2.0-alpha01'
     androidxArchVersion = '2.0.0'
     coroutines = '1.2.0'
