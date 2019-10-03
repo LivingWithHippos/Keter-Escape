@@ -8,6 +8,7 @@ import io.reactivex.Completable
 
 import io.reactivex.Flowable
 
+@Dao
 interface PlayerDAO {
     /**
      * Get a user by id.
