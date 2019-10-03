@@ -4,6 +4,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import android.content.Context
+import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import com.onewisebit.scp_scarycontainmentpanic.utilities.DATABASE_NAME
+import com.onewisebit.scp_scarycontainmentpanic.workers.PopulateDatabaseWorker
 
 /**
  * The Room database that contains the Users table
@@ -25,7 +30,15 @@ abstract class SCPDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
-                SCPDatabase::class.java, "SCP.db")
+                SCPDatabase::class.java, DATABASE_NAME)
+                .addCallback(object : RoomDatabase.Callback() {
+                    //populate the database on creation
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        val request = OneTimeWorkRequestBuilder<PopulateDatabaseWorker>().build()
+                        WorkManager.getInstance(context).enqueue(request)
+                    }
+                })
                 .build()
     }
 }
