@@ -3,5 +3,4 @@
 These are related to the Android app.
 
 - [ ] Add animation for gradient in main screen
-
-
+- [ ] Create theme for buttons in Main Screen
