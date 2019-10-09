@@ -9,7 +9,13 @@
         android:id="@+id/startScreenFragment"
         android:name="com.onewisebit.scp_scarycontainmentpanic.StartScreenFragment"
         android:label="fragment_start_screen"
-        tools:layout="@layout/fragment_start_screen" />
+        tools:layout="@layout/fragment_start_screen" >
+        <action
+            android:id="@+id/action_start_to_about"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.onewisebit.scp_scarycontainmentpanic.AboutFragment"
