@@ -27,7 +27,7 @@ abstract class SCPDatabase : RoomDatabase() {
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
             }
-
+        //TODO: add option for updates to the scps json file, check RoomDatabase.Builder.createFromAsset()
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
                 SCPDatabase::class.java, DATABASE_NAME)
