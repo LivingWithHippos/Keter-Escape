@@ -36,5 +36,5 @@ interface PlayerDAO {
      * @return the players from the table.
      */
     @Query("SELECT * FROM players")
-    fun getAllPlayers(): Flowable<Player>
+    fun getAllPlayers(): Flowable<List<Player>>
 }
