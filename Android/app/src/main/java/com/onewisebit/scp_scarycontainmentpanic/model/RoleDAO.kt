@@ -18,5 +18,5 @@ interface RoleDAO {
     fun insertRole(role: Role): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(plants: List<Role>)
+    suspend fun insertAll(roles: List<Role>)
 }
