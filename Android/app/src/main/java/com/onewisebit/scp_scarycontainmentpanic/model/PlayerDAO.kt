@@ -29,4 +29,12 @@ interface PlayerDAO {
      */
     @Query("DELETE FROM players")
     fun deleteAllPlayers()
+
+
+    /**
+     * Get the list of players.
+     * @return the players from the table.
+     */
+    @Query("SELECT * FROM players")
+    fun getAllPlayers(): Flowable<Player>
 }
