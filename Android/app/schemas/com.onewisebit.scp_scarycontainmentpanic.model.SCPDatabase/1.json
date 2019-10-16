@@ -1,0 +1,78 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d713ce8ee880bc6fd5378a1f126963b1",
+    "entities": [
+      {
+        "tableName": "players",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playerid` TEXT NOT NULL, `playername` TEXT NOT NULL, `playerimage` TEXT NOT NULL, PRIMARY KEY(`playerid`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "playerid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "playername",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "playerimage",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "playerid"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "roles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`rolename` TEXT NOT NULL, `roledescription` TEXT NOT NULL, `rolegroup` TEXT NOT NULL, PRIMARY KEY(`rolename`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "rolename",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "roledescription",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "rolegroup",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "rolename"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd713ce8ee880bc6fd5378a1f126963b1')"
+    ]
+  }
+}
