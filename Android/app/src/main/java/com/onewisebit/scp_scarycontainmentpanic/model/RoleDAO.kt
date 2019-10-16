@@ -13,6 +13,8 @@ interface RoleDAO {
     @Query("SELECT * FROM roles WHERE rolename = :name")
     fun getRoleByName(name: String): Flowable<Role>
 
+    @Query("SELECT * FROM roles")
+    fun getAllRoles(): List<Role>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRole(role: Role): Completable
