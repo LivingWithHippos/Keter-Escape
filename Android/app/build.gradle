@@ -53,9 +53,11 @@ dependencies {
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+    implementation "androidx.room:room-rxjava2:$rootProject.roomVersion"
 
     // RxJava
-    implementation "androidx.room:room-rxjava2:$roomVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxkotlinVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
 
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
