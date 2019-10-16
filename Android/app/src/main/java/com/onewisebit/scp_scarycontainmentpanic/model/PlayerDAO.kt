@@ -1,9 +1,6 @@
 package com.onewisebit.scp_scarycontainmentpanic.model
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import io.reactivex.Completable
 
 import io.reactivex.Flowable
@@ -23,6 +20,14 @@ interface PlayerDAO {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPlayer(player: Player): Completable
+
+
+    /**
+     * Update a player in the database.
+     * @param player the player to be updates.
+     */
+    @Update
+    fun updatePlayer(player: Player): Completable
 
     /**
      * Delete all players.
