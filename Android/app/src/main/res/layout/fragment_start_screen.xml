@@ -4,57 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartScreenFragment"
-    android:background="@drawable/background_start">
+    android:background="@drawable/background_start"
+    tools:context=".StartScreenFragment">
 
     <ImageView
         android:id="@+id/iv_scp_logo"
         android:layout_width="@dimen/logo_phone_width"
         android:layout_height="@dimen/logo_phone_height"
-        android:layout_marginTop="@dimen/margin_logo_medium"
         android:contentDescription="@string/foundation_logo"
         android:src="@drawable/scp_logo"
         android:tint="#9F030303"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvWelcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvWelcome"
-        android:layout_width="216dp"
-        android:layout_height="19dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_scp_logo"
-        android:layout_marginTop="@dimen/margin_text_medium"
-        android:text="@string/welcome_d"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="@string/welcome_d"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/llButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome">
+
         <Button
             android:id="@+id/bNewGame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/buttons_start_menu_width"
+            android:layout_height="@dimen/buttons_start_menu_height"
             android:layout_gravity="center_horizontal"
-            android:text="@string/new_game"/>
+            android:text="@string/new_game" />
+
         <Button
             android:id="@+id/bSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/buttons_start_menu_width"
+            android:layout_height="@dimen/buttons_start_menu_height"
             android:layout_gravity="center_horizontal"
-            android:text="@string/settings"/>
+            android:text="@string/settings" />
+
         <Button
             android:id="@+id/bAbout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/buttons_start_menu_width"
+            android:layout_height="@dimen/buttons_start_menu_height"
             android:layout_gravity="center_horizontal"
-            android:text="@string/about"/>
+            android:text="@string/about" />
     </LinearLayout>
 
 
