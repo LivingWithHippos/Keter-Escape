@@ -2,5 +2,17 @@
 
 These are related to the Android app.
 
+##### Low Priority:
+
+- [ ] Add [Klint](https://github.com/pinterest/ktlint) with [Spotless](https://github.com/diffplug/spotless)
 - [ ] Add animation for gradient in main screen
-- [ ] Create theme for buttons in Main Screen
+- [ ] Add themes (for example one for every GOI, O5 etc.)
+- [ ] add bottom banner displaying "news" in tht Home Fragment
+
+#### Medium Priority:
+
+- [ ] Online multiplayer
+
+#### High Priority
+
+
