@@ -1,3 +1,8 @@
+plugins {
+    id("com.diffplug.gradle.spotless") version "3.26.0"
+}
+
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -5,6 +10,19 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.diffplug.gradle.spotless'
+
+subprojects {
+    apply plugin: 'com.diffplug.gradle.spotless'
+    spotless {
+        kotlin {
+            target "**/*.kt"
+            ktlint()
+            licenseHeaderFile project.rootProject.file('spotless/copyright.kt')
+        }
+    }
+}
 
 android {
     compileSdkVersion 29
