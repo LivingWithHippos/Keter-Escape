@@ -2,7 +2,6 @@ plugins {
     id("com.diffplug.gradle.spotless") version "3.26.0"
 }
 
-
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -10,8 +9,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
-
-apply plugin: 'com.diffplug.gradle.spotless'
 
 subprojects {
     apply plugin: 'com.diffplug.gradle.spotless'
@@ -37,7 +34,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString(),
-                             "room.incremental":"true"]
+                             "room.incremental"   : "true"]
             }
         }
     }
@@ -83,11 +80,14 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxkotlinVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
 
+    // UI components
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+
+    // Test components
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 }
