@@ -22,6 +22,8 @@ subprojects {
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+    viewBinding.enabled = true
+
     defaultConfig {
         applicationId "com.onewisebit.scp_scarycontainmentpanic"
         minSdkVersion 22
@@ -36,12 +38,14 @@ android {
             }
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
