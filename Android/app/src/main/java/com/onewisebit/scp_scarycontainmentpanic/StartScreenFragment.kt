@@ -25,6 +25,14 @@ class StartScreenFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.bAbout.setOnClickListener {
+            val action = StartScreenFragmentDirections.actionStartToAbout()
+            view.findNavController().navigate(action)
+        }
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
