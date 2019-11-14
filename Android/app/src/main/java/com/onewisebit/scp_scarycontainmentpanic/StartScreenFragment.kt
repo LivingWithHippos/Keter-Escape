@@ -22,23 +22,9 @@ class StartScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentStartScreenBinding.inflate(layoutInflater)
-        val view:View=binding.root
-
-        // Set immersive mode flags
-        //TODO: add listener to set these again on restore
-        val immersiveFlags : Int = (view.systemUiVisibility
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_LOW_PROFILE
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-
-        view.systemUiVisibility = immersiveFlags
-        return view
+        return binding.root
     }
-    
+
     companion object {
         /**
          * Use this factory method to create a new instance of
