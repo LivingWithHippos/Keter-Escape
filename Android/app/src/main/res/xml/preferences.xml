@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="scp1471"
+        app:title="Enable SCP-1471"/>
+
+    <Preference
+        app:key="reportescape"
+        app:title="Report Containment Escape"
+        app:summary="Report technical issues or suggest new features"/>
+
+</PreferenceScreen>

@@ -15,10 +15,18 @@
             app:destination="@id/aboutFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/actionStartToSettings"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.onewisebit.scp_scarycontainmentpanic.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.onewisebit.scp_scarycontainmentpanic.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@xml/preferences" />
 </navigation>
