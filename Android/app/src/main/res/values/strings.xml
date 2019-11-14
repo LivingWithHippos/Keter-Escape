@@ -5,4 +5,6 @@
     <string name="new_game">New Game</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
+    <string name="credits_to">Credits To:</string>
+    <string name="credits_list">The SCP wiki\n/x/\nDrGears\nThe O5 Council\nAngry Lizard\nPeanut</string>
 </resources>

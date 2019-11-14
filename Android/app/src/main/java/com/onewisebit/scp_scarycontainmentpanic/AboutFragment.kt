@@ -16,7 +16,7 @@ class AboutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // TODO: populate the fragment with credits and such
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
 
