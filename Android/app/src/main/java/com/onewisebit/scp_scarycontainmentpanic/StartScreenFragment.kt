@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentStartScreenBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -13,11 +15,14 @@ import android.view.ViewGroup
  */
 class StartScreenFragment : Fragment() {
 
+    private lateinit var binding: FragmentStartScreenBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view:View=inflater.inflate(R.layout.fragment_start_screen, container, false)
+        binding = FragmentStartScreenBinding.inflate(layoutInflater)
+        val view:View=binding.root
 
         // Set immersive mode flags
         //TODO: add listener to set these again on restore
@@ -33,7 +38,7 @@ class StartScreenFragment : Fragment() {
         view.systemUiVisibility = immersiveFlags
         return view
     }
-
+    
     companion object {
         /**
          * Use this factory method to create a new instance of
