@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.onewisebit.scp_scarycontainmentpanic.StartContract.*
 import com.onewisebit.scp_scarycontainmentpanic.presenters.StartActivityPresenter
 
-class MainActivity : AppCompatActivity(), StartView {
+class MainActivity : BaseSCPActivity(), StartView {
 
     private var presenter: StartActivityPresenter? = null
 
