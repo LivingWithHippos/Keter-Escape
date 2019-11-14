@@ -24,4 +24,9 @@ class MainActivity : BaseSCPActivity(), StartView {
     override fun updateTheme() {
         //TODO: update theme if changed
     }
+
+    override fun onResume() {
+        super.onResume()
+        presenter?.setView(this)
+    }
 }

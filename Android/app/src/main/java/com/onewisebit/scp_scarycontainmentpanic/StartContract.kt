@@ -13,6 +13,7 @@ interface StartContract {
         fun onNewGameSelected()
         fun onSettingsSelected()
         fun onAboutSelected()
+        fun setView(view : StartView)
     }
 
     interface StartModel {

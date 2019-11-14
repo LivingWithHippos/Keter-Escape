@@ -4,9 +4,9 @@ import android.content.Context
 import com.onewisebit.scp_scarycontainmentpanic.StartContract
 import com.onewisebit.scp_scarycontainmentpanic.model.StartActivityModel
 
-class StartActivityPresenter(view: StartContract.StartView, context : Context): StartContract.StartPresenter {
+class StartActivityPresenter(sView: StartContract.StartView, context : Context): StartContract.StartPresenter {
 
-    private var view : StartContract.StartView = view
+    private var view : StartContract.StartView = sView
     private var model : StartContract.StartModel = StartActivityModel()
 
     init {
@@ -24,5 +24,9 @@ class StartActivityPresenter(view: StartContract.StartView, context : Context): 
 
     override fun onAboutSelected() {
         //TODO: open about page
+    }
+
+    override fun setView(view: StartContract.StartView) {
+        this.view=view
     }
 }
