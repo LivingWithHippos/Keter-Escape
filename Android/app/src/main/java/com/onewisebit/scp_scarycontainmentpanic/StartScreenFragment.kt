@@ -35,6 +35,10 @@ class StartScreenFragment : Fragment() {
             val action = StartScreenFragmentDirections.actionStartToSettings()
             view.findNavController().navigate(action)
         }
+        binding.bNewGame.setOnClickListener{
+            val action = StartScreenFragmentDirections.actionStartToNewGame()
+            view.findNavController().navigate(action)
+        }
     }
 
     companion object {
