@@ -10,9 +10,6 @@ interface StartContract {
     }
 
     interface StartPresenter {
-        fun onNewGameSelected()
-        fun onSettingsSelected()
-        fun onAboutSelected()
         fun setView(view : StartView)
     }
 

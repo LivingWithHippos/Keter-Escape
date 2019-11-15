@@ -14,18 +14,6 @@ class StartActivityPresenter(sView: StartContract.StartView, context : Context):
         model.init(context)
     }
 
-    override fun onNewGameSelected() {
-        //TODO: go to new game fragment
-    }
-
-    override fun onSettingsSelected() {
-        //TODO: open settings
-    }
-
-    override fun onAboutSelected() {
-        //TODO: open about page
-    }
-
     override fun setView(view: StartContract.StartView) {
         this.view=view
     }
