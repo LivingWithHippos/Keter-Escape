@@ -5,8 +5,10 @@
     <string name="new_game">New Game</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
-    <string name="credits_to">Credits To:</string>
-    <string name="credits_list">The SCP wiki\n/x/\nDrGears\nThe O5 Council\nAngry Lizard\nPeanut</string>
+    <string name="credits_to">I\'d like to thank all the people that made this possible, giving us all their tales.
+    Did you know that world-renowned writer Stephen King was once hit by a car? Just something to consider.\n
+    Credits to:</string>
+    <string name="credits_list">The SCP wiki\n/x/\nDrGears\nThe O5 Council\nAngry Lizard\n\[REDACTED]\nPeanut</string>
     <string name="enable_scp_1471">Enable SCP-1471</string>
     <string name="report_breach">Report Containment Breach</string>
     <string name="report_bug_description">Report technical issues or suggest new features</string>
