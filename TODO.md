@@ -4,7 +4,7 @@ These are related to the Android app.
 
 ##### Low Priority:
 
-- [ ] Add [Klint](https://github.com/pinterest/ktlint) with [Spotless](https://github.com/diffplug/spotless)
+- [x] Add [Klint](https://github.com/pinterest/ktlint) with [Spotless](https://github.com/diffplug/spotless)
 - [ ] Add animation for gradient in main screen
 - [ ] Add themes (for example one for every GOI, O5 etc.)
 - [ ] add bottom banner displaying "news" in the Home Fragment
@@ -12,6 +12,18 @@ These are related to the Android app.
 #### Medium Priority:
 
 - [ ] Online multiplayer
+- [ ] local (bluetooth) multiplayer
+  
+  
+  
+  Add "Flavour" to the app
+  - [ ] Add custom font
+  
+  - [x] Add SCP 2293 (see about screen)
+  
+  - [ ] Add SCP 1471 (see settings screen)
+  
+  
 
 #### High Priority
 
@@ -19,4 +31,4 @@ These are related to the Android app.
 
 - [ ] Mini wiki for the powers, scp, roles etc
 
-
+- [ ] Add documentation to code
