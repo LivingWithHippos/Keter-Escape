@@ -18,7 +18,11 @@
         <action
             android:id="@+id/actionStartToSettings"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/actionStartToNewGame"
+            app:destination="@id/newGameFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.onewisebit.scp_scarycontainmentpanic.AboutFragment"
@@ -29,4 +33,9 @@
         android:name="com.onewisebit.scp_scarycontainmentpanic.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@xml/preferences" />
+    <fragment
+        android:id="@+id/newGameFragment"
+        android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameFragment"
+        android:label="fragment_new_game"
+        tools:layout="@layout/fragment_new_game" />
 </navigation>
