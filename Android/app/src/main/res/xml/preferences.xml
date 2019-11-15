@@ -4,11 +4,11 @@
 
     <SwitchPreferenceCompat
         app:key="scp1471"
-        app:title="Enable SCP-1471"/>
+        app:title="@string/enable_scp_1471"/>
 
     <Preference
         app:key="reportescape"
-        app:title="Report Containment Escape"
-        app:summary="Report technical issues or suggest new features"/>
+        app:title="@string/report_breach"
+        app:summary="@string/report_bug_description"/>
 
 </PreferenceScreen>
