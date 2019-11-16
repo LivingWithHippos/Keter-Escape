@@ -15,4 +15,5 @@
     <string name="pass_play">Pass Play</string>
     <string name="pass_play_description">Play with your friends on a single device.</string>
     <string name="players_count">Players Count</string>
+    <string name="choose_players_count">Set the number of players</string>
 </resources>

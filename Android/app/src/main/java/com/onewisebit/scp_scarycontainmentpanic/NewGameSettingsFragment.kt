@@ -25,7 +25,7 @@ class NewGameSettingsFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.playerPicker.minValue=3
-        binding.playerPicker.maxValue=10
+        binding.npPlayerPicker.minValue=3
+        binding.npPlayerPicker.maxValue=10
     }
 }

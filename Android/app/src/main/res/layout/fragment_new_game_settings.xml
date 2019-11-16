@@ -16,7 +16,7 @@
         android:text="@string/players_count" />
 
     <NumberPicker
-        android:id="@+id/playerPicker"
+        android:id="@+id/npPlayerPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -24,6 +24,14 @@
         card_view:layout_constraintTop_toBottomOf="@id/tvPlayerCount">
 
     </NumberPicker>
+
+    <TextView
+        android:id="@+id/tvRoles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        card_view:layout_constraintTop_toBottomOf="@id/npPlayerPicker"
+        card_view:layout_constraintStart_toStartOf="parent"
+        android:text="@string/choose_players_count"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
