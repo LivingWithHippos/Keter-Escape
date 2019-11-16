@@ -11,7 +11,7 @@
         android:label="fragment_start_screen"
         tools:layout="@layout/fragment_start_screen" >
         <action
-            android:id="@+id/action_start_to_about"
+            android:id="@+id/actionStartToAbout"
             app:destination="@id/aboutFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim" />
@@ -37,5 +37,14 @@
         android:id="@+id/newGameFragment"
         android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameFragment"
         android:label="fragment_new_game"
-        tools:layout="@layout/fragment_new_game" />
+        tools:layout="@layout/fragment_new_game" >
+        <action
+            android:id="@+id/actionNewGameToSettings"
+            app:destination="@id/newGameSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newGameSettingsFragment"
+        android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameSettingsFragment"
+        android:label="NewGameSettings"
+        tools:layout="@layout/fragment_new_game_settings"  />
 </navigation>
