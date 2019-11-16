@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentNewGameBinding
+import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_TYPE_PASS
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,7 +46,8 @@ class NewGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.cvNewGamePass.setOnClickListener{
-            val action = NewGameFragmentDirections.actionNewGameToSettings()
+            val gameType = GAME_TYPE_PASS
+            val action = NewGameFragmentDirections.actionNewGameToSettings(gameType)
             view.findNavController().navigate(action)
         }
     }

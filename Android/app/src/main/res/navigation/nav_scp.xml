@@ -46,5 +46,10 @@
         android:id="@+id/newGameSettingsFragment"
         android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameSettingsFragment"
         android:label="NewGameSettings"
-        tools:layout="@layout/fragment_new_game_settings"  />
+        tools:layout="@layout/fragment_new_game_settings"  >
+        <argument
+            android:name="gameType"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
