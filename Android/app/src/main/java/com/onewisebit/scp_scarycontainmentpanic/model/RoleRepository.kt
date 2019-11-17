@@ -4,7 +4,7 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RoleRepository(private val roleDAO: RoleDAO) : InRoleRepository{
+class RoleRepository(private val roleDAO: RoleDAO) : InRoleRepository {
 
     override fun getAllRoles(): List<Role> = roleDAO.getAllRoles()
 

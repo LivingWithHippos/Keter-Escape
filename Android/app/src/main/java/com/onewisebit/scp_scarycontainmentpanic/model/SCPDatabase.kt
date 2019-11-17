@@ -1,9 +1,9 @@
 package com.onewisebit.scp_scarycontainmentpanic.model
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -21,16 +21,20 @@ abstract class SCPDatabase : RoomDatabase() {
 
     companion object {
 
-        @Volatile private var INSTANCE: SCPDatabase? = null
+        @Volatile
+        private var INSTANCE: SCPDatabase? = null
 
         fun getInstance(context: Context): SCPDatabase =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
             }
+
         //TODO: add option for updates to the scps json file, check RoomDatabase.Builder.createFromAsset()
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext,
-                SCPDatabase::class.java, DATABASE_NAME)
+            Room.databaseBuilder(
+                context.applicationContext,
+                SCPDatabase::class.java, DATABASE_NAME
+            )
                 .addCallback(object : RoomDatabase.Callback() {
                     //populate the database on creation
                     override fun onCreate(db: SupportSQLiteDatabase) {

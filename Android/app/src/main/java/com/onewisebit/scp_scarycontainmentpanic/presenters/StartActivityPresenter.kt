@@ -4,10 +4,11 @@ import android.content.Context
 import com.onewisebit.scp_scarycontainmentpanic.StartContract
 import com.onewisebit.scp_scarycontainmentpanic.model.StartActivityModel
 
-class StartActivityPresenter(sView: StartContract.StartView, context : Context): StartContract.StartPresenter {
+class StartActivityPresenter(sView: StartContract.StartView, context: Context) :
+    StartContract.StartPresenter {
 
-    private var view : StartContract.StartView = sView
-    private var model : StartContract.StartModel = StartActivityModel()
+    private var view: StartContract.StartView = sView
+    private var model: StartContract.StartModel = StartActivityModel()
 
     init {
         view.initView()
@@ -15,6 +16,6 @@ class StartActivityPresenter(sView: StartContract.StartView, context : Context):
     }
 
     override fun setView(view: StartContract.StartView) {
-        this.view=view
+        this.view = view
     }
 }

@@ -3,10 +3,9 @@ package com.onewisebit.scp_scarycontainmentpanic.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "roles")
-class Role (
+class Role(
     @PrimaryKey
     @ColumnInfo(name = "rolename")
     val name: String,

@@ -3,7 +3,7 @@ package com.onewisebit.scp_scarycontainmentpanic.model
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class ModeRepository(private val modeDAO:ModeDAO):InModeRepository {
+class ModeRepository(private val modeDAO: ModeDAO) : InModeRepository {
 
     override fun getMode(id: Int): Mode = modeDAO.getModeById(id)
 

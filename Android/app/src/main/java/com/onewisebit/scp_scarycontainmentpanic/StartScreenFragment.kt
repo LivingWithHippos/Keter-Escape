@@ -1,10 +1,10 @@
 package com.onewisebit.scp_scarycontainmentpanic
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentStartScreenBinding
 
@@ -31,11 +31,11 @@ class StartScreenFragment : Fragment() {
             val action = StartScreenFragmentDirections.actionStartToAbout()
             view.findNavController().navigate(action)
         }
-        binding.bSettings.setOnClickListener{
+        binding.bSettings.setOnClickListener {
             val action = StartScreenFragmentDirections.actionStartToSettings()
             view.findNavController().navigate(action)
         }
-        binding.bNewGame.setOnClickListener{
+        binding.bNewGame.setOnClickListener {
             val action = StartScreenFragmentDirections.actionStartToNewGame()
             view.findNavController().navigate(action)
         }

@@ -10,11 +10,11 @@ interface StartContract {
     }
 
     interface StartPresenter {
-        fun setView(view : StartView)
+        fun setView(view: StartView)
     }
 
     interface StartModel {
-        fun init(context : Context)
+        fun init(context: Context)
         fun getTheme(): String
     }
 }

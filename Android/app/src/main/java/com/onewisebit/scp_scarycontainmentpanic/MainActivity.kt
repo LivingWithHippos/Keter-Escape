@@ -1,8 +1,7 @@
 package com.onewisebit.scp_scarycontainmentpanic
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.onewisebit.scp_scarycontainmentpanic.StartContract.*
+import com.onewisebit.scp_scarycontainmentpanic.StartContract.StartView
 import com.onewisebit.scp_scarycontainmentpanic.presenters.StartActivityPresenter
 
 class MainActivity : BaseSCPActivity(), StartView {
@@ -13,7 +12,7 @@ class MainActivity : BaseSCPActivity(), StartView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter = StartActivityPresenter(this,applicationContext)
+        presenter = StartActivityPresenter(this, applicationContext)
     }
 
 

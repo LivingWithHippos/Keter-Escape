@@ -4,9 +4,9 @@ import io.reactivex.Flowable
 
 interface InPlayerRepository {
 
-    fun insertPlayer(player:Player)
+    fun insertPlayer(player: Player)
 
-    fun updatePlayer(player:Player)
+    fun updatePlayer(player: Player)
 
     fun getPlayerById(id: String): Flowable<Player>
 
