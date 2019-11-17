@@ -1,19 +1,26 @@
 package com.onewisebit.scp_scarycontainmentpanic.model
 
+import android.util.Log
+import io.reactivex.android.schedulers.AndroidSchedulers
+
 class ModeRepository(private val modeDAO:ModeDAO):InModeRepository {
-    override fun getMode(id: Int): Mode {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
+    override fun getMode(id: Int): Mode = modeDAO.getModeById(id)
 
     override fun insertMode(mode: Mode) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        modeDAO.insertMode(mode)
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { Log.d(TAG, "Insert Success") },
+                { Log.d(TAG, "Insert Error") }
+            )
     }
 
-    override fun getAllModes(): List<Mode> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getAllModes(): List<Mode> = modeDAO.getAllModes()
 
-    override fun insertAll(modes: List<Mode>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun insertAll(modes: List<Mode>) = modeDAO.insertAll(modes)
+
+    companion object {
+        private val TAG = PlayerRepository::class.java.simpleName
     }
 }

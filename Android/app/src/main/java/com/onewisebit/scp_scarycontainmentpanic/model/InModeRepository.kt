@@ -5,5 +5,5 @@ interface InModeRepository {
     fun getMode(id: Int): Mode
     fun insertMode(mode: Mode)
     fun getAllModes():List<Mode>
-    fun insertAll(modes:List<Mode>)
+    suspend fun insertAll(modes:List<Mode>)
 }
