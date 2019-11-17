@@ -1,9 +1,19 @@
 {
   "roles": [
     {
-      "name": "Guard",
+      "name": "Security Officer",
       "group": "Foundation",
-      "description": "Your are part of the basic foundation personnel. Protect scientists and escort D-Class around."
+      "description": "On-site security officers — often referred to simply as guards — at Foundation facilities are tasked with maintaining physical and information security for Foundation projects, operations, and personnel."
+    },
+    {
+      "name": "MTF - Mobile Task Force",
+      "group": "Foundation",
+      "description": "Specialist units comprised of veteran field personnel drawn from all over the Foundation."
+    },
+    {
+      "name": "Class D",
+      "group": "Foundation",
+      "description": "Class D personnel are expendable personnel used to handle extremely hazardous anomalies. Typically drawn worldwide from the ranks of prison inmates convicted of violent crimes, especially those on death row."
     },
     {
       "name": "SCP-173",
