@@ -14,5 +14,9 @@ data class Mode(
     @ColumnInfo(name = "modeDescription")
     val description: String,
     @ColumnInfo(name = "modeRules")
-    val rules: String
+    val rules: String,
+    @ColumnInfo(name = "maxPlayers")
+    val max: Int,
+    @ColumnInfo(name = "minPlayers")
+    val min: Int
 )

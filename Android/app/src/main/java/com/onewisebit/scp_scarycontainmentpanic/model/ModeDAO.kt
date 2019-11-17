@@ -13,7 +13,21 @@ interface ModeDAO {
      * @return the Mode from the table with a specific id.
      */
     @Query("SELECT * FROM modes WHERE modeID = :id")
-    fun getModeById(id: Int): Mode
+    fun getModeById(id: Long): Mode
+
+    /**
+     * Get the minimum number of players from game mode id.
+     * @return the minimum number of players needed to play this mode.
+     */
+    @Query("SELECT minPlayers FROM modes WHERE modeID = :id")
+    fun getMinPlayers(id: Long): Int
+
+    /**
+     * Get the maximum number of players from game mode id.
+     * @return the maximal number of players needed to play this mode.
+     */
+    @Query("SELECT maxPlayers FROM modes WHERE modeID = :id")
+    fun getMaxPlayers(id: Long): Int
 
     /**
      * Insert a Mode in the database. If the mode already exists, replace it.
