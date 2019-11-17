@@ -16,4 +16,7 @@
     <string name="pass_play_description">Play with your friends on a single device.</string>
     <string name="players_count">Players Count</string>
     <string name="choose_players_count">Set the number of players</string>
+    <string name="mode_classic_players_lower">Two SCPs, the rest are class D personnel</string>
+    <string name="mode_classic_players_higher">Three SCPs, the rest are class D personnel</string>
+    <string name="players_count_error">This should\'t have happened. Please report immediately to your supervisor.</string>
 </resources>
