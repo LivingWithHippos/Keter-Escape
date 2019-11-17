@@ -35,7 +35,7 @@ interface ParticipantDAO {
     fun insertParticipant(participant: Participant): Completable
 
     /**
-     * Update a player in the database.
+     * Update a participant in the database.
      * @param participant the player to be updated.
      */
     @Update
