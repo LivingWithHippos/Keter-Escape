@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a656b9edb146ccfe378e0308c0582d33",
+    "identityHash": "c0c1cae7220681ff2a9b6cbec90f7df6",
     "entities": [
       {
         "tableName": "players",
@@ -186,7 +186,16 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_participants_role",
+            "unique": false,
+            "columnNames": [
+              "role"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_participants_role` ON `${TABLE_NAME}` (`role`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "games",
@@ -227,7 +236,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a656b9edb146ccfe378e0308c0582d33')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c0c1cae7220681ff2a9b6cbec90f7df6')"
     ]
   }
 }
