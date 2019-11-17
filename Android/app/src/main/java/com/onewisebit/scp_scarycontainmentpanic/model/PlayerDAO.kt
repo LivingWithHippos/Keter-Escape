@@ -24,7 +24,7 @@ interface PlayerDAO {
 
     /**
      * Update a player in the database.
-     * @param player the player to be updates.
+     * @param player the player to be updated.
      */
     @Update
     fun updatePlayer(player: Player): Completable
