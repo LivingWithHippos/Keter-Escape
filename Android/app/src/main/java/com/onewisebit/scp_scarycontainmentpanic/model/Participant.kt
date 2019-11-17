@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 
-@Entity(primaryKeys = ["game","player"],
-    tableName = "participants",
+@Entity(tableName = "participants",
+    primaryKeys = ["game","player"],
     foreignKeys = arrayOf(
         ForeignKey(entity = Game::class,
             parentColumns = ["gameID"],
@@ -24,9 +24,9 @@ import androidx.room.ForeignKey
 data class Participant (
     @ColumnInfo(name="game")
     val gameID: Long,
-    @ColumnInfo(name="player")
+    @ColumnInfo(name="player", index = true)
     val playerID: Long,
-    @ColumnInfo(name="role")
+    @ColumnInfo(name="role", index = true)
     val roleName: String,
     @ColumnInfo(name="state")
     val stateValue: Int
