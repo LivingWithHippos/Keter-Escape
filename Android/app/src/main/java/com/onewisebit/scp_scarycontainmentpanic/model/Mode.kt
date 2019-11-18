@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "modes")
 data class Mode(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "modeID")
+    @ColumnInfo(name = "mode_ID")
     val id: Long,
-    @ColumnInfo(name = "modeName")
+    @ColumnInfo(name = "mode_name")
     val name: String,
-    @ColumnInfo(name = "modeDescription")
+    @ColumnInfo(name = "mode_description")
     val description: String,
-    @ColumnInfo(name = "modeRules")
+    @ColumnInfo(name = "mode_rules")
     val rules: String,
-    @ColumnInfo(name = "maxPlayers")
+    @ColumnInfo(name = "max_players")
     val max: Int,
-    @ColumnInfo(name = "minPlayers")
+    @ColumnInfo(name = "min_players")
     val min: Int
 )

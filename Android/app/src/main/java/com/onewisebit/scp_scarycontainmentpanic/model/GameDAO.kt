@@ -10,21 +10,21 @@ interface GameDAO {
      * Get a game by id.
      * @return the Game from the table with a specific id.
      */
-    @Query("SELECT * FROM games WHERE gameID = :id")
+    @Query("SELECT * FROM games WHERE game_ID = :id")
     fun getGameById(id: Long): Game
 
     /**
      * Get the game type from game id.
      * @return the game type.
      */
-    @Query("SELECT gameType FROM games WHERE gameID = :id")
+    @Query("SELECT game_type FROM games WHERE game_ID = :id")
     fun getType(id: Long): Int
 
     /**
      * Get the game mode from game id.
      * @return the game mode.
      */
-    @Query("SELECT gameMode FROM games WHERE gameID = :id")
+    @Query("SELECT game_mode FROM games WHERE game_ID = :id")
     fun getMode(id: Long): Int
 
     /**

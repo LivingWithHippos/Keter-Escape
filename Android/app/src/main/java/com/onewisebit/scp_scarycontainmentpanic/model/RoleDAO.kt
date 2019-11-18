@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 @Dao
 interface RoleDAO {
 
-    @Query("SELECT * FROM roles WHERE rolename = :name")
+    @Query("SELECT * FROM roles WHERE role_name = :name")
     fun getRoleByName(name: String): Flowable<Role>
 
     @Query("SELECT * FROM roles")

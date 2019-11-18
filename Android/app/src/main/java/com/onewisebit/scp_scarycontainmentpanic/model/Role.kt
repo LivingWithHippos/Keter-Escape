@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "roles")
 class Role(
     @PrimaryKey
-    @ColumnInfo(name = "rolename")
+    @ColumnInfo(name = "role_name")
     val name: String,
-    @ColumnInfo(name = "roledescription")
+    @ColumnInfo(name = "role_description")
     val description: String,
-    @ColumnInfo(name = "rolegroup")
+    @ColumnInfo(name = "role_group")
     val type: String
 )

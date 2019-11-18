@@ -7,14 +7,14 @@ import androidx.room.ForeignKey
 @Entity(tableName = "participants",
     primaryKeys = ["game","player"],
     foreignKeys = [ForeignKey(entity = Game::class,
-        parentColumns = ["gameID"],
+        parentColumns = ["game_ID"],
         childColumns = ["game"],
         //TODO: implement logic to manage the deletion of a player with a saved/running game
         onDelete = ForeignKey.NO_ACTION), ForeignKey(entity = Player::class,
-        parentColumns = ["playerID"],
+        parentColumns = ["player_ID"],
         childColumns = ["player"],
         onDelete = ForeignKey.NO_ACTION), ForeignKey(entity = Role::class,
-        parentColumns = ["rolename"],
+        parentColumns = ["role_name"],
         childColumns = ["role"],
         onDelete = ForeignKey.NO_ACTION)]
 )

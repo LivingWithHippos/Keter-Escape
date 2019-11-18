@@ -8,11 +8,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "players")
 data class Player(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "playerID")
+    @ColumnInfo(name = "player_ID")
     val id: Long,
-    @ColumnInfo(name = "playername")
+    @ColumnInfo(name = "player_name")
     val name: String,
     //TODO: create library of pics to choose from
-    @ColumnInfo(name = "playerimage")
+    @ColumnInfo(name = "player_image")
     val image: String
 )

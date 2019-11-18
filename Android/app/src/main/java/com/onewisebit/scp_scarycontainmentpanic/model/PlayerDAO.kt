@@ -11,7 +11,7 @@ interface PlayerDAO {
      * Get a user by id.
      * @return the player from the table with a specific id.
      */
-    @Query("SELECT * FROM players WHERE playerid = :id")
+    @Query("SELECT * FROM players WHERE player_ID = :id")
     fun getPlayerById(id: String): Flowable<Player>
 
     /**
