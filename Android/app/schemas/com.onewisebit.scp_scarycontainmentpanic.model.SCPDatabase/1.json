@@ -2,34 +2,34 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c0c1cae7220681ff2a9b6cbec90f7df6",
+    "identityHash": "c72ee2f5d8b8787c786948585f1b2bdb",
     "entities": [
       {
         "tableName": "players",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`playerID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `playername` TEXT NOT NULL, `playerimage` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`player_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `player_name` TEXT NOT NULL, `player_image` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "playerID",
+            "columnName": "player_ID",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "name",
-            "columnName": "playername",
+            "columnName": "player_name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "image",
-            "columnName": "playerimage",
+            "columnName": "player_image",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "playerID"
+            "player_ID"
           ],
           "autoGenerate": true
         },
@@ -38,30 +38,30 @@
       },
       {
         "tableName": "roles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`rolename` TEXT NOT NULL, `roledescription` TEXT NOT NULL, `rolegroup` TEXT NOT NULL, PRIMARY KEY(`rolename`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`role_name` TEXT NOT NULL, `role_description` TEXT NOT NULL, `role_group` TEXT NOT NULL, PRIMARY KEY(`role_name`))",
         "fields": [
           {
             "fieldPath": "name",
-            "columnName": "rolename",
+            "columnName": "role_name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "description",
-            "columnName": "roledescription",
+            "columnName": "role_description",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "type",
-            "columnName": "rolegroup",
+            "columnName": "role_group",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "rolename"
+            "role_name"
           ],
           "autoGenerate": false
         },
@@ -70,30 +70,30 @@
       },
       {
         "tableName": "games",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gameID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gameType` INTEGER NOT NULL, `gameMode` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `game_type` INTEGER NOT NULL, `game_mode` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "gameID",
+            "columnName": "game_ID",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "type",
-            "columnName": "gameType",
+            "columnName": "game_type",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "mode",
-            "columnName": "gameMode",
+            "columnName": "game_mode",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "gameID"
+            "game_ID"
           ],
           "autoGenerate": true
         },
@@ -102,48 +102,48 @@
       },
       {
         "tableName": "modes",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`modeID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `modeName` TEXT NOT NULL, `modeDescription` TEXT NOT NULL, `modeRules` TEXT NOT NULL, `maxPlayers` INTEGER NOT NULL, `minPlayers` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mode_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode_name` TEXT NOT NULL, `mode_description` TEXT NOT NULL, `mode_rules` TEXT NOT NULL, `max_players` INTEGER NOT NULL, `min_players` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "modeID",
+            "columnName": "mode_ID",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "name",
-            "columnName": "modeName",
+            "columnName": "mode_name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "description",
-            "columnName": "modeDescription",
+            "columnName": "mode_description",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "rules",
-            "columnName": "modeRules",
+            "columnName": "mode_rules",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "max",
-            "columnName": "maxPlayers",
+            "columnName": "max_players",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "min",
-            "columnName": "minPlayers",
+            "columnName": "min_players",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "modeID"
+            "mode_ID"
           ],
           "autoGenerate": true
         },
@@ -152,7 +152,7 @@
       },
       {
         "tableName": "participants",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `player` INTEGER NOT NULL, `role` TEXT NOT NULL, `state` INTEGER NOT NULL, PRIMARY KEY(`game`, `player`), FOREIGN KEY(`game`) REFERENCES `games`(`gameID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`player`) REFERENCES `players`(`playerID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`role`) REFERENCES `roles`(`rolename`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `player` INTEGER NOT NULL, `role` TEXT NOT NULL, `state` INTEGER NOT NULL, PRIMARY KEY(`game`, `player`), FOREIGN KEY(`game`) REFERENCES `games`(`game_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`role`) REFERENCES `roles`(`role_name`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "gameID",
@@ -188,6 +188,14 @@
         },
         "indices": [
           {
+            "name": "index_participants_player",
+            "unique": false,
+            "columnNames": [
+              "player"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_participants_player` ON `${TABLE_NAME}` (`player`)"
+          },
+          {
             "name": "index_participants_role",
             "unique": false,
             "columnNames": [
@@ -205,7 +213,7 @@
               "game"
             ],
             "referencedColumns": [
-              "gameID"
+              "game_ID"
             ]
           },
           {
@@ -216,7 +224,7 @@
               "player"
             ],
             "referencedColumns": [
-              "playerID"
+              "player_ID"
             ]
           },
           {
@@ -227,7 +235,7 @@
               "role"
             ],
             "referencedColumns": [
-              "rolename"
+              "role_name"
             ]
           }
         ]
@@ -236,7 +244,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c0c1cae7220681ff2a9b6cbec90f7df6')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c72ee2f5d8b8787c786948585f1b2bdb')"
     ]
   }
 }
