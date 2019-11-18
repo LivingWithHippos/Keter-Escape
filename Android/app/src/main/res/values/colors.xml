@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#2c2f4e</color>
-    <!--A color that passes accessibility guidelines for text/iconography
-    when drawn on top of the primary color.-->
-    <color name="colorOnPrimary">#fff</color>
-    <color name="primaryLightColor">#56587a</color>
-    <color name="primaryDarkColor">#040526</color>
-    <color name="secondaryColor">#8e6bb3</color>
-    <color name="secondaryLightColor">#bf9ae5</color>
-    <color name="secondaryDarkColor">#5f3f83</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
+    <color name="color_surface">#424445</color>
+    <color name="color_secondary_variant">#9876AA</color>
+    <color name="color_on_error">#FFC66D</color>
+    <color name="color_on_secondary">#D8D8D8</color>
+    <color name="color_on_background">#D8D8D8</color>
+    <color name="color_on_surface">#D8D8D8</color>
+    <color name="color_secondary">#CC7832</color>
+    <color name="color_error">#D25252</color>
+    <color name="color_primary">#2B2B2B</color>
+    <color name="color_background">#2B2B2B</color>
+    <color name="color_primary_variant">#323232</color>
+    <color name="color_on_primary">#D8D8D8</color>
 </resources>
