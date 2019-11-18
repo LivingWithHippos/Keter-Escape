@@ -8,22 +8,22 @@ These are related to the Android app.
 - [ ] Add animation for gradient in main screen
 - [ ] Add themes (for example one for every GOI, O5 etc.)
 - [ ] add bottom banner displaying "news" in the Home Fragment
+- [ ] 
 
 #### Medium Priority:
 
 - [ ] Online multiplayer
 - [ ] local (bluetooth) multiplayer
-  
-  
-  
+
   Add "Flavour" to the app
-  - [ ] Add custom font
-  
-  - [x] Add SCP 2293 (see about screen)
-  
-  - [ ] Add SCP 1471 (see settings screen)
-  
-  
+
+- [ ] Add custom font
+
+- [x] Add SCP 2293 (see about screen)
+
+- [ ] Add SCP 1471 (see settings screen), maybe show it sometimes on fragment change animation
+
+- [ ] rename db columns (with style var_name)
 
 #### High Priority
 
