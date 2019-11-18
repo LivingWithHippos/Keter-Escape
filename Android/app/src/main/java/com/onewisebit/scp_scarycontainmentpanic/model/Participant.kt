@@ -6,21 +6,18 @@ import androidx.room.ForeignKey
 
 @Entity(tableName = "participants",
     primaryKeys = ["game","player"],
-    foreignKeys = arrayOf(
-        ForeignKey(entity = Game::class,
-            parentColumns = ["gameID"],
-            childColumns = ["game"],
-            //TODO: implement logic to manage the deletion of a player with a saved/running game
-            onDelete = ForeignKey.NO_ACTION),
-        ForeignKey(entity = Player::class,
-            parentColumns = ["playerID"],
-            childColumns = ["player"],
-            onDelete = ForeignKey.NO_ACTION),
-        ForeignKey(entity = Role::class,
-            parentColumns = ["rolename"],
-            childColumns = ["role"],
-            onDelete = ForeignKey.NO_ACTION)
-    ))
+    foreignKeys = [ForeignKey(entity = Game::class,
+        parentColumns = ["gameID"],
+        childColumns = ["game"],
+        //TODO: implement logic to manage the deletion of a player with a saved/running game
+        onDelete = ForeignKey.NO_ACTION), ForeignKey(entity = Player::class,
+        parentColumns = ["playerID"],
+        childColumns = ["player"],
+        onDelete = ForeignKey.NO_ACTION), ForeignKey(entity = Role::class,
+        parentColumns = ["rolename"],
+        childColumns = ["role"],
+        onDelete = ForeignKey.NO_ACTION)]
+)
 data class Participant (
     @ColumnInfo(name="game")
     val gameID: Long,
