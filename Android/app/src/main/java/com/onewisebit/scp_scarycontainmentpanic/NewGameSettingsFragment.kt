@@ -29,6 +29,7 @@ class NewGameSettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tvRoles.setText(R.string.mode_classic_players_lower)
         binding.npPlayerPicker.minValue = GAME_CLASSIC_MIN_PLAYERS
         binding.npPlayerPicker.maxValue = GAME_CLASSIC_MAX_PLAYERS
         binding.npPlayerPicker.setOnValueChangedListener { _, _, newVal ->
