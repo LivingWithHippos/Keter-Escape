@@ -6,9 +6,9 @@
     <application
         android:fullBackupContent="@xml/scp_backup_rules"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_day_broke"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon_day_broke"
         android:supportsRtl="true"
         android:theme="@style/Theme.${application_theme}"
         tools:ignore="GoogleAppIndexingWarning">
