@@ -51,5 +51,12 @@
             android:name="gameType"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/actionNewGameSettingsToPlayersChoice"
+            app:destination="@id/playersChoiceFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/playersChoiceFragment"
+        android:name="com.onewisebit.scp_scarycontainmentpanic.PlayersChoiceFragment"
+        android:label="PlayersChoiceFragment" />
 </navigation>
