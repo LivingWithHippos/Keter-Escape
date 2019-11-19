@@ -19,4 +19,6 @@
     <string name="mode_classic_players_lower">Two SCPs, the rest are class D personnel</string>
     <string name="mode_classic_players_higher">Three SCPs, the rest are class D personnel</string>
     <string name="players_count_error">This should\'t have happened. Please report immediately to your supervisor.</string>
+    <string name="player_name">Player Name</string>
+    <string name="tap_for_pic">Tap here to add a profile pic.</string>
 </resources>
