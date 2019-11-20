@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_setup"
+    app:startDestination="@id/newGameSettingsFragment">
+
+    <fragment
+        android:id="@+id/newGameSettingsFragment"
+        android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameSettingsFragment"
+        android:label="fragment_new_game_settings"
+        tools:layout="@layout/fragment_new_game_settings" >
+        <action
+            android:id="@+id/actionGameSettingsToPlayersChoice"
+            app:destination="@id/playersChoiceFragment" />
+        <argument
+            android:name="game_type"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/playersChoiceFragment"
+        android:name="com.onewisebit.scp_scarycontainmentpanic.PlayersChoiceFragment"
+        android:label="PlayersChoiceFragment" />
+</navigation>
