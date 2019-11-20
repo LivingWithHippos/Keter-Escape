@@ -39,24 +39,17 @@
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_new_game" >
         <action
-            android:id="@+id/actionNewGameToSettings"
-            app:destination="@id/newGameSettingsFragment" />
+            android:id="@+id/actionNewGameToGameSetup"
+            app:destination="@id/gameSetupActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/newGameSettingsFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameSettingsFragment"
-        android:label="NewGameSettings"
-        tools:layout="@layout/fragment_new_game_settings"  >
+    <activity
+        android:id="@+id/gameSetupActivity"
+        android:name="com.onewisebit.scp_scarycontainmentpanic.GameSetupActivity"
+        android:label="activity_game_setup"
+        tools:layout="@layout/activity_game_setup" >
         <argument
             android:name="gameType"
             app:argType="integer"
             android:defaultValue="0" />
-        <action
-            android:id="@+id/actionNewGameSettingsToPlayersChoice"
-            app:destination="@id/playersChoiceFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/playersChoiceFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.PlayersChoiceFragment"
-        android:label="PlayersChoiceFragment" />
+    </activity>
 </navigation>
