@@ -15,7 +15,10 @@ class GameSetupActivity:BaseSCPActivity() {
         binding=ActivityGameSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //TODO: change settings according to chosen game mode
+        /**
         val args: GameSetupActivityArgs by navArgs()
         gameType = args.gameType
+         */
     }
 }

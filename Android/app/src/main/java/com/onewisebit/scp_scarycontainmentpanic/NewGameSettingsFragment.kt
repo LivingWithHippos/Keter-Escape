@@ -22,8 +22,6 @@ class NewGameSettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //TODO: change settings according to chosen game mode
-        val args: NewGameSettingsFragmentArgs by navArgs()
         binding = FragmentNewGameSettingsBinding.inflate(layoutInflater)
         return binding.root
     }
