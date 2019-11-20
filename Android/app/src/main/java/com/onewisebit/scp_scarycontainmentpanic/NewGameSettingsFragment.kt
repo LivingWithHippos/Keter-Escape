@@ -44,7 +44,7 @@ class NewGameSettingsFragment : Fragment() {
             }
         }
         binding.fabChoosePlayers.setOnClickListener{
-            val action = NewGameSettingsFragmentDirections.actionNewGameSettingsToPlayersChoice()
+            val action = NewGameSettingsFragmentDirections.actionGameSettingsToPlayersChoice()
             view.findNavController().navigate(action)
         }
     }
