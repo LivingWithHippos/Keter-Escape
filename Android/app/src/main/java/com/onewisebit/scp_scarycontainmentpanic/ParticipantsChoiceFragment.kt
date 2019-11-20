@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentPlayersChoiceBinding
+import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentParticipantsChoiceBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
 
-class PlayersChoiceFragment:Fragment() {
+class ParticipantsChoiceFragment:Fragment() {
 
     private lateinit var gridLayoutManager: GridLayoutManager
-    private lateinit var adapter: PlayersAdapter
-    private lateinit var binding: FragmentPlayersChoiceBinding
+    private lateinit var adapter: ParticipantsAdapter
+    private lateinit var binding: FragmentParticipantsChoiceBinding
 
     private var playersList: ArrayList<Player> = ArrayList()
 
@@ -22,7 +22,7 @@ class PlayersChoiceFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPlayersChoiceBinding.inflate(layoutInflater)
+        binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         gridLayoutManager = GridLayoutManager(this.context,2)
         return binding.root
     }

@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.PlayerListItemBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
-import kotlinx.android.extensions.LayoutContainer
 
-class PlayersAdapter (playersList: ArrayList<Player>): RecyclerView.Adapter<PlayersAdapter.PlayerHolder>(){
+class ParticipantsAdapter (playersList: ArrayList<Player>): RecyclerView.Adapter<ParticipantsAdapter.PlayerHolder>(){
 
     private val players : ArrayList<Player> = playersList
 
@@ -26,7 +25,7 @@ class PlayersAdapter (playersList: ArrayList<Player>): RecyclerView.Adapter<Play
     }
 
     companion object {
-        private val TAG = PlayersAdapter::class.java.simpleName
+        private val TAG = ParticipantsAdapter::class.java.simpleName
     }
 
     class PlayerHolder(_view: View):RecyclerView.ViewHolder(_view), View.OnClickListener {
