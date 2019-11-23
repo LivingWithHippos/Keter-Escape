@@ -25,6 +25,12 @@ These are related to the Android app.
 
 - [x] rename db columns (with style var_name)
 
+- [ ] change package and app name (Keter Escape? Broken Day?)
+
+- [ ] Add api to retrieve SCPs: [Wikidot Api](http://developer.wikidot.com/doc:api), [Java Api](https://github.com/shane-smith/Wikidot-API-Open-Source)
+
+
+
 #### High Priority
 
 - [ ] Tutorial
