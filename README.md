@@ -11,3 +11,7 @@ The minimum I'm going to make is an offline pass and play version of the game as
 ###Building
 
 Android 3.6 ([beta 4 at the moment is the latest version](https://developer.android.com/studio/preview/)) is needed as [viewbinding](https://developer.android.com/topic/libraries/view-binding) is being used.
+
+###Credits
+
+Original Icon from https://openclipart.org/detail/309814/mountain
