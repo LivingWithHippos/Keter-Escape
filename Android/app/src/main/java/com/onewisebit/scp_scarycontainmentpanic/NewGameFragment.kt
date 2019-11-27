@@ -50,7 +50,7 @@ class NewGameFragment : Fragment() {
         binding.cvNewGamePass.setOnClickListener {
 
             val gameType = GAME_TYPE_PASS
-            val action = NewGameFragmentDirections.actionNewGameToGameSetup(gameType)
+            val action = NewGameFragmentDirections.actionNewGameToNewGameSettings(gameType)
             view.findNavController().navigate(action)
         }
     }
