@@ -32,7 +32,7 @@ class ParticipantsAdapter (playersList: ArrayList<Player>): RecyclerView.Adapter
 
         private var view:View = _view
         private var player:Player?=null
-        private lateinit var binding: PlayerListItemBinding
+        private var binding: PlayerListItemBinding
 
         init {
             // view.setOnClickListener(this)
