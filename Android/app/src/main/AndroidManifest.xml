@@ -4,6 +4,7 @@
     package="com.onewisebit.scp_scarycontainmentpanic">
 
     <application
+        android:name=".SCPApplication"
         android:fullBackupContent="@xml/scp_backup_rules"
         android:allowBackup="true"
         android:icon="@drawable/icon_day_broke"
