@@ -84,6 +84,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxkotlinVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
 
+    //Koin
+    implementation "org.koin:koin-android:$rootProject.koin_version"
+
     // UI components
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appcompatVersion"
