@@ -17,6 +17,7 @@ abstract class BaseSCPActivity: AppCompatActivity() {
             setImmersiveMode()
     }
 
+    //TODO: this needs to be triggered on more occasions
     fun setImmersiveMode(){
         val immersiveFlags : Int = (window.decorView.systemUiVisibility
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
