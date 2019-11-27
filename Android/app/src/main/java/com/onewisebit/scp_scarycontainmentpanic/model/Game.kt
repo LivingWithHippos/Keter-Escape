@@ -11,6 +11,7 @@ data class Game(
     val id: Long,
     @ColumnInfo(name = "game_type")
     val type: Int,
-    @ColumnInfo(name = "game_mode")
-    val mode: Int
+    //TODO: test this value
+    @ColumnInfo(name = "temporary", defaultValue = "true")
+    val temp: Boolean
 )
