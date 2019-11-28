@@ -25,4 +25,9 @@
     <string name="create_player">Create New Player</string>
     <string name="player_name_filter">Filter Players By Name</string>
     <string name="game_id_required">Game ID required</string>
+    <string name="enter_player_name">Enter Player\'s Name</string>
+    <string name="Cancel" />
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_player">New Player</string>
 </resources>
