@@ -10,8 +10,6 @@ interface InGameRepository {
 
     fun getType(id: Long): Int
 
-    fun getMode(id: Long): Int
-
     fun getAllGames(): List<Game>
 
     fun deleteGame(game: Game)

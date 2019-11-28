@@ -10,8 +10,6 @@ class GameRepository(private val gameDAO: GameDAO):InGameRepository {
 
     override fun getType(id: Long): Int = gameDAO.getType(id)
 
-    override fun getMode(id: Long): Int = gameDAO.getMode(id)
-
     override fun getAllGames(): List<Game> = gameDAO.getAllGames()
 
     override fun deleteGame(game: Game) = gameDAO.removeGame(game)
