@@ -23,8 +23,9 @@ val appModule = module {
     single { get<SCPDatabase>().participantDAO() }
 
     single { GameRepository(get()) }
-    factory { GameSettingsModelImpl(get()) }
-
     single { PlayerRepository(get()) }
+
+    factory { StartActivityModel(get(),get()) }
+    factory { GameSettingsModelImpl(get()) }
     factory { PlayersModelImpl(get()) }
 }
