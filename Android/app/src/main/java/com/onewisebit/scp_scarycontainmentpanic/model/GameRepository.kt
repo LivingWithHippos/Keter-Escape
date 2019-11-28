@@ -4,7 +4,7 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class GameRepository(private val gameDAO: GameDAO):InGameRepository {
+class GameRepository(private val gameDAO: GameDAO) : InGameRepository {
 
     override fun getGameById(id: Long): Game = gameDAO.getGameById(id)
 
@@ -34,7 +34,7 @@ class GameRepository(private val gameDAO: GameDAO):InGameRepository {
                 { Log.d(TAG, "Update Error") }
             )
     }
-    
+
     companion object {
         private val TAG = PlayerRepository::class.java.simpleName
     }

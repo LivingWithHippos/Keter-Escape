@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
-abstract class BaseSCPActivity: AppCompatActivity() {
+abstract class BaseSCPActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +18,8 @@ abstract class BaseSCPActivity: AppCompatActivity() {
     }
 
     //TODO: this needs to be triggered on more occasions
-    private fun setImmersiveMode(){
-        val immersiveFlags : Int = (window.decorView.systemUiVisibility
+    private fun setImmersiveMode() {
+        val immersiveFlags: Int = (window.decorView.systemUiVisibility
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

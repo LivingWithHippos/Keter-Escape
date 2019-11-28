@@ -1,7 +1,7 @@
 package com.onewisebit.scp_scarycontainmentpanic.model
 
 interface InGameRepository {
-    
+
     fun insertGame(game: Game)
 
     fun updateGame(game: Game)
@@ -15,5 +15,5 @@ interface InGameRepository {
     fun deleteGame(game: Game)
 
     fun deleteAllGames()
-    
+
 }

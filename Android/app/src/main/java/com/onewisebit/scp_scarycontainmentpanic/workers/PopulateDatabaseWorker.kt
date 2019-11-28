@@ -6,16 +6,16 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.onewisebit.scp_scarycontainmentpanic.utilities.ROLE_DATA_FILENAME
-import kotlinx.coroutines.coroutineScope
 import com.google.gson.stream.JsonReader
 import com.onewisebit.scp_scarycontainmentpanic.model.Role
 import com.onewisebit.scp_scarycontainmentpanic.model.SCPDatabase
+import com.onewisebit.scp_scarycontainmentpanic.utilities.ROLE_DATA_FILENAME
+import kotlinx.coroutines.coroutineScope
 
 /**
  * Class used to pre-populate the database on first run
  */
-class PopulateDatabaseWorker (
+class PopulateDatabaseWorker(
     context: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {

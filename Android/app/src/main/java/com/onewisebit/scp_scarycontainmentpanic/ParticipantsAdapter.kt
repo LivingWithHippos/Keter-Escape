@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.PlayerListItemBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
 
-class ParticipantsAdapter (playersList: ArrayList<Player>): RecyclerView.Adapter<ParticipantsAdapter.PlayerHolder>(){
+class ParticipantsAdapter(playersList: ArrayList<Player>) :
+    RecyclerView.Adapter<ParticipantsAdapter.PlayerHolder>() {
 
-    private val players : ArrayList<Player> = playersList
+    private val players: ArrayList<Player> = playersList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
         //Inflate is created from Extensions.kt
-        val inflatedView = parent.inflate(R.layout.player_list_item,false)
+        val inflatedView = parent.inflate(R.layout.player_list_item, false)
         return PlayerHolder(inflatedView)
     }
 
@@ -28,10 +29,10 @@ class ParticipantsAdapter (playersList: ArrayList<Player>): RecyclerView.Adapter
         private val TAG = ParticipantsAdapter::class.java.simpleName
     }
 
-    class PlayerHolder(_view: View):RecyclerView.ViewHolder(_view), View.OnClickListener {
+    class PlayerHolder(_view: View) : RecyclerView.ViewHolder(_view), View.OnClickListener {
 
-        private var view:View = _view
-        private var player:Player?=null
+        private var view: View = _view
+        private var player: Player? = null
         private var binding: PlayerListItemBinding
 
         init {
@@ -41,13 +42,13 @@ class ParticipantsAdapter (playersList: ArrayList<Player>): RecyclerView.Adapter
             binding.cvPlayer.setOnClickListener(this)
         }
 
-        fun bind(_player: Player){
-            player=_player
+        fun bind(_player: Player) {
+            player = _player
         }
 
         override fun onClick(v: View?) {
             //TODO: open dialog to choose or create a new player
-            Log.d("PlayerHolder","no touchie")
+            Log.d("PlayerHolder", "no touchie")
         }
 
     }

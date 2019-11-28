@@ -13,7 +13,10 @@ import com.onewisebit.scp_scarycontainmentpanic.workers.PopulateDatabaseWorker
 /**
  * The Room database that contains the Users table
  */
-@Database(entities = [Player::class, Role::class, Game::class, Mode::class, Participant::class], version = 1)
+@Database(
+    entities = [Player::class, Role::class, Game::class, Mode::class, Participant::class],
+    version = 1
+)
 abstract class SCPDatabase : RoomDatabase() {
 
     abstract fun playerDAO(): PlayerDAO

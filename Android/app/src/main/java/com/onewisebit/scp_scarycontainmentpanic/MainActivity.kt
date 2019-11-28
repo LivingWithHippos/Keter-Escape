@@ -13,7 +13,7 @@ class MainActivity : BaseSCPActivity(), StartView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding=ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         presenter = StartActivityPresenter(this, applicationContext)

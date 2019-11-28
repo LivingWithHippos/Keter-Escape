@@ -5,12 +5,12 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class SCPApplication: Application() {
+class SCPApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        startKoin{
+        startKoin {
             // use this as Android context
             androidContext(this@SCPApplication)
             // use AndroidLogger as Logger (default Level.INFO)

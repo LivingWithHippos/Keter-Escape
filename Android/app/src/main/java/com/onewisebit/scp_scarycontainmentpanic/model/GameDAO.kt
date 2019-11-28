@@ -26,7 +26,7 @@ interface GameDAO {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGame(game: Game): Completable
-    
+
     /**
      * Get the list of games.
      * @return the games from the table.

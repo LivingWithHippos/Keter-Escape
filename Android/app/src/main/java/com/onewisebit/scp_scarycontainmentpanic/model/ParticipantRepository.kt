@@ -5,13 +5,16 @@ import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class ParticipantRepository(private val participantDAO: ParticipantDAO) :InParticipantRepository {
+class ParticipantRepository(private val participantDAO: ParticipantDAO) : InParticipantRepository {
 
-    override fun getParticipant(gameID: Long, playerID: Long): Participant = participantDAO.getParticipantById(gameID, playerID)
+    override fun getParticipant(gameID: Long, playerID: Long): Participant =
+        participantDAO.getParticipantById(gameID, playerID)
 
-    override fun getGameParticipants(gameID: Long): List<Participant> = participantDAO.getGameParticipantList(gameID)
+    override fun getGameParticipants(gameID: Long): List<Participant> =
+        participantDAO.getGameParticipantList(gameID)
 
-    override fun getParticipantState(gameID: Long, playerID: Long): Int = participantDAO.getParticipantState(gameID, playerID)
+    override fun getParticipantState(gameID: Long, playerID: Long): Int =
+        participantDAO.getParticipantState(gameID, playerID)
 
     override fun insertParticipant(participant: Participant) {
         participantDAO.insertParticipant(participant)
@@ -32,7 +35,8 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :InParti
             )
     }
 
-    override fun removeParticipant(participant: Participant) = participantDAO.removeParticipant(participant)
+    override fun removeParticipant(participant: Participant) =
+        participantDAO.removeParticipant(participant)
 
     override fun removeAllParticipant() {
         Completable.fromAction { participantDAO.deleteAllParticipants() }

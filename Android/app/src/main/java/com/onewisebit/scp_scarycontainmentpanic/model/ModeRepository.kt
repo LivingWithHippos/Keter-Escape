@@ -9,7 +9,7 @@ class ModeRepository(private val modeDAO: ModeDAO) : InModeRepository {
 
     override fun getMinPlayers(id: Long): Int = modeDAO.getMinPlayers(id)
 
-    override fun getMaxPlayers(id: Long): Int  = modeDAO.getMaxPlayers(id)
+    override fun getMaxPlayers(id: Long): Int = modeDAO.getMaxPlayers(id)
 
     override fun insertMode(mode: Mode) {
         modeDAO.insertMode(mode)
