@@ -17,7 +17,7 @@ import org.koin.android.ext.android.inject
 
 class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsView {
     private lateinit var binding: FragmentNewGameSettingsBinding
-    private var presenter: GameSettingsContract.GameSettingsPresenter? = null
+    private lateinit var presenter: GameSettingsContract.GameSettingsPresenter
     private val model: GameSettingsModelImpl by inject()
     private val args: NewGameSettingsFragmentArgs by navArgs()
 
@@ -48,8 +48,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
             }
         }
         binding.fabChoosePlayers.setOnClickListener {
-            val gameID: Long = presenter?.getNewGame(args.gameType)?.id
-                ?: throw IllegalArgumentException(getString(R.string.game_id_required))
+            val gameID: Long = presenter.getNewGame(args.gameType).id
             val action =
                 NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
                     binding.npPlayerPicker.value,
