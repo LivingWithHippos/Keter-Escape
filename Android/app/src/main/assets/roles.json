@@ -1,5 +1,4 @@
-{
-  "roles": [
+[
     {
       "name": "Security Officer",
       "group": "Foundation",
@@ -20,5 +19,4 @@
       "group": "SCP",
       "description": "Euclid. Made of concrete and rebar. Extremely hostile. Cannot move within line of sight, but will attack and snap the neck when not watched."
     }
-  ]
-}
+]
