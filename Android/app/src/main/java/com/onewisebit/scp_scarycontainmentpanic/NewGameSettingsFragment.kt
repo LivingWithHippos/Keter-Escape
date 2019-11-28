@@ -5,16 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavArgs
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentNewGameSettingsBinding
+import com.onewisebit.scp_scarycontainmentpanic.model.GameRepository
+import com.onewisebit.scp_scarycontainmentpanic.model.GameSettingsModelImpl
+import com.onewisebit.scp_scarycontainmentpanic.presenters.GameSettingsPresenterImpl
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MAX_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MID_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MIN_PLAYERS
+import org.koin.android.ext.android.inject
 
-class NewGameSettingsFragment : Fragment() {
-
+class NewGameSettingsFragment : Fragment() , GameSettingsContract.GameSettingsView{
     private lateinit var binding: FragmentNewGameSettingsBinding
+    private var presenter : GameSettingsContract.GameSettingsPresenter? = null
+    private val model: GameSettingsModelImpl by inject()
+    private val args: NewGameSettingsFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -23,6 +30,7 @@ class NewGameSettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNewGameSettingsBinding.inflate(layoutInflater)
+        presenter = GameSettingsPresenterImpl(this,model)
         return binding.root
     }
 
@@ -42,8 +50,10 @@ class NewGameSettingsFragment : Fragment() {
             }
         }
         binding.fabChoosePlayers.setOnClickListener{
-            val action = NewGameSettingsFragmentDirections.actionGameSettingsToPlayersChoice()
+            val gameID: Long = presenter?.getNewGame(args.gameType)?.id ?: throw IllegalArgumentException(getString(R.string.game_id_required))
+            val action = NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(binding.npPlayerPicker.value,gameID)
             view.findNavController().navigate(action)
         }
     }
+
 }
