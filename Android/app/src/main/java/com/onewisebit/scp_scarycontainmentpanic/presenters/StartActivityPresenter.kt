@@ -12,4 +12,8 @@ class StartActivityPresenter(sView: StartContract.StartView,
     override fun setView(view: StartContract.StartView) {
         this.view = view
     }
+
+    override fun addPlayer(name: String) {
+        model.createNewPlayer(name)
+    }
 }

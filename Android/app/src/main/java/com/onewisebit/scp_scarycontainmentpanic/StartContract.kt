@@ -8,9 +8,11 @@ interface StartContract {
 
     interface StartPresenter {
         fun setView(view: StartView)
+        fun addPlayer(name: String)
     }
 
     interface StartModel {
         fun getTheme(): String
+        fun createNewPlayer(name:String)
     }
 }
