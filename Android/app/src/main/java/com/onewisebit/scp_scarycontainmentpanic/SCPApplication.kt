@@ -11,8 +11,11 @@ class SCPApplication: Application() {
         super.onCreate()
 
         startKoin{
+            // use this as Android context
             androidContext(this@SCPApplication)
+            // use AndroidLogger as Logger (default Level.INFO)
             androidLogger()
+            // module list
             modules(appModule)
         }
     }
