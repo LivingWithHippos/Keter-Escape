@@ -3,12 +3,15 @@ package com.onewisebit.scp_scarycontainmentpanic
 import android.os.Bundle
 import com.onewisebit.scp_scarycontainmentpanic.StartContract.StartView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.ActivityMainBinding
+import com.onewisebit.scp_scarycontainmentpanic.model.StartActivityModel
 import com.onewisebit.scp_scarycontainmentpanic.presenters.StartActivityPresenter
+import org.koin.android.ext.android.inject
 
-class MainActivity : BaseSCPActivity(), StartView {
+class MainActivity : BaseSCPActivity(), StartView, CreatePlayerDialogFragment.NewPlayerDialogListener {
 
-    private var presenter: StartActivityPresenter? = null
+    private lateinit var presenter: StartActivityPresenter
     private lateinit var binding: ActivityMainBinding
+    private val model : StartActivityModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,12 +19,7 @@ class MainActivity : BaseSCPActivity(), StartView {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = StartActivityPresenter(this, applicationContext)
-    }
-
-
-    override fun initView() {
-        //TODO: apply theme at start
+        presenter = StartActivityPresenter(this, model)
     }
 
     override fun updateTheme() {
@@ -30,6 +28,10 @@ class MainActivity : BaseSCPActivity(), StartView {
 
     override fun onResume() {
         super.onResume()
-        presenter?.setView(this)
+        presenter.setView(this)
+    }
+
+    override fun onPositiveDialogClick(playerName: String) {
+        presenter.addPlayer(playerName)
     }
 }
