@@ -21,7 +21,8 @@
     <string name="players_count_error">This should\'t have happened. Please report immediately to your supervisor.</string>
     <string name="player_name">Player Name</string>
     <string name="tap_for_pic">Tap here to add a profile pic.</string>
-    <string name="select_players">Select %1$ players. %2$ remaining.</string>
+    <string name="select_players">Select %1d players. %2d remaining.</string>
     <string name="create_player">Create New Player</string>
     <string name="player_name_filter">Filter Players By Name</string>
+    <string name="game_id_required">Game ID required</string>
 </resources>
