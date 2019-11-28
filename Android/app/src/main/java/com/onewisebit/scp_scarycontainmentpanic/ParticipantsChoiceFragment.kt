@@ -15,7 +15,7 @@ import org.koin.android.ext.android.inject
 
 class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
 
-    private lateinit var gridLayoutManager: GridLayoutManager
+    private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: ParticipantsAdapter
     private lateinit var binding: FragmentParticipantsChoiceBinding
     private lateinit var presenter: PlayersContract.PlayersPresenter
@@ -31,7 +31,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
-        gridLayoutManager = GridLayoutManager(this.context, 2)
+        layoutManager = GridLayoutManager(this.context, 2)
         presenter = PlayersPresenterImpl(this,model)
         return binding.root
     }
@@ -41,6 +41,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         //TODO: change remaining players as they're selected
         binding.tvSelectPlayersTitle.text =
             getString(R.string.select_players, args.totPlayers, args.totPlayers)
+        binding.rvPlayers.layoutManager = layoutManager
     }
 
     override fun initView(players: ArrayList<Player>) {
