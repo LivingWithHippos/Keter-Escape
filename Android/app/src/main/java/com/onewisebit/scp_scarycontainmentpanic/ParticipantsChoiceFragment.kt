@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentParticipantsChoiceBinding
@@ -42,9 +43,18 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         binding.tvSelectPlayersTitle.text =
             getString(R.string.select_players, args.totPlayers, args.totPlayers)
         binding.rvPlayers.layoutManager = layoutManager
+        binding.bCreatePlayer.setOnClickListener{
+            showCreatePlayerDialog()
+        }
     }
 
     override fun initView(players: ArrayList<Player>) {
         playersList = players
     }
+
+    fun showCreatePlayerDialog(){
+        val newPlayerDialog = CreatePlayerDialogFragment()
+        fragmentManager?.let { newPlayerDialog.show(it, "CreatePlayerDialogFragment") }
+    }
+
 }
