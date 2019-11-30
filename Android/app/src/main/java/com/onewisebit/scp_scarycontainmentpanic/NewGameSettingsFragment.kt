@@ -17,8 +17,7 @@ import org.koin.core.parameter.parametersOf
 
 class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsView {
     private lateinit var binding: FragmentNewGameSettingsBinding
-    private val presenter: GameSettingsContract.GameSettingsPresenter by inject { parametersOf(this,model) }
-    private val model: GameSettingsModelImpl by inject()
+    private val presenter: GameSettingsContract.GameSettingsPresenter by inject { parametersOf(this) }
     private val args: NewGameSettingsFragmentArgs by navArgs()
 
 

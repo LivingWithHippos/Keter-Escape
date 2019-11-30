@@ -20,9 +20,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: ParticipantsAdapter
     private lateinit var binding: FragmentParticipantsChoiceBinding
-    //TODO: check if the model needs to be the interface and not the implementation
-    private val model: PlayersModelImpl by inject()
-    private val presenter: PlayersContract.PlayersPresenter by inject{ parametersOf(this,model) }
+    private val presenter: PlayersContract.PlayersPresenter by inject{ parametersOf(this) }
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
 
     private lateinit var playersList: Flowable<List<Player>>
