@@ -3,6 +3,7 @@ package com.onewisebit.scp_scarycontainmentpanic
 import android.content.Context
 import android.content.SharedPreferences
 import com.onewisebit.scp_scarycontainmentpanic.model.*
+import com.onewisebit.scp_scarycontainmentpanic.presenters.PlayersPresenterImpl
 import com.onewisebit.scp_scarycontainmentpanic.utilities.PREF_FILE
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -28,4 +29,5 @@ val appModule = module {
     factory { StartActivityModel(get(),get()) }
     factory { GameSettingsModelImpl(get()) }
     factory { PlayersModelImpl(get()) }
+    factory<PlayersContract.PlayersPresenter> { (view: PlayersContract.PlayersView, model: PlayersContract.PlayersModel) -> PlayersPresenterImpl(view,model) }
 }
