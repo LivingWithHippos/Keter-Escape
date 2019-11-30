@@ -6,20 +6,18 @@ import com.onewisebit.scp_scarycontainmentpanic.databinding.ActivityMainBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.StartActivityModel
 import com.onewisebit.scp_scarycontainmentpanic.presenters.StartActivityPresenterImpl
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class MainActivity : BaseSCPActivity(), StartView, CreatePlayerDialogFragment.NewPlayerDialogListener {
 
-    private lateinit var presenter: StartActivityPresenterImpl
     private lateinit var binding: ActivityMainBinding
-    private val model : StartActivityModel by inject()
+    private val presenter: StartContract.StartPresenter by inject { parametersOf(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        presenter = StartActivityPresenterImpl(this, model)
     }
 
     override fun updateTheme() {
