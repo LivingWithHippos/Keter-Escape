@@ -9,15 +9,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentNewGameSettingsBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.GameSettingsModelImpl
-import com.onewisebit.scp_scarycontainmentpanic.presenters.GameSettingsPresenterImpl
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MAX_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MID_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MIN_PLAYERS
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsView {
     private lateinit var binding: FragmentNewGameSettingsBinding
-    private lateinit var presenter: GameSettingsContract.GameSettingsPresenter
+    private val presenter: GameSettingsContract.GameSettingsPresenter by inject { parametersOf(this,model) }
     private val model: GameSettingsModelImpl by inject()
     private val args: NewGameSettingsFragmentArgs by navArgs()
 
@@ -28,7 +28,6 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNewGameSettingsBinding.inflate(layoutInflater)
-        presenter = GameSettingsPresenterImpl(this, model)
         return binding.root
     }
 
