@@ -6,10 +6,11 @@ import io.reactivex.Flowable
 interface PlayersContract {
 
     interface PlayersView {
-        fun initView(players: ArrayList<Player>)
+        fun initView(players: Flowable<List<Player>>)
     }
 
     interface PlayersPresenter {
+        fun setPlayers()
     }
 
     interface PlayersModel {

@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentParticipantsChoiceBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
 import com.onewisebit.scp_scarycontainmentpanic.model.PlayersModelImpl
 import com.onewisebit.scp_scarycontainmentpanic.presenters.PlayersPresenterImpl
+import io.reactivex.Flowable
 import org.koin.android.ext.android.inject
 
 class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
@@ -24,7 +24,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     private val model: PlayersModelImpl by inject()
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
 
-    private var playersList: ArrayList<Player> = ArrayList()
+    private lateinit var playersList: Flowable<List<Player>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +34,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         layoutManager = GridLayoutManager(this.context, 2)
         presenter = PlayersPresenterImpl(this,model)
+        presenter.setPlayers()
         return binding.root
     }
 
@@ -48,7 +49,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         }
     }
 
-    override fun initView(players: ArrayList<Player>) {
+    override fun initView(players: Flowable<List<Player>>) {
         playersList = players
     }
 

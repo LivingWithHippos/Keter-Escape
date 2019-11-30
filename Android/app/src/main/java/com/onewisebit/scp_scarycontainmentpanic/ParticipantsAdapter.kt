@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.PlayerListItemBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
+import android.R.attr.data
+
+
 
 class ParticipantsAdapter(playersList: ArrayList<Player>) :
     RecyclerView.Adapter<ParticipantsAdapter.PlayerHolder>() {
@@ -23,6 +26,11 @@ class ParticipantsAdapter(playersList: ArrayList<Player>) :
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
         val itemPlayer = players[position]
         holder.bind(itemPlayer)
+    }
+
+    fun setPlayers(newPlayers: List<Player>) {
+        this.players = newPlayers
+        notifyDataSetChanged()
     }
 
     companion object {

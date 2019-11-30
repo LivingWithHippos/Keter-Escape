@@ -7,4 +7,8 @@ class PlayersPresenterImpl (pView:PlayersContract.PlayersView,
 
     private var view: PlayersContract.PlayersView = pView
     private var model: PlayersContract.PlayersModel = pModel
+
+    override fun setPlayers() {
+        view.initView(model.getAllPlayers())
+    }
 }
