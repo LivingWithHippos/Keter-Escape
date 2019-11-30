@@ -28,11 +28,6 @@ class ParticipantsAdapter(playersList: List<Player>) :
         holder.bind(itemPlayer)
     }
 
-    fun setPlayers(newPlayers: List<Player>) {
-        this.players = newPlayers
-        notifyDataSetChanged()
-    }
-
     companion object {
         private val TAG = ParticipantsAdapter::class.java.simpleName
     }
