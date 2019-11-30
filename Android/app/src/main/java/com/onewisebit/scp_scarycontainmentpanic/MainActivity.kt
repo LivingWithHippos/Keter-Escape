@@ -4,12 +4,12 @@ import android.os.Bundle
 import com.onewisebit.scp_scarycontainmentpanic.StartContract.StartView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.ActivityMainBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.StartActivityModel
-import com.onewisebit.scp_scarycontainmentpanic.presenters.StartActivityPresenter
+import com.onewisebit.scp_scarycontainmentpanic.presenters.StartActivityPresenterImpl
 import org.koin.android.ext.android.inject
 
 class MainActivity : BaseSCPActivity(), StartView, CreatePlayerDialogFragment.NewPlayerDialogListener {
 
-    private lateinit var presenter: StartActivityPresenter
+    private lateinit var presenter: StartActivityPresenterImpl
     private lateinit var binding: ActivityMainBinding
     private val model : StartActivityModel by inject()
 
@@ -19,7 +19,7 @@ class MainActivity : BaseSCPActivity(), StartView, CreatePlayerDialogFragment.Ne
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = StartActivityPresenter(this, model)
+        presenter = StartActivityPresenterImpl(this, model)
     }
 
     override fun updateTheme() {

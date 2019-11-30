@@ -2,8 +2,8 @@ package com.onewisebit.scp_scarycontainmentpanic.presenters
 
 import com.onewisebit.scp_scarycontainmentpanic.StartContract
 
-class StartActivityPresenter(sView: StartContract.StartView,
-                             sModel: StartContract.StartModel):
+class StartActivityPresenterImpl(sView: StartContract.StartView,
+                                 sModel: StartContract.StartModel):
     StartContract.StartPresenter {
 
     private var view: StartContract.StartView = sView
