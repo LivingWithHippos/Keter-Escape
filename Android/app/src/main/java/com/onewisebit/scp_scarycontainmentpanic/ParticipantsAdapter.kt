@@ -10,10 +10,10 @@ import android.R.attr.data
 
 
 
-class ParticipantsAdapter(playersList: ArrayList<Player>) :
+class ParticipantsAdapter(playersList: List<Player>) :
     RecyclerView.Adapter<ParticipantsAdapter.PlayerHolder>() {
 
-    private val players: ArrayList<Player> = playersList
+    private val players: List<Player> = playersList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
         //Inflate is created from Extensions.kt
