@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.PlayerListItemBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
 import android.R.attr.data
-
+import android.view.LayoutInflater
 
 
 class ParticipantsAdapter(playersList: List<Player>) :
@@ -16,9 +16,10 @@ class ParticipantsAdapter(playersList: List<Player>) :
     private val players: List<Player> = playersList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
-        //Inflate is created from Extensions.kt
-        val inflatedView = parent.inflate(R.layout.player_list_item, false)
-        return PlayerHolder(inflatedView)
+
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val playerBinding = PlayerListItemBinding.inflate(layoutInflater, parent, false)
+        return PlayerHolder(playerBinding)
     }
 
     override fun getItemCount(): Int = players.size
@@ -32,16 +33,11 @@ class ParticipantsAdapter(playersList: List<Player>) :
         private val TAG = ParticipantsAdapter::class.java.simpleName
     }
 
-    class PlayerHolder(_view: View) : RecyclerView.ViewHolder(_view), View.OnClickListener {
+    class PlayerHolder(binding: PlayerListItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-        private var view: View = _view
         private var player: Player? = null
-        private var binding: PlayerListItemBinding
 
         init {
-            // view.setOnClickListener(this)
-            //TODO: test if this works
-            binding = PlayerListItemBinding.bind(view)
             binding.cvPlayer.setOnClickListener(this)
         }
 
@@ -50,7 +46,7 @@ class ParticipantsAdapter(playersList: List<Player>) :
         }
 
         override fun onClick(v: View?) {
-            //TODO: open dialog to choose or create a new player
+            //TODO: select player -> participant and change view
             Log.d("PlayerHolder", "no touchie")
         }
 
