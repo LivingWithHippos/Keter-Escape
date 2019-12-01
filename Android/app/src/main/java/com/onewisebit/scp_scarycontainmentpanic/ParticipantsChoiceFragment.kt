@@ -59,7 +59,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
             )
     }
 
-    fun showCreatePlayerDialog(){
+    private fun showCreatePlayerDialog(){
         val newPlayerDialog = CreatePlayerDialogFragment()
         fragmentManager?.let { newPlayerDialog.show(it, "CreatePlayerDialogFragment") }
     }
