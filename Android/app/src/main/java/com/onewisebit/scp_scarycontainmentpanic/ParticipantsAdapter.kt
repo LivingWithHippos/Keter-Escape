@@ -6,14 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.PlayerListItemBinding
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
-import android.R.attr.data
 import android.view.LayoutInflater
 
 
 class ParticipantsAdapter(playersList: List<Player>) :
     RecyclerView.Adapter<ParticipantsAdapter.PlayerHolder>() {
 
-    private val players: List<Player> = playersList
+    private var players: List<Player> = playersList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
 
@@ -29,13 +28,19 @@ class ParticipantsAdapter(playersList: List<Player>) :
         holder.bind(itemPlayer)
     }
 
+    fun setPlayers( newPlayers:List<Player>){
+        players=newPlayers
+        notifyDataSetChanged()
+    }
+
     companion object {
         private val TAG = ParticipantsAdapter::class.java.simpleName
     }
 
-    class PlayerHolder(binding: PlayerListItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    class PlayerHolder(pBinding: PlayerListItemBinding) : RecyclerView.ViewHolder(pBinding.root), View.OnClickListener {
 
         private var player: Player? = null
+        private val binding:PlayerListItemBinding =pBinding
 
         init {
             binding.cvPlayer.setOnClickListener(this)
@@ -43,6 +48,7 @@ class ParticipantsAdapter(playersList: List<Player>) :
 
         fun bind(_player: Player) {
             player = _player
+            binding.tvPlayerName.text= player!!.name
         }
 
         override fun onClick(v: View?) {

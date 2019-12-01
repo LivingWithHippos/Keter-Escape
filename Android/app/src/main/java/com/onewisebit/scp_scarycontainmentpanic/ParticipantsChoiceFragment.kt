@@ -1,6 +1,7 @@
 package com.onewisebit.scp_scarycontainmentpanic
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import com.onewisebit.scp_scarycontainmentpanic.model.Player
 import com.onewisebit.scp_scarycontainmentpanic.model.PlayersModelImpl
 import com.onewisebit.scp_scarycontainmentpanic.presenters.PlayersPresenterImpl
 import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -23,8 +26,6 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     private val presenter: PlayersContract.PlayersPresenter by inject{ parametersOf(this) }
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
 
-    private lateinit var playersList: Flowable<List<Player>>
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +33,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     ): View? {
         binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         layoutManager = GridLayoutManager(this.context, 2)
-        presenter.setPlayers()
+        adapter = ParticipantsAdapter(emptyList())
         return binding.root
     }
 
@@ -42,13 +43,20 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         binding.tvSelectPlayersTitle.text =
             getString(R.string.select_players, args.totPlayers, args.totPlayers)
         binding.rvPlayers.layoutManager = layoutManager
+        binding.rvPlayers.adapter = adapter
         binding.bCreatePlayer.setOnClickListener{
             showCreatePlayerDialog()
         }
+        presenter.setPlayers()
     }
 
     override fun initView(players: Flowable<List<Player>>) {
-        playersList = players
+        players.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { adapter.setPlayers(it) },
+                { Log.d(TAG, "Players List retrieval error") }
+            )
     }
 
     fun showCreatePlayerDialog(){
@@ -56,4 +64,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         fragmentManager?.let { newPlayerDialog.show(it, "CreatePlayerDialogFragment") }
     }
 
+    companion object {
+        private val TAG = ParticipantsAdapter::class.java.simpleName
+    }
 }

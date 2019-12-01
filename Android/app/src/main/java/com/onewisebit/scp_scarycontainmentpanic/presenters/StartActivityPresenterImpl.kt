@@ -15,6 +15,8 @@ class StartActivityPresenterImpl(sView: StartContract.StartView,
     }
 
     override fun addPlayer(name: String) {
+        val asd =  name.isEmpty()
+        val lol = name.isBlank()
         if (name.isEmpty() or name.isBlank())
             model.createNewPlayer(generateDClassName())
         else
