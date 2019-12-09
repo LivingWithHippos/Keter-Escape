@@ -15,5 +15,6 @@ interface PlayersContract {
 
     interface PlayersModel {
         fun getAllPlayers(): Flowable<List<Player>>
+        fun getPlayersByName(name: String): Flowable<List<Player>>
     }
 }

@@ -13,4 +13,6 @@ interface InPlayerRepository {
     fun getAllPlayers(): Flowable<List<Player>>
 
     fun deleteAllPlayers()
+
+    fun getPlayersByName(name: String): Flowable<List<Player>>
 }

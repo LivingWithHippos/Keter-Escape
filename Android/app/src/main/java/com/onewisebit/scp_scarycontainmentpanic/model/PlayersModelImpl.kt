@@ -11,4 +11,8 @@ class PlayersModelImpl(playerRepository: PlayerRepository):PlayersContract.Playe
      return repository.getAllPlayers()
     }
 
+    override fun getPlayersByName(name: String): Flowable<List<Player>> {
+        return repository.getPlayersByName(name)
+    }
+
 }

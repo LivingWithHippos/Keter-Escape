@@ -15,6 +15,13 @@ interface PlayerDAO {
     fun getPlayerById(id: String): Flowable<Player>
 
     /**
+     * Get a list of players by searching their name.
+     * @return the players from the table with a name containing the string.
+     */
+    @Query("SELECT * FROM players WHERE player_name LIKE '%' || :name || '%'")
+    fun getPlayersByName(name: String): Flowable<List<Player>>
+
+    /**
      * Insert a player in the database. If the player already exists, replace it.
      * @param player the player to be inserted.
      */
