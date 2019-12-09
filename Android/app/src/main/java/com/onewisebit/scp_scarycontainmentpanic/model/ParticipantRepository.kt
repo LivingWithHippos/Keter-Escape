@@ -2,6 +2,7 @@ package com.onewisebit.scp_scarycontainmentpanic.model
 
 import android.util.Log
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -10,7 +11,7 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) : InPart
     override fun getParticipant(gameID: Long, playerID: Long): Participant =
         participantDAO.getParticipantById(gameID, playerID)
 
-    override fun getGameParticipants(gameID: Long): List<Participant> =
+    override fun getGameParticipants(gameID: Long): Flowable<List<Participant>> =
         participantDAO.getGameParticipantList(gameID)
 
     override fun getParticipantState(gameID: Long, playerID: Long): Int =

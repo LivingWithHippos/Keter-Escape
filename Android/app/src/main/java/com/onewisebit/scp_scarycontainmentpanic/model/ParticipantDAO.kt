@@ -2,6 +2,7 @@ package com.onewisebit.scp_scarycontainmentpanic.model
 
 import androidx.room.*
 import io.reactivex.Completable
+import io.reactivex.Flowable
 
 @Dao
 interface ParticipantDAO {
@@ -18,7 +19,7 @@ interface ParticipantDAO {
      * @return the Participant from the table with a specific game and player id.
      */
     @Query("SELECT * FROM participants WHERE game = :gameID")
-    fun getGameParticipantList(gameID: Long): List<Participant>
+    fun getGameParticipantList(gameID: Long): Flowable<List<Participant>>
 
     /**
      * Get the state of a participant by id.
