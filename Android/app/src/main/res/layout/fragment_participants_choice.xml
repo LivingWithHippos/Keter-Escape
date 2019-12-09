@@ -29,14 +29,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSelectPlayersTitle">
 
-        <EditText
-            android:id="@+id/etPlayerFilter"
+        <SearchView
+            android:id="@+id/svPlayerFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:queryHint="@string/player_name_filter"
             android:ems="10"
-            android:hint="@string/player_name_filter"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="173dp" />
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/bCreatePlayer"
