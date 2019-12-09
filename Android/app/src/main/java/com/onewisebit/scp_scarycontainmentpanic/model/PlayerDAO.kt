@@ -8,7 +8,7 @@ import io.reactivex.Flowable
 @Dao
 interface PlayerDAO {
     /**
-     * Get a user by id.
+     * Get a player by id.
      * @return the player from the table with a specific id.
      */
     @Query("SELECT * FROM players WHERE player_ID = :id")
