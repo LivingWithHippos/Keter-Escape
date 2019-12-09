@@ -31,16 +31,19 @@
 
         <SearchView
             android:id="@+id/svPlayerFilter"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
             android:queryHint="@string/player_name_filter"
             android:ems="10"
+            android:layout_weight="1"
             android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/bCreatePlayer"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/create_player"
             tools:layout_editor_absoluteY="85dp" />
 
