@@ -12,7 +12,10 @@ import android.view.LayoutInflater
 class ParticipantsAdapter(playersList: List<Player>) :
     RecyclerView.Adapter<ParticipantsAdapter.PlayerHolder>() {
 
+    private var fullPlayers: List<Player> = playersList
     private var players: List<Player> = playersList
+
+    private var nameFilter: String? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
 
@@ -28,10 +31,28 @@ class ParticipantsAdapter(playersList: List<Player>) :
         holder.bind(itemPlayer)
     }
 
+    /**
+     * Set a list of players items.
+     */
     fun setPlayers( newPlayers:List<Player>){
-        players=newPlayers
+        //TODO: maybe move this in the mvp structure somehow?
+        fullPlayers = newPlayers
+        updatePlayers()
+    }
+
+    fun setPlayersNameFilter(name: String){
+        nameFilter = name
+        updatePlayers()
+    }
+
+    private fun updatePlayers(){
+        if (nameFilter.isNullOrBlank())
+            players = fullPlayers
+        else
+            players= fullPlayers.filter { it.name.contains(nameFilter!!, ignoreCase = true) }
         notifyDataSetChanged()
     }
+
 
     companion object {
         private val TAG = ParticipantsAdapter::class.java.simpleName

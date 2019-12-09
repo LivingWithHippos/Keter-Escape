@@ -1,5 +1,6 @@
 package com.onewisebit.scp_scarycontainmentpanic
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,10 +14,15 @@ import com.onewisebit.scp_scarycontainmentpanic.model.Player
 import com.onewisebit.scp_scarycontainmentpanic.model.PlayersModelImpl
 import com.onewisebit.scp_scarycontainmentpanic.presenters.PlayersPresenterImpl
 import io.reactivex.Flowable
+import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import java.util.concurrent.TimeUnit
+import io.reactivex.functions.Function
 
 class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
 
@@ -34,6 +40,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         layoutManager = GridLayoutManager(this.context, 2)
         adapter = ParticipantsAdapter(emptyList())
+        enablePlayerSearch()
         return binding.root
     }
 
@@ -50,13 +57,26 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         presenter.setPlayers()
     }
 
+    @SuppressLint("CheckResult")
     override fun initView(players: Flowable<List<Player>>) {
         players.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { adapter.setPlayers(it) },
-                { Log.d(TAG, "Players List retrieval error") }
-            )
+            { adapter.setPlayers(it) },
+            { Log.d(TAG, "Players List retrieval error") }
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    private fun enablePlayerSearch(){
+        SearchableObservable().fromView(binding.svPlayerFilter)
+            //run only if input stops for 500 ms
+            .debounce(500, TimeUnit.MILLISECONDS)
+            // run only if it has changed since last time
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { text -> adapter.setPlayersNameFilter(text) }
     }
 
     private fun showCreatePlayerDialog(){
