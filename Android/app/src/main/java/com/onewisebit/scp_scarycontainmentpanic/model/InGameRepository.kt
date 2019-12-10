@@ -1,8 +1,10 @@
 package com.onewisebit.scp_scarycontainmentpanic.model
 
+import io.reactivex.Single
+
 interface InGameRepository {
 
-    fun insertGame(game: Game)
+    fun insertGame(game: Game) : Single<Long>
 
     fun updateGame(game: Game)
 

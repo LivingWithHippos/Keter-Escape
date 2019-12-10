@@ -1,6 +1,7 @@
 package com.onewisebit.scp_scarycontainmentpanic.model
 
 import android.util.Log
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -16,13 +17,8 @@ class GameRepository(private val gameDAO: GameDAO) : InGameRepository {
 
     override fun deleteAllGames() = gameDAO.deleteAllGames()
 
-    override fun insertGame(game: Game) {
-        gameDAO.insertGame(game)
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { Log.d(TAG, "Insert Success") },
-                { Log.d(TAG, "Insert Error") }
-            )
+    override fun insertGame(game: Game): Single<Long> {
+        return Single.fromCallable<Long> {gameDAO.insertGame(game)}
     }
 
     override fun updateGame(game: Game) {
