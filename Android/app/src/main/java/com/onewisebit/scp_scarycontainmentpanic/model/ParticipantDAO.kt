@@ -3,6 +3,7 @@ package com.onewisebit.scp_scarycontainmentpanic.model
 import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface ParticipantDAO {
@@ -54,17 +55,23 @@ interface ParticipantDAO {
      * Remove a participant from the database.
      */
     @Delete
-    fun removeParticipant(participant: Participant)
+    fun removeParticipant(participant: Participant): Completable
 
     /**
      * Remove a participant by game and player id.ì
      */
     @Query("DELETE FROM participants WHERE game = :gameID AND player = :playerID")
-    fun removeParticipant(gameID: Long, playerID: Long)
+    fun removeParticipant(gameID: Long, playerID: Long): Completable
 
     /**
      * Delete all participants.
      */
     @Query("DELETE FROM participants")
     fun deleteAllParticipants()
+
+    /**
+     * Return the number of participants in a game
+     */
+    @Query("SELECT COUNT(*) FROM participants WHERE game = :gameID")
+    fun getParticipantNumber(gameID: Long): Single<Int>
 }
