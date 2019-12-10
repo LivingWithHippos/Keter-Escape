@@ -44,12 +44,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         adapter = ParticipantsAdapter(
             emptyList(),
             emptyList()
-        ) { id: Long, add: Boolean ->
-            playerToggle(
-                id,
-                add
-            )
-        }
+        ) { id: Long, add: Boolean ->playerToggle(id, add) }
         enablePlayerSearch()
         binding.root.setOnClickListener{ binding.root.hideKeyboard() }
         return binding.root
@@ -62,22 +57,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         binding.bCreatePlayer.setOnClickListener {
             showCreatePlayerDialog()
         }
-        onParticipantUpdated()
         presenter.setPlayers(args.gameID)
-    }
-
-    private fun onParticipantUpdated() {
-        presenter.getParticipantsNumber(args.gameID)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    binding.tvSelectPlayersTitle.text =
-                        getString(R.string.select_players, args.totPlayers, args.totPlayers - it)
-                },
-                { Log.d(TAG, "Can't get Participants Number") }
-            )
-
     }
 
     override fun initView(players: Flowable<List<Player>>, participants: Flowable<List<Long>>) {
@@ -91,7 +71,11 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         participants.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { adapter.setParticipants(it) },
+                {
+                    adapter.setParticipants(it)
+                    binding.tvSelectPlayersTitle.text =
+                        getString(R.string.select_players, args.totPlayers, args.totPlayers - it.size)
+                },
                 { Log.d(TAG, "Participants List retrieval error") }
             )
     }
@@ -146,7 +130,6 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
                     { Log.d(TAG, "Participant removal Error") }
                 )
         }
-        onParticipantUpdated()
     }
 
     private fun showCreatePlayerDialog() {
