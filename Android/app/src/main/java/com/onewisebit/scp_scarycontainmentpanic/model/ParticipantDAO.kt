@@ -57,6 +57,12 @@ interface ParticipantDAO {
     fun removeParticipant(participant: Participant)
 
     /**
+     * Remove a participant by game and player id.ì
+     */
+    @Query("DELETE FROM participants WHERE game = :gameID AND player = :playerID")
+    fun removeParticipant(gameID: Long, playerID: Long)
+
+    /**
      * Delete all participants.
      */
     @Query("DELETE FROM participants")

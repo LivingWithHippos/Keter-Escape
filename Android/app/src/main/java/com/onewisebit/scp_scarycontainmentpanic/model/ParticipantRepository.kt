@@ -20,13 +20,8 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) : InPart
     override fun getParticipantState(gameID: Long, playerID: Long): Int =
         participantDAO.getParticipantState(gameID, playerID)
 
-    override fun insertParticipant(participant: Participant) {
-        participantDAO.insertParticipant(participant)
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { Log.d(TAG, "Insert Success") },
-                { Log.d(TAG, "Insert Error") }
-            )
+    override fun insertParticipant(participant: Participant): Completable {
+        return participantDAO.insertParticipant(participant)
     }
 
     override fun updateParticipant(participant: Participant) {
@@ -41,6 +36,9 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) : InPart
 
     override fun removeParticipant(participant: Participant) =
         participantDAO.removeParticipant(participant)
+
+    override fun removeParticipant(gameID: Long, playerID: Long) =
+        participantDAO.removeParticipant(gameID, playerID)
 
     override fun removeAllParticipant() {
         Completable.fromAction { participantDAO.deleteAllParticipants() }
