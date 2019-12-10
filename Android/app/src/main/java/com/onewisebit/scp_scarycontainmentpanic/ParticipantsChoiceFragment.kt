@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentParticipantsChoiceBinding
+import com.onewisebit.scp_scarycontainmentpanic.model.Participant
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -43,6 +44,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
             )
         }
         enablePlayerSearch()
+        binding.root.setOnClickListener{ binding.root.hideKeyboard() }
         return binding.root
     }
 
@@ -112,9 +114,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    {
-                        Log.d(TAG, "Participant removal Success")
-                    },
+                    { Log.d(TAG, "Participant removal Success") },
                     { Log.d(TAG, "Participant removal Error") }
                 )
         }
