@@ -119,12 +119,17 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
-                                    { Log.d(TAG, "Participant Insert Success") },
+                                    { Log.d(TAG, "Participant Insert Success")
+                                        if(it >= args.totPlayers -1)
+                                            binding.fabStartGame.visibility = View.VISIBLE
+                                    },
                                     { Log.d(TAG, "Participant Insert Error") }
                                 )
                         }
                         else
                             Toast.makeText(context,getString(R.string.max_players_reached),Toast.LENGTH_LONG).show()
+
+
                     },
                     { Log.d(TAG, "Can't get Participants Number") }
                 )
@@ -135,7 +140,9 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { Log.d(TAG, "Participant removal Success") },
+                    { Log.d(TAG, "Participant removal Success")
+                        binding.fabStartGame.visibility = View.INVISIBLE
+                    },
                     { Log.d(TAG, "Participant removal Error") }
                 )
         }
