@@ -14,8 +14,8 @@ These are related to the Android app.
 - [ ] Online multiplayer
 
 - [ ] local (bluetooth) multiplayer
-  
-  Add "Flavour" to the app
+
+- [ ] Add "Flavour" to the app
 
 - [ ] Add custom font
 
@@ -29,7 +29,9 @@ These are related to the Android app.
 
 - [ ] Add api to retrieve SCPs: [Wikidot Api](http://developer.wikidot.com/doc:api), [Java Api](https://github.com/shane-smith/Wikidot-API-Open-Source)
 
+- [ ] replace constructor parameter assignation (it's done automatically)
 
+- [ ] replace clicklistener passed around with lambdas (see CreatePlayerDialogFragment.NewPlayerDialogListener -> )
 
 #### High Priority
 
