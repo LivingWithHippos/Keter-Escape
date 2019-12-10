@@ -13,7 +13,7 @@ class StartActivityModel(playerRepository: PlayerRepository, sharedPreferences: 
     private var preferences: SharedPreferences = sharedPreferences
 
     override fun getTheme(): String {
-        val theme = preferences?.getString(CURRENT_THEME, DEFAULT_THEME)
+        val theme = preferences.getString(CURRENT_THEME, DEFAULT_THEME)
         return theme ?: DEFAULT_THEME
     }
 
