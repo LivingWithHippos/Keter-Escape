@@ -3,12 +3,11 @@ package com.onewisebit.scp_scarycontainmentpanic
 import android.os.Bundle
 import com.onewisebit.scp_scarycontainmentpanic.StartContract.StartView
 import com.onewisebit.scp_scarycontainmentpanic.databinding.ActivityMainBinding
-import com.onewisebit.scp_scarycontainmentpanic.model.StartActivityModel
-import com.onewisebit.scp_scarycontainmentpanic.presenters.StartActivityPresenterImpl
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class MainActivity : BaseSCPActivity(), StartView, CreatePlayerDialogFragment.NewPlayerDialogListener {
+class MainActivity : BaseSCPActivity(), StartView,
+    CreatePlayerDialogFragment.NewPlayerDialogListener {
 
     private lateinit var binding: ActivityMainBinding
     private val presenter: StartContract.StartPresenter by inject { parametersOf(this) }

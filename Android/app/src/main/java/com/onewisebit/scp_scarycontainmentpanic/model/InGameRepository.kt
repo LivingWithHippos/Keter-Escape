@@ -4,7 +4,7 @@ import io.reactivex.Single
 
 interface InGameRepository {
 
-    fun insertGame(game: Game) : Single<Long>
+    fun insertGame(game: Game): Single<Long>
 
     fun updateGame(game: Game)
 

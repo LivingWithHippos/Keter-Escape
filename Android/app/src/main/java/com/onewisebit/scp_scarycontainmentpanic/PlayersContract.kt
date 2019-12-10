@@ -13,7 +13,7 @@ interface PlayersContract {
     }
 
     interface PlayersPresenter {
-        fun setPlayers(gameID:Long)
+        fun setPlayers(gameID: Long)
         fun addParticipant(gameID: Long, playerID: Long): Completable
         fun removeParticipant(gameID: Long, playerID: Long): Completable
         fun getParticipants(gameID: Long): Flowable<List<Participant>>

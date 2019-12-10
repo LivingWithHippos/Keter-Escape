@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentParticipantsChoiceBinding
-import com.onewisebit.scp_scarycontainmentpanic.model.Participant
 import com.onewisebit.scp_scarycontainmentpanic.model.Player
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,7 +24,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: ParticipantsAdapter
     private lateinit var binding: FragmentParticipantsChoiceBinding
-    private val presenter: PlayersContract.PlayersPresenter by inject{ parametersOf(this) }
+    private val presenter: PlayersContract.PlayersPresenter by inject { parametersOf(this) }
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
 
     //TODO: add diffutils
@@ -37,7 +36,12 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     ): View? {
         binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         layoutManager = GridLayoutManager(this.context, 2)
-        adapter = ParticipantsAdapter(emptyList(), emptyList()) { id: Long, add: Boolean ->playerToggle(id,add)}
+        adapter = ParticipantsAdapter(emptyList(), emptyList()) { id: Long, add: Boolean ->
+            playerToggle(
+                id,
+                add
+            )
+        }
         enablePlayerSearch()
         return binding.root
     }
@@ -46,26 +50,28 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         super.onViewCreated(view, savedInstanceState)
         binding.rvPlayers.layoutManager = layoutManager
         binding.rvPlayers.adapter = adapter
-        binding.bCreatePlayer.setOnClickListener{
+        binding.bCreatePlayer.setOnClickListener {
             showCreatePlayerDialog()
         }
         onParticipantUpdated()
         presenter.setPlayers(args.gameID)
     }
 
-    private fun onParticipantUpdated(){
+    private fun onParticipantUpdated() {
         presenter.getParticipantsNumber(args.gameID)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { binding.tvSelectPlayersTitle.text =
-                    getString(R.string.select_players, args.totPlayers, args.totPlayers-it) },
+                {
+                    binding.tvSelectPlayersTitle.text =
+                        getString(R.string.select_players, args.totPlayers, args.totPlayers - it)
+                },
                 { Log.d(TAG, "Can't get Participants Number") }
             )
 
     }
 
-    override fun initView(players: Flowable<List<Player>>,participants: Flowable<List<Long>>) {
+    override fun initView(players: Flowable<List<Player>>, participants: Flowable<List<Long>>) {
         players.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -81,7 +87,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
             )
     }
 
-    private fun enablePlayerSearch(){
+    private fun enablePlayerSearch() {
         SearchableObservable().fromView(binding.svPlayerFilter)
             //run only if input stops for 500 ms
             .debounce(500, TimeUnit.MILLISECONDS)
@@ -92,29 +98,30 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
             .subscribe { text -> adapter.setPlayersNameFilter(text) }
     }
 
-    private fun playerToggle(id:Long, add:Boolean){
-        if(add){
-            presenter.addParticipant(args.gameID,id)
+    private fun playerToggle(id: Long, add: Boolean) {
+        if (add) {
+            presenter.addParticipant(args.gameID, id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { Log.d(TAG, "Participant Insert Success") },
                     { Log.d(TAG, "Participant Insert Error") }
                 )
-        }else{
-            presenter.removeParticipant(args.gameID,id)
+        } else {
+            presenter.removeParticipant(args.gameID, id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { Log.d(TAG, "Participant removal Success")
-                         },
+                    {
+                        Log.d(TAG, "Participant removal Success")
+                    },
                     { Log.d(TAG, "Participant removal Error") }
                 )
         }
         onParticipantUpdated()
     }
 
-    private fun showCreatePlayerDialog(){
+    private fun showCreatePlayerDialog() {
         val newPlayerDialog = CreatePlayerDialogFragment()
         fragmentManager?.let { newPlayerDialog.show(it, "CreatePlayerDialogFragment") }
     }

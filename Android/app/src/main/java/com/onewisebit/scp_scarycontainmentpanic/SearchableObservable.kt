@@ -8,7 +8,7 @@ class SearchableObservable {
 
     fun fromView(searchView: SearchView): Observable<String> {
 
-        val subject : PublishSubject<String> = PublishSubject.create()
+        val subject: PublishSubject<String> = PublishSubject.create()
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             /**

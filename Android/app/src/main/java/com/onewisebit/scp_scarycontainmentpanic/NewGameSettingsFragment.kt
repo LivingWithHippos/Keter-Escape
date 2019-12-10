@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scp_scarycontainmentpanic.databinding.FragmentNewGameSettingsBinding
-import com.onewisebit.scp_scarycontainmentpanic.model.GameSettingsModelImpl
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MAX_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MID_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MIN_PLAYERS
@@ -64,7 +63,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
                     },
                     { Log.d("NewGameSettingsFragment", "Insert Game Error") }
                 )
-            }
+        }
     }
 
 }

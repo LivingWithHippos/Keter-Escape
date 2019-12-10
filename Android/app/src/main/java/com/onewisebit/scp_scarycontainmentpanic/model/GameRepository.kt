@@ -18,7 +18,7 @@ class GameRepository(private val gameDAO: GameDAO) : InGameRepository {
     override fun deleteAllGames() = gameDAO.deleteAllGames()
 
     override fun insertGame(game: Game): Single<Long> {
-        return Single.fromCallable<Long> {gameDAO.insertGame(game)}
+        return Single.fromCallable<Long> { gameDAO.insertGame(game) }
     }
 
     override fun updateGame(game: Game) {

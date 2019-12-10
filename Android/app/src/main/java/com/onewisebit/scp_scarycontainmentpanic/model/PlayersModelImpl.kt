@@ -5,10 +5,13 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 
-class PlayersModelImpl(playerRepository: PlayerRepository,participantRepository: ParticipantRepository):PlayersContract.PlayersModel {
+class PlayersModelImpl(
+    playerRepository: PlayerRepository,
+    participantRepository: ParticipantRepository
+) : PlayersContract.PlayersModel {
 
-    private var playerRepo:PlayerRepository = playerRepository
-    private var participantRepo:ParticipantRepository = participantRepository
+    private var playerRepo: PlayerRepository = playerRepository
+    private var participantRepo: ParticipantRepository = participantRepository
 
     override fun getAllPlayers(): Flowable<List<Player>> {
         return playerRepo.getAllPlayers()
@@ -31,7 +34,7 @@ class PlayersModelImpl(playerRepository: PlayerRepository,participantRepository:
     }
 
     override fun addGameParticipant(gameID: Long, playerID: Long): Completable {
-        return participantRepo.insertParticipant(Participant(gameID,playerID,null,null))
+        return participantRepo.insertParticipant(Participant(gameID, playerID, null, null))
     }
 
     override fun removeGameParticipant(gameID: Long, playerID: Long): Completable {

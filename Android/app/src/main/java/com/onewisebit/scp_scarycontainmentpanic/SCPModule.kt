@@ -29,10 +29,16 @@ val appModule = module {
     single { PlayerRepository(get()) }
     single { ParticipantRepository(get()) }
 
-    factory<StartContract.StartModel> { StartActivityModel(get(),get()) }
+    factory<StartContract.StartModel> { StartActivityModel(get(), get()) }
     factory<GameSettingsContract.GameSettingsModel> { GameSettingsModelImpl(get()) }
-    factory<PlayersContract.PlayersModel> { PlayersModelImpl(get(),get()) }
-    factory<StartContract.StartPresenter> { (view: StartContract.StartView) -> StartActivityPresenterImpl(view,get()) }
-    factory<PlayersContract.PlayersPresenter> { (view: PlayersContract.PlayersView) -> PlayersPresenterImpl(view,get()) }
-    factory<GameSettingsContract.GameSettingsPresenter> { (view: GameSettingsContract.GameSettingsView) -> GameSettingsPresenterImpl(view,get()) }
+    factory<PlayersContract.PlayersModel> { PlayersModelImpl(get(), get()) }
+    factory<StartContract.StartPresenter> { (view: StartContract.StartView) ->
+        StartActivityPresenterImpl(view, get())
+    }
+    factory<PlayersContract.PlayersPresenter> { (view: PlayersContract.PlayersView) ->
+        PlayersPresenterImpl(view,get())
+    }
+    factory<GameSettingsContract.GameSettingsPresenter> { (view: GameSettingsContract.GameSettingsView) ->
+        GameSettingsPresenterImpl(view,get())
+    }
 }

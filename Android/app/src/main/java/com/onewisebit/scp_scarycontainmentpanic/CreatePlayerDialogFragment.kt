@@ -17,7 +17,7 @@ class CreatePlayerDialogFragment : DialogFragment() {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
 
-            val inflater = requireActivity().layoutInflater;
+            val inflater = requireActivity().layoutInflater
             binding = DialogCreatePlayerBinding.inflate(inflater)
 
             builder.setView(binding.root)

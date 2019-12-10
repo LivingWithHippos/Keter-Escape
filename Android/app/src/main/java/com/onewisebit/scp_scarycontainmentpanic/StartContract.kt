@@ -13,6 +13,6 @@ interface StartContract {
 
     interface StartModel {
         fun getTheme(): String
-        fun createNewPlayer(name:String)
+        fun createNewPlayer(name: String)
     }
 }

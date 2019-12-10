@@ -33,7 +33,8 @@ class PlayerRepository(private val playerDAO: PlayerDAO) : InPlayerRepository {
 
     override fun getAllPlayers(): Flowable<List<Player>> = playerDAO.getAllPlayers()
 
-    override fun getPlayersByName(name:String): Flowable<List<Player>> = playerDAO.getPlayersByName(name)
+    override fun getPlayersByName(name: String): Flowable<List<Player>> =
+        playerDAO.getPlayersByName(name)
 
     override fun deleteAllPlayers() {
         Completable.fromAction { playerDAO.deleteAllPlayers() }
