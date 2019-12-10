@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e702bebffadea7d7bedad1f11038d8bd",
+    "identityHash": "a23112657e809fcd956948c740b2af54",
     "entities": [
       {
         "tableName": "players",
@@ -53,7 +53,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "type",
+            "fieldPath": "group",
             "columnName": "role_group",
             "affinity": "TEXT",
             "notNull": true
@@ -153,7 +153,7 @@
       },
       {
         "tableName": "participants",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `player` INTEGER NOT NULL, `role` TEXT NOT NULL, `state` INTEGER NOT NULL, PRIMARY KEY(`game`, `player`), FOREIGN KEY(`game`) REFERENCES `games`(`game_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`role`) REFERENCES `roles`(`role_name`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `player` INTEGER NOT NULL, `role` TEXT, `state` INTEGER, PRIMARY KEY(`game`, `player`), FOREIGN KEY(`game`) REFERENCES `games`(`game_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`role`) REFERENCES `roles`(`role_name`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "gameID",
@@ -171,13 +171,13 @@
             "fieldPath": "roleName",
             "columnName": "role",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "stateValue",
             "columnName": "state",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -245,7 +245,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e702bebffadea7d7bedad1f11038d8bd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a23112657e809fcd956948c740b2af54')"
     ]
   }
 }
