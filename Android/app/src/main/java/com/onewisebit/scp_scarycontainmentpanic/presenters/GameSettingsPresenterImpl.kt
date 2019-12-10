@@ -2,6 +2,7 @@ package com.onewisebit.scp_scarycontainmentpanic.presenters
 
 import com.onewisebit.scp_scarycontainmentpanic.GameSettingsContract
 import com.onewisebit.scp_scarycontainmentpanic.model.Game
+import io.reactivex.Single
 
 class GameSettingsPresenterImpl(
     gView: GameSettingsContract.GameSettingsView,
@@ -11,7 +12,7 @@ class GameSettingsPresenterImpl(
     private var view: GameSettingsContract.GameSettingsView = gView
     private var model: GameSettingsContract.GameSettingsModel = gModel
 
-    override fun getNewGame(gameType: Int): Game {
+    override fun getNewGame(gameType: Int): Single<Long> {
         return model.createGame(gameType)
     }
 
