@@ -3,11 +3,22 @@ package com.onewisebit.scpescape
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import android.view.View.OnSystemUiVisibilityChangeListener
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 abstract class BaseSCPActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.decorView.setOnSystemUiVisibilityChangeListener{setImmersiveMode()}
+    }
+
+    override fun onResume() {
+        super.onResume()
         setImmersiveMode()
     }
 
@@ -17,7 +28,6 @@ abstract class BaseSCPActivity : AppCompatActivity() {
             setImmersiveMode()
     }
 
-    //TODO: this needs to be triggered on more occasions
     private fun setImmersiveMode() {
         val immersiveFlags: Int = (window.decorView.systemUiVisibility
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
