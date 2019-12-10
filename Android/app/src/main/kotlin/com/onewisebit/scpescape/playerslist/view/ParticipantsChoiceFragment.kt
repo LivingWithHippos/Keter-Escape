@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -108,13 +109,27 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
 
     private fun playerToggle(id: Long, add: Boolean) {
         if (add) {
-            presenter.addParticipant(args.gameID, id)
+            presenter.getParticipantsNumber(args.gameID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { Log.d(TAG, "Participant Insert Success") },
-                    { Log.d(TAG, "Participant Insert Error") }
+                    {
+                        if(it<args.totPlayers){
+                            presenter.addParticipant(args.gameID, id)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                    { Log.d(TAG, "Participant Insert Success") },
+                                    { Log.d(TAG, "Participant Insert Error") }
+                                )
+                        }
+                        else
+                            Toast.makeText(context,getString(R.string.max_players_reached),Toast.LENGTH_LONG).show()
+                    },
+                    { Log.d(TAG, "Can't get Participants Number") }
                 )
+
+
         } else {
             presenter.removeParticipant(args.gameID, id)
                 .subscribeOn(Schedulers.io())

@@ -31,4 +31,5 @@
     <string name="cancel">Cancel</string>
     <string name="new_player">New Player</string>
     <string name="players_filter">Filter Players</string>
+    <string name="max_players_reached">Max Players Number Reached</string>
 </resources>
