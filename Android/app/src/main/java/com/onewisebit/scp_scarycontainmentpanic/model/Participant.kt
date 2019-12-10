@@ -31,7 +31,7 @@ data class Participant(
     @ColumnInfo(name = "player", index = true)
     val playerID: Long,
     @ColumnInfo(name = "role", index = true)
-    val roleName: String,
+    val roleName: String?,
     @ColumnInfo(name = "state")
-    val stateValue: Int
+    val stateValue: Int?
 )
