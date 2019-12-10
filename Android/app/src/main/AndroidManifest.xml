@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.onewisebit.scp_scarycontainmentpanic">
+    package="com.onewisebit.scpescape">
 
     <application
-        android:name=".SCPApplication"
+        android:name="com.onewisebit.scpescape.di.SCPApplication"
         android:fullBackupContent="@xml/scp_backup_rules"
         android:allowBackup="true"
         android:icon="@drawable/icon_day_broke"
@@ -14,7 +14,7 @@
         android:theme="@style/Theme.${application_theme}"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity">
+            android:name="com.onewisebit.scpescape.main.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

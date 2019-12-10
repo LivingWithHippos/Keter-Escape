@@ -28,7 +28,7 @@ android {
         manifestPlaceholders = [
                 application_theme            : 'Foundation'
         ]
-        applicationId "com.onewisebit.scp_scarycontainmentpanic"
+        applicationId "com.onewisebit.scpescape"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1

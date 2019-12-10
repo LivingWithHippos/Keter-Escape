@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startScreenFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.StartScreenFragment"
+        android:name="com.onewisebit.scpescape.main.view.StartScreenFragment"
         android:label="fragment_start_screen"
         tools:layout="@layout/fragment_start_screen" >
         <action
@@ -25,17 +25,17 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.AboutFragment"
+        android:name="com.onewisebit.scpescape.about.view.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.SettingsFragment"
+        android:name="com.onewisebit.scpescape.main.view.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@xml/preferences" />
     <fragment
         android:id="@+id/newGameFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameFragment"
+        android:name="com.onewisebit.scpescape.main.view.NewGameFragment"
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_new_game" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/newGameSettingsFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.NewGameSettingsFragment"
+        android:name="com.onewisebit.scpescape.newgamesettings.view.NewGameSettingsFragment"
         android:label="fragment_new_game_settings"
         tools:layout="@layout/fragment_new_game_settings" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/participantsChoiceFragment"
-        android:name="com.onewisebit.scp_scarycontainmentpanic.ParticipantsChoiceFragment"
+        android:name="com.onewisebit.scpescape.playerslist.view.ParticipantsChoiceFragment"
         android:label="ParticipantsChoiceFragment" >
         <argument
             android:name="tot_players"

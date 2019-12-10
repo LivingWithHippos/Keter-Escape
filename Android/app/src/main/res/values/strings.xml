@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SCP - Scary Containment Panic</string>
+    <string name="app_name">SCP Escape</string>
     <string name="welcome_d">Welcome to the Foundation, D Boi</string>
     <string name="foundation_logo">Foundation Logo</string>
     <string name="new_game">New Game</string>
