@@ -1,6 +1,7 @@
 package com.onewisebit.scp_scarycontainmentpanic
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,9 @@ import com.onewisebit.scp_scarycontainmentpanic.model.GameSettingsModelImpl
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MAX_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MID_PLAYERS
 import com.onewisebit.scp_scarycontainmentpanic.utilities.GAME_CLASSIC_MIN_PLAYERS
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -46,14 +50,21 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
             }
         }
         binding.fabChoosePlayers.setOnClickListener {
-            val gameID: Long = presenter.getNewGame(args.gameType).id
-            val action =
-                NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
-                    binding.npPlayerPicker.value,
-                    gameID
+            val gameID: Single<Long> = presenter.getNewGame(args.gameType)
+            gameID.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        val action =
+                            NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
+                                binding.npPlayerPicker.value,
+                                it
+                            )
+                        view.findNavController().navigate(action)
+                    },
+                    { Log.d("NewGameSettingsFragment", "Insert Game Error") }
                 )
-            view.findNavController().navigate(action)
-        }
+            }
     }
 
 }
