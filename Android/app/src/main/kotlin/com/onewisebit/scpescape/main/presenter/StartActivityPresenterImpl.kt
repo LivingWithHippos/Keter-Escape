@@ -26,7 +26,7 @@ class StartActivityPresenterImpl(
     //TODO: check if it's better to declare this in the interface
     private fun generateDClassName(): String {
         //TODO: check model for name collision
-        //maybe this name is not good since it can bve confused with the role
+        //maybe this name is not good since it can be confused with the role
         val dNumber = Random.nextInt(10000) + 1000
         return "D-$dNumber"
     }
