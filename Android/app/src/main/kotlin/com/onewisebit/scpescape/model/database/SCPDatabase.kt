@@ -10,7 +10,8 @@ import androidx.work.WorkManager
 import com.onewisebit.scpescape.model.daos.*
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.utilities.DATABASE_NAME
-import com.onewisebit.scpescape.workers.PopulateDatabaseWorker
+import com.onewisebit.scpescape.workers.PopulateDatabaseModesWorker
+import com.onewisebit.scpescape.workers.PopulateDatabaseRolesWorker
 
 /**
  * The Room database that contains the Users table
@@ -51,8 +52,10 @@ abstract class SCPDatabase : RoomDatabase() {
                     //populate the database on creation
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        val request = OneTimeWorkRequestBuilder<PopulateDatabaseWorker>().build()
-                        WorkManager.getInstance(context).enqueue(request)
+                        val roleRequest = OneTimeWorkRequestBuilder<PopulateDatabaseRolesWorker>().build()
+                        WorkManager.getInstance(context).enqueue(roleRequest)
+                        val modeRequest = OneTimeWorkRequestBuilder<PopulateDatabaseModesWorker>().build()
+                        WorkManager.getInstance(context).enqueue(modeRequest)
                     }
                 })
                 .build()

@@ -7,29 +7,29 @@ import androidx.work.WorkerParameters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.onewisebit.scpescape.model.entities.Role
 import com.onewisebit.scpescape.model.database.SCPDatabase
-import com.onewisebit.scpescape.utilities.ROLE_DATA_FILENAME
+import com.onewisebit.scpescape.model.entities.Mode
+import com.onewisebit.scpescape.utilities.MODE_DATA_FILENAME
 import kotlinx.coroutines.coroutineScope
 
 /**
  * Class used to pre-populate the database on first run
  */
-class PopulateDatabaseWorker(
+class PopulateDatabaseModesWorker(
     context: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
-            applicationContext.assets.open(ROLE_DATA_FILENAME).use { inputStream ->
+            // Populating roles
+            applicationContext.assets.open(MODE_DATA_FILENAME).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
-                    val roleType = object : TypeToken<List<Role>>() {}.type
-                    val rolesList: List<Role> = Gson().fromJson(jsonReader, roleType)
+                    val modeType = object : TypeToken<List<Mode>>() {}.type
+                    val modesList: List<Mode> = Gson().fromJson(jsonReader, modeType)
 
                     val database = SCPDatabase.getInstance(applicationContext)
-                    database.roleDAO().insertAll(rolesList)
+                    database.modeDAO().insertAll(modesList)
                 }
-
                 Result.success()
             }
         } catch (ex: Exception) {
@@ -39,6 +39,6 @@ class PopulateDatabaseWorker(
     }
 
     companion object {
-        private val TAG = PopulateDatabaseWorker::class.java.simpleName
+        private val TAG = PopulateDatabaseRolesWorker::class.java.simpleName
     }
 }
