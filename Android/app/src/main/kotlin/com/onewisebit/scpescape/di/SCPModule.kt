@@ -3,7 +3,10 @@ package com.onewisebit.scpescape.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.onewisebit.scpescape.game.GameContract
+import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.game.model.IntroModelImpl
 import com.onewisebit.scpescape.game.presenter.GamePresenterImpl
+import com.onewisebit.scpescape.game.presenter.IntroPresenterImpl
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.main.StartContract
@@ -13,6 +16,7 @@ import com.onewisebit.scpescape.playerslist.presenter.PlayersPresenterImpl
 import com.onewisebit.scpescape.main.presenter.StartActivityPresenterImpl
 import com.onewisebit.scpescape.model.database.SCPDatabase
 import com.onewisebit.scpescape.model.repositories.GameRepository
+import com.onewisebit.scpescape.model.repositories.ModeRepository
 import com.onewisebit.scpescape.model.repositories.ParticipantRepository
 import com.onewisebit.scpescape.model.repositories.PlayerRepository
 import com.onewisebit.scpescape.newgamesettings.model.GameSettingsModelImpl
@@ -39,6 +43,7 @@ val appModule = module {
     single { GameRepository(get()) }
     single { PlayerRepository(get()) }
     single { ParticipantRepository(get()) }
+    single { ModeRepository(get()) }
 
     factory<StartContract.StartModel> {
         StartActivityModel(
@@ -48,12 +53,18 @@ val appModule = module {
     }
     factory<GameSettingsContract.GameSettingsModel> {
         GameSettingsModelImpl(
+            get(),
             get()
         )
     }
     factory<PlayersContract.PlayersModel> {
         PlayersModelImpl(
             get(),
+            get()
+        )
+    }
+    factory<IntroContract.IntroModel> {
+        IntroModelImpl(
             get()
         )
     }
@@ -76,5 +87,6 @@ val appModule = module {
         )
     }
     factory<GameContract.GamePresenter> { (view: GameContract.GameView) -> GamePresenterImpl(view,get()) }
+    factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView) -> IntroPresenterImpl(view,get()) }
 
 }
