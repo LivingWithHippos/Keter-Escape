@@ -14,9 +14,14 @@
       "group": "Foundation",
       "description": "Class D personnel are expendable personnel used to handle extremely hazardous anomalies. Typically drawn worldwide from the ranks of prison inmates convicted of violent crimes, especially those on death row."
     },
-    {
-      "name": "SCP-173",
-      "group": "SCP",
-      "description": "Euclid. Made of concrete and rebar. Extremely hostile. Cannot move within line of sight, but will attack and snap the neck when not watched."
-    }
+  {
+    "name": "SCP-173",
+    "group": "SCP",
+    "description": "Euclid. Made of concrete and rebar. Extremely hostile. Cannot move within line of sight, but will attack and snap the neck when not watched."
+  },
+  {
+    "name": "SCP-106",
+    "group": "SCP",
+    "description": "Keter. SCP-106 appears to be an elderly humanoid, with a general appearance of advanced decomposition. He is able to “vanish” inside solid matter, entering what is assumed to be a form of “pocket dimension” where usually drags his prey and plays with them until satisfied."
+  }
 ]
