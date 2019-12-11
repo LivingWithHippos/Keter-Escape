@@ -8,6 +8,10 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
+import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.model.entities.Game
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 
 /**
@@ -15,10 +19,11 @@ import com.onewisebit.scpescape.databinding.FragmentIntroBinding
  * Use the [IntroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IntroFragment : Fragment() {
+class IntroFragment : Fragment(), IntroContract.IntroView {
 
+    private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this) }
     private lateinit var binding: FragmentIntroBinding
-    val args by navArgs<IntroFragmentArgs>()
+    private val args by navArgs<IntroFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +36,12 @@ class IntroFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvDescription.text = getString(R.string.new_game)
+        presenter.setup(args.gameID)
+    }
+
+    override fun setupGame(game: Game){
+        //TODO: load mode
+        binding.tvDescription.text = ""+game.modeID
     }
 
     companion object {
