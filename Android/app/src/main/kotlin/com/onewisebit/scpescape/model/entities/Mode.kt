@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "modes")
 data class Mode(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "mode_ID")
-    val id: Long,
+    val id: Int,
     @ColumnInfo(name = "mode_name")
     val name: String,
     @ColumnInfo(name = "mode_description")

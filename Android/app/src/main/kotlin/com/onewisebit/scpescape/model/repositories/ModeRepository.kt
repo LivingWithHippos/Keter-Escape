@@ -8,11 +8,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 class ModeRepository(private val modeDAO: ModeDAO) :
     InModeRepository {
 
-    override fun getMode(id: Long): Mode = modeDAO.getModeById(id)
+    override fun getMode(id: Int): Mode = modeDAO.getModeById(id)
 
-    override fun getMinPlayers(id: Long): Int = modeDAO.getMinPlayers(id)
+    override fun getMinPlayers(id: Int): Int = modeDAO.getMinPlayers(id)
 
-    override fun getMaxPlayers(id: Long): Int = modeDAO.getMaxPlayers(id)
+    override fun getMaxPlayers(id: Int): Int = modeDAO.getMaxPlayers(id)
 
     override fun insertMode(mode: Mode) {
         modeDAO.insertMode(mode)

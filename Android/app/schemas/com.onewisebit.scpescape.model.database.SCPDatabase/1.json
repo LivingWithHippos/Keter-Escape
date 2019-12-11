@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f100ca6daf29bcc256f00450b35b92fb",
+    "identityHash": "dac175de8ae99d9bf7dc9e855ccf6ee5",
     "entities": [
       {
         "tableName": "players",
@@ -121,7 +121,7 @@
       },
       {
         "tableName": "modes",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mode_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode_name` TEXT NOT NULL, `mode_description` TEXT NOT NULL, `mode_rules` TEXT NOT NULL, `max_players` INTEGER NOT NULL, `min_players` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mode_ID` INTEGER NOT NULL, `mode_name` TEXT NOT NULL, `mode_description` TEXT NOT NULL, `mode_rules` TEXT NOT NULL, `max_players` INTEGER NOT NULL, `min_players` INTEGER NOT NULL, PRIMARY KEY(`mode_ID`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -164,7 +164,7 @@
           "columnNames": [
             "mode_ID"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -263,7 +263,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f100ca6daf29bcc256f00450b35b92fb')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dac175de8ae99d9bf7dc9e855ccf6ee5')"
     ]
   }
 }
