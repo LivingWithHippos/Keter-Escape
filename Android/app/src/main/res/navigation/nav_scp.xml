@@ -58,12 +58,25 @@
     <fragment
         android:id="@+id/participantsChoiceFragment"
         android:name="com.onewisebit.scpescape.playerslist.view.ParticipantsChoiceFragment"
-        android:label="ParticipantsChoiceFragment" >
+        android:label="ParticipantsChoiceFragment"
+        tools:layout="@layout/fragment_participants_choice" >
         <argument
             android:name="tot_players"
             app:argType="integer" />
         <argument
             android:name="gameID"
             app:argType="long" />
+        <action
+            android:id="@+id/actionParticipantsChoiceToGameActivity"
+            app:destination="@id/gameActivity" />
     </fragment>
+    <activity
+        android:id="@+id/gameActivity"
+        android:name="com.onewisebit.scpescape.game.view.GameActivity"
+        android:label="GameActivity"
+        tools:layout="@layout/activity_game">
+        <argument
+            android:name="gameID"
+            app:argType="long" />
+    </activity>
 </navigation>

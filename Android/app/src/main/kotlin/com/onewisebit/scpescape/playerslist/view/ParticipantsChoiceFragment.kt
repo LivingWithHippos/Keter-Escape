@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onewisebit.scpescape.R
@@ -56,6 +57,11 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         binding.rvPlayers.adapter = adapter
         binding.bCreatePlayer.setOnClickListener {
             showCreatePlayerDialog()
+        }
+        binding.fabStartGame.setOnClickListener {
+            val action =
+                ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(args.gameID)
+            view.findNavController().navigate(action)
         }
         presenter.setPlayers(args.gameID)
     }
