@@ -1,10 +1,13 @@
 package com.onewisebit.scpescape.game.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
 
 
@@ -16,6 +19,7 @@ import com.onewisebit.scpescape.databinding.FragmentIntroBinding
 class IntroFragment : Fragment() {
 
     private lateinit var binding: FragmentIntroBinding
+    val args by navArgs<IntroFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +27,12 @@ class IntroFragment : Fragment() {
     ): View? {
         binding = FragmentIntroBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.tvDescription.setText(getString(R.string.new_game))
     }
 
     companion object {

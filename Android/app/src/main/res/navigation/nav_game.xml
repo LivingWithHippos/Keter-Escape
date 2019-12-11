@@ -9,5 +9,9 @@
         android:id="@+id/introFragment"
         android:name="com.onewisebit.scpescape.game.view.IntroFragment"
         android:label="fragment_intro"
-        tools:layout="@layout/fragment_intro" />
+        tools:layout="@layout/fragment_intro" >
+        <argument
+            android:name="gameID"
+            app:argType="long" />
+    </fragment>
 </navigation>
