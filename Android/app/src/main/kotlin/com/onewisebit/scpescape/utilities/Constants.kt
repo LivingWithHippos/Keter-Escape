@@ -14,6 +14,8 @@ const val CURRENT_THEME = "preference_current_theme"
 
 const val GAME_TYPE = "game_type"
 const val GAME_TYPE_PASS = 0
+const val GAME_TYPE_LOCAL = 1
+const val GAME_TYPE_NET = 2
 
 const val GAME_CLASSIC_MIN_PLAYERS = 7
 const val GAME_CLASSIC_MID_PLAYERS = 12
