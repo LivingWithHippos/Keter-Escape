@@ -39,7 +39,19 @@
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_new_game" >
         <action
-            android:id="@+id/actionNewGameToNewGameSettings"
+            android:id="@+id/actionNewGameToGameMode"
+            app:destination="@id/gameModeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameModeFragment"
+        android:name="com.onewisebit.scpescape.newgamesettings.GameModeFragment"
+        android:label="fragment_game_mode"
+        tools:layout="@layout/fragment_game_mode" >
+        <argument
+            android:name="game_type"
+            app:argType="integer"  />
+        <action
+            android:id="@+id/actionGameModeToNewGameSettings"
             app:destination="@id/newGameSettingsFragment" />
     </fragment>
     <fragment
@@ -54,6 +66,9 @@
             android:name="game_type"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="game_mode"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/participantsChoiceFragment"

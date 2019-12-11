@@ -33,4 +33,6 @@
     <string name="players_filter">Filter Players</string>
     <string name="max_players_reached">Max Players Number Reached</string>
     <string name="game_description_placeholder">placeholder</string>
+    <string name="classic_mode">Classic Mode</string>
+    <string name="classic_mode_description">Guards, Scientists and MTF against SCP-106</string>
 </resources>
