@@ -3,12 +3,13 @@ package com.onewisebit.scpescape.model.repositories
 import android.util.Log
 import com.onewisebit.scpescape.model.entities.Mode
 import com.onewisebit.scpescape.model.daos.ModeDAO
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class ModeRepository(private val modeDAO: ModeDAO) :
     InModeRepository {
 
-    override fun getMode(id: Int): Mode = modeDAO.getModeById(id)
+    override fun getMode(id: Int): Single<Mode> = modeDAO.getModeById(id)
 
     override fun getMinPlayers(id: Int): Int = modeDAO.getMinPlayers(id)
 

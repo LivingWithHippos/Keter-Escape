@@ -22,6 +22,13 @@ interface GameDAO {
     fun getType(id: Long): Int
 
     /**
+     * Get the game mode from game id.
+     * @return the game mode.
+     */
+    @Query("SELECT mode FROM games WHERE game_ID = :id")
+    fun getMode(id: Long): Int
+
+    /**
      * Insert a Game in the database. If the game already exists, replace it.
      * @param game the Game to be inserted.
      */

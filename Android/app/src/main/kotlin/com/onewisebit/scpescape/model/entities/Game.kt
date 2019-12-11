@@ -17,7 +17,7 @@ data class Game(
     @ColumnInfo(name = "game_ID")
     val id: Long,
     @ColumnInfo(name = "mode")
-    val modeID: Long,
+    val modeID: Int,
     @ColumnInfo(name = "game_type")
     val type: Int,
     //TODO: test this value

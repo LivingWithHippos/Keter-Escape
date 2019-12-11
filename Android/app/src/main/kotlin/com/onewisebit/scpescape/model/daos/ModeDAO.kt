@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.onewisebit.scpescape.model.entities.Mode
 import io.reactivex.Completable
+import io.reactivex.Single
 
 @Dao
 interface ModeDAO {
@@ -14,7 +15,7 @@ interface ModeDAO {
      * @return the Mode from the table with a specific id.
      */
     @Query("SELECT * FROM modes WHERE mode_ID = :id")
-    fun getModeById(id: Int): Mode
+    fun getModeById(id: Int): Single<Mode>
 
     /**
      * Get the minimum number of players from game mode id.
