@@ -31,7 +31,7 @@ These are related to the Android app.
 
 - [ ] replace constructor parameter assignation (it's done automatically)
 
-- [ ] replace clicklistener passed around with lambdas (see CreatePlayerDialogFragment.NewPlayerDialogListener -> )
+- [ ] replace clicklistener passed around with lambdas (see CreatePlayerDialogFragment.NewPlayerDialogListener)
 
 #### High Priority
 
@@ -41,4 +41,4 @@ These are related to the Android app.
 
 - [ ] Add documentation to code
 
-- [ ] Clean code  from generated lines
+- [ ] Clean code from generated lines

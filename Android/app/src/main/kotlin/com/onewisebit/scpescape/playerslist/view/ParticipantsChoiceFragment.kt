@@ -62,6 +62,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
             val action =
                 ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(args.gameID)
             view.findNavController().navigate(action)
+            //TODO: set game status temp = false
         }
         presenter.setPlayers(args.gameID)
     }
