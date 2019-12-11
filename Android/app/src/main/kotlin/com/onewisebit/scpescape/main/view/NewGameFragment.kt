@@ -48,9 +48,7 @@ class NewGameFragment : Fragment() {
         binding.cvNewGamePass.setOnClickListener {
 
             val gameType = GAME_TYPE_PASS
-            val action = NewGameFragmentDirections.actionNewGameToNewGameSettings(
-                gameType
-            )
+            val action = NewGameFragmentDirections.actionNewGameToGameMode(gameType)
             view.findNavController().navigate(action)
         }
     }
