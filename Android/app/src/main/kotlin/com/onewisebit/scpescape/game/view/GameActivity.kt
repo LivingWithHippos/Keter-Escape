@@ -13,7 +13,7 @@ import org.koin.core.parameter.parametersOf
 class GameActivity: BaseSCPActivity(), GameContract.GameView{
 
     private lateinit var binding: ActivityGameBinding
-    val navController by lazy { findNavController(R.id.nav_host) }
+    private val navController by lazy { findNavController(R.id.nav_host) }
     private val presenter: GameContract.GamePresenter by inject { parametersOf(this) }
     private val args: GameActivityArgs by navArgs()
 

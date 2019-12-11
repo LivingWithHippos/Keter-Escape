@@ -12,7 +12,7 @@ class CreatePlayerDialogFragment : DialogFragment() {
 
     private lateinit var binding: DialogCreatePlayerBinding
 
-    internal lateinit var listener: NewPlayerDialogListener
+    private lateinit var listener: NewPlayerDialogListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {

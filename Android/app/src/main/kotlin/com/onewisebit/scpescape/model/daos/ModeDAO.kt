@@ -46,7 +46,7 @@ interface ModeDAO {
 
     /**
      * Insert a list of Modes in the database. If the mode already exists, replace it.
-     * @param mode the Mode to be inserted.
+     * @param modes the list of Modes to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(modes: List<Mode>)

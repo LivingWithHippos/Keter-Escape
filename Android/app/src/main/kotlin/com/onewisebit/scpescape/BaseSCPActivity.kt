@@ -3,10 +3,6 @@ package com.onewisebit.scpescape
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View.OnSystemUiVisibilityChangeListener
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 
