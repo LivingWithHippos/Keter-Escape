@@ -39,12 +39,7 @@ class PlayersModelImpl(
 
     override fun addGameParticipant(gameID: Long, playerID: Long): Completable {
         return participantRepo.insertParticipant(
-            Participant(
-                gameID,
-                playerID,
-                null,
-                null
-            )
+            Participant( gameID, playerID, null,null)
         )
     }
 
