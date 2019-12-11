@@ -5,5 +5,12 @@
     "rules": "When the lights are on, the group must discuss who is going to get shot by SCP-[REDACTED] and decide by a majority vote. When the lights flicker and go off, the players must decide what action to take according to their roles, and the Old Man will pick someone to kill.\nScientists can hide within other players using SCP-[REDACTED]. If they are directly targeted, they will escape. If the player they're hidden within gets attacked, they will get dragged away as well.\nMobile Task Force members can choose another player to protect, but they can also guard themselves.\nGuards must try and survive.\nSCP-106 must choose someone to drag in his pocket dimension when the lights go out.",
     "max": "7",
     "min": "30"
+  },
+  {
+    "name": "Blink <(OO)>",
+    "description": "You VS a Peanut",
+    "rules": "Snappy Snap",
+    "max": "5",
+    "min": "15"
   }
 ]
