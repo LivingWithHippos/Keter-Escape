@@ -1,6 +1,8 @@
 package com.onewisebit.scpescape.game.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,11 @@ import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.entities.Game
+import com.onewisebit.scpescape.model.entities.Mode
+import com.onewisebit.scpescape.model.repositories.RoleRepository
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -39,9 +46,14 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
         presenter.setup(args.gameID)
     }
 
-    override fun setupGame(game: Game){
-        //TODO: load mode
-        binding.tvDescription.text = ""+game.modeID
+    @SuppressLint("CheckResult")
+    override fun setupGame(game: Single<Game>, mode: Single<Mode>) {
+        mode.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { binding.tvDescription.text = it.description },
+                { Log.d(TAG, "Mode retrieval error") }
+            )
     }
 
     companion object {
@@ -54,5 +66,7 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
         @JvmStatic
         fun newInstance() =
             IntroFragment()
+
+        private val TAG = IntroFragment::class.java.simpleName
     }
 }
