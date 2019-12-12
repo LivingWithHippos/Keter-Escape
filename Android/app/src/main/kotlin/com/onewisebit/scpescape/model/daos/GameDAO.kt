@@ -70,4 +70,10 @@ interface GameDAO {
     @Query("DELETE FROM games")
     fun deleteAllGames()
 
+    /**
+     * Mark a game as temporary (to be deleted if not started) or not
+     */
+    @Query("UPDATE games SET `temporary` = :temp  WHERE game_ID = :gameID")
+    fun setTemporary(gameID: Long, temp: Boolean)
+
 }

@@ -60,6 +60,7 @@ val appModule = module {
     factory<PlayersContract.PlayersModel> {
         PlayersModelImpl(
             get(),
+            get(),
             get()
         )
     }

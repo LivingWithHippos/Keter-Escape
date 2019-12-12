@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.playerslist.model
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
+import com.onewisebit.scpescape.model.repositories.GameRepository
 import com.onewisebit.scpescape.model.repositories.ParticipantRepository
 import com.onewisebit.scpescape.model.repositories.PlayerRepository
 import io.reactivex.Completable
@@ -11,11 +12,13 @@ import io.reactivex.Single
 
 class PlayersModelImpl(
     playerRepository: PlayerRepository,
-    participantRepository: ParticipantRepository
+    participantRepository: ParticipantRepository,
+    gameRepository: GameRepository
 ) : PlayersContract.PlayersModel {
 
     private var playerRepo: PlayerRepository = playerRepository
     private var participantRepo: ParticipantRepository = participantRepository
+    private var gameRepo: GameRepository = gameRepository
 
     override fun getAllPlayers(): Flowable<List<Player>> {
         return playerRepo.getAllPlayers()
@@ -45,5 +48,9 @@ class PlayersModelImpl(
 
     override fun removeGameParticipant(gameID: Long, playerID: Long): Completable {
         return participantRepo.removeParticipant(gameID, playerID)
+    }
+
+    override fun setTemporary(gameID: Long, isTemp: Boolean) {
+        gameRepo.setTemporary(gameID, isTemp)
     }
 }

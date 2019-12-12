@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 
 class GameRepository(private val gameDAO: GameDAO) :
     InGameRepository {
+
     override fun getGameById(id: Long): Single<Game> = gameDAO.getGameById(id)
 
     override fun getType(id: Long): Int = gameDAO.getType(id)
@@ -35,6 +36,9 @@ class GameRepository(private val gameDAO: GameDAO) :
                 { Log.d(TAG, "Update Error") }
             )
     }
+
+    override fun setTemporary(gameID: Long, isTemp: Boolean) = gameDAO.setTemporary(gameID, isTemp)
+
 
     companion object {
         private val TAG = PlayerRepository::class.java.simpleName

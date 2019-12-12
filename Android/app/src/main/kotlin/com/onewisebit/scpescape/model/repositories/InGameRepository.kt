@@ -22,4 +22,6 @@ interface InGameRepository {
 
     fun deleteAllGames()
 
+    fun setTemporary(gameID: Long, isTemp: Boolean)
+
 }

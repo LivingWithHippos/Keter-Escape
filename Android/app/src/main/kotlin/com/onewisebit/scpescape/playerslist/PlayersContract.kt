@@ -18,6 +18,7 @@ interface PlayersContract {
         fun removeParticipant(gameID: Long, playerID: Long): Completable
         fun getParticipants(gameID: Long): Flowable<List<Participant>>
         fun getParticipantsNumber(gameID: Long): Single<Int>
+        fun setGameTemporary(gameID: Long, isTemp: Boolean)
     }
 
     interface PlayersModel {
@@ -28,5 +29,6 @@ interface PlayersContract {
         fun addGameParticipant(gameID: Long, playerID: Long): Completable
         fun removeGameParticipant(gameID: Long, playerID: Long): Completable
         fun getParticipantsNumber(gameID: Long): Single<Int>
+        fun setTemporary(gameID: Long, isTemp: Boolean)
     }
 }

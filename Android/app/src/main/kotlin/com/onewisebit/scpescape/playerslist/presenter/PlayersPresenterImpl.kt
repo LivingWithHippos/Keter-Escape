@@ -30,4 +30,8 @@ class PlayersPresenterImpl(
         return model.getParticipantsNumber(gameID)
     }
 
+    override fun setGameTemporary(gameID: Long, isTemp: Boolean) {
+        model.setTemporary(gameID, isTemp)
+    }
+
 }
