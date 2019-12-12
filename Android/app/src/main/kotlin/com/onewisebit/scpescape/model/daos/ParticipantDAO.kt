@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.model.daos
 
 import androidx.room.*
 import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Role
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -39,6 +40,13 @@ interface ParticipantDAO {
     fun getParticipantState(gameID: Long, playerID: Long): Int
 
     /**
+     * Get the role of a participant from a game and player id.
+     * @return the Role from the table with a specific game and player id.
+     */
+    @Query("SELECT * FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID AND participants.player = :playerID")
+    fun getParticipantRole(gameID: Long, playerID: Long): Single<Role>
+
+    /**
      * Insert a participant in the database. If the participant already exists, replace it.
      * @param participant the player to be inserted.
      */
@@ -59,7 +67,7 @@ interface ParticipantDAO {
     fun removeParticipant(participant: Participant): Completable
 
     /**
-     * Remove a participant by game and player id.ì
+     * Remove a participant by game and player id.
      */
     @Query("DELETE FROM participants WHERE game = :gameID AND player = :playerID")
     fun removeParticipant(gameID: Long, playerID: Long): Completable

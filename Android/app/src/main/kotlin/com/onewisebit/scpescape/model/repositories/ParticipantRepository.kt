@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.model.repositories
 import android.util.Log
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.daos.ParticipantDAO
+import com.onewisebit.scpescape.model.entities.Role
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -26,6 +27,9 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
 
     override fun getParticipantNumber(gameID: Long): Single<Int> =
         participantDAO.getParticipantNumber(gameID)
+
+    override fun getParticipantRole(gameID: Long, playerID: Long): Single<Role> =
+        participantDAO.getParticipantRole(gameID, playerID)
 
     override fun insertParticipant(participant: Participant): Completable {
         return participantDAO.insertParticipant(participant)
