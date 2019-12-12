@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "roles")
 class Role(
+    //TODO: maybe a numerical id would be better
     @PrimaryKey
     @ColumnInfo(name = "role_name")
     val name: String,
