@@ -51,7 +51,10 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
         mode.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { binding.tvDescription.text = it.description },
+                {
+                    binding.tvDescription.text = it.description
+                    binding.tvRules.text = it.rules
+                },
                 { Log.d(TAG, "Mode retrieval error") }
             )
     }
