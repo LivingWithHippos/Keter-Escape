@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.entities.Game
+import io.reactivex.Single
 
 class IntroPresenterImpl(
     iView: IntroContract.IntroView,
@@ -12,7 +13,7 @@ class IntroPresenterImpl(
     private var model: IntroContract.IntroModel = iModel
 
     override fun setup(id: Long) {
-        val game: Game = model.getGame(id)
+        val game: Single<Game> = model.getGame(id)
         view.setupGame(game)
     }
 
