@@ -37,4 +37,5 @@
     <string name="classic_mode_description">Guards, Scientists and MTF against SCP-106</string>
     <string name="description">Description</string>
     <string name="rules">Rules</string>
+    <string name="play">Play</string>
 </resources>
