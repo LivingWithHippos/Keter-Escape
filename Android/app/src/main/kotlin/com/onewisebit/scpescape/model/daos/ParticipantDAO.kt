@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.model.daos
 
 import androidx.room.*
 import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Role
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -22,7 +23,14 @@ interface ParticipantDAO {
      * @return the Participant from the table with a specific game and player id.
      */
     @Query("SELECT * FROM participants WHERE game = :gameID")
-    fun getGameParticipantList(gameID: Long): Flowable<List<Participant>>
+    fun getGameParticipants(gameID: Long): Flowable<List<Participant>>
+
+    /**
+     * Get a participant by id.
+     * @return the Players corresponding to the participants.
+     */
+    @Query("SELECT * FROM players INNER JOIN participants ON players.player_ID = participants.player WHERE participants.game = :gameID")
+    fun getGamePlayers(gameID: Long): Flowable<List<Player>>
 
 
     /**
@@ -45,6 +53,13 @@ interface ParticipantDAO {
      */
     @Query("SELECT * FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID AND participants.player = :playerID")
     fun getParticipantRole(gameID: Long, playerID: Long): Single<Role>
+
+    /**
+     * Get the role of a participant from a game and player id.
+     * @return the Role from the table with a specific game and player id.
+     */
+    @Query("SELECT * FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID")
+    fun getParticipantsRoles(gameID: Long): Flowable<List<Role>>
 
     /**
      * Insert a participant in the database. If the participant already exists, replace it.

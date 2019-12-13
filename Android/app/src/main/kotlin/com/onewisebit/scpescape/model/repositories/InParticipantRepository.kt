@@ -1,6 +1,7 @@
 package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Role
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -18,5 +19,7 @@ interface InParticipantRepository {
     fun removeParticipant(gameID: Long, playerID: Long): Completable
     fun removeAllParticipant()
     fun getParticipantNumber(gameID: Long): Single<Int>
+    fun getPlayers(gameID: Long): Flowable<List<Player>>
+    fun getRoles(gameID: Long): Flowable<List<Role>>
 
 }
