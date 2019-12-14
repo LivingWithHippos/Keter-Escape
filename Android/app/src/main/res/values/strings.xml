@@ -38,4 +38,7 @@
     <string name="description">Description</string>
     <string name="rules">Rules</string>
     <string name="play">Play</string>
+    <string name="round_title">Round Title</string>
+    <string name="round_description">Round Descritpion</string>
+    <string name="round_descriptive_image">Round Descriptive Image</string>
 </resources>
