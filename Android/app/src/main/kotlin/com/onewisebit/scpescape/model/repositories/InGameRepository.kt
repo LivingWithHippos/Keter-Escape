@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
+import io.reactivex.Completable
 import io.reactivex.Single
 
 interface InGameRepository {
@@ -22,6 +23,6 @@ interface InGameRepository {
 
     fun deleteAllGames()
 
-    fun setTemporary(gameID: Long, isTemp: Boolean)
+    fun setTemporary(gameID: Long, isTemp: Boolean): Completable
 
 }

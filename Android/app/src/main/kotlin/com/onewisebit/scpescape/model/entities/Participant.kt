@@ -12,7 +12,7 @@ import androidx.room.ForeignKey
         parentColumns = ["game_ID"],
         childColumns = ["game"],
         //TODO: implement logic to manage the deletion of a player with a saved/running game
-        onDelete = ForeignKey.NO_ACTION
+        onDelete = ForeignKey.CASCADE
     ), ForeignKey(
         entity = Player::class,
         parentColumns = ["player_ID"],

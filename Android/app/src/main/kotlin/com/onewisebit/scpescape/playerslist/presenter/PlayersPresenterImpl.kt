@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.playerslist.presenter
 
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.model.entities.Participant
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 
@@ -30,8 +31,8 @@ class PlayersPresenterImpl(
         return model.getParticipantsNumber(gameID)
     }
 
-    override fun setGameTemporary(gameID: Long, isTemp: Boolean) {
+    override fun setGameTemporary(gameID: Long, isTemp: Boolean): Completable =
         model.setTemporary(gameID, isTemp)
-    }
+
 
 }

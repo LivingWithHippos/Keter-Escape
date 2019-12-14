@@ -50,7 +50,6 @@ class PlayersModelImpl(
         return participantRepo.removeParticipant(gameID, playerID)
     }
 
-    override fun setTemporary(gameID: Long, isTemp: Boolean) {
+    override fun setTemporary(gameID: Long, isTemp: Boolean): Completable =
         gameRepo.setTemporary(gameID, isTemp)
-    }
 }

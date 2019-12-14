@@ -4,6 +4,7 @@ import android.util.Log
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.daos.GameDAO
 import com.onewisebit.scpescape.model.entities.Mode
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -37,7 +38,7 @@ class GameRepository(private val gameDAO: GameDAO) :
             )
     }
 
-    override fun setTemporary(gameID: Long, isTemp: Boolean) = gameDAO.setTemporary(gameID, isTemp)
+    override fun setTemporary(gameID: Long, isTemp: Boolean) : Completable = gameDAO.setTemporary(gameID, isTemp)
 
 
     companion object {

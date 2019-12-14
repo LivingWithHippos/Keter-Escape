@@ -59,10 +59,18 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
             showCreatePlayerDialog()
         }
         binding.fabStartGame.setOnClickListener {
-            val action =
-                ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(args.gameID)
-            view.findNavController().navigate(action)
+
             presenter.setGameTemporary(args.gameID, false)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        val action =
+                            ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(args.gameID)
+                        view.findNavController().navigate(action)
+                    },
+                    { Log.d(TAG, "Error while setting game permanent") }
+                )
         }
         presenter.setPlayers(args.gameID)
     }
