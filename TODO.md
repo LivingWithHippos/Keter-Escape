@@ -35,6 +35,10 @@ These are related to the Android app.
 
 - [ ] replace clicklistener passed around with lambdas (see CreatePlayerDialogFragment.NewPlayerDialogListener)
 
+- [ ] add exception to logs -> Log.d(TAG, "Activity description", exception)
+
+- [ ] change rxjava to livedata in the ui side
+
 #### High Priority
 
 - [ ] Tutorial

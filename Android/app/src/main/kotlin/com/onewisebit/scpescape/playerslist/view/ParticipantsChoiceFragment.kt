@@ -107,6 +107,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     }
 
     private fun playerToggle(id: Long, add: Boolean) {
+        //TODO: add coorect button visibility on fragment resume/back
         if (add) {
             presenter.getParticipantsNumber(args.gameID)
                 .subscribeOn(Schedulers.io())
