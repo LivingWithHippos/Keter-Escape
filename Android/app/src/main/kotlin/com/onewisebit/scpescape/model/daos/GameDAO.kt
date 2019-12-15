@@ -34,7 +34,7 @@ interface GameDAO {
      * Get the game mode id from game id.
      * @return the game mode id.
      */
-    @Query("SELECT * FROM modes INNER JOIN games ON modes.mode_ID=games.mode WHERE game_ID = :gameID")
+    @Query("SELECT modes.* FROM modes INNER JOIN games ON modes.mode_ID=games.mode WHERE game_ID = :gameID")
     fun getMode(gameID: Long): Single<Mode>
 
     /**

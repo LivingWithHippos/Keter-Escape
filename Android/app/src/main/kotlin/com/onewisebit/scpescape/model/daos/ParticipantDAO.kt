@@ -29,7 +29,7 @@ interface ParticipantDAO {
      * Get a participant by id.
      * @return the Players corresponding to the participants.
      */
-    @Query("SELECT * FROM players INNER JOIN participants ON players.player_ID = participants.player WHERE participants.game = :gameID")
+    @Query("SELECT players.* FROM players INNER JOIN participants ON players.player_ID = participants.player WHERE participants.game = :gameID")
     fun getGamePlayers(gameID: Long): Flowable<List<Player>>
 
 
@@ -51,14 +51,14 @@ interface ParticipantDAO {
      * Get the role of a participant from a game and player id.
      * @return the Role from the table with a specific game and player id.
      */
-    @Query("SELECT * FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID AND participants.player = :playerID")
+    @Query("SELECT roles.* FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID AND participants.player = :playerID")
     fun getParticipantRole(gameID: Long, playerID: Long): Single<Role>
 
     /**
      * Get the role of a participant from a game and player id.
      * @return the Role from the table with a specific game and player id.
      */
-    @Query("SELECT * FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID")
+    @Query("SELECT roles.* FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID")
     fun getParticipantsRoles(gameID: Long): Flowable<List<Role>>
 
     /**
