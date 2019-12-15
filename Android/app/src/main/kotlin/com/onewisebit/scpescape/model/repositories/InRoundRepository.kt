@@ -7,7 +7,7 @@ import io.reactivex.Single
 
 interface InRoundRepository {
 
-    fun insertRound(round: Round): Single<Int>
+    fun insertRound(round: Round): Completable
 
     fun getRounds(gameID: Long): Flowable<List<Round>>
 

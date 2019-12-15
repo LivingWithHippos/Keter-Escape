@@ -8,7 +8,7 @@ import io.reactivex.Single
 
 class RoundRepository(private val roundDAO: RoundDAO): InRoundRepository {
 
-    override fun insertRound(round: Round): Single<Int> = roundDAO.insertRound(round)
+    override fun insertRound(round: Round): Completable = roundDAO.insertRound(round)
 
     override fun getRounds(gameID: Long): Flowable<List<Round>> = roundDAO.getRounds(gameID)
 
