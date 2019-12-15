@@ -1,11 +1,14 @@
 package com.onewisebit.scpescape.model.daos
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.onewisebit.scpescape.model.entities.Turn
+import io.reactivex.Completable
 import io.reactivex.Flowable
 
+@Dao
 interface TurnDAO {
 
     /**
@@ -13,7 +16,7 @@ interface TurnDAO {
      * @param turn the Turn to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTurn(turn: Turn)
+    fun insertTurn(turn: Turn): Completable
 
     /**
      * Insert a Turn in the database. If the turn already exists, replace it.
@@ -22,7 +25,7 @@ interface TurnDAO {
      * @param player the id of the player playing the turn
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTurn(round: Int,game: Long, player: Long)
+    fun insertTurn(round: Int,game: Long, player: Long): Completable
 
     /**
      * Get all of the turns from a game.
@@ -49,6 +52,6 @@ interface TurnDAO {
      * Delete all of a game's turns
      */
     @Query("DELETE FROM turns WHERE turns.game = :gameID")
-    fun deleteGameTurns(gameID: Long)
+    fun deleteGameTurns(gameID: Long): Completable
 }
 
