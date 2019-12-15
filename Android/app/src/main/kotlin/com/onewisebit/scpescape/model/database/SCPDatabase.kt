@@ -17,7 +17,7 @@ import com.onewisebit.scpescape.workers.PopulateDatabaseRolesWorker
  * The Room database that contains the Users table
  */
 @Database(
-    entities = [Player::class, Role::class, Game::class, Mode::class, Participant::class],
+    entities = [Player::class, Role::class, Game::class, Mode::class, Participant::class, Round::class, Turn::class],
     version = 1
 )
 abstract class SCPDatabase : RoomDatabase() {
