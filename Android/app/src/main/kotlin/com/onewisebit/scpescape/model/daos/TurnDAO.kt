@@ -19,15 +19,6 @@ interface TurnDAO {
     fun insertTurn(turn: Turn): Completable
 
     /**
-     * Insert a Turn in the database. If the turn already exists, replace it.
-     * @param game the id of the game where the turn is being played
-     * @param round the number of the round where the turn is being played
-     * @param player the id of the player playing the turn
-     */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTurn(round: Int,game: Long, player: Long): Completable
-
-    /**
      * Get all of the turns from a game.
      * @return the list of Turns from the table with a specific game id.
      */
