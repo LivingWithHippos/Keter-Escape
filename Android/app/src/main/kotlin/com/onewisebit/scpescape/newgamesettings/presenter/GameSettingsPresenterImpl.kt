@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.newgamesettings.presenter
 
-import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
+import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import io.reactivex.Single
 
 class GameSettingsPresenterImpl(

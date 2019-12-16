@@ -4,7 +4,6 @@ import com.onewisebit.scpescape.model.daos.RoundDAO
 import com.onewisebit.scpescape.model.entities.Round
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Single
 
 class RoundRepository(private val roundDAO: RoundDAO): InRoundRepository {
 

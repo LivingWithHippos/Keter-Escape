@@ -7,8 +7,8 @@ import androidx.work.WorkerParameters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.onewisebit.scpescape.model.entities.Role
 import com.onewisebit.scpescape.model.database.SCPDatabase
+import com.onewisebit.scpescape.model.entities.Role
 import com.onewisebit.scpescape.utilities.ROLE_DATA_FILENAME
 import kotlinx.coroutines.coroutineScope
 

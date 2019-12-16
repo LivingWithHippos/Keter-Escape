@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.model.repositories
 
 import android.util.Log
-import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.daos.ParticipantDAO
+import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Role
 import io.reactivex.Completable

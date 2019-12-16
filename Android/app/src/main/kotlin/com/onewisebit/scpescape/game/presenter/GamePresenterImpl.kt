@@ -1,12 +1,9 @@
 package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.GameContract
-import com.onewisebit.scpescape.model.GameInfo
 import com.onewisebit.scpescape.model.entities.*
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.functions.Function5
 
 class GamePresenterImpl(
     gView: GameContract.GameView,

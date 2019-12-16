@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.playerslist.presenter
 
-import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.playerslist.PlayersContract
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single

@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.model.repositories
 
 import android.util.Log
-import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.daos.PlayerDAO
+import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers

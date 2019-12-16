@@ -13,9 +13,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentParticipantsChoiceBinding
-import com.onewisebit.scpescape.utilities.SearchableObservable
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.playerslist.PlayersContract
+import com.onewisebit.scpescape.utilities.SearchableObservable
 import com.onewisebit.scpescape.utilities.hideKeyboard
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers

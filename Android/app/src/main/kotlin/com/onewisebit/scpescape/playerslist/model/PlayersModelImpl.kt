@@ -1,11 +1,11 @@
 package com.onewisebit.scpescape.playerslist.model
 
-import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.repositories.GameRepository
 import com.onewisebit.scpescape.model.repositories.ParticipantRepository
 import com.onewisebit.scpescape.model.repositories.PlayerRepository
+import com.onewisebit.scpescape.playerslist.PlayersContract
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single

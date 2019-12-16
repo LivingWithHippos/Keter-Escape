@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.model.repositories
 
 import android.util.Log
-import com.onewisebit.scpescape.model.entities.Role
 import com.onewisebit.scpescape.model.daos.RoleDAO
+import com.onewisebit.scpescape.model.entities.Role
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

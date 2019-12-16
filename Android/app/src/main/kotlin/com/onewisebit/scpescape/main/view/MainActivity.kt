@@ -2,10 +2,10 @@ package com.onewisebit.scpescape.main.view
 
 import android.os.Bundle
 import com.onewisebit.scpescape.BaseSCPActivity
-import com.onewisebit.scpescape.playerslist.view.CreatePlayerDialogFragment
-import com.onewisebit.scpescape.main.StartContract.StartView
 import com.onewisebit.scpescape.databinding.ActivityMainBinding
 import com.onewisebit.scpescape.main.StartContract
+import com.onewisebit.scpescape.main.StartContract.StartView
+import com.onewisebit.scpescape.playerslist.view.CreatePlayerDialogFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
