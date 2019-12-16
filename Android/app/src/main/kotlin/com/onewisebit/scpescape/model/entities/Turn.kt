@@ -12,8 +12,8 @@ import androidx.room.ForeignKey
         childColumns = ["round","game"],
         onDelete = ForeignKey.CASCADE
     ), ForeignKey(
-        entity = Participant::class,
-        parentColumns = ["player"],
+        entity = Player::class,
+        parentColumns = ["player_ID"],
         childColumns = ["player"],
         onDelete = ForeignKey.CASCADE
     )]
@@ -24,6 +24,6 @@ data class Turn (
     //TODO: decide if game can be taken from participant or turn or if the entities need to be changed
     @ColumnInfo(name = "game")
     val gameID: Long,
-    @ColumnInfo(name = "player")
+    @ColumnInfo(name = "player", index = true)
     val playerID: Long
 )
