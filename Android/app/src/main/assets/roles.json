@@ -1,19 +1,24 @@
 [
-    {
-      "name": "Security Officer",
-      "group": "Foundation",
-      "description": "On-site security officers — often referred to simply as guards — at Foundation facilities are tasked with maintaining physical and information security for Foundation projects, operations, and personnel."
-    },
-    {
-      "name": "MTF - Mobile Task Force",
-      "group": "Foundation",
-      "description": "Specialist units comprised of veteran field personnel drawn from all over the Foundation."
-    },
-    {
-      "name": "Class D",
-      "group": "Foundation",
-      "description": "Class D personnel are expendable personnel used to handle extremely hazardous anomalies. Typically drawn worldwide from the ranks of prison inmates convicted of violent crimes, especially those on death row."
-    },
+  {
+    "name": "Security Officer",
+    "group": "Foundation",
+    "description": "On-site security officers — often referred to simply as guards — at Foundation facilities are tasked with maintaining physical and information security for Foundation projects, operations, and personnel."
+  },
+  {
+    "name": "MTF - Mobile Task Force",
+    "group": "Foundation",
+    "description": "Specialist units comprised of veteran field personnel drawn from all over the Foundation."
+  },
+  {
+    "name": "Class D",
+    "group": "Foundation",
+    "description": "Class D personnel are expendable personnel used to handle extremely hazardous anomalies. Typically drawn worldwide from the ranks of prison inmates convicted of violent crimes, especially those on death row."
+  },
+  {
+    "name": "Researcher",
+    "group": "Foundation",
+    "description": "Researchers are the scientific branch of the Foundation, drawn from the ranks of the smartest and best-trained research scientists from around the world. The goal of the Foundation's research projects is to gain a better understanding of unexplained anomalies and how they operate"
+  },
   {
     "name": "SCP-173",
     "group": "SCP",
