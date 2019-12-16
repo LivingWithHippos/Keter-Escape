@@ -21,7 +21,7 @@ import androidx.room.ForeignKey
 data class Turn (
     @ColumnInfo(name = "round")
     val roundNumber: Int,
-    //TODO: decide if game can be taken from participant or turn or if the entities need to be changed
+    //TODO: decide if game can be taken from participant or round or if the entities need to be changed
     @ColumnInfo(name = "game")
     val gameID: Long,
     @ColumnInfo(name = "player", index = true)
