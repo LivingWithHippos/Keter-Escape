@@ -29,7 +29,7 @@ allprojects {
 ext {
 
     workVersion = '2.2.0'
-    roomVersion = '2.2.2'
+    roomVersion = '2.2.3'
     gsonVersion = '2.8.6'
     coroutinesVersion = '1.3.0'
 
