@@ -1,10 +1,10 @@
 # DEVELOPMENT GUIDE
 
-The project is being developed entirely in Kotlin [https://kotlinlang.org/](https://kotlinlang.org/) under Android Studio 3.6 RC-1. This version or more recent ones are needed as  [viewbinding](https://developer.android.com/topic/libraries/view-binding) is being used.
+The project is being developed entirely in [Kotlin](https://kotlinlang.org/) under Android Studio 3.6 RC-1. This version or more recent ones are needed as  [viewbinding](https://developer.android.com/topic/libraries/view-binding) is being used.
 
 The project is currently using the [MVP pattern](https://www.journaldev.com/14886/android-mvp) to organize its structure.
 
-Room is being used for the database, and an Entity-Relationship scheme can be found at [https://github.com/LivingWithHippos/Keter-Escape/tree/master/UML](https://github.com/LivingWithHippos/Keter-Escape/tree/master/UML), editable with [Umlet](https://www.umlet.com/).
+Room is being used for the database, and an Entity-Relationship scheme can be found [under the UML folder](https://github.com/LivingWithHippos/Keter-Escape/tree/master/UML), editable with [Umlet](https://www.umlet.com/).
 
 [RxJava 2.x](https://github.com/ReactiveX/RxJava/tree/2.x) is used for notifying data updates around the application.
 
