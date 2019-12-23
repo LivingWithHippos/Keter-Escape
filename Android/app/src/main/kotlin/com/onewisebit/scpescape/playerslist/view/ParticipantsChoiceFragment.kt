@@ -88,8 +88,10 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
             .subscribe(
                 {
                     adapter.setParticipants(it)
+                    val totPlayers : Int = args.totPlayers
+                    val missingPlayers = totPlayers - it.size
                     binding.tvSelectPlayersTitle.text =
-                        getString(R.string.select_players, args.totPlayers, args.totPlayers - it.size)
+                        getString(R.string.select_players, totPlayers, missingPlayers)
                 },
                 { Log.d(TAG, "Participants List retrieval error") }
             )
