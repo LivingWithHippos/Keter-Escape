@@ -48,3 +48,5 @@ These are related to the Android app.
 - [ ] Add documentation to code
 
 - [ ] Clean code from generated lines
+
+- [ ] add credits page

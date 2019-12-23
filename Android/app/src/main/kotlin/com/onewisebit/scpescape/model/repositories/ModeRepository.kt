@@ -26,6 +26,7 @@ class ModeRepository(private val modeDAO: ModeDAO) :
 
     override fun getAllModes(): List<Mode> = modeDAO.getAllModes()
 
+    //TODO: decide if it's better using rxjava or coroutines
     override suspend fun insertAll(modes: List<Mode>) = modeDAO.insertAll(modes)
 
     companion object {
