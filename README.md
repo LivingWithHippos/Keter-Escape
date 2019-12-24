@@ -1,6 +1,6 @@
 # SCP - KETER ESCAPE
 
-[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)    [![Kotlin Version](https://img.shields.io/badge/kotlin-1.3.61-blue)](http://kotlinlang.org/)    [![Gradle Version](https://img.shields.io/badge/Gradle%20Version-5.6.4-blue)](https://docs.gradle.org/5.6/release-notes.html)    [![Android Studio](https://img.shields.io/badge/Android%20Studio-3.6%2B-brightgreen)](https://developer.android.com/studio/preview/)    [![API](https://img.shields.io/badge/API-22%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=22)
+[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)    [![Kotlin Version](https://img.shields.io/badge/kotlin-1.3.61-blue)](http://kotlinlang.org/)    [![Gradle](https://img.shields.io/badge/Gradle%20Version-5.6.4-blue)](https://docs.gradle.org/5.6/release-notes.html)    [![Android Studio](https://img.shields.io/badge/Android%20Studio-3.6%2B-brightgreen)](https://developer.android.com/studio/preview/)    [![API](https://img.shields.io/badge/API-22%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=22)    [![CircleCI](https://circleci.com/gh/LivingWithHippos/Keter-Escape/tree/master.svg?style=svg)](https://circleci.com/gh/LivingWithHippos/Keter-Escape/tree/master)
 
 An Android game based on the [SCP wiki](http://www.scp-wiki.net/) inspired by [Werewolf (also known as Mafia)](https://en.wikipedia.org/wiki/Mafia_(party_game)).
 
