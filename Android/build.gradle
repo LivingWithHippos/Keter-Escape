@@ -47,7 +47,7 @@ ext {
     preferenceVersion = '1.1.0'
     cardviewVersion = '1.0.0'
 
-    junitVersion = '4.12'
+    junitVersion = '4.13'
     testVersion = '1.2.0'
     espressoVersion = '3.2.0'
 }
