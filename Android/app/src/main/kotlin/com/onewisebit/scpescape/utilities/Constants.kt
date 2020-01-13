@@ -6,6 +6,8 @@ package com.onewisebit.scpescape.utilities
 const val DATABASE_NAME = "SCP.db"
 const val ROLE_DATA_FILENAME = "roles.json"
 const val MODE_DATA_FILENAME = "modes.json"
+const val ACTION_DATA_FILENAME = "actions.json"
+const val ACTION_TEMPLATE_FILENAME = "actions_template.json"
 
 const val PREF_FILE = "scpescape_preferences"
 const val DEFAULT_THEME = "theme_foundation"
