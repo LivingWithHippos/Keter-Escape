@@ -1,0 +1,128 @@
+[
+  {
+    "extends": "vote",
+    "name": "Daily vote",
+    "description": "Choose someone to kill with SCP-[REDACTED].",
+    "show": {
+      "all": true,
+      "self": false
+    },
+    "reveal_role": {
+      "none": true
+    },
+    "choice_enabled": {
+      "all": true
+    },
+    "choice_number": {
+      "exactly": 1,
+      "zero_allowed": false
+    },
+    "vote_group": {
+      "all": true
+    },
+    "draw": {
+      "re_vote_all": true
+    },
+    "effect": {
+      "kill": true
+    },
+    "applied":{
+      "last_voter": true
+    }
+  },
+  {
+    "extends": "vote",
+    "name": "MTF protection",
+    "description": "Choose someone to save in case of death (yourself included). Die if an SCP is picked",
+    "show": {
+      "all": true
+    },
+    "reveal_role": {
+      "none": true
+    },
+    "choice_enabled": {
+      "all": true
+    },
+    "choice_number": {
+      "exactly": 1,
+      "zero_allowed": true
+    },
+    "vote_group": {
+      "single": true
+    },
+    "draw": {
+      "not_applicable": true
+    },
+    "effect": {
+      "save_on_death": true,
+      "die_if_group": ["SCP"]
+    },
+    "applied":{
+      "end_turn": true
+    }
+  },
+  {
+    "extends": "vote",
+    "name": "Scientist hiding",
+    "description": "Choose someone to hide behind. Will be saved if you're picked. Will die if they're picked or if they're an SCP",
+    "show": {
+      "all": true,
+      "self": false
+    },
+    "reveal_role": {
+      "none": true
+    },
+    "choice_enabled": {
+      "all": true
+    },
+    "choice_number": {
+      "exactly": 1,
+      "zero_allowed": true
+    },
+    "vote_group": {
+      "single": true
+    },
+    "draw": {
+      "not_applicable": true
+    },
+    "effect": {
+      "die_on_death": true,
+      "self_saved_if_targeted" : true,
+      "die_if_group": ["SCP"]
+    },
+    "applied":{
+      "end_turn": true
+    }
+  },
+  {
+    "extends": "vote",
+    "name": "SCP 106 attack",
+    "description": "Choose someone to kill at the end of the round.",
+    "show": {
+      "all": true,
+      "self": false
+    },
+    "reveal_role": {
+      "role": ["SCP"]
+    },
+    "choice_enabled": {
+      "no_role": ["SCP"]
+    },
+    "choice_number": {
+      "exactly": 1,
+      "zero_allowed": false
+    },
+    "vote_group": {
+      "action": true
+    },
+    "draw": {
+      "max_random": true
+    },
+    "effect": {
+      "kill": true
+    },
+    "applied":{
+      "end_round": true
+    }
+  }
+]
