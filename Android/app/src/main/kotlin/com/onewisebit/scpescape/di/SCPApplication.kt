@@ -40,8 +40,8 @@ class SCPApplication : Application() {
                 { exc -> Log.d(TAG, "Error while deleting temporary games", exc) }
             )
 
-        val actionsRequest = OneTimeWorkRequestBuilder<PopulateActionsWorker>().build()
-        WorkManager.getInstance(this@SCPApplication).enqueue(actionsRequest)
+        //val actionsRequest = OneTimeWorkRequestBuilder<PopulateActionsWorker>().build()
+        //WorkManager.getInstance(this@SCPApplication).enqueue(actionsRequest)
     }
 
     companion object {
