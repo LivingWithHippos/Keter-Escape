@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.R
@@ -16,7 +17,6 @@ import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MAX_PLAYERS
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MID_PLAYERS
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MIN_PLAYERS
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
@@ -40,18 +40,17 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
     @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        presenter.onModeLoaded()
+            .observe(this, Observer<Mode> {
+                mode ->
+                if (mode != null)
+                    setupView(view, mode)
+                else
+                    Log.d(TAG, "Retrieved Mode was null: ${args.gameMode}")
+        })
+
         presenter.getMode(args.gameMode)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    if (it != null)
-                        setupView(view, it)
-                    else
-                        Log.d(TAG, "Retrieved Mode was null: ${args.gameMode}")
-                },
-                { Log.d(TAG, "Mode retrieval Error",it) }
-            )
     }
 
 
@@ -60,6 +59,8 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         binding.tvRoles.setText(R.string.mode_classic_players_lower)
         binding.npPlayerPicker.minValue = mode.min
         binding.npPlayerPicker.maxValue = mode.max
+
+        // change description string according to players number
         binding.npPlayerPicker.setOnValueChangedListener { _, _, newVal ->
             when (newVal) {
                 in GAME_CLASSIC_MIN_PLAYERS..GAME_CLASSIC_MID_PLAYERS -> binding.tvRoles.setText(R.string.mode_classic_players_lower)
@@ -71,21 +72,20 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
             }
         }
 
+        // observe if a new game is created and move to the next settings page
+        presenter.onNewGame().observe(this, Observer<Long> {
+                gameID -> val action =
+            NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
+                binding.npPlayerPicker.value,
+                gameID
+            )
+            view.findNavController().navigate(action)
+        })
+
+        // create a new game in the db
         binding.fabChoosePlayers.setOnClickListener {
-            val gameID: Single<Long> = presenter.getNewGame(args.gameMode, args.gameType)
-            gameID.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {
-                        val action =
-                            NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
-                                binding.npPlayerPicker.value,
-                                it
-                            )
-                        view.findNavController().navigate(action)
-                    },
-                    { Log.d("NewGameSettingsFragment", "Insert Game Error") }
-                )
+            //TODO: check if there's a better way to do this without using two presenter methods (createNewGame, onNewGame)
+            presenter.createNewGame(args.gameMode, args.gameType)
         }
     }
 
