@@ -2,6 +2,9 @@ package com.onewisebit.scpescape.fsm
 
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.repositories.*
+import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.Single
 
 class GameStateModelImpl(gameRepository: InGameRepository,
                          participantRepository: InParticipantRepository,
@@ -12,29 +15,33 @@ class GameStateModelImpl(gameRepository: InGameRepository,
 ) : GameStateContract.GameStateModel {
 
     private var gameRepo: InGameRepository = gameRepository
+    private var participantRepo: InParticipantRepository = participantRepository
+    private var playerRepo: InPlayerRepository = playerRepository
+    private var roundRepo: InRoundRepository = roundRepository
+    private var turnRepo: InTurnRepository = turnRepository
     private var modeRepo: InModeRepository = modeRepository
 
-    override fun getGame(gameID: Long): Game {
-        gameRepo.getGameById(gameID).
+    override fun getGame(gameID: Long): Single<Game> {
+        return gameRepo.getGameById(gameID)
     }
 
-    override fun getParticipants(gameID: Long): List<Participant> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getParticipants(gameID: Long): Flowable<List<Participant>> {
+        return participantRepo.getGameParticipants(gameID)
     }
 
-    override fun getPlayers(gameID: Long): List<Player> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getPlayers(gameID: Long): Flowable<List<Player>> {
+        return participantRepo.getGamePlayers(gameID)
     }
 
-    override fun getRounds(gameID: Long): List<Round> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getRounds(gameID: Long): Flowable<List<Round>> {
+        return roundRepo.getRounds(gameID)
     }
 
-    override fun getTurns(gameID: Long): List<Turn> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getTurns(gameID: Long): Flowable<List<Turn>> {
+        return turnRepo.getGameTurns(gameID)
     }
 
-    override fun getMode(gameID: Long): Mode {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getMode(gameID: Long): Single<Mode> {
+        return gameRepo.getMode(gameID)
     }
 }
