@@ -2,6 +2,9 @@ package com.onewisebit.scpescape.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.onewisebit.scpescape.fsm.GameStateContract
+import com.onewisebit.scpescape.fsm.GameStateModelImpl
+import com.onewisebit.scpescape.fsm.GameStatePresenterImpl
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.game.model.IntroModelImpl
@@ -89,5 +92,18 @@ val appModule = module {
     }
     factory<GameContract.GamePresenter> { (view: GameContract.GameView) -> GamePresenterImpl(view,get()) }
     factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView) -> IntroPresenterImpl(view,get()) }
+
+    factory<GameStateContract.GameStateModel> {
+        GameStateModelImpl(
+            get(),
+            get(),
+            get(),
+            get(),
+            get(),
+            get()
+        )
+    }
+
+    factory<GameStateContract.GameStatePresenter> { (view: GameStateContract.GameStateView) -> GameStatePresenterImpl(view,get()) }
 
 }
