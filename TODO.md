@@ -27,7 +27,7 @@ These are related to the Android app.
 
 - [ ] add toString to classes for easier debugging
 
-- [ ] change package and app name (Keter Escape? Broken Day?)
+- [x] change package and app name (Keter Escape? Broken Day?)
 
 - [ ] Add api to retrieve SCPs: [Wikidot Api](http://developer.wikidot.com/doc:api), [Java Api](https://github.com/shane-smith/Wikidot-API-Open-Source)
 
@@ -37,7 +37,7 @@ These are related to the Android app.
 
 - [ ] add exception to logs -> Log.d(TAG, "Activity description", exception)
 
-- [ ] change rxjava to livedata in the ui side
+- [x] change rxjava to livedata in the ui side
 
 #### High Priority
 
@@ -50,3 +50,5 @@ These are related to the Android app.
 - [ ] Clean code from generated lines
 
 - [ ] add credits page
+
+- [ ] Change flowable to observable where applicable
