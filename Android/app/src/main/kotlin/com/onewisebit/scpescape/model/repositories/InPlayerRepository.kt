@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 interface InPlayerRepository {
 
@@ -9,7 +10,7 @@ interface InPlayerRepository {
 
     fun updatePlayer(player: Player)
 
-    fun getPlayerById(id: String): Flowable<Player>
+    fun getPlayerById(id: String): Single<Player>
 
     fun getAllPlayers(): Flowable<List<Player>>
 

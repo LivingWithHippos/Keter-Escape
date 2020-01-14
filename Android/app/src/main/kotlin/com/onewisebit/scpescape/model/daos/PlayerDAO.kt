@@ -5,6 +5,7 @@ import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Completable
 
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface PlayerDAO {
@@ -13,7 +14,7 @@ interface PlayerDAO {
      * @return the player from the table with a specific id.
      */
     @Query("SELECT * FROM players WHERE player_ID = :id")
-    fun getPlayerById(id: String): Flowable<Player>
+    fun getPlayerById(id: String): Single<Player>
 
     /**
      * Get a list of players by searching their name.

@@ -1,13 +1,16 @@
 package com.onewisebit.scpescape.model.repositories
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.onewisebit.scpescape.model.daos.PlayerDAO
 import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
+@SuppressLint("CheckResult")
 class PlayerRepository(private val playerDAO: PlayerDAO) :
     InPlayerRepository {
 
@@ -32,7 +35,7 @@ class PlayerRepository(private val playerDAO: PlayerDAO) :
     }
 
 
-    override fun getPlayerById(id: String): Flowable<Player> = playerDAO.getPlayerById(id)
+    override fun getPlayerById(id: String): Single<Player> = playerDAO.getPlayerById(id)
 
     override fun getAllPlayers(): Flowable<List<Player>> = playerDAO.getAllPlayers()
 
