@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.playerslist
 
+import androidx.lifecycle.LiveData
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Completable
@@ -9,16 +10,16 @@ import io.reactivex.Single
 interface PlayersContract {
 
     interface PlayersView {
-        fun initView(players: Flowable<List<Player>>, participants: Flowable<List<Long>>)
+        fun initView(players: LiveData<List<Player>>, participants: LiveData<List<Participant>>)
+        fun tooManyParticipants()
     }
 
     interface PlayersPresenter {
         fun setPlayers(gameID: Long)
-        fun addParticipant(gameID: Long, playerID: Long): Completable
-        fun removeParticipant(gameID: Long, playerID: Long): Completable
-        fun getParticipants(gameID: Long): Flowable<List<Participant>>
-        fun getParticipantsNumber(gameID: Long): Single<Int>
+        fun addParticipant(gameID: Long, playerID: Long)
+        fun removeParticipant(gameID: Long, playerID: Long)
         fun setGameTemporary(gameID: Long, isTemp: Boolean): Completable
+        fun addRemoveParticipant(gameId: Long, playerId: Long, add: Boolean, maxParticipants: Int)
     }
 
     interface PlayersModel {

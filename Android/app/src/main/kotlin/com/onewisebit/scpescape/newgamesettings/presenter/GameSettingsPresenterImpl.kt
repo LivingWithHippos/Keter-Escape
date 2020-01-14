@@ -1,9 +1,15 @@
 package com.onewisebit.scpescape.newgamesettings.presenter
 
+import android.annotation.SuppressLint
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class GameSettingsPresenterImpl(
     gView: GameSettingsContract.GameSettingsView,
@@ -13,8 +19,27 @@ class GameSettingsPresenterImpl(
     private var view: GameSettingsContract.GameSettingsView = gView
     private var model: GameSettingsContract.GameSettingsModel = gModel
 
-    override fun getNewGame(gameMode: Int, gameType: Int): Single<Long> {
-        return model.createGame(gameMode, gameType)
+    private val gameID : MutableLiveData<Long> = MutableLiveData()
+    private val mode : MutableLiveData<Mode> = MutableLiveData()
+
+    //TODO: find a better name for these methods
+    override fun onNewGame(): LiveData<Long> {
+        return gameID
+    }
+
+    @SuppressLint("CheckResult")
+    override fun createNewGame(gameMode: Int, gameType: Int){
+        model.createGame(gameMode, gameType)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { game -> gameID.postValue(game) },
+                { error -> Log.d(TAG, "Error getting game id from GameSettingsModel into presenter: ", error) }
+            )
+    }
+
+    override fun onModeLoaded(): LiveData<Mode> {
+        return mode
     }
 
     override fun saveSetting(key: String, value: String) {
@@ -25,10 +50,19 @@ class GameSettingsPresenterImpl(
         model.saveGame(game)
     }
 
-    override fun getMode(gameMode: Int): Single<Mode> {
-        return model.getMode(gameMode)
+    @SuppressLint("CheckResult")
+    override fun getMode(gameMode: Int) {
+        model.getMode(gameMode)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { mode -> this.mode.postValue(mode) },
+                { error -> Log.d(TAG, "Error getting mode from GameSettingsModel into presenter: ", error) }
+            )
     }
 
-
+    companion object {
+        private val TAG = GameSettingsPresenterImpl::class.java.simpleName
+    }
 
 }

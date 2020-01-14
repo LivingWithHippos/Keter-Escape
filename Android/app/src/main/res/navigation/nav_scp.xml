@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameModeFragment"
-        android:name="com.onewisebit.scpescape.newgamesettings.GameModeFragment"
+        android:name="com.onewisebit.scpescape.newgamesettings.view.GameModeFragment"
         android:label="fragment_game_mode"
         tools:layout="@layout/fragment_game_mode" >
         <argument
