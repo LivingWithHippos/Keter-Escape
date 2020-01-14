@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentParticipantsChoiceBinding
+import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.utilities.SearchableObservable
@@ -30,8 +33,8 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: ParticipantsAdapter
     private lateinit var binding: FragmentParticipantsChoiceBinding
-    private val presenter: PlayersContract.PlayersPresenter by inject { parametersOf(this) }
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
+    private val presenter: PlayersContract.PlayersPresenter by inject { parametersOf(this) }
 
     //TODO: add diffutils
 
@@ -69,32 +72,36 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
                             ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(args.gameID)
                         view.findNavController().navigate(action)
                     },
-                    { Log.d(TAG, "Error while setting game permanent") }
+                    { Log.d(TAG, "Error while setting game as permanent") }
                 )
         }
         presenter.setPlayers(args.gameID)
     }
 
-    override fun initView(players: Flowable<List<Player>>, participants: Flowable<List<Long>>) {
-        players.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { adapter.setPlayers(it) },
-                { Log.d(TAG, "Players List retrieval error") }
-            )
+    override fun initView(players: LiveData<List<Player>>, participants: LiveData<List<Participant>>) {
 
-        participants.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    adapter.setParticipants(it)
-                    val totPlayers : Int = args.totPlayers
-                    val missingPlayers = totPlayers - it.size
-                    binding.tvSelectPlayersTitle.text =
-                        getString(R.string.select_players, totPlayers, missingPlayers)
-                },
-                { Log.d(TAG, "Participants List retrieval error") }
-            )
+        players.observe(this, Observer<List<Player>> {
+                playersList -> adapter.setPlayers(playersList)
+        })
+
+        participants.observe(this, Observer<List<Participant>> {
+            participantsList ->
+            adapter.setParticipants(participantsList.map { it.playerID })
+
+            val totPlayers : Int = args.totPlayers
+            val missingPlayers = totPlayers - participantsList.size
+            binding.tvSelectPlayersTitle.text =
+                getString(R.string.select_players, totPlayers, missingPlayers)
+
+            if (participantsList.size == args.totPlayers)
+                binding.fabStartGame.visibility = View.VISIBLE
+            else
+                binding.fabStartGame.visibility = View.INVISIBLE
+        })
+    }
+
+    override fun tooManyParticipants() {
+        Toast.makeText(context,getString(R.string.max_players_reached),Toast.LENGTH_LONG).show()
     }
 
     private fun enablePlayerSearch() {
@@ -109,45 +116,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     }
 
     private fun playerToggle(id: Long, add: Boolean) {
-        //TODO: add coorect button visibility on fragment resume/back
-        if (add) {
-            presenter.getParticipantsNumber(args.gameID)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {
-                        if(it<args.totPlayers){
-                            presenter.addParticipant(args.gameID, id)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(
-                                    { Log.d(TAG, "Participant Insert Success")
-                                        if(it >= args.totPlayers -1)
-                                            binding.fabStartGame.visibility = View.VISIBLE
-                                    },
-                                    { Log.d(TAG, "Participant Insert Error") }
-                                )
-                        }
-                        else
-                            Toast.makeText(context,getString(R.string.max_players_reached),Toast.LENGTH_LONG).show()
-
-
-                    },
-                    { Log.d(TAG, "Can't get Participants Number") }
-                )
-
-
-        } else {
-            presenter.removeParticipant(args.gameID, id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { Log.d(TAG, "Participant removal Success")
-                        binding.fabStartGame.visibility = View.INVISIBLE
-                    },
-                    { Log.d(TAG, "Participant removal Error") }
-                )
-        }
+        presenter.addRemoveParticipant(args.gameID, id,add,args.totPlayers)
     }
 
     private fun showCreatePlayerDialog() {
