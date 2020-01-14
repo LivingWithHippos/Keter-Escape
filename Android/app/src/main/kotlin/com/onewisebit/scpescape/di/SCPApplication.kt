@@ -3,7 +3,11 @@ package com.onewisebit.scpescape.di
 import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.onewisebit.scpescape.model.database.SCPDatabase
+import com.onewisebit.scpescape.workers.PopulateActionsWorker
+import com.onewisebit.scpescape.workers.PopulateDatabaseRolesWorker
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
@@ -35,6 +39,9 @@ class SCPApplication : Application() {
                 { Log.d(TAG, "Temporary games deleted successfully") },
                 { exc -> Log.d(TAG, "Error while deleting temporary games", exc) }
             )
+
+        val actionsRequest = OneTimeWorkRequestBuilder<PopulateActionsWorker>().build()
+        WorkManager.getInstance(this@SCPApplication).enqueue(actionsRequest)
     }
 
     companion object {
