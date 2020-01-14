@@ -1,4 +1,4 @@
-package com.onewisebit.scpescape.newgamesettings
+package com.onewisebit.scpescape.newgamesettings.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentGameModeBinding
+import com.onewisebit.scpescape.newgamesettings.GameModeFragmentArgs
+import com.onewisebit.scpescape.newgamesettings.GameModeFragmentDirections
 
 class GameModeFragment: Fragment() {
     private lateinit var binding : FragmentGameModeBinding
@@ -29,7 +31,10 @@ class GameModeFragment: Fragment() {
         binding.cvGameModeClassic.setOnClickListener{
             //TODO: decide how to identify game mode ( name, id etc)
             val action =
-                GameModeFragmentDirections.actionGameModeToNewGameSettings(args.gameType,0)
+                GameModeFragmentDirections.actionGameModeToNewGameSettings(
+                    args.gameType,
+                    0
+                )
             view.findNavController().navigate(action)
         }
     }
