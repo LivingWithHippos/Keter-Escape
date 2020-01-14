@@ -7,6 +7,7 @@ import com.onewisebit.scpescape.model.repositories.ModeRepository
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import io.reactivex.Single
 
+//TODO: replace this and others with interfaces, not implementations
 class GameSettingsModelImpl(gameRepository: GameRepository, modeRepository: ModeRepository) :
     GameSettingsContract.GameSettingsModel {
 
