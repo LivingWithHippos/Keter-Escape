@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentGameModeBinding
-import com.onewisebit.scpescape.newgamesettings.GameModeFragmentArgs
-import com.onewisebit.scpescape.newgamesettings.GameModeFragmentDirections
 
 class GameModeFragment: Fragment() {
     private lateinit var binding : FragmentGameModeBinding
