@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0284991c78f5beccfa0c9d7300733d21",
+    "identityHash": "657c1f8b14320673643c9a98a45699fd",
     "entities": [
       {
         "tableName": "players",
@@ -319,11 +319,17 @@
       },
       {
         "tableName": "turns",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`round` INTEGER NOT NULL, `game` INTEGER NOT NULL, `player` INTEGER NOT NULL, PRIMARY KEY(`round`, `game`, `player`), FOREIGN KEY(`round`, `game`) REFERENCES `rounds`(`number`, `game`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`round` INTEGER NOT NULL, `turn_number` INTEGER NOT NULL, `game` INTEGER NOT NULL, `player` INTEGER NOT NULL, PRIMARY KEY(`round`, `game`, `player`), FOREIGN KEY(`round`, `game`) REFERENCES `rounds`(`number`, `game`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "roundNumber",
             "columnName": "round",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "turnNumber",
+            "columnName": "turn_number",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -389,7 +395,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0284991c78f5beccfa0c9d7300733d21')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '657c1f8b14320673643c9a98a45699fd')"
     ]
   }
 }

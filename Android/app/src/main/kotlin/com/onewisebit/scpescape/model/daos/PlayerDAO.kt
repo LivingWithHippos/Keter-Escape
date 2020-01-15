@@ -30,7 +30,6 @@ interface PlayerDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPlayer(player: Player): Completable
 
-
     /**
      * Update a player in the database.
      * @param player the player to be updated.
