@@ -10,7 +10,7 @@ class VoteState: GameState {
                 "show" -> {
                     rule.value.forEach{ parameter ->
                         when (parameter.name) {
-                            //TODO: check that the parameters are always ordered. For example using the "all" parameter for last would just re-add all the players
+                            //TODO: check that the parameters are always ordered. For example using the "all" parameter as last would just re-add all the players
                             "all" -> {
                                 if (parameter.getSingleBoolean())
                                     candidates.addAll(gameMachine.players)
