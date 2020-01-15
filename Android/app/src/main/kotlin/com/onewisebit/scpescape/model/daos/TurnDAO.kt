@@ -7,6 +7,7 @@ import androidx.room.Query
 import com.onewisebit.scpescape.model.entities.Turn
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface TurnDAO {
@@ -38,6 +39,21 @@ interface TurnDAO {
      */
     @Query("SELECT * FROM turns WHERE turns.game = :gameID AND turns.round = :roundNumber")
     fun getRoundTurns(gameID: Long, roundNumber: Int): Flowable<List<Turn>>
+
+    /**
+     * Get all the played turns from the last round (completed or not)
+     * @return the list of Turns from the table with a specific game id and its greatest round number.
+     */
+    @Query("SELECT * FROM turns WHERE turns.game = :gameID AND turns.round = (SELECT MAX(round) FROM turns WHERE turns.game = :gameID)")
+    fun getLastRoundTurns(gameID: Long): Flowable<List<Turn>>
+
+    /**
+     * Get the last created turn for a game. Should be the only "active" one.
+     * @return the latest Turn of the latest round from the table with a specific game id.
+     */
+    //TODO: what if we count turns from 0 or 1 and just go on? No reset on new round.
+    @Query("SELECT * FROM turns WHERE game = :gameID AND turn_number = (SELECT MAX(turn_number) FROM turns WHERE game = :gameID)")
+    fun getLastTurn(gameID: Long): Single<Turn>
 
     /**
      * Delete all of a game's turns
