@@ -10,13 +10,12 @@ interface GameStateContract {
     interface GameStateView
 
     interface GameStatePresenter {
-        fun setGame(gameID: Long)
         fun getGame(): Game
-        fun getParticipants(): List<Participant>
-        fun getPlayers(): List<Player>
-        fun getRounds(): List<Round>
-        fun getTurns(): List<Turn>
-        fun getMode(): Mode
+        fun getParticipants(): Flowable<List<Participant>>
+        fun getPlayers(): Flowable<List<Player>>
+        fun getRounds(): Flowable<List<Round>>
+        fun getTurns(): Flowable<List<Turn>>
+        fun getMode(): Single<Mode>
     }
 
     interface GameStateModel {
