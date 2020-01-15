@@ -5,10 +5,8 @@ import android.content.SharedPreferences
 import com.onewisebit.scpescape.fsm.GameStateContract
 import com.onewisebit.scpescape.fsm.GameStateModelImpl
 import com.onewisebit.scpescape.fsm.GameStatePresenterImpl
-import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.game.model.IntroModelImpl
-import com.onewisebit.scpescape.game.presenter.GamePresenterImpl
 import com.onewisebit.scpescape.game.presenter.IntroPresenterImpl
 import com.onewisebit.scpescape.main.StartContract
 import com.onewisebit.scpescape.main.model.StartActivityModel
@@ -90,7 +88,7 @@ val appModule = module {
             get()
         )
     }
-    factory<GameContract.GamePresenter> { (view: GameContract.GameView) -> GamePresenterImpl(view,get()) }
+
     factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView) -> IntroPresenterImpl(view,get()) }
 
     factory<GameStateContract.GameStateModel> {

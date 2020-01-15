@@ -6,15 +6,15 @@ import androidx.navigation.navArgs
 import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
-import com.onewisebit.scpescape.game.GameContract
+import com.onewisebit.scpescape.fsm.GameStateContract
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class GameActivity: BaseSCPActivity(), GameContract.GameView{
+class GameActivity: BaseSCPActivity(), GameStateContract.GameStateView{
 
     private lateinit var binding: ActivityGameBinding
     private val navController by lazy { findNavController(R.id.nav_host) }
-    private val presenter: GameContract.GamePresenter by inject { parametersOf(this) }
+    private val presenter: GameStateContract.GameStatePresenter by inject { parametersOf(this) }
     private val args: GameActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
