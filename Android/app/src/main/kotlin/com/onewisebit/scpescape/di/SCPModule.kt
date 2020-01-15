@@ -102,6 +102,6 @@ val appModule = module {
         )
     }
 
-    factory<GameStateContract.GameStatePresenter> { (view: GameStateContract.GameStateView) -> GameStatePresenterImpl(view,get()) }
+    factory<GameStateContract.GameStatePresenter> { (view: GameStateContract.GameStateView, game: Long) -> GameStatePresenterImpl(view,get(), game) }
 
 }
