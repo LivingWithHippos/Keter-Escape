@@ -8,6 +8,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 
+
 @Dao
 interface ParticipantDAO {
 
@@ -27,11 +28,17 @@ interface ParticipantDAO {
 
     /**
      * Get a participant by id.
+     * @return the Participant from the table with a specific game and player id.
+     */
+    @Query("SELECT * FROM participants WHERE game = :gameID")
+    fun getGameParticipantsBlocking(gameID: Long): List<Participant>
+
+    /**
+     * Get a participant by id.
      * @return the Players corresponding to the participants.
      */
     @Query("SELECT players.* FROM players INNER JOIN participants ON players.player_ID = participants.player WHERE participants.game = :gameID")
-    fun getGamePlayers(gameID: Long): Flowable<List<Player>>
-
+    fun getGamePlayers(gameID: Long): Single<List<Player>>
 
     /**
      * Get a participant by id.
@@ -59,7 +66,7 @@ interface ParticipantDAO {
      * @return the Role from the table with a specific game and player id.
      */
     @Query("SELECT roles.* FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID")
-    fun getParticipantsRoles(gameID: Long): Flowable<List<Role>>
+    fun getParticipantsRoles(gameID: Long): Single<List<Role>>
 
     /**
      * Insert a participant in the database. If the participant already exists, replace it.
@@ -80,7 +87,6 @@ interface ParticipantDAO {
      */
     @Delete
     fun removeParticipant(participant: Participant): Completable
-
     /**
      * Remove a participant by game and player id.
      */

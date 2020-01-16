@@ -25,7 +25,7 @@ class GameStatePresenterImpl (gsView: GameStateContract.GameStateView,
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getPlayers(): Flowable<List<Player>> = model.getPlayers(gameId)
+    override fun getPlayers(): Single<List<Player>> = model.getPlayers(gameId)
 
     override fun getRounds(): Flowable<List<Round>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

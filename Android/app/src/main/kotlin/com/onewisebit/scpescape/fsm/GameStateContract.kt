@@ -12,7 +12,7 @@ interface GameStateContract {
     interface GameStatePresenter {
         fun getGame(): Game
         fun getParticipants(): Flowable<List<Participant>>
-        fun getPlayers(): Flowable<List<Player>>
+        fun getPlayers(): Single<List<Player>>
         fun getRounds(): Flowable<List<Round>>
         fun getTurns(): Flowable<List<Turn>>
         fun getMode(): Single<Mode>
@@ -22,7 +22,7 @@ interface GameStateContract {
 
         fun getGame(gameID: Long): Single<Game>
         fun getParticipants(gameID: Long): Flowable<List<Participant>>
-        fun getPlayers(gameID: Long): Flowable<List<Player>>
+        fun getPlayers(gameID: Long): Single<List<Player>>
         fun getRounds(gameID: Long): Flowable<List<Round>>
         fun getTurns(gameID: Long): Flowable<List<Turn>>
         fun getMode(gameID: Long): Single<Mode>

@@ -20,7 +20,10 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override fun getGameParticipants(gameID: Long): Flowable<List<Participant>> =
         participantDAO.getGameParticipants(gameID)
 
-    override fun getGamePlayers(gameID: Long): Flowable<List<Player>> =
+    override fun getGameParticipantsBlocking(gameID: Long): List<Participant> =
+        participantDAO.getGameParticipantsBlocking(gameID)
+
+    override fun getGamePlayers(gameID: Long): Single<List<Player>> =
         participantDAO.getGamePlayers(gameID)
 
     override fun getGameParticipantsID(gameID: Long): Flowable<List<Long>> =
@@ -32,10 +35,10 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override fun getParticipantNumber(gameID: Long): Single<Int> =
         participantDAO.getParticipantNumber(gameID)
 
-    override fun getPlayers(gameID: Long): Flowable<List<Player>> =
+    override fun getPlayers(gameID: Long): Single<List<Player>> =
         participantDAO.getGamePlayers(gameID)
 
-    override fun getRoles(gameID: Long): Flowable<List<Role>> =
+    override fun getRoles(gameID: Long): Single<List<Role>> =
         participantDAO.getParticipantsRoles(gameID)
 
     override fun getParticipantRole(gameID: Long, playerID: Long): Single<Role> =

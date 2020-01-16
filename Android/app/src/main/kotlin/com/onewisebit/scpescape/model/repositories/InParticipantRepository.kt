@@ -10,7 +10,8 @@ import io.reactivex.Single
 interface InParticipantRepository {
     fun getParticipant(gameID: Long, playerID: Long): Participant
     fun getGameParticipants(gameID: Long): Flowable<List<Participant>>
-    fun getGamePlayers(gameID: Long): Flowable<List<Player>>
+    fun getGameParticipantsBlocking(gameID: Long): List<Participant>
+    fun getGamePlayers(gameID: Long): Single<List<Player>>
     fun getGameParticipantsID(gameID: Long): Flowable<List<Long>>
     fun getParticipantState(gameID: Long, playerID: Long): Int
     fun getParticipantRole(gameID: Long, playerID: Long): Single<Role>
@@ -20,7 +21,7 @@ interface InParticipantRepository {
     fun removeParticipant(gameID: Long, playerID: Long): Completable
     fun removeAllParticipant()
     fun getParticipantNumber(gameID: Long): Single<Int>
-    fun getPlayers(gameID: Long): Flowable<List<Player>>
-    fun getRoles(gameID: Long): Flowable<List<Role>>
+    fun getPlayers(gameID: Long): Single<List<Player>>
+    fun getRoles(gameID: Long): Single<List<Role>>
 
 }

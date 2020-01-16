@@ -29,7 +29,7 @@ class GameStateModelImpl(gameRepository: InGameRepository,
         return participantRepo.getGameParticipants(gameID)
     }
 
-    override fun getPlayers(gameID: Long): Flowable<List<Player>> {
+    override fun getPlayers(gameID: Long): Single<List<Player>> {
         return participantRepo.getGamePlayers(gameID)
     }
 
