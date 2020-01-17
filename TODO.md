@@ -51,4 +51,6 @@ These are related to the Android app.
 
 - [ ] add credits page
 
-- [ ] Change flowable to observable where applicable
+- [ ] Change flowable to Observable or Single where applicable
+
+- [ ] Unsubscribe/Dispose rxjava when not needed
