@@ -20,8 +20,8 @@ class PopulateActionsWorker (
             // Populating roles
             applicationContext.assets.open(ACTION_DATA_FILENAME).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
-                    val roleType = object : TypeToken<List<ActionVote>>() {}.type
-                    val rolesList: List<ActionVote> = Gson().fromJson(jsonReader, roleType)
+                    val voteType = object : TypeToken<List<ActionVote>>() {}.type
+                    val votesList: List<ActionVote> = Gson().fromJson(jsonReader, voteType)
 
                     Log.d(TAG,"Lemme debug")
                 }
