@@ -74,11 +74,8 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
 
         // observe if a new game is created and move to the next settings page
         presenter.onNewGame().observe(this, Observer<Long> {
-                gameID -> val action =
-            NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
-                binding.npPlayerPicker.value,
-                gameID
-            )
+                gameID ->
+            val action = NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(binding.npPlayerPicker.value, gameID )
             view.findNavController().navigate(action)
         })
 
