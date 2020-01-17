@@ -12,10 +12,7 @@ import com.onewisebit.scpescape.main.StartContract
 import com.onewisebit.scpescape.main.model.StartActivityModel
 import com.onewisebit.scpescape.main.presenter.StartActivityPresenterImpl
 import com.onewisebit.scpescape.model.database.SCPDatabase
-import com.onewisebit.scpescape.model.repositories.GameRepository
-import com.onewisebit.scpescape.model.repositories.ModeRepository
-import com.onewisebit.scpescape.model.repositories.ParticipantRepository
-import com.onewisebit.scpescape.model.repositories.PlayerRepository
+import com.onewisebit.scpescape.model.repositories.*
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.newgamesettings.model.GameSettingsModelImpl
 import com.onewisebit.scpescape.newgamesettings.presenter.GameSettingsPresenterImpl
@@ -45,6 +42,7 @@ val appModule = module {
     single { PlayerRepository(get()) }
     single { ParticipantRepository(get()) }
     single { ModeRepository(get()) }
+    single { ModeNewRepository(get()) }
 
     factory<StartContract.StartModel> {
         StartActivityModel(
