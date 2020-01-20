@@ -2,6 +2,7 @@
   {
     "id": "0",
     "name": "Classic",
+    "short_description": "Guards, Scientists and MTF against SCP-106",
     "description": "The Serpent Hand has hit Site-[REDACTED], unleashing a powerful memetic hazard and destroying several generators, causing various SCPs to breach containment. You are one of the unlucky few trapped with SCP-173. You can stop him by using SCP-[REDACTED], but the memetic in place is masking him as one of yours, and the backup generator keeps on hiccuping, leaving you in the dark... Play as a Scientist, MTF operative, Guard or even SCP-173. And don't get you neck snapped.",
     "rules": "When the lights are on, the group must discuss who is going to get shot by SCP-[REDACTED] and decide by a majority vote. When the lights flicker and go off, the players must decide what action to take according to their roles, and the Old Man will pick someone to kill.\nScientists can hide within other players using SCP-[REDACTED]. If they are directly targeted, they will escape. If the player they're hidden within gets attacked, they will get dragged away as well.\nMobile Task Force members can choose another player to protect, but they can also guard themselves.\nGuards must try and survive.\nSCP-106 must choose someone to drag in his pocket dimension when the lights go out.",
     "min": "7",
