@@ -28,5 +28,7 @@ class GameActivity: BaseSCPActivity(), GameStateContract.GameStateView{
         // setting this here since it's the starting activity of a new graph
         // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
         navController.setGraph(R.navigation.nav_game, args.toBundle())
+
+        presenter.assignRoles()
     }
 }
