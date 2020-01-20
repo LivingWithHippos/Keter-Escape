@@ -26,6 +26,14 @@ interface ParticipantDAO {
     @Query("SELECT * FROM participants WHERE game = :gameID")
     fun getGameParticipants(gameID: Long): Flowable<List<Participant>>
 
+    //TODO: remove getGameParticipants or getGameParticipantsSingle when it's decided which one is better
+    /**
+     * Get a participant by id.
+     * @return the Participant from the table with a specific game and player id.
+     */
+    @Query("SELECT * FROM participants WHERE game = :gameID")
+    fun getGameParticipantsSingle(gameID: Long): Single<List<Participant>>
+
     /**
      * Get a participant by id.
      * @return the Participant from the table with a specific game and player id.

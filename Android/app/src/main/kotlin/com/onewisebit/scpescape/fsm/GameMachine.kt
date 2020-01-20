@@ -10,7 +10,7 @@ import io.reactivex.Single
 class GameMachine(gameStatePresenter: GameStateContract.GameStatePresenter) {
     val presenter: GameStateContract.GameStatePresenter = gameStatePresenter
 
-    val participants: Flowable<List<Participant>>
+    val participants: Single<List<Participant>>
     val players: Single<List<Player>>
     val rounds: Flowable<List<Round>>
     val turns: Flowable<List<Turn>>
