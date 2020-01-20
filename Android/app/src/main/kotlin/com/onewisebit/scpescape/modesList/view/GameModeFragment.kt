@@ -44,6 +44,7 @@ class GameModeFragment: Fragment(), GameModesContract.GameModesView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //TODO: check if (Dispatchers.Main) is necessary
         uiScope.launch(Dispatchers.Main){
             val modes = presenter.getModes()
             adapter = ModesAdapter(modes){id: Int -> pickMode(id)}
