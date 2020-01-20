@@ -3,12 +3,6 @@ package com.onewisebit.scpescape.model.entities
 import androidx.room.*
 
 @Entity(tableName = "games",
-    foreignKeys = [ForeignKey(
-        entity = Mode::class,
-        parentColumns = ["mode_ID"],
-        childColumns = ["mode"],
-        onDelete = ForeignKey.NO_ACTION
-    )],
     indices = [Index(value = arrayOf("mode"))]
 )
 data class Game(

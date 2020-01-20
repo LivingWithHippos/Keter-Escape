@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "657c1f8b14320673643c9a98a45699fd",
+    "identityHash": "8994fa9842e6e40bf8dd0bb10a73895a",
     "entities": [
       {
         "tableName": "players",
@@ -70,7 +70,7 @@
       },
       {
         "tableName": "games",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode` INTEGER NOT NULL, `game_type` INTEGER NOT NULL, `temporary` INTEGER NOT NULL DEFAULT true, FOREIGN KEY(`mode`) REFERENCES `modes`(`mode_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode` INTEGER NOT NULL, `game_type` INTEGER NOT NULL, `temporary` INTEGER NOT NULL DEFAULT true)",
         "fields": [
           {
             "fieldPath": "id",
@@ -114,19 +114,7 @@
             "createSql": "CREATE INDEX IF NOT EXISTS `index_games_mode` ON `${TABLE_NAME}` (`mode`)"
           }
         ],
-        "foreignKeys": [
-          {
-            "table": "modes",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "mode"
-            ],
-            "referencedColumns": [
-              "mode_ID"
-            ]
-          }
-        ]
+        "foreignKeys": []
       },
       {
         "tableName": "modes",
@@ -395,7 +383,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '657c1f8b14320673643c9a98a45699fd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8994fa9842e6e40bf8dd0bb10a73895a')"
     ]
   }
 }
