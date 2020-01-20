@@ -11,7 +11,7 @@ class GameStateModelImpl(gameRepository: InGameRepository,
                          playerRepository: InPlayerRepository,
                          roundRepository: InRoundRepository,
                          turnRepository: InTurnRepository,
-                         modeRepository: InModeRepository
+                         modeRepository: InModelNewRepository
 ) : GameStateContract.GameStateModel {
 
     private var gameRepo: InGameRepository = gameRepository
@@ -19,7 +19,7 @@ class GameStateModelImpl(gameRepository: InGameRepository,
     private var playerRepo: InPlayerRepository = playerRepository
     private var roundRepo: InRoundRepository = roundRepository
     private var turnRepo: InTurnRepository = turnRepository
-    private var modeRepo: InModeRepository = modeRepository
+    private var modeRepo: InModelNewRepository = modeRepository
 
     override fun getGame(gameID: Long): Single<Game> {
         return gameRepo.getGameById(gameID)
@@ -43,5 +43,9 @@ class GameStateModelImpl(gameRepository: InGameRepository,
 
     override fun getMode(gameID: Long): Single<Mode> {
         return gameRepo.getMode(gameID)
+    }
+
+    override fun assignRoles(gameID: Long) {
+
     }
 }
