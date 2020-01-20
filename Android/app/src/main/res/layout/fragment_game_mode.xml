@@ -7,54 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.onewisebit.scpescape.modesList.view.GameModeFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvGameModeClassic"
-        android:layout_gravity="center"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        card_view:cardCornerRadius="10dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvModes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         card_view:layout_constraintTop_toTopOf="parent"
         card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintStart_toStartOf="parent">
+        tools:listitem="@layout/mode_list_item"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/ivClassicMode"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/classic_mode"
-                android:src="@drawable/black_hole"
-                android:tint="#fff"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintLeft_toLeftOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvClassicMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/classic_mode"
-                card_view:layout_constraintStart_toEndOf="@+id/ivClassicMode"
-                card_view:layout_constraintTop_toTopOf="@+id/ivClassicMode" />
-
-            <TextView
-                android:id="@+id/tvClassicModeDescription"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:minLines="2"
-                android:text="@string/classic_mode_description"
-                card_view:layout_constraintStart_toEndOf="@+id/tvClassicMode"
-                card_view:layout_constraintStart_toStartOf="@+id/tvClassicMode"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvClassicMode" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
