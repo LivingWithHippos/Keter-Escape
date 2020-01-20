@@ -45,7 +45,8 @@ val appModule = module {
     single { PlayerRepository(get()) }
     single { ParticipantRepository(get()) }
     single { ModeRepository(get()) }
-    single { ModeNewRepository(get()) }
+    // TODO: replace other single with single<interface> {implementation}
+    single<InModelNewRepository> { ModeNewRepository(get()) }
 
     factory<StartContract.StartModel> {
         StartActivityModel(
