@@ -15,13 +15,20 @@ class ModeNewRepository(private val context: Context): InModelNewRepository {
     override suspend fun getMode(id: Int): ModeDataClass? =
     withContext(Dispatchers.IO) {
         try {
-            // Populating roles
+            // retrieving modes
             context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
                     val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
                     val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
 
-                    modesList[id]
+                    val modeFound = modesList.filter{
+                        mode -> mode.id == id
+                    }
+
+                    if (modeFound.isNotEmpty())
+                        modeFound[0]
+                    else
+                        null
                 }
             }
         } catch (ex: Exception) {
@@ -35,7 +42,7 @@ class ModeNewRepository(private val context: Context): InModelNewRepository {
     override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {
             try {
-                // Populating roles
+                // retrieving modes
                 context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
                         val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
