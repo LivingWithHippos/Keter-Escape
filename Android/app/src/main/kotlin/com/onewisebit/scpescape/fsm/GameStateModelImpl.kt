@@ -3,15 +3,15 @@ package com.onewisebit.scpescape.fsm
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.repositories.*
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 
-class GameStateModelImpl(gameRepository: InGameRepository,
-                         participantRepository: InParticipantRepository,
-                         playerRepository: InPlayerRepository,
-                         roundRepository: InRoundRepository,
-                         turnRepository: InTurnRepository,
-                         modeRepository: InModelNewRepository
+class GameStateModelImpl(
+    gameRepository: InGameRepository,
+    participantRepository: InParticipantRepository,
+    playerRepository: InPlayerRepository,
+    roundRepository: InRoundRepository,
+    turnRepository: InTurnRepository,
+    modeRepository: InModelNewRepository
 ) : GameStateContract.GameStateModel {
 
     private var gameRepo: InGameRepository = gameRepository

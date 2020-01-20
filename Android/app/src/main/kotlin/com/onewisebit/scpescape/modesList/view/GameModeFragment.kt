@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,14 +18,14 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class GameModeFragment: Fragment(), GameModesContract.GameModesView {
+class GameModeFragment : Fragment(), GameModesContract.GameModesView {
 
     private val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var adapter: ModesAdapter
-    private lateinit var binding : FragmentGameModeBinding
+    private lateinit var binding: FragmentGameModeBinding
     private val args: GameModeFragmentArgs by navArgs()
 
     private val presenter: GameModesContract.GameModesPresenter by inject { parametersOf(this) }
@@ -45,14 +44,14 @@ class GameModeFragment: Fragment(), GameModesContract.GameModesView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //TODO: check if (Dispatchers.Main) is necessary
-        uiScope.launch(Dispatchers.Main){
+        uiScope.launch(Dispatchers.Main) {
             val modes = presenter.getModes()
-            adapter = ModesAdapter(modes){id: Int -> pickMode(id)}
+            adapter = ModesAdapter(modes) { id: Int -> pickMode(id) }
             binding.rvModes.adapter = adapter
         }
     }
 
-    private fun pickMode(modeId: Int){
+    private fun pickMode(modeId: Int) {
         val action =
             GameModeFragmentDirections.actionGameModeToNewGameSettings(
                 args.gameType,
@@ -65,7 +64,7 @@ class GameModeFragment: Fragment(), GameModesContract.GameModesView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onDestroy(){
+    override fun onDestroy() {
         job.cancel()
         super.onDestroy()
     }

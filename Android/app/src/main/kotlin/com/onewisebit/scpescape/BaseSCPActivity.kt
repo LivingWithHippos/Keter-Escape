@@ -5,12 +5,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 
-
 abstract class BaseSCPActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.decorView.setOnSystemUiVisibilityChangeListener{setImmersiveMode()}
+        window.decorView.setOnSystemUiVisibilityChangeListener { setImmersiveMode() }
     }
 
     override fun onResume() {

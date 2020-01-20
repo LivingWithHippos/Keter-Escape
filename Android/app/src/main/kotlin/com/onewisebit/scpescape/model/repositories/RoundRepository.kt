@@ -5,7 +5,7 @@ import com.onewisebit.scpescape.model.entities.Round
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
-class RoundRepository(private val roundDAO: RoundDAO): InRoundRepository {
+class RoundRepository(private val roundDAO: RoundDAO) : InRoundRepository {
 
     override fun insertRound(round: Round): Completable = roundDAO.insertRound(round)
 

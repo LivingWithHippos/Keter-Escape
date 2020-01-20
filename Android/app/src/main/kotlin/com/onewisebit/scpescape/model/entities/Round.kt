@@ -5,7 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 
-@Entity(tableName = "rounds",
+@Entity(
+    tableName = "rounds",
     primaryKeys = ["game", "number"],
     foreignKeys = [ForeignKey(
         entity = Game::class,
@@ -13,10 +14,10 @@ import androidx.room.Index
         childColumns = ["game"],
         onDelete = ForeignKey.CASCADE
     )],
-    indices = [Index(value = ["game","number"],unique = true)]
+    indices = [Index(value = ["game", "number"], unique = true)]
 )
 //TODO: evaluate if this can be flattened into turn as a field or if it should be kept separated for expansion purposes
-data class Round (
+data class Round(
     // game is not set as primary key because we can't use autoGenerate
     // on a single field of a composite key. We use an index with
     // unique = true to preserve the uniqueness property of the primary key

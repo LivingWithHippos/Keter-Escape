@@ -6,7 +6,7 @@ import com.onewisebit.scpescape.model.entities.Mode
 import com.onewisebit.scpescape.model.repositories.GameRepository
 import io.reactivex.Single
 
-class IntroModelImpl(gameRepository: GameRepository): IntroContract.IntroModel {
+class IntroModelImpl(gameRepository: GameRepository) : IntroContract.IntroModel {
 
     private var gameRepo: GameRepository = gameRepository
 

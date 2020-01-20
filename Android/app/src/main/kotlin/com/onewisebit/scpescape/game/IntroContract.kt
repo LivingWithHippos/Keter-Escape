@@ -6,16 +6,16 @@ import io.reactivex.Single
 
 interface IntroContract {
 
-    interface IntroModel{
+    interface IntroModel {
         fun getGame(id: Long): Single<Game>
         fun getMode(id: Long): Single<Mode>
     }
 
-    interface IntroView{
-        fun setupGame(game:Single<Game>, mode: Single<Mode>)
+    interface IntroView {
+        fun setupGame(game: Single<Game>, mode: Single<Mode>)
     }
 
-    interface IntroPresenter{
-        fun setup(id:Long)
+    interface IntroPresenter {
+        fun setup(id: Long)
     }
 }

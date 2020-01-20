@@ -38,11 +38,11 @@ abstract class SCPDatabase : RoomDatabase() {
         fun getInstance(context: Context): SCPDatabase =
             INSTANCE
                 ?: synchronized(this) {
-                INSTANCE
-                    ?: buildDatabase(
-                        context
-                    ).also { INSTANCE = it }
-            }
+                    INSTANCE
+                        ?: buildDatabase(
+                            context
+                        ).also { INSTANCE = it }
+                }
 
         //TODO: add option for updates to the scps json file, check RoomDatabase.Builder.createFromAsset()
         private fun buildDatabase(context: Context) =
@@ -54,9 +54,11 @@ abstract class SCPDatabase : RoomDatabase() {
                     //populate the database on creation
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        val roleRequest = OneTimeWorkRequestBuilder<PopulateDatabaseRolesWorker>().build()
+                        val roleRequest =
+                            OneTimeWorkRequestBuilder<PopulateDatabaseRolesWorker>().build()
                         WorkManager.getInstance(context).enqueue(roleRequest)
-                        val modeRequest = OneTimeWorkRequestBuilder<PopulateDatabaseModesWorker>().build()
+                        val modeRequest =
+                            OneTimeWorkRequestBuilder<PopulateDatabaseModesWorker>().build()
                         WorkManager.getInstance(context).enqueue(modeRequest)
                     }
                 })

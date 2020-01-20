@@ -1,8 +1,12 @@
 package com.onewisebit.scpescape.model.entities
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
-@Entity(tableName = "games",
+@Entity(
+    tableName = "games",
     indices = [Index(value = arrayOf("mode"))]
 )
 data class Game(

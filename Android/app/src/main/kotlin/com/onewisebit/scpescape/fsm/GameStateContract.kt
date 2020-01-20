@@ -2,7 +2,6 @@ package com.onewisebit.scpescape.fsm
 
 import com.onewisebit.scpescape.model.entities.*
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 
 interface GameStateContract {

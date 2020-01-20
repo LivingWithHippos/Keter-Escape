@@ -4,12 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 
-@Entity(tableName = "turns",
-    primaryKeys = ["round","game", "player"],
+@Entity(
+    tableName = "turns",
+    primaryKeys = ["round", "game", "player"],
     foreignKeys = [ForeignKey(
         entity = Round::class,
-        parentColumns = ["number","game"],
-        childColumns = ["round","game"],
+        parentColumns = ["number", "game"],
+        childColumns = ["round", "game"],
         onDelete = ForeignKey.CASCADE
     ), ForeignKey(
         entity = Player::class,
@@ -18,7 +19,7 @@ import androidx.room.ForeignKey
         onDelete = ForeignKey.CASCADE
     )]
 )
-data class Turn (
+data class Turn(
     @ColumnInfo(name = "round")
     val roundNumber: Int,
     /**

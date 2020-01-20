@@ -16,10 +16,10 @@ class GameMachine(gameStatePresenter: GameStateContract.GameStatePresenter) {
     val turns: Flowable<List<Turn>>
 
     init {
-        participants= presenter.getParticipants()
-        players= presenter.getPlayers()
+        participants = presenter.getParticipants()
+        players = presenter.getPlayers()
         rounds = presenter.getRounds()
-        turns= presenter.getTurns()
+        turns = presenter.getTurns()
     }
 
 

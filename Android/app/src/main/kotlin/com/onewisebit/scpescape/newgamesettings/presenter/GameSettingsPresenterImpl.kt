@@ -18,7 +18,7 @@ class GameSettingsPresenterImpl(
     private var view: GameSettingsContract.GameSettingsView = gView
     private var model: GameSettingsContract.GameSettingsModel = gModel
 
-    private val gameID : MutableLiveData<Long> = MutableLiveData()
+    private val gameID: MutableLiveData<Long> = MutableLiveData()
 
     //TODO: find a better name for these methods
     override fun onNewGame(): LiveData<Long> {
@@ -26,13 +26,15 @@ class GameSettingsPresenterImpl(
     }
 
     @SuppressLint("CheckResult")
-    override fun createNewGame(gameMode: Int, gameType: Int){
+    override fun createNewGame(gameMode: Int, gameType: Int) {
         model.createGame(gameMode, gameType)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { game -> gameID.postValue(game) },
-                { error -> Log.d(TAG, "Error getting game id from GameSettingsModel into presenter: ", error) }
+                { error ->
+                    Log.d(TAG,"Error getting game id from GameSettingsModel into presenter: ",error)
+                }
             )
     }
 

@@ -20,7 +20,6 @@ import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.utilities.SearchableObservable
 import com.onewisebit.scpescape.utilities.hideKeyboard
-import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
@@ -48,9 +47,9 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         adapter = ParticipantsAdapter(
             emptyList(),
             emptyList()
-        ) { id: Long, add: Boolean ->playerToggle(id, add) }
+        ) { id: Long, add: Boolean -> playerToggle(id, add) }
         enablePlayerSearch()
-        binding.root.setOnClickListener{ binding.root.hideKeyboard() }
+        binding.root.setOnClickListener { binding.root.hideKeyboard() }
         return binding.root
     }
 
@@ -69,7 +68,9 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
                 .subscribe(
                     {
                         val action =
-                            ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(args.gameID)
+                            ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(
+                                args.gameID
+                            )
                         view.findNavController().navigate(action)
                     },
                     { Log.d(TAG, "Error while setting game as permanent") }
@@ -78,17 +79,19 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         presenter.setPlayers(args.gameID)
     }
 
-    override fun initView(players: LiveData<List<Player>>, participants: LiveData<List<Participant>>) {
+    override fun initView(
+        players: LiveData<List<Player>>,
+        participants: LiveData<List<Participant>>
+    ) {
 
-        players.observe(this, Observer<List<Player>> {
-                playersList -> adapter.setPlayers(playersList)
+        players.observe(this, Observer<List<Player>> { playersList ->
+            adapter.setPlayers(playersList)
         })
 
-        participants.observe(this, Observer<List<Participant>> {
-            participantsList ->
+        participants.observe(this, Observer<List<Participant>> { participantsList ->
             adapter.setParticipants(participantsList.map { it.playerID })
 
-            val totPlayers : Int = args.totPlayers
+            val totPlayers: Int = args.totPlayers
             val missingPlayers = totPlayers - participantsList.size
             binding.tvSelectPlayersTitle.text =
                 getString(R.string.select_players, totPlayers, missingPlayers)
@@ -101,7 +104,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     }
 
     override fun tooManyParticipants() {
-        Toast.makeText(context,getString(R.string.max_players_reached),Toast.LENGTH_LONG).show()
+        Toast.makeText(context, getString(R.string.max_players_reached), Toast.LENGTH_LONG).show()
     }
 
     private fun enablePlayerSearch() {
@@ -116,7 +119,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     }
 
     private fun playerToggle(id: Long, add: Boolean) {
-        presenter.addRemoveParticipant(args.gameID, id,add,args.totPlayers)
+        presenter.addRemoveParticipant(args.gameID, id, add, args.totPlayers)
     }
 
     private fun showCreatePlayerDialog() {

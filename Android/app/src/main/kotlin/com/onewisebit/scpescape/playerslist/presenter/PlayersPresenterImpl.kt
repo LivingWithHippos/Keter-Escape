@@ -2,14 +2,11 @@ package com.onewisebit.scpescape.playerslist.presenter
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -22,8 +19,8 @@ class PlayersPresenterImpl(
     private var view: PlayersContract.PlayersView = pView
     private var model: PlayersContract.PlayersModel = pModel
 
-    private val participants : MutableLiveData<List<Participant>> = MutableLiveData()
-    private val players : MutableLiveData<List<Player>> = MutableLiveData()
+    private val participants: MutableLiveData<List<Participant>> = MutableLiveData()
+    private val players: MutableLiveData<List<Player>> = MutableLiveData()
 
     override fun setPlayers(gameID: Long) {
         view.initView(players, participants)
@@ -69,20 +66,25 @@ class PlayersPresenterImpl(
     override fun setGameTemporary(gameID: Long, isTemp: Boolean): Completable =
         model.setTemporary(gameID, isTemp)
 
-    override fun addRemoveParticipant(gameId: Long, playerId: Long, add: Boolean, maxParticipants: Int) {
+    override fun addRemoveParticipant(
+        gameId: Long,
+        playerId: Long,
+        add: Boolean,
+        maxParticipants: Int
+    ) {
         //TODO: methods return a completable that could be used to check for errors
         if (add) {
-            if (participants.value == null ){
+            if (participants.value == null) {
                 Log.d(TAG, "Error getting participants data")
-            }else{
+            } else {
                 // I like living dangerously. Check if the above code control works.
-                if(participants.value!!.size < maxParticipants)
-                    addParticipant(gameId,playerId)
+                if (participants.value!!.size < maxParticipants)
+                    addParticipant(gameId, playerId)
                 else
                     view.tooManyParticipants()
             }
-        }else{
-            removeParticipant(gameId,playerId)
+        } else {
+            removeParticipant(gameId, playerId)
         }
     }
 

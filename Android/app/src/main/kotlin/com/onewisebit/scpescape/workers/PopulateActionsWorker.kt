@@ -11,7 +11,7 @@ import com.onewisebit.scpescape.model.ActionVote
 import com.onewisebit.scpescape.utilities.ACTION_DATA_FILENAME
 import kotlinx.coroutines.coroutineScope
 
-class PopulateActionsWorker (
+class PopulateActionsWorker(
     context: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
@@ -23,7 +23,7 @@ class PopulateActionsWorker (
                     val voteType = object : TypeToken<List<ActionVote>>() {}.type
                     val votesList: List<ActionVote> = Gson().fromJson(jsonReader, voteType)
 
-                    Log.d(TAG,"Lemme debug")
+                    Log.d(TAG, "Lemme debug")
                 }
                 Result.success()
             }

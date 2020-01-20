@@ -91,7 +91,12 @@ val appModule = module {
         )
     }
 
-    factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView) -> IntroPresenterImpl(view,get()) }
+    factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView) ->
+        IntroPresenterImpl(
+            view,
+            get()
+        )
+    }
 
     factory<GameStateContract.GameStateModel> {
         GameStateModelImpl(
@@ -104,7 +109,13 @@ val appModule = module {
         )
     }
 
-    factory<GameStateContract.GameStatePresenter> { (view: GameStateContract.GameStateView, game: Long) -> GameStatePresenterImpl(view,get(), game) }
+    factory<GameStateContract.GameStatePresenter> { (view: GameStateContract.GameStateView, game: Long) ->
+        GameStatePresenterImpl(
+            view,
+            get(),
+            game
+        )
+    }
 
 
     factory<GameModesContract.GameModesModel> {
@@ -113,8 +124,12 @@ val appModule = module {
         )
     }
 
-    factory<GameModesContract.GameModesPresenter> { (view: GameModesContract.GameModesView) -> GameModesPresenterImpl(view,get()) }
-
+    factory<GameModesContract.GameModesPresenter> { (view: GameModesContract.GameModesView) ->
+        GameModesPresenterImpl(
+            view,
+            get()
+        )
+    }
 
 
 }

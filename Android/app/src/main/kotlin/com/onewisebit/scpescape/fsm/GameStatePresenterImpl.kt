@@ -10,15 +10,16 @@ import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 
 @SuppressLint("CheckResult")
-class GameStatePresenterImpl (gsView: GameStateContract.GameStateView,
-                              gsModel: GameStateContract.GameStateModel,
-                              gameID: Long
-): GameStateContract.GameStatePresenter {
+class GameStatePresenterImpl(
+    gsView: GameStateContract.GameStateView,
+    gsModel: GameStateContract.GameStateModel,
+    gameID: Long
+) : GameStateContract.GameStatePresenter {
 
     private var view: GameStateContract.GameStateView = gsView
     private var model: GameStateContract.GameStateModel = gsModel
 
-    private var gameId : Long = gameID
+    private var gameId: Long = gameID
 
     override fun getGame(): Game {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -43,12 +44,15 @@ class GameStatePresenterImpl (gsView: GameStateContract.GameStateView,
     }
 
     override fun assignRoles() {
-        val participants : Single<List<Participant>> = model.getParticipants(gameId)
-        val mode : Single<Mode>  = model.getMode(gameId)
+        val participants: Single<List<Participant>> = model.getParticipants(gameId)
+        val mode: Single<Mode> = model.getMode(gameId)
 
-        Single.zip<List<Participant>,Mode,Pair<List<Participant>,Mode>>(participants,mode, BiFunction{
-            part,mod -> Pair(part,mod)
-        })
+        Single.zip<List<Participant>, Mode, Pair<List<Participant>, Mode>>(
+            participants,
+            mode,
+            BiFunction { part, mod ->
+                Pair(part, mod)
+            })
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

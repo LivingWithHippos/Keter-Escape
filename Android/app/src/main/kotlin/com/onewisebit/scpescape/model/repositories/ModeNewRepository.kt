@@ -10,34 +10,34 @@ import com.onewisebit.scpescape.utilities.MODE_DATA_FILENAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ModeNewRepository(private val context: Context): InModelNewRepository {
+class ModeNewRepository(private val context: Context) : InModelNewRepository {
 
     override suspend fun getMode(id: Int): ModeDataClass? =
-    withContext(Dispatchers.IO) {
-        try {
-            // retrieving modes
-            context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
-                JsonReader(inputStream.reader()).use { jsonReader ->
-                    val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
-                    val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
+        withContext(Dispatchers.IO) {
+            try {
+                // retrieving modes
+                context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
+                    JsonReader(inputStream.reader()).use { jsonReader ->
+                        val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
+                        val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
 
-                    val modeFound = modesList.filter{
-                        mode -> mode.id == id
+                        val modeFound = modesList.filter { mode ->
+                            mode.id == id
+                        }
+
+                        if (modeFound.isNotEmpty())
+                            modeFound[0]
+                        else
+                            null
                     }
-
-                    if (modeFound.isNotEmpty())
-                        modeFound[0]
-                    else
-                        null
                 }
+            } catch (ex: Exception) {
+                Log.e(TAG, "Error reading modes", ex)
+                // is there a better way to handle this?
+                // if we can't read the file null seems a good return value
+                null
             }
-        } catch (ex: Exception) {
-            Log.e(TAG, "Error reading modes", ex)
-            // is there a better way to handle this?
-            // if we can't read the file null seems a good return value
-            null
         }
-    }
 
     override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {

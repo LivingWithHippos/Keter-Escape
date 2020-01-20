@@ -13,14 +13,10 @@ import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentNewGameSettingsBinding
 import com.onewisebit.scpescape.model.ModeDataClass
-import com.onewisebit.scpescape.model.entities.Mode
-import com.onewisebit.scpescape.modesList.view.ModesAdapter
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MAX_PLAYERS
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MID_PLAYERS
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MIN_PLAYERS
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -52,12 +48,12 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        uiScope.launch{
+        uiScope.launch {
             val mode = presenter.getMode(args.gameMode)
             if (mode != null)
                 setupView(view, mode)
             else
-                Log.d(TAG,"Error retrieveing mode: ${args.gameMode}")
+                Log.d(TAG, "Error retrieveing mode: ${args.gameMode}")
         }
 
     }
@@ -82,9 +78,12 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         }
 
         // observe if a new game is created and move to the next settings page
-        presenter.onNewGame().observe(this, Observer<Long> {
-                gameID ->
-            val action = NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(binding.npPlayerPicker.value, gameID )
+        presenter.onNewGame().observe(this, Observer<Long> { gameID ->
+            val action =
+                NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
+                    binding.npPlayerPicker.value,
+                    gameID
+                )
             view.findNavController().navigate(action)
         })
 
@@ -95,7 +94,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         }
     }
 
-    override fun onDestroy(){
+    override fun onDestroy() {
         job.cancel()
         super.onDestroy()
     }

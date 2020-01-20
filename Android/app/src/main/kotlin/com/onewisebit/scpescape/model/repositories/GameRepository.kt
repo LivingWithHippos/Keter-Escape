@@ -19,7 +19,7 @@ class GameRepository(private val gameDAO: GameDAO) :
     override fun getAllGames(): List<Game> = gameDAO.getAllGames()
 
     override fun getMode(id: Long): Single<Mode> = gameDAO.getMode(id)
-    
+
     override fun deleteGame(game: Game) = gameDAO.removeGame(game)
 
     override fun deleteAllGames() = gameDAO.deleteAllGames()
@@ -38,7 +38,8 @@ class GameRepository(private val gameDAO: GameDAO) :
             )
     }
 
-    override fun setTemporary(gameID: Long, isTemp: Boolean) : Completable = gameDAO.setTemporary(gameID, isTemp)
+    override fun setTemporary(gameID: Long, isTemp: Boolean): Completable =
+        gameDAO.setTemporary(gameID, isTemp)
 
 
     companion object {

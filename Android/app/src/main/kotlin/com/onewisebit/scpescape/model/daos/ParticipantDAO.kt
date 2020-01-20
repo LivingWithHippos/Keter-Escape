@@ -95,6 +95,7 @@ interface ParticipantDAO {
      */
     @Delete
     fun removeParticipant(participant: Participant): Completable
+
     /**
      * Remove a participant by game and player id.
      */
