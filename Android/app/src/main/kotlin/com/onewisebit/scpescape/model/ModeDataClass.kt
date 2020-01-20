@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.model
 
 data class ModeDataClass(
-    val id: String,
+    val id: Int,
     val name: String,
     val shortDescription: String,
     val description: String,
