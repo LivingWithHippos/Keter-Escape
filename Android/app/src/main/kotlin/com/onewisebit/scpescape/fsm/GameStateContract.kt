@@ -22,7 +22,7 @@ interface GameStateContract {
     interface GameStateModel {
 
         fun getGame(gameID: Long): Single<Game>
-        fun getParticipants(gameID: Long): Single<List<Participant>>
+        fun getParticipants(gameID: Long): Flowable<List<Participant>>
         fun getPlayers(gameID: Long): Single<List<Player>>
         fun getRounds(gameID: Long): Flowable<List<Round>>
         fun getTurns(gameID: Long): Flowable<List<Turn>>
