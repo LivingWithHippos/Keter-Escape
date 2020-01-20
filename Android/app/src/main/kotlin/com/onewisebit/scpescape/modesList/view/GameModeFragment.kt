@@ -10,8 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentGameModeBinding
 import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.modesList.GameModesContract
-import com.onewisebit.scpescape.newgamesettings.view.GameModeFragmentArgs
-import com.onewisebit.scpescape.newgamesettings.view.GameModeFragmentDirections
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
