@@ -9,6 +9,7 @@ interface GameModesContract {
     }
     interface GameModesPresenter {
         fun initView()
+        suspend fun getModes(): List<ModeDataClass>
     }
     interface GameModesModel {
         suspend fun getModes(): List<ModeDataClass>
