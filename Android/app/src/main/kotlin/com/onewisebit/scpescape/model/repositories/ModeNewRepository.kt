@@ -5,21 +5,21 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.onewisebit.scpescape.model.ModeFromJson
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.utilities.MODE_DATA_FILENAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ModeNewRepository(private val context: Context): InModelNewRepository {
 
-    override suspend fun getMode(id: Int): ModeFromJson? =
+    override suspend fun getMode(id: Int): ModeDataClass? =
     withContext(Dispatchers.IO) {
         try {
             // Populating roles
             context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
-                    val modeType = object : TypeToken<List<ModeFromJson>>() {}.type
-                    val modesList: List<ModeFromJson> = Gson().fromJson(jsonReader, modeType)
+                    val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
+                    val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
 
                     modesList[id]
                 }
@@ -32,14 +32,14 @@ class ModeNewRepository(private val context: Context): InModelNewRepository {
         }
     }
 
-    override suspend fun getAllModes(): List<ModeFromJson>? =
+    override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {
             try {
                 // Populating roles
                 context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
-                        val modeType = object : TypeToken<List<ModeFromJson>>() {}.type
-                        val modesList: List<ModeFromJson> = Gson().fromJson(jsonReader, modeType)
+                        val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
+                        val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
 
                         modesList
                     }
