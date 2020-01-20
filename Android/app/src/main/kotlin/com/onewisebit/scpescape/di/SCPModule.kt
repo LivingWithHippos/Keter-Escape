@@ -13,6 +13,9 @@ import com.onewisebit.scpescape.main.model.StartActivityModel
 import com.onewisebit.scpescape.main.presenter.StartActivityPresenterImpl
 import com.onewisebit.scpescape.model.database.SCPDatabase
 import com.onewisebit.scpescape.model.repositories.*
+import com.onewisebit.scpescape.modesList.GameModesContract
+import com.onewisebit.scpescape.modesList.model.GameModesModelImpl
+import com.onewisebit.scpescape.modesList.presenter.GameModesPresenterImpl
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.newgamesettings.model.GameSettingsModelImpl
 import com.onewisebit.scpescape.newgamesettings.presenter.GameSettingsPresenterImpl
@@ -101,5 +104,16 @@ val appModule = module {
     }
 
     factory<GameStateContract.GameStatePresenter> { (view: GameStateContract.GameStateView, game: Long) -> GameStatePresenterImpl(view,get(), game) }
+
+
+    factory<GameModesContract.GameModesModel> {
+        GameModesModelImpl(
+            get()
+        )
+    }
+
+    factory<GameModesContract.GameModesPresenter> { (view: GameModesContract.GameModesView) -> GameModesPresenterImpl(view,get()) }
+
+
 
 }
