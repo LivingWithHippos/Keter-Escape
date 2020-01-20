@@ -1,18 +1,21 @@
 package com.onewisebit.scpescape.newgamesettings.model
 
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
 import com.onewisebit.scpescape.model.repositories.GameRepository
+import com.onewisebit.scpescape.model.repositories.InModelNewRepository
+import com.onewisebit.scpescape.model.repositories.ModeNewRepository
 import com.onewisebit.scpescape.model.repositories.ModeRepository
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import io.reactivex.Single
 
 //TODO: replace this and others with interfaces, not implementations
-class GameSettingsModelImpl(gameRepository: GameRepository, modeRepository: ModeRepository) :
+class GameSettingsModelImpl(gameRepository: GameRepository, modeRepository: InModelNewRepository) :
     GameSettingsContract.GameSettingsModel {
 
     private var gameRepo: GameRepository = gameRepository
-    private var modeRepo: ModeRepository = modeRepository
+    private var modeRepo: InModelNewRepository = modeRepository
 
     //TODO: check if returned game is needed
     override fun createGame(gameMode: Int, gameType: Int): Single<Long> {
@@ -24,7 +27,7 @@ class GameSettingsModelImpl(gameRepository: GameRepository, modeRepository: Mode
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getMode(gameMode: Int): Single<Mode> {
+    override suspend fun getMode(gameMode: Int): ModeDataClass? {
         return modeRepo.getMode(gameMode)
     }
 

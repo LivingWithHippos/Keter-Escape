@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
-import com.onewisebit.scpescape.model.entities.Mode
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -20,7 +19,6 @@ class GameSettingsPresenterImpl(
     private var model: GameSettingsContract.GameSettingsModel = gModel
 
     private val gameID : MutableLiveData<Long> = MutableLiveData()
-    private val mode : MutableLiveData<Mode> = MutableLiveData()
 
     //TODO: find a better name for these methods
     override fun onNewGame(): LiveData<Long> {
@@ -38,10 +36,6 @@ class GameSettingsPresenterImpl(
             )
     }
 
-    override fun onModeLoaded(): LiveData<Mode> {
-        return mode
-    }
-
     override fun saveSetting(key: String, value: String) {
         TODO("Save the settings chosen")
     }
@@ -50,16 +44,8 @@ class GameSettingsPresenterImpl(
         model.saveGame(game)
     }
 
-    @SuppressLint("CheckResult")
-    override fun getMode(gameMode: Int) {
-        model.getMode(gameMode)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { mode -> this.mode.postValue(mode) },
-                { error -> Log.d(TAG, "Error getting mode from GameSettingsModel into presenter: ", error) }
-            )
-    }
+    override suspend fun getMode(id: Int): ModeDataClass? =
+        model.getMode(id)
 
     companion object {
         private val TAG = GameSettingsPresenterImpl::class.java.simpleName
