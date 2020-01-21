@@ -55,7 +55,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
             if (mode != null)
                 setupView(view, mode)
             else
-                Log.d(TAG, "Error retrieveing mode: ${args.gameMode}")
+                Log.d(TAG, "Error retrieving mode: ${args.gameMode}")
         }
 
     }
