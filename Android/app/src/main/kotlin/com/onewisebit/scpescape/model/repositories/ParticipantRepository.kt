@@ -26,7 +26,7 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override suspend fun getGameParticipantsBlocking(gameID: Long): List<Participant> =
         participantDAO.getGameParticipantsBlocking(gameID)
 
-    override suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
+    override fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
         participantDAO.setParticipantRole(gameID, playerID, roleName)
 
     override fun getGamePlayers(gameID: Long): Single<List<Player>> =
