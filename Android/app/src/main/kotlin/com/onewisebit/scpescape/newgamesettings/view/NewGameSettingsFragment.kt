@@ -89,6 +89,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         }
     }
 
+    //TODO: move this to the presenter
     private fun updateRolesDivision(mode: ModeDataClass, newVal: Int){
         mode.rolesDivision.forEach{
             if ((newVal >= it.minPlayers) && (newVal <= it.maxPlayers)){
