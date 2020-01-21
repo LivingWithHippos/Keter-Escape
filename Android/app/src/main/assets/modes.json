@@ -13,7 +13,7 @@
         "max_players": 9,
         "roles_details": [
           {
-            "role": "Guards",
+            "role": "Security Officer",
             "quantity": 4,
             "default": true
           },
@@ -34,7 +34,7 @@
         "max_players": 30,
         "roles_details": [
           {
-            "role": "Guards",
+            "role": "Security Officer",
             "quantity": 6,
             "default": true
           },
