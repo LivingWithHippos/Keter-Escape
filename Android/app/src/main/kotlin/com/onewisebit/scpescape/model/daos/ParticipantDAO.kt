@@ -74,7 +74,7 @@ interface ParticipantDAO {
      * @return the Role from the table with a specific game and player id.
      */
     @Query("UPDATE participants SET role = :roleName WHERE participants.game = :gameID AND participants.player = :playerID")
-    fun setParticipantRole(gameID: Long, playerID: Long, roleName: String)
+    suspend fun setParticipantRole(gameID: Long, playerID: Long, roleName: String)
 
     /**
      * Get the role of a participant from a game and player id.

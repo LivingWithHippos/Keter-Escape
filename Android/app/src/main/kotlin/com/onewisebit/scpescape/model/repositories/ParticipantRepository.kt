@@ -10,6 +10,8 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     InParticipantRepository {
@@ -26,8 +28,8 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override suspend fun getGameParticipantsBlocking(gameID: Long): List<Participant> =
         participantDAO.getGameParticipantsBlocking(gameID)
 
-    override fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
-        participantDAO.setParticipantRole(gameID, playerID, roleName)
+    override suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
+        withContext(Dispatchers.IO) { participantDAO.setParticipantRole(gameID, playerID, roleName) }
 
     override fun getGamePlayers(gameID: Long): Single<List<Player>> =
         participantDAO.getGamePlayers(gameID)
