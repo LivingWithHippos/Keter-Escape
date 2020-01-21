@@ -1,6 +1,7 @@
 package com.onewisebit.scpescape.model.repositories
 
 import android.util.Log
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.daos.GameDAO
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
@@ -18,7 +19,9 @@ class GameRepository(private val gameDAO: GameDAO) :
 
     override fun getAllGames(): List<Game> = gameDAO.getAllGames()
 
-    override fun getMode(id: Long): Single<Mode> = gameDAO.getMode(id)
+    override suspend fun getMode(id: Long): ModeDataClass {
+        val modeId = gameDAO.getModeID(id)
+    }
 
     override fun deleteGame(game: Game) = gameDAO.removeGame(game)
 

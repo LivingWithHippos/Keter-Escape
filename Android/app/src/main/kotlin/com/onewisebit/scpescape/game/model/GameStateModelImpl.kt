@@ -1,6 +1,7 @@
 package com.onewisebit.scpescape.game.model
 
 import com.onewisebit.scpescape.game.GameStateContract
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.repositories.*
 import io.reactivex.Flowable
@@ -26,8 +27,8 @@ class GameStateModelImpl(
         return gameRepo.getGameById(gameID)
     }
 
-    override fun getParticipants(gameID: Long): Single<List<Participant>> {
-        return participantRepo.getGameParticipantsSingle(gameID)
+    override suspend fun getParticipants(gameID: Long): List<Participant> {
+        return participantRepo.getGameParticipantsBlocking(gameID)
     }
 
     override fun getPlayers(gameID: Long): Single<List<Player>> {
@@ -42,7 +43,7 @@ class GameStateModelImpl(
         return turnRepo.getGameTurns(gameID)
     }
 
-    override fun getMode(gameID: Long): Single<Mode> {
+    override suspend fun getMode(gameID: Long): ModeDataClass {
         return gameRepo.getMode(gameID)
     }
 

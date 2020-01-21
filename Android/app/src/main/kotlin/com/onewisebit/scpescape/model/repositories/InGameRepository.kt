@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.model.repositories
 
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
 import io.reactivex.Completable
@@ -15,7 +16,7 @@ interface InGameRepository {
 
     fun getType(id: Long): Int
 
-    fun getMode(id: Long): Single<Mode>
+    suspend fun getMode(id: Long): ModeDataClass
 
     fun getAllGames(): List<Game>
 
