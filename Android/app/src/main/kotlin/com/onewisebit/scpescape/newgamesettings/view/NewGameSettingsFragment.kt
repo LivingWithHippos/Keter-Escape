@@ -34,7 +34,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
 
 
     private val job = Job()
-    val uiScope = CoroutineScope(Dispatchers.Main + job)
+    private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     override fun onCreateView(
         inflater: LayoutInflater,
