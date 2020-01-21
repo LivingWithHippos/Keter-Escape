@@ -50,7 +50,7 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         uiScope.launch {
-            val game: Game = presenter.getGame(args.gameID)
+            //val game: Game = presenter.getGame(args.gameID)
             val mode: ModeDataClass? = presenter.getMode(args.gameID)
 
             if (mode != null) {
