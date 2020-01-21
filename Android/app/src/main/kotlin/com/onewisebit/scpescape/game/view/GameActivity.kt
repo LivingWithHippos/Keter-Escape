@@ -7,6 +7,10 @@ import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
 import com.onewisebit.scpescape.game.GameStateContract
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -16,6 +20,9 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
     private val navController by lazy { findNavController(R.id.nav_host) }
     private val args: GameActivityArgs by navArgs()
     private val presenter: GameStateContract.GameStatePresenter by inject { parametersOf(this,args.gameID) }
+
+    private val job = Job()
+    val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     //private val machine: GameMachine = GameMachine(presenter)
 
@@ -28,6 +35,14 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
         // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
         navController.setGraph(R.navigation.nav_game, args.toBundle())
 
-        //presenter.assignRoles()
+        uiScope.launch {
+            presenter.assignRoles()
+        }
+    }
+
+    override fun onDestroy() {
+        job.cancel()
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

@@ -17,6 +17,7 @@ interface GameStateContract {
         fun getTurns(): Flowable<List<Turn>>
         suspend fun getMode(): ModeDataClass
         suspend fun assignRoles()
+        fun onDestroy()
     }
 
     interface GameStateModel {
