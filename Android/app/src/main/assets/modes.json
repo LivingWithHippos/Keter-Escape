@@ -11,7 +11,7 @@
       {
         "min_players": 7,
         "max_players": 9,
-        "roles": [
+        "roles_details": [
           {
             "role": "Guards",
             "quantity": 4,
@@ -32,7 +32,7 @@
       {
         "min_players": 10,
         "max_players": 30,
-        "roles": [
+        "roles_details": [
           {
             "role": "Guards",
             "quantity": 6,

@@ -26,11 +26,11 @@ data class RolesDivision(
     val minPlayers: Int,
     @SerializedName("max_players")
     val maxPlayers: Int,
-    @SerializedName("roles")
-    val roles: List<Role>
+    @SerializedName("roles_details")
+    val roles: List<RolesDetail>
 )
 
-data class Role(
+data class RolesDetail(
     @SerializedName("role")
     val role: String,
     @SerializedName("quantity")
