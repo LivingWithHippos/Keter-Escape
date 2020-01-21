@@ -26,8 +26,8 @@ interface GameStateContract {
         fun getPlayers(gameID: Long): Single<List<Player>>
         fun getRounds(gameID: Long): Flowable<List<Round>>
         fun getTurns(gameID: Long): Flowable<List<Turn>>
-        suspend fun getMode(gameID: Long): ModeDataClass
-        fun assignRoles(gameID: Long)
+        suspend fun getMode(gameID: Long): ModeDataClass?
+        suspend fun assignRole(gameID: Long, playerID: Long, roleName : String)
 
     }
 }

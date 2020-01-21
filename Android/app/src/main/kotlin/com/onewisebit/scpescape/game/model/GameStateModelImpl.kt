@@ -43,11 +43,11 @@ class GameStateModelImpl(
         return turnRepo.getGameTurns(gameID)
     }
 
-    override suspend fun getMode(gameID: Long): ModeDataClass {
-        return gameRepo.getMode(gameID)
+    override suspend fun getMode(gameID: Long): ModeDataClass? {
+        return modeRepo.getMode(gameRepo.getModeId(gameID))
     }
 
-    override fun assignRoles(gameID: Long) {
-
+    override suspend fun assignRole(gameID: Long, playerID: Long, roleName: String) {
+        participantRepo.setGameParticipantRole(gameID, playerID, roleName)
     }
 }

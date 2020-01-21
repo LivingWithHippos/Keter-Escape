@@ -14,9 +14,11 @@ interface InGameRepository {
 
     fun getGameById(id: Long): Single<Game>
 
+    suspend fun getGameBlocking(id: Long): Game
+
     fun getType(id: Long): Int
 
-    suspend fun getMode(id: Long): ModeDataClass
+    suspend fun getModeId(id: Long): Int
 
     fun getAllGames(): List<Game>
 

@@ -15,13 +15,13 @@ class GameRepository(private val gameDAO: GameDAO) :
 
     override fun getGameById(id: Long): Single<Game> = gameDAO.getGameById(id)
 
+    override suspend fun getGameBlocking(id: Long): Game = gameDAO.getGameByIdBlocking(id)
+
     override fun getType(id: Long): Int = gameDAO.getType(id)
 
     override fun getAllGames(): List<Game> = gameDAO.getAllGames()
 
-    override suspend fun getMode(id: Long): ModeDataClass {
-        val modeId = gameDAO.getModeID(id)
-    }
+    override suspend fun getModeId(id: Long): Int  = gameDAO.getModeID(id)
 
     override fun deleteGame(game: Game) = gameDAO.removeGame(game)
 
