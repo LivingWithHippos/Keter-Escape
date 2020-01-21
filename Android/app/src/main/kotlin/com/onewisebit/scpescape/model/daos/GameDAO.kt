@@ -17,6 +17,13 @@ interface GameDAO {
     fun getGameById(id: Long): Single<Game>
 
     /**
+     * Get a game by id with coroutines.
+     * @return the Game from the table with a specific id.
+     */
+    @Query("SELECT * FROM games WHERE game_ID = :id")
+    suspend fun getGameByIdBlocking(id: Long): Game
+
+    /**
      * Get the game type from game id.
      * @return the game type.
      */
@@ -28,7 +35,7 @@ interface GameDAO {
      * @return the game mode id.
      */
     @Query("SELECT mode FROM games WHERE game_ID = :id")
-    fun getModeID(id: Long): Int
+    suspend fun getModeID(id: Long): Int
 
     /**
      * Get the game mode id from game id.
@@ -81,4 +88,5 @@ interface GameDAO {
      */
     @Query("DELETE FROM games WHERE `temporary` = 1")
     fun deleteTemporaryGames(): Completable
+
 }
