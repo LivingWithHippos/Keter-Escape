@@ -3,15 +3,16 @@ package com.onewisebit.scpescape.main.model
 import android.content.SharedPreferences
 import com.onewisebit.scpescape.main.StartContract
 import com.onewisebit.scpescape.model.entities.Player
+import com.onewisebit.scpescape.model.repositories.InPlayerRepository
 import com.onewisebit.scpescape.model.repositories.PlayerRepository
 import com.onewisebit.scpescape.utilities.CURRENT_THEME
 import com.onewisebit.scpescape.utilities.DEFAULT_THEME
 
 
-class StartActivityModel(playerRepository: PlayerRepository, sharedPreferences: SharedPreferences) :
+class StartActivityModel(playerRepository: InPlayerRepository, sharedPreferences: SharedPreferences) :
     StartContract.StartModel {
 
-    private var repository: PlayerRepository = playerRepository
+    private var repository: InPlayerRepository = playerRepository
     private var preferences: SharedPreferences = sharedPreferences
 
     override fun getTheme(): String {

@@ -3,15 +3,16 @@ package com.onewisebit.scpescape.newgamesettings.model
 import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.repositories.GameRepository
+import com.onewisebit.scpescape.model.repositories.InGameRepository
 import com.onewisebit.scpescape.model.repositories.InModelNewRepository
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import io.reactivex.Single
 
 //TODO: replace this and others with interfaces, not implementations
-class GameSettingsModelImpl(gameRepository: GameRepository, modeRepository: InModelNewRepository) :
+class GameSettingsModelImpl(gameRepository: InGameRepository, modeRepository: InModelNewRepository) :
     GameSettingsContract.GameSettingsModel {
 
-    private var gameRepo: GameRepository = gameRepository
+    private var gameRepo: InGameRepository = gameRepository
     private var modeRepo: InModelNewRepository = modeRepository
 
     //TODO: check if returned game is needed

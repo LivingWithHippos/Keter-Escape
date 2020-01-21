@@ -2,23 +2,21 @@ package com.onewisebit.scpescape.playerslist.model
 
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
-import com.onewisebit.scpescape.model.repositories.GameRepository
-import com.onewisebit.scpescape.model.repositories.ParticipantRepository
-import com.onewisebit.scpescape.model.repositories.PlayerRepository
+import com.onewisebit.scpescape.model.repositories.*
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 
 class PlayersModelImpl(
-    playerRepository: PlayerRepository,
-    participantRepository: ParticipantRepository,
-    gameRepository: GameRepository
+    playerRepository: InPlayerRepository,
+    participantRepository: InParticipantRepository,
+    gameRepository: InGameRepository
 ) : PlayersContract.PlayersModel {
 
-    private var playerRepo: PlayerRepository = playerRepository
-    private var participantRepo: ParticipantRepository = participantRepository
-    private var gameRepo: GameRepository = gameRepository
+    private var playerRepo: InPlayerRepository = playerRepository
+    private var participantRepo: InParticipantRepository = participantRepository
+    private var gameRepo: InGameRepository = gameRepository
 
     override fun getAllPlayers(): Flowable<List<Player>> {
         return playerRepo.getAllPlayers()
