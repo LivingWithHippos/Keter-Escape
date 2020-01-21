@@ -44,4 +44,5 @@
     <string name="mode_name">Mode Name</string>
     <string name="mode_short_description">Mode Short Description</string>
     <string name="mode_image">Image for the Mode</string>
+    <string name="remaining_players">"The remaining players will play as %1s"</string>
 </resources>

@@ -17,12 +17,14 @@ import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MAX_PLAYERS
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MID_PLAYERS
 import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MIN_PLAYERS
+import kotlinx.android.synthetic.main.fragment_new_game_settings.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import java.lang.StringBuilder
 
 class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsView {
 
@@ -64,17 +66,10 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         binding.tvRoles.setText(R.string.mode_classic_players_lower)
         binding.npPlayerPicker.minValue = mode.min
         binding.npPlayerPicker.maxValue = mode.max
-
+        updateRolesDivision(mode,npPlayerPicker.value)
         // change description string according to players number
         binding.npPlayerPicker.setOnValueChangedListener { _, _, newVal ->
-            when (newVal) {
-                in GAME_CLASSIC_MIN_PLAYERS..GAME_CLASSIC_MID_PLAYERS -> binding.tvRoles.setText(R.string.mode_classic_players_lower)
-                in GAME_CLASSIC_MID_PLAYERS + 1..GAME_CLASSIC_MAX_PLAYERS -> binding.tvRoles.setText(
-                    R.string.mode_classic_players_higher
-                )
-                //TODO: make this clickable to report feedback
-                else -> binding.tvRoles.setText(R.string.players_count_error)
-            }
+            updateRolesDivision(mode,newVal)
         }
 
         // observe if a new game is created and move to the next settings page
@@ -91,6 +86,23 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         binding.fabChoosePlayers.setOnClickListener {
             //TODO: check if there's a better way to do this without using two presenter methods (createNewGame, onNewGame)
             presenter.createNewGame(args.gameMode, args.gameType)
+        }
+    }
+
+    private fun updateRolesDivision(mode: ModeDataClass, newVal: Int){
+        mode.rolesDivision.forEach{
+            if ((newVal >= it.minPlayers) && (newVal <= it.maxPlayers)){
+                val builder = StringBuilder()
+                var lastLine = ""
+                it.roles.forEach { rolediv ->
+                    if (rolediv.default)
+                        lastLine = getString(R.string.remaining_players, rolediv.role)
+                    else
+                        builder.append(rolediv.quantity).append(" ").append(rolediv.role).append("\n")
+                }
+                builder.append(lastLine)
+                binding.tvRoles.text = builder.toString()
+            }
         }
     }
 
