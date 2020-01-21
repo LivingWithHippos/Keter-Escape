@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.util.Log
 import com.onewisebit.scpescape.game.GameStateContract
 import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.RolesDetail
 import com.onewisebit.scpescape.model.entities.*
 import io.reactivex.Flowable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.BiFunction
-import io.reactivex.schedulers.Schedulers
 
 @SuppressLint("CheckResult")
 class GameStatePresenterImpl(
@@ -45,24 +43,15 @@ class GameStatePresenterImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun assignRoles() {
-        val participants: Single<List<Participant>> = model.getParticipants(gameId)
-        val mode: Single<Mode> = model.getMode(gameId)
+    override suspend fun assignRoles() {
+        val participants: List<Participant> = model.getParticipants(gameId)
+        var roles: List<RolesDetail> =
+            model.getMode(gameId).rolesDivision.filter { participants.size >= it.minPlayers && participants.size <= it.maxPlayers }[0].roles
+        val defaultRole = roles.filter { it.default }[0]
+        participants.forEach {
 
-        Single.zip<List<Participant>, Mode, Pair<List<Participant>, Mode>>(
-            participants,
-            mode,
-            BiFunction { part, mod ->
-                Pair(part, mod)
-            })
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-
-                },
-                { Log.d(TAG, "Error while loading players for game $gameId ") }
-            )
+        }
+        Log.d(TAG, "Error while loading players for game $gameId ")
     }
 
     companion object {

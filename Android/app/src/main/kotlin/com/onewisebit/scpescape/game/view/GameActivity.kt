@@ -7,13 +7,15 @@ import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
 import com.onewisebit.scpescape.game.GameStateContract
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
 
     private lateinit var binding: ActivityGameBinding
     private val navController by lazy { findNavController(R.id.nav_host) }
     private val args: GameActivityArgs by navArgs()
-    //private val presenter: GameStateContract.GameStatePresenter by inject { parametersOf(this,args.gameID) }
+    private val presenter: GameStateContract.GameStatePresenter by inject { parametersOf(this,args.gameID) }
 
     //private val machine: GameMachine = GameMachine(presenter)
 
