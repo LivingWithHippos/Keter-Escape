@@ -40,10 +40,14 @@ val appModule = module {
     single { get<SCPDatabase>().gameDAO() }
     single { get<SCPDatabase>().modeDAO() }
     single { get<SCPDatabase>().participantDAO() }
+    single { get<SCPDatabase>().roundDAO() }
+    single { get<SCPDatabase>().turnDAO() }
 
-    single { GameRepository(get()) }
-    single { PlayerRepository(get()) }
-    single { ParticipantRepository(get()) }
+    single<InGameRepository> { GameRepository(get()) }
+    single<InPlayerRepository> { PlayerRepository(get()) }
+    single<InParticipantRepository> { ParticipantRepository(get()) }
+    single<InRoundRepository> { RoundRepository(get()) }
+    single<InTurnRepository> { TurnRepository(get()) }
     single { ModeRepository(get()) }
     // TODO: replace other single with single<interface> {implementation}
     single<InModelNewRepository> { ModeNewRepository(get()) }
