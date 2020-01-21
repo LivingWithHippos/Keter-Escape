@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.fsm
 
+import com.onewisebit.scpescape.game.GameStateContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Round

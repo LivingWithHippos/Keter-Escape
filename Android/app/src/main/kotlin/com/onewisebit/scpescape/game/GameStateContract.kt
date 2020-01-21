@@ -1,5 +1,6 @@
-package com.onewisebit.scpescape.fsm
+package com.onewisebit.scpescape.game
 
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.*
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -14,7 +15,7 @@ interface GameStateContract {
         fun getPlayers(): Single<List<Player>>
         fun getRounds(): Flowable<List<Round>>
         fun getTurns(): Flowable<List<Turn>>
-        fun getMode(): Single<Mode>
+        suspend fun getMode(): ModeDataClass
         fun assignRoles()
     }
 
@@ -25,7 +26,7 @@ interface GameStateContract {
         fun getPlayers(gameID: Long): Single<List<Player>>
         fun getRounds(gameID: Long): Flowable<List<Round>>
         fun getTurns(gameID: Long): Flowable<List<Turn>>
-        fun getMode(gameID: Long): Single<Mode>
+        suspend fun getMode(): ModeDataClass
         fun assignRoles(gameID: Long)
 
     }

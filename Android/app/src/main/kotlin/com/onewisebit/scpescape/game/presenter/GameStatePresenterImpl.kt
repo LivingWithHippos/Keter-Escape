@@ -1,7 +1,9 @@
-package com.onewisebit.scpescape.fsm
+package com.onewisebit.scpescape.game.presenter
 
 import android.annotation.SuppressLint
 import android.util.Log
+import com.onewisebit.scpescape.game.GameStateContract
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.*
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -39,7 +41,7 @@ class GameStatePresenterImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getMode(): Single<Mode> {
+    override suspend fun getMode(): ModeDataClass {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

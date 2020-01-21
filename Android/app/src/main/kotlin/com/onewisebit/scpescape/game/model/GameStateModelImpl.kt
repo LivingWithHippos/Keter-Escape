@@ -1,5 +1,6 @@
-package com.onewisebit.scpescape.fsm
+package com.onewisebit.scpescape.game.model
 
+import com.onewisebit.scpescape.game.GameStateContract
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.repositories.*
 import io.reactivex.Flowable
