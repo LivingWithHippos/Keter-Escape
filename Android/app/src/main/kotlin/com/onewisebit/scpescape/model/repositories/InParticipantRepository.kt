@@ -11,7 +11,7 @@ interface InParticipantRepository {
     fun getParticipant(gameID: Long, playerID: Long): Participant
     fun getGameParticipants(gameID: Long): Flowable<List<Participant>>
     fun getGameParticipantsSingle(gameID: Long): Single<List<Participant>>
-    fun getGameParticipantsBlocking(gameID: Long): List<Participant>
+    suspend fun getGameParticipantsBlocking(gameID: Long): List<Participant>
     fun getGamePlayers(gameID: Long): Single<List<Player>>
     fun getGameParticipantsID(gameID: Long): Flowable<List<Long>>
     fun getParticipantState(gameID: Long, playerID: Long): Int

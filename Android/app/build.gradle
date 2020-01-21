@@ -83,6 +83,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
     implementation "androidx.room:room-rxjava2:$rootProject.roomVersion"
+    implementation "androidx.room:room-coroutines:$rootProject.roomCoroutineVersion"
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxkotlinVersion"
