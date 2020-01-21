@@ -10,11 +10,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
 import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -30,6 +35,9 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
     private lateinit var binding: FragmentIntroBinding
     private val args by navArgs<IntroFragmentArgs>()
 
+    private val job = Job()
+    val uiScope = CoroutineScope(Dispatchers.Main + job)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,20 +49,23 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.setup(args.gameID)
+        uiScope.launch {
+            val game: Game = presenter.getGame(args.gameID)
+            val mode: ModeDataClass? = presenter.getMode(args.gameID)
+
+            if (mode != null) {
+                binding.tvDescription.text = mode.description
+                binding.tvRules.text = mode.rules
+            }
+            else
+                Log.d(TAG, "Mode retrieval error")
+        }
+
     }
 
-    @SuppressLint("CheckResult")
-    override fun setupGame(game: Single<Game>, mode: Single<Mode>) {
-        mode.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    binding.tvDescription.text = it.description
-                    binding.tvRules.text = it.rules
-                },
-                { Log.d(TAG, "Mode retrieval error") }
-            )
+    override fun onDestroy() {
+        job.cancel()
+        super.onDestroy()
     }
 
     companion object {

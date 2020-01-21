@@ -69,6 +69,7 @@ val appModule = module {
     }
     factory<IntroContract.IntroModel> {
         IntroModelImpl(
+            get(),
             get()
         )
     }
