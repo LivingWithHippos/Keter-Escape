@@ -24,7 +24,8 @@ class NewGameFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding: FragmentNewGameBinding
+    private var _binding: FragmentNewGameBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,7 @@ class NewGameFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNewGameBinding.inflate(layoutInflater)
+        _binding = FragmentNewGameBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -51,6 +52,11 @@ class NewGameFragment : Fragment() {
             val action = NewGameFragmentDirections.actionNewGameToGameMode(gameType)
             view.findNavController().navigate(action)
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     companion object {

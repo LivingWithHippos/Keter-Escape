@@ -12,13 +12,15 @@ import org.koin.core.parameter.parametersOf
 class MainActivity : BaseSCPActivity(), StartView,
     CreatePlayerDialogFragment.NewPlayerDialogListener {
 
-    private lateinit var binding: ActivityMainBinding
     private val presenter: StartContract.StartPresenter by inject { parametersOf(this) }
+
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //TODO: ping the db so it'll get created here if it's not present
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
@@ -29,6 +31,11 @@ class MainActivity : BaseSCPActivity(), StartView,
     override fun onResume() {
         super.onResume()
         presenter.setView(this)
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 
     override fun onPositiveDialogClick(playerName: String) {

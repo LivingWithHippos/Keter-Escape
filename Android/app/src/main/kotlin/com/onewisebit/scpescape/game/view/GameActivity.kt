@@ -16,10 +16,12 @@ import org.koin.core.parameter.parametersOf
 
 class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
 
-    private lateinit var binding: ActivityGameBinding
     private val navController by lazy { findNavController(R.id.nav_host) }
     private val args: GameActivityArgs by navArgs()
     private val presenter: GameStateContract.GameStatePresenter by inject { parametersOf(this,args.gameID) }
+
+    private var _binding: ActivityGameBinding? = null
+    private val binding get() = _binding!!
 
     private val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
@@ -29,7 +31,7 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityGameBinding.inflate(layoutInflater)
+        _binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // setting this here since it's the starting activity of a new graph
         // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
@@ -43,6 +45,9 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
     override fun onDestroy() {
         job.cancel()
         presenter.onDestroy()
+        _binding = null
         super.onDestroy()
     }
+
+
 }

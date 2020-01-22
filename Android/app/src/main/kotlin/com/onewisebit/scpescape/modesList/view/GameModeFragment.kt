@@ -25,7 +25,8 @@ class GameModeFragment : Fragment(), GameModesContract.GameModesView {
 
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var adapter: ModesAdapter
-    private lateinit var binding: FragmentGameModeBinding
+    private var _binding: FragmentGameModeBinding? = null
+    private val binding get() = _binding!!
     private val args: GameModeFragmentArgs by navArgs()
 
     private val presenter: GameModesContract.GameModesPresenter by inject { parametersOf(this) }
@@ -35,7 +36,7 @@ class GameModeFragment : Fragment(), GameModesContract.GameModesView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentGameModeBinding.inflate(layoutInflater)
+        _binding = FragmentGameModeBinding.inflate(layoutInflater)
         layoutManager = LinearLayoutManager(this.context)
         binding.rvModes.layoutManager = layoutManager
         return binding.root
@@ -62,6 +63,11 @@ class GameModeFragment : Fragment(), GameModesContract.GameModesView {
 
     override fun setList(modes: List<ModeDataClass>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     override fun onDestroy() {

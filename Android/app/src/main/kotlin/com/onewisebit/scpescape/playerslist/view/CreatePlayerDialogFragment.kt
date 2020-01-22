@@ -10,7 +10,8 @@ import com.onewisebit.scpescape.databinding.DialogCreatePlayerBinding
 
 class CreatePlayerDialogFragment : DialogFragment() {
 
-    private lateinit var binding: DialogCreatePlayerBinding
+    private var _binding: DialogCreatePlayerBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var listener: NewPlayerDialogListener
 
@@ -19,7 +20,7 @@ class CreatePlayerDialogFragment : DialogFragment() {
             val builder = AlertDialog.Builder(it)
 
             val inflater = requireActivity().layoutInflater
-            binding = DialogCreatePlayerBinding.inflate(inflater)
+            _binding = DialogCreatePlayerBinding.inflate(inflater)
 
             builder.setView(binding.root)
                 .setTitle(R.string.new_player)
@@ -47,6 +48,11 @@ class CreatePlayerDialogFragment : DialogFragment() {
                         " must implement NewPlayerDialogListener")
             )
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     interface NewPlayerDialogListener {

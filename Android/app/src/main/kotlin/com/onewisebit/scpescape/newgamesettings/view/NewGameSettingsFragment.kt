@@ -28,7 +28,8 @@ import java.lang.StringBuilder
 
 class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsView {
 
-    private lateinit var binding: FragmentNewGameSettingsBinding
+    private var _binding: FragmentNewGameSettingsBinding? = null
+    private val binding get() = _binding!!
     private val presenter: GameSettingsContract.GameSettingsPresenter by inject { parametersOf(this) }
     private val args: NewGameSettingsFragmentArgs by navArgs()
 
@@ -41,7 +42,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNewGameSettingsBinding.inflate(layoutInflater)
+        _binding = FragmentNewGameSettingsBinding.inflate(layoutInflater)
 
         return binding.root
     }
@@ -110,6 +111,11 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
     override fun onDestroy() {
         job.cancel()
         super.onDestroy()
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     companion object {

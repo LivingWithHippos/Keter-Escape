@@ -31,7 +31,9 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
 
     private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: ParticipantsAdapter
-    private lateinit var binding: FragmentParticipantsChoiceBinding
+    private var _binding: FragmentParticipantsChoiceBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
     private val presenter: PlayersContract.PlayersPresenter by inject { parametersOf(this) }
 
@@ -42,7 +44,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
+        _binding  = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         layoutManager = GridLayoutManager(this.context, 2)
         adapter = ParticipantsAdapter(
             emptyList(),
@@ -120,6 +122,11 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
 
     private fun playerToggle(id: Long, add: Boolean) {
         presenter.addRemoveParticipant(args.gameID, id, add, args.totPlayers)
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     private fun showCreatePlayerDialog() {

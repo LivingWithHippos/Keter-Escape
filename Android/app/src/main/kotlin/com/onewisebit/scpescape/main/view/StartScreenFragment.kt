@@ -15,13 +15,14 @@ import com.onewisebit.scpescape.databinding.FragmentStartScreenBinding
  */
 class StartScreenFragment : Fragment() {
 
-    private lateinit var binding: FragmentStartScreenBinding
+    private var _binding: FragmentStartScreenBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentStartScreenBinding.inflate(layoutInflater)
+        _binding = FragmentStartScreenBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -42,6 +43,11 @@ class StartScreenFragment : Fragment() {
                 StartScreenFragmentDirections.actionStartToNewGame()
             view.findNavController().navigate(action)
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     companion object {

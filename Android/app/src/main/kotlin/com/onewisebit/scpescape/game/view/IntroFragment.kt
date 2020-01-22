@@ -32,7 +32,8 @@ import org.koin.core.parameter.parametersOf
 class IntroFragment : Fragment(), IntroContract.IntroView {
 
     private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this) }
-    private lateinit var binding: FragmentIntroBinding
+    private var _binding: FragmentIntroBinding? = null
+    private val binding get() = _binding!!
     private val args by navArgs<IntroFragmentArgs>()
 
     private val job = Job()
@@ -42,7 +43,7 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentIntroBinding.inflate(layoutInflater)
+        _binding = FragmentIntroBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -61,6 +62,11 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
                 Log.d(TAG, "Mode retrieval error")
         }
 
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     override fun onDestroy() {
