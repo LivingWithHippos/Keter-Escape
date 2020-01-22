@@ -11,12 +11,12 @@
     },
     "reveal_role": {
       "all": false,
-      "none": true,
       "role": [],
       "no_role": []
     },
     "choice_enabled": {
       "all": true,
+      "self": false,
       "role": [],
       "no_role": []
     },
