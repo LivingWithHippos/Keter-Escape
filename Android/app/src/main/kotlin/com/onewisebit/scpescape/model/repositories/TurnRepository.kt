@@ -1,6 +1,8 @@
 package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.daos.TurnDAO
+import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Turn
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -18,4 +20,6 @@ class TurnRepository(private val turnDAO: TurnDAO) : InTurnRepository {
         turnDAO.getRoundTurns(gameID, roundNumber)
 
     override fun deleteGameTurns(gameID: Long): Completable = turnDAO.deleteGameTurns(gameID)
+
+    override suspend fun getCurrentParticipant(gameID: Long): Participant = turnDAO.getCurrentParticipant(gameID)
 }

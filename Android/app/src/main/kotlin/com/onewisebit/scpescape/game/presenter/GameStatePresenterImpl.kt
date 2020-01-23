@@ -33,9 +33,7 @@ class GameStatePresenterImpl(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getParticipants(): Single<List<Participant>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override suspend fun getParticipants(): List<Participant> = model.getParticipants(gameId)
 
     override fun getPlayers(): Single<List<Player>> = model.getPlayers(gameId)
 
@@ -84,6 +82,8 @@ class GameStatePresenterImpl(
     override fun onDestroy() {
         job.cancel()
     }
+
+    override suspend fun getCurrentParticipant(): Participant = model.getCurrentParticipant(gameId)
 
     companion object {
         private val TAG = GameStatePresenterImpl::class.java.simpleName

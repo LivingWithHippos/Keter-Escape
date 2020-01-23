@@ -50,4 +50,6 @@ class GameStateModelImpl(
     override suspend fun assignRole(gameID: Long, playerID: Long, roleName: String) {
         participantRepo.setGameParticipantRole(gameID, playerID, roleName)
     }
+
+    override suspend fun getCurrentParticipant(gameID: Long): Participant = turnRepo.getCurrentParticipant(gameID)
 }

@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Turn
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -60,5 +62,9 @@ interface TurnDAO {
      */
     @Query("DELETE FROM turns WHERE turns.game = :gameID")
     fun deleteGameTurns(gameID: Long): Completable
+
+    @Query("SELECT participants.* FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.turn_number = (SELECT max(turn_number) FROM turns WHERE turns.game = :gameID )")
+    suspend fun getCurrentParticipant(gameID: Long): Participant
+
 }
 

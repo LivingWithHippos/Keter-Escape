@@ -11,13 +11,14 @@ interface GameStateContract {
 
     interface GameStatePresenter {
         fun getGame(): Game
-        fun getParticipants(): Single<List<Participant>>
+        suspend fun getParticipants(): List<Participant>
         fun getPlayers(): Single<List<Player>>
         fun getRounds(): Flowable<List<Round>>
         fun getTurns(): Flowable<List<Turn>>
         suspend fun getMode(): ModeDataClass
         suspend fun assignRoles()
         fun onDestroy()
+        suspend fun getCurrentParticipant(): Participant
     }
 
     interface GameStateModel {
@@ -29,6 +30,7 @@ interface GameStateContract {
         fun getTurns(gameID: Long): Flowable<List<Turn>>
         suspend fun getMode(gameID: Long): ModeDataClass?
         suspend fun assignRole(gameID: Long, playerID: Long, roleName : String)
+        suspend fun getCurrentParticipant(gameID: Long): Participant
 
     }
 }

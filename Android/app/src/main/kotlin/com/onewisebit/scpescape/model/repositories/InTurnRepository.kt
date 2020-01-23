@@ -1,5 +1,7 @@
 package com.onewisebit.scpescape.model.repositories
 
+import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Turn
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -15,4 +17,6 @@ interface InTurnRepository {
     fun getRoundTurns(gameID: Long, roundNumber: Int): Flowable<List<Turn>>
 
     fun deleteGameTurns(gameID: Long): Completable
+
+    suspend fun getCurrentParticipant(gameID: Long): Participant
 }
