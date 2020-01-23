@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.model.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 
 @Entity(
     tableName = "turns",
@@ -17,7 +18,8 @@ import androidx.room.ForeignKey
         parentColumns = ["player_ID"],
         childColumns = ["player"],
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    indices = [Index(value = ["turn_number", "round", "game","player"], unique = true)]
 )
 data class Turn(
     @ColumnInfo(name = "round")
