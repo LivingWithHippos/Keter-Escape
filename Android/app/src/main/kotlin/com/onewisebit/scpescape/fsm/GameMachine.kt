@@ -7,21 +7,35 @@ import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.entities.Turn
 import io.reactivex.Flowable
 import io.reactivex.Single
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class GameMachine(gameStatePresenter: GameStateContract.GameStatePresenter) {
     val presenter: GameStateContract.GameStatePresenter = gameStatePresenter
 
-    val participants: Single<List<Participant>>
-    val players: Single<List<Player>>
-    val rounds: Flowable<List<Round>>
-    val turns: Flowable<List<Turn>>
+    lateinit var participants: List<Participant>
+    lateinit var  players: Single<List<Player>>
+    lateinit var  rounds: Flowable<List<Round>>
+    lateinit var  turns: Flowable<List<Turn>>
+    lateinit var  currentParticipant: Participant
+
+    private val job = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     init {
-        participants = presenter.getParticipants()
-        players = presenter.getPlayers()
-        rounds = presenter.getRounds()
-        turns = presenter.getTurns()
+        uiScope.launch {
+            participants = presenter.getParticipants()
+            players = presenter.getPlayers()
+            rounds = presenter.getRounds()
+            turns = presenter.getTurns()
+            currentParticipant = presenter.getCurrentParticipant()
+        }
     }
 
 
+    fun onDestroy(){
+        job.cancel()
+    }
 }
