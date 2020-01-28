@@ -24,5 +24,7 @@ data class Round(
     @ColumnInfo(name = "number")
     val num: Int,
     @ColumnInfo(name = "game")
-    val gameID: Long
+    val gameID: Long,
+    @ColumnInfo(name = "type")
+    val type: String
 )
