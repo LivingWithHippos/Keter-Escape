@@ -7,4 +7,7 @@ sealed class Action {
     class StartNightClicked : Action()
     class VoteCasted : Action()
     class ResultSeenClicked : Action()
+    class EndRoundClicked : Action()
+    class StartVotePowerClicked : Action()
+    class StartRoundClicked : Action()
 }
