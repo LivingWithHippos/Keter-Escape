@@ -41,6 +41,7 @@ data class VoteShow(
 data class VoteRevealRole(
     @SerializedName("all")
     override val all: Boolean?,
+    //todo: check default values do not work with Gson and are set to null
     @SerializedName("self")
     override val self: Boolean = true,
     @SerializedName("role")
