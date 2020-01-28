@@ -11,15 +11,11 @@ class VoteState : GameState {
             val candidatesList: HashSet<Long> = HashSet()
             val showList: HashSet<Long> = HashSet()
             val choiceList: HashSet<Long> = HashSet()
-            //TODO: check what to do if null
-            val showParameters = rules.show
-            candidatesList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, showParameters as PlayersFilter))
 
-            val revealParameters = rules.revealRole
-            showList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, revealParameters as PlayersFilter))
-
-            val choiceParameters = rules.choiceEnabled
-            choiceList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, choiceParameters as PlayersFilter))
+            //TODO: check what to do if rules.* is null
+            candidatesList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, rules.show as PlayersFilter))
+            showList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, rules.revealRole as PlayersFilter))
+            choiceList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, rules.choiceEnabled as PlayersFilter))
         }
         else {
             //TODO: add exception for unrecognized rules, add check for extends = vote
