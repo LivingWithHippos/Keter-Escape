@@ -1,6 +1,7 @@
-package com.onewisebit.scpescape.fsm
+package com.onewisebit.scpescape.fsm.states
 
-import android.annotation.SuppressLint
+import com.onewisebit.scpescape.fsm.*
+import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.model.entities.Participant
 
 class VoteState : GameState {
