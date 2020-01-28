@@ -24,7 +24,7 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
     private val binding get() = _binding!!
 
     private val job = Job()
-    val uiScope = CoroutineScope(Dispatchers.Main + job)
+    private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     //private val machine: GameMachine = GameMachine(presenter)
 
