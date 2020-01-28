@@ -1,8 +1,6 @@
 package com.onewisebit.scpescape.model.repositories
 
-import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
-import com.onewisebit.scpescape.model.entities.Mode
 import io.reactivex.Completable
 import io.reactivex.Single
 

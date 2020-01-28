@@ -3,10 +3,10 @@ package com.onewisebit.scpescape.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.onewisebit.scpescape.game.GameStateContract
-import com.onewisebit.scpescape.game.model.GameStateModelImpl
-import com.onewisebit.scpescape.game.presenter.GameStatePresenterImpl
 import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.game.model.GameStateModelImpl
 import com.onewisebit.scpescape.game.model.IntroModelImpl
+import com.onewisebit.scpescape.game.presenter.GameStatePresenterImpl
 import com.onewisebit.scpescape.game.presenter.IntroPresenterImpl
 import com.onewisebit.scpescape.main.StartContract
 import com.onewisebit.scpescape.main.model.StartActivityModel

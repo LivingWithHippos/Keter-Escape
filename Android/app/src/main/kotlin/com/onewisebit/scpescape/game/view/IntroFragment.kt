@@ -1,6 +1,5 @@
 package com.onewisebit.scpescape.game.view
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.ModeDataClass
-import com.onewisebit.scpescape.model.entities.Game
-import com.onewisebit.scpescape.model.entities.Mode
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

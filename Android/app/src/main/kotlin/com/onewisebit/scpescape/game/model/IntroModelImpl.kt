@@ -3,8 +3,8 @@ package com.onewisebit.scpescape.game.model
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
-import com.onewisebit.scpescape.model.repositories.*
-import io.reactivex.Single
+import com.onewisebit.scpescape.model.repositories.InGameRepository
+import com.onewisebit.scpescape.model.repositories.InModelNewRepository
 
 class IntroModelImpl(gameRepository: InGameRepository, modeRepository: InModelNewRepository) : IntroContract.IntroModel {
 

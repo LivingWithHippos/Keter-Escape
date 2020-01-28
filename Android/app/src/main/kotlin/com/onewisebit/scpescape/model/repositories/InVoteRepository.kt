@@ -1,8 +1,6 @@
 package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.entities.Vote
-import io.reactivex.Completable
-import io.reactivex.Flowable
 
 interface InVoteRepository {
 

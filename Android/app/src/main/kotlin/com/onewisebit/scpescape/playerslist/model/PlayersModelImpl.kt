@@ -2,7 +2,9 @@ package com.onewisebit.scpescape.playerslist.model
 
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
-import com.onewisebit.scpescape.model.repositories.*
+import com.onewisebit.scpescape.model.repositories.InGameRepository
+import com.onewisebit.scpescape.model.repositories.InParticipantRepository
+import com.onewisebit.scpescape.model.repositories.InPlayerRepository
 import com.onewisebit.scpescape.playerslist.PlayersContract
 import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 import io.reactivex.Completable

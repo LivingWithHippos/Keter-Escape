@@ -2,7 +2,7 @@ package com.onewisebit.scpescape.fsm.states
 
 import com.onewisebit.scpescape.fsm.actions.Action
 
-class ShowResultsState: StateGame {
+class ShowResultsState : StateGame {
     override suspend fun consumeAction(action: Action): StateGame {
         return when (action) {
             is Action.StartRoundClicked -> DayNightState()

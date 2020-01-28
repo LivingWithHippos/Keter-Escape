@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import com.onewisebit.scpescape.main.StartContract
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.repositories.InPlayerRepository
-import com.onewisebit.scpescape.model.repositories.PlayerRepository
 import com.onewisebit.scpescape.utilities.CURRENT_THEME
 import com.onewisebit.scpescape.utilities.DEFAULT_THEME
 

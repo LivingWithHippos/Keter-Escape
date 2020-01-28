@@ -14,9 +14,6 @@ import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentNewGameSettingsBinding
 import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
-import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MAX_PLAYERS
-import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MID_PLAYERS
-import com.onewisebit.scpescape.utilities.GAME_CLASSIC_MIN_PLAYERS
 import kotlinx.android.synthetic.main.fragment_new_game_settings.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +21,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import java.lang.StringBuilder
 
 class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsView {
 

@@ -3,8 +3,6 @@ package com.onewisebit.scpescape.game.presenter
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class IntroPresenterImpl(
     iView: IntroContract.IntroView,

@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.onewisebit.scpescape.model.entities.Participant
-import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Turn
 import io.reactivex.Completable
 import io.reactivex.Flowable

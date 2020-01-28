@@ -1,10 +1,8 @@
 package com.onewisebit.scpescape.model.repositories
 
 import android.util.Log
-import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.daos.GameDAO
 import com.onewisebit.scpescape.model.entities.Game
-import com.onewisebit.scpescape.model.entities.Mode
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
