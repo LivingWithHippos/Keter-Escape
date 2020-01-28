@@ -1,4 +1,4 @@
-package com.onewisebit.scpescape.fsm
+package com.onewisebit.scpescape.fsm.actions
 
 sealed class Action {
     class EndTurnClicked : Action()
