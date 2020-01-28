@@ -76,7 +76,7 @@ class GameStatePresenterImpl(
 
         }
         else
-            Log.d(TAG, "Error while loading players for game $gameId")
+            throw IllegalArgumentException("Error while loading mode for game $gameId")
     }
 
     override fun onDestroy() {

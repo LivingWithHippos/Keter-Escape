@@ -18,7 +18,7 @@ class VoteState : GameState {
             choiceList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, rules.choiceEnabled as PlayersFilter))
         }
         else {
-            throw IllegalArgumentException("A vote state was requested but the input wasn't from a Vote Json")
+            throw IllegalArgumentException("A vote state was requested but the Input wasn't from a Vote Json")
         }
     }
 
