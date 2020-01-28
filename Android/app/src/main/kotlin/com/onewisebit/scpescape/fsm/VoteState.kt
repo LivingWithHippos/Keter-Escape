@@ -12,15 +12,15 @@ class VoteState : GameState {
             val candidatesList: HashSet<Long> = HashSet()
             val showList: HashSet<Long> = HashSet()
             val choiceList: HashSet<Long> = HashSet()
+            //TODO: check what to do if null
+            val showParameters = rules.show
+            candidatesList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, showParameters as PlayersFilter))
 
-            val showParameters = rules["show"]
-            candidatesList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, showParameters))
+            val revealParameters = rules.revealRole
+            showList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, revealParameters as PlayersFilter))
 
-            val revealParameters = rules["reveal_role"]
-            showList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, revealParameters))
-
-            val choiceParameters = rules["choice_enabled"]
-            choiceList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, choiceParameters))
+            val choiceParameters = rules.choiceEnabled
+            choiceList.addAll(filterPlayers(participants, gameMachine.currentParticipant.playerID, choiceParameters as PlayersFilter))
         }
         else {
             //TODO: add exception for unrecognized rules, add check for extends = vote
@@ -28,21 +28,21 @@ class VoteState : GameState {
 
     }
 
-    private fun filterPlayers(players : List<Participant>, currentParticipantId: Long, rules : Parameter?): HashSet<Long>{
+    private fun filterPlayers(players : List<Participant>, currentParticipantId: Long, rules : PlayersFilter): HashSet<Long>{
         val result: HashSet<Long> = HashSet()
-        if (rules?.parameters?.firstOrNull { it.name == "all" }?.getSingleBoolean() == true)
+        if (rules.all == true)
             result.addAll(players.map { it.playerID })
-        if (rules?.parameters?.firstOrNull { it.name == "self" }?.getSingleBoolean() == true)
+        if (rules.self == true)
             result.add(currentParticipantId)
         else
             result.remove(currentParticipantId)
-        if (!rules?.parameters?.firstOrNull { it.name == "role" }?.getStringList().isNullOrEmpty())
+        if (!rules.role.isNullOrEmpty())
             result.addAll(players.filter {
-                rules?.parameters?.firstOrNull { role -> role.name == "role" }?.getStringList()?.contains(it.roleName) == true
+                rules.role!!.contains(it.roleName)
             }.map { it.playerID })
-        if (!rules?.parameters?.firstOrNull { it.name == "no_role" }?.getStringList().isNullOrEmpty())
+        if (!rules.noRole.isNullOrEmpty())
             result.removeAll(players.filter {
-                rules?.parameters?.firstOrNull { role -> role.name == "no_role" }?.getStringList()?.contains(it.roleName) == true
+                rules.noRole!!.contains(it.roleName)
             }.map { it.playerID })
         return result
     }

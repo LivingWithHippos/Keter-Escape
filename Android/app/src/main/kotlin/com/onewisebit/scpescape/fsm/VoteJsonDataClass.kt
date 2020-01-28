@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.fsm
 import com.google.gson.annotations.SerializedName
 
-
+// TODO: add default values to remove nullability
 data class VoteJsonDataClass(
     @SerializedName("extends")
     override val extends: String,
@@ -29,34 +29,36 @@ data class VoteJsonDataClass(
 
 data class VoteShow(
     @SerializedName("all")
-    val all: Boolean?,
+    override val all: Boolean?,
     @SerializedName("self")
-    val self: Boolean?,
+    override val self: Boolean?,
     @SerializedName("role")
-    val role: List<Any?>?,
+    override val role: List<String>?,
     @SerializedName("no_role")
-    val noRole: List<Any?>?
-)
+    override val noRole: List<String>?
+): PlayersFilter
 
 data class VoteRevealRole(
     @SerializedName("all")
-    val all: Boolean?,
+    override val all: Boolean?,
+    @SerializedName("self")
+    override val self: Boolean = true,
     @SerializedName("role")
-    val role: List<Any?>?,
+    override val role: List<String>?,
     @SerializedName("no_role")
-    val noRole: List<Any?>?
-)
+    override val noRole: List<String>?
+): PlayersFilter
 
 data class VoteChoiceEnabled(
     @SerializedName("all")
-    val all: Boolean?,
+    override val all: Boolean?,
     @SerializedName("self")
-    val self: Boolean?,
+    override val self: Boolean?,
     @SerializedName("role")
-    val role: List<Any?>?,
+    override val role: List<String>?,
     @SerializedName("no_role")
-    val noRole: List<Any?>?
-)
+    override val noRole: List<String>?
+): PlayersFilter
 
 data class VoteChoiceNumber(
     @SerializedName("exactly")
