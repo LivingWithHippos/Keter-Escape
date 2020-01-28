@@ -19,6 +19,7 @@ interface GameStateContract {
         suspend fun assignRoles()
         fun onDestroy()
         suspend fun getCurrentParticipant(): Participant
+        suspend fun hasNextTurnPlayer(): Boolean
     }
 
     interface GameStateModel {
@@ -31,6 +32,7 @@ interface GameStateContract {
         suspend fun getMode(gameID: Long): ModeDataClass?
         suspend fun assignRole(gameID: Long, playerID: Long, roleName : String)
         suspend fun getCurrentParticipant(gameID: Long): Participant
+        suspend fun getMissingRoundParticipants(gameID: Long): List<Participant>
 
     }
 }

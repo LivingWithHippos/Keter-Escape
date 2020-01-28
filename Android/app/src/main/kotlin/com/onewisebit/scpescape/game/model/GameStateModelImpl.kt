@@ -52,4 +52,6 @@ class GameStateModelImpl(
     }
 
     override suspend fun getCurrentParticipant(gameID: Long): Participant = turnRepo.getCurrentParticipant(gameID)
+
+    override suspend fun getMissingRoundParticipants(gameID: Long): List<Participant> = roundRepo.getMissingParticipants(gameID)
 }

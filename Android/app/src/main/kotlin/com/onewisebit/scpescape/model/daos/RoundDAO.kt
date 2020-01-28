@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Round
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -24,6 +25,20 @@ interface RoundDAO {
      */
     @Query("SELECT * FROM rounds WHERE rounds.game = :gameID")
     fun getRounds(gameID: Long): Flowable<List<Round>>
+
+    /**
+     * Get the current (or last) round of a Game.
+     * @return the Round from the table with a specific game id.
+     */
+    @Query("SELECT * FROM rounds WHERE rounds.game = :gameID AND rounds.number = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID)")
+    suspend fun getCurrentRound(gameID: Long): Round
+
+    /**
+     * Get the list of Participants who have yet to play the current/last Round of a Game.
+     * @return the Participants from the table with a specific game id.
+     */
+    @Query("SELECT participants.* FROM participants WHERE participants.game = :gameID AND participants.state = 1 AND participants.player NOT IN (SELECT participants.player FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.round = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID))")
+    fun getMissingParticipants(gameID: Long): List<Participant>
 
     /**
      * Delete all of a game's rounds

@@ -1,6 +1,7 @@
 package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.daos.RoundDAO
+import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Round
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -12,4 +13,6 @@ class RoundRepository(private val roundDAO: RoundDAO) : InRoundRepository {
     override fun getRounds(gameID: Long): Flowable<List<Round>> = roundDAO.getRounds(gameID)
 
     override fun deleteGameRounds(gameID: Long): Completable = roundDAO.deleteGameRounds(gameID)
+
+    override fun getMissingParticipants(gameID: Long): List<Participant> = roundDAO.getMissingParticipants(gameID)
 }
