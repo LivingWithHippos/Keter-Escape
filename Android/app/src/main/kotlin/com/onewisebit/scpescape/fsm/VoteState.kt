@@ -5,7 +5,7 @@ import com.onewisebit.scpescape.model.entities.Participant
 
 class VoteState : GameState {
 
-    override suspend fun handleInput(gameMachine: GameMachine, rules: Input) {
+    override suspend fun handleInput(gameMachine: GameMachine, action: Action, rules: Input) {
         if (rules is VoteJsonDataClass){
             val participants : List<Participant> = gameMachine.participants
             val candidatesList: HashSet<Long> = HashSet()
