@@ -1,7 +1,6 @@
 package com.onewisebit.scpescape.game.presenter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.onewisebit.scpescape.game.GameStateContract
 import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.RolesDetail
@@ -50,6 +49,7 @@ class GameStatePresenterImpl(
     }
 
     override suspend fun assignRoles() {
+        //TODO: if it's a game in progress this doesn't need to be called or we can check from here directly
         val participants: List<Participant> = model.getParticipants(gameId)
         val mode: ModeDataClass? = model.getMode(gameId)
         if (mode != null) {
