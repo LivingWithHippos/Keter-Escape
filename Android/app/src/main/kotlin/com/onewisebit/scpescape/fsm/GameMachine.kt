@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+//TODO: just use presenter this clas is not really necessary
 class GameMachine(gameStatePresenter: GameStateContract.GameStatePresenter) {
     val presenter: GameStateContract.GameStatePresenter = gameStatePresenter
 
