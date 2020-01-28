@@ -3,7 +3,6 @@ package com.onewisebit.scpescape.fsm
 import android.annotation.SuppressLint
 import com.onewisebit.scpescape.model.entities.Participant
 
-@SuppressLint("CheckResult")
 class VoteState : GameState {
 
     override suspend fun handleInput(gameMachine: GameMachine, rules: Input) {
@@ -25,7 +24,6 @@ class VoteState : GameState {
         else {
             //TODO: add exception for unrecognized rules, add check for extends = vote
         }
-
     }
 
     private fun filterPlayers(players : List<Participant>, currentParticipantId: Long, rules : PlayersFilter): HashSet<Long>{
