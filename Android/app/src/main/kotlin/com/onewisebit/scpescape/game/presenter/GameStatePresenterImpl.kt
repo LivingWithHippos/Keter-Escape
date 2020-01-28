@@ -85,6 +85,10 @@ class GameStatePresenterImpl(
 
     override suspend fun getCurrentParticipant(): Participant = model.getCurrentParticipant(gameId)
 
+    override suspend fun hasNextTurnPlayer(): Boolean {
+        return model.getMissingRoundParticipants(gameId).isNotEmpty()
+    }
+
     companion object {
         private val TAG = GameStatePresenterImpl::class.java.simpleName
     }
