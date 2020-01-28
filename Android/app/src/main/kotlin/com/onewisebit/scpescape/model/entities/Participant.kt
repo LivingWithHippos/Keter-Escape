@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.model.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 
 @Entity(
     tableName = "participants",
@@ -33,5 +34,5 @@ data class Participant(
     @ColumnInfo(name = "role", index = true)
     val roleName: String?,
     @ColumnInfo(name = "state")
-    val stateValue: Int?
+    val stateValue: Int = PARTICIPANT_STATE_ALIVE
 )

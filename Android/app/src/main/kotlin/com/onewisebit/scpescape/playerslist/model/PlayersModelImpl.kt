@@ -4,6 +4,7 @@ import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.repositories.*
 import com.onewisebit.scpescape.playerslist.PlayersContract
+import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -40,7 +41,7 @@ class PlayersModelImpl(
 
     override fun addGameParticipant(gameID: Long, playerID: Long): Completable {
         return participantRepo.insertParticipant(
-            Participant(gameID, playerID, null, null)
+            Participant(gameID, playerID, null, PARTICIPANT_STATE_ALIVE)
         )
     }
 

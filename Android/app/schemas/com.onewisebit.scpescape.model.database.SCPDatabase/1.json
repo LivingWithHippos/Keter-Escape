@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1b55e146cdd6eda63959f7a99e7ccc7f",
+    "identityHash": "8a2cd10859affbc58d4e4775a2a54932",
     "entities": [
       {
         "tableName": "players",
@@ -168,7 +168,7 @@
       },
       {
         "tableName": "participants",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `player` INTEGER NOT NULL, `role` TEXT, `state` INTEGER, PRIMARY KEY(`game`, `player`), FOREIGN KEY(`game`) REFERENCES `games`(`game_ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`role`) REFERENCES `roles`(`role_name`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `player` INTEGER NOT NULL, `role` TEXT, `state` INTEGER NOT NULL, PRIMARY KEY(`game`, `player`), FOREIGN KEY(`game`) REFERENCES `games`(`game_ID`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`role`) REFERENCES `roles`(`role_name`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "gameID",
@@ -192,7 +192,7 @@
             "fieldPath": "stateValue",
             "columnName": "state",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -488,7 +488,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1b55e146cdd6eda63959f7a99e7ccc7f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8a2cd10859affbc58d4e4775a2a54932')"
     ]
   }
 }
