@@ -47,8 +47,7 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
         _binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, IntroFragment::class.java.name)
-        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, fragment).commitNow()
+        setupIntroFragment()
 
         //TODO: remove navigation here and manage Fragments with a FragmentManager and the FSM to allow more flexibility
 
@@ -68,12 +67,23 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
         }
 
         when (newState) {
-            is DayNightState -> Log.d(TAG,"Preparing day or night GameState")
+            is DayNightState -> setupDayNightFragment(newState.dayOrNight)
         }
 
     }
+
     private fun actionReceived(action: Action){
         currentState = currentState.consumeAction(action)
+    }
+
+    private fun setupIntroFragment(){
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, IntroFragment::class.java.name)
+        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, fragment).commitNow()
+    }
+
+    private fun setupDayNightFragment(dayOrNight: Int){
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, DayNightFragment::class.java.name)
+        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, fragment).commitNow()
     }
 
     override fun onDestroy() {
