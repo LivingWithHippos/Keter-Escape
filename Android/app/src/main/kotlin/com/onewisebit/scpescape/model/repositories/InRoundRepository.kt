@@ -9,7 +9,7 @@ interface InRoundRepository {
 
     fun insertRound(round: Round): Completable
 
-    fun getRounds(gameID: Long): Flowable<List<Round>>
+    suspend fun getRounds(gameID: Long): List<Round>
 
     fun deleteGameRounds(gameID: Long): Completable
 

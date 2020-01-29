@@ -10,7 +10,7 @@ class RoundRepository(private val roundDAO: RoundDAO) : InRoundRepository {
 
     override fun insertRound(round: Round): Completable = roundDAO.insertRound(round)
 
-    override fun getRounds(gameID: Long): Flowable<List<Round>> = roundDAO.getRounds(gameID)
+    override suspend fun getRounds(gameID: Long): List<Round> = roundDAO.getRounds(gameID)
 
     override fun deleteGameRounds(gameID: Long): Completable = roundDAO.deleteGameRounds(gameID)
 

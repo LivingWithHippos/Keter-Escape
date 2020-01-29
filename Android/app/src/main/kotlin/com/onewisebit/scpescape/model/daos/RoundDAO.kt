@@ -24,7 +24,7 @@ interface RoundDAO {
      * @return the list of Rounds from the table with a specific game id.
      */
     @Query("SELECT * FROM rounds WHERE rounds.game = :gameID")
-    fun getRounds(gameID: Long): Flowable<List<Round>>
+    suspend fun getRounds(gameID: Long): List<Round>
 
     /**
      * Get the current (or last) round of a Game.
