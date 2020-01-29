@@ -2,12 +2,14 @@ package com.onewisebit.scpescape.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameStateContract
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.game.model.GameStateModelImpl
 import com.onewisebit.scpescape.game.model.IntroModelImpl
 import com.onewisebit.scpescape.game.presenter.GameStatePresenterImpl
 import com.onewisebit.scpescape.game.presenter.IntroPresenterImpl
+import com.onewisebit.scpescape.game.view.SCPFragmentFactory
 import com.onewisebit.scpescape.main.StartContract
 import com.onewisebit.scpescape.main.model.StartActivityModel
 import com.onewisebit.scpescape.main.presenter.StartActivityPresenterImpl
@@ -122,7 +124,6 @@ val appModule = module {
         )
     }
 
-
     factory<GameModesContract.GameModesModel> {
         GameModesModelImpl(
             get()
@@ -136,5 +137,6 @@ val appModule = module {
         )
     }
 
-
+    //TODO: check if this needs to be a factory or a single
+    factory<SCPFragmentFactory> { (state: StateGame) -> SCPFragmentFactory(state)}
 }
