@@ -20,7 +20,6 @@ import kotlin.properties.Delegates
 
 class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
 
-    private val navController by lazy { findNavController(R.id.nav_host) }
     private val args: GameActivityArgs by navArgs()
     private val presenter: GameStateContract.GameStatePresenter by inject { parametersOf(this,args.gameID) }
 
