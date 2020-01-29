@@ -30,7 +30,6 @@ data class Turn(
      */
     @ColumnInfo(name = "turn_number")
     val turnNumber: Int,
-    //TODO: decide if game can be taken from participant or round or if the entities need to be changed
     @ColumnInfo(name = "game")
     val gameID: Long,
     @ColumnInfo(name = "player", index = true)
