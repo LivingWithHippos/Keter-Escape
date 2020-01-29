@@ -54,3 +54,5 @@ These are related to the Android app.
 - [ ] Change flowable to Observable or Single where applicable
 
 - [ ] Unsubscribe/Dispose rxjava when not needed
+
+- [ ] add base interface to presenter to dispose of view when it's destroyed
