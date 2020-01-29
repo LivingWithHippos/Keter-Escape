@@ -59,7 +59,6 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
 
 
     private fun setupView(view: View, mode: ModeDataClass) {
-        //TODO: load values from mode
         binding.tvRoles.setText(R.string.mode_classic_players_lower)
         binding.npPlayerPicker.minValue = mode.min
         binding.npPlayerPicker.maxValue = mode.max
@@ -70,7 +69,7 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         }
 
         // observe if a new game is created and move to the next settings page
-        presenter.onNewGame().observe(this, Observer<Long> { gameID ->
+        presenter.onNewGame().observe(viewLifecycleOwner, Observer<Long> { gameID ->
             val action =
                 NewGameSettingsFragmentDirections.actionNewGameSettingsToParticipantsChoice(
                     binding.npPlayerPicker.value,
