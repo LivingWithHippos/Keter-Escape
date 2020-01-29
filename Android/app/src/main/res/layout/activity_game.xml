@@ -7,11 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".game.view.GameActivity">
 
-
-    <FrameLayout
-        android:id="@+id/rootLayout"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="com.onewisebit.scpescape.game.view.IntroFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

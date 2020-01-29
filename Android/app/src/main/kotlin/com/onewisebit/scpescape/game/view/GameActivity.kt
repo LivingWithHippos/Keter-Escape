@@ -2,7 +2,8 @@ package com.onewisebit.scpescape.game.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.navigation.findNavController
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.navigation.navArgs
 import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
@@ -12,10 +13,6 @@ import com.onewisebit.scpescape.fsm.states.DayNightState
 import com.onewisebit.scpescape.fsm.states.IntroState
 import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameContract
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import kotlin.properties.Delegates
@@ -71,13 +68,15 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     }
 
     private fun setupIntroFragment(){
-        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, IntroFragment::class.java.name)
-        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, fragment).commitNow()
+        supportFragmentManager.commit {
+            replace<IntroFragment>(R.id.fragment_container_view)
+        }
     }
 
     private fun setupDayNightFragment(dayOrNight: Int){
-        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, DayNightFragment::class.java.name)
-        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, fragment).commitNow()
+        supportFragmentManager.commit {
+            replace<DayNightFragment>(R.id.fragment_container_view)
+        }
     }
 
     override fun onDestroy() {
