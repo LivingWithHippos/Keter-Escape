@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.IntroContract
-import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
