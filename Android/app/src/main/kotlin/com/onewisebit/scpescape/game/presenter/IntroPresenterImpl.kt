@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.IntroContract
-import com.onewisebit.scpescape.model.ModeDataClass
-import com.onewisebit.scpescape.model.RolesDetail
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.RolesDetail
 import com.onewisebit.scpescape.model.entities.Participant
 import kotlin.random.Random
 

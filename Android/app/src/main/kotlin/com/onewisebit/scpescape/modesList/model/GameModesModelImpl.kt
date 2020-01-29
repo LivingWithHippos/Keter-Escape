@@ -1,6 +1,6 @@
 package com.onewisebit.scpescape.modesList.model
 
-import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.repositories.InModelNewRepository
 import com.onewisebit.scpescape.modesList.GameModesContract
 import com.onewisebit.scpescape.utilities.MODE_DATA_FILENAME

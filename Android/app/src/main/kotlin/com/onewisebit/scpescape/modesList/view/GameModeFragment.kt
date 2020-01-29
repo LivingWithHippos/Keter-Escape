@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.onewisebit.scpescape.databinding.FragmentGameModeBinding
-import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.modesList.GameModesContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

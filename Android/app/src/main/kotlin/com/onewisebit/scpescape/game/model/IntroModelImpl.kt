@@ -1,8 +1,6 @@
 package com.onewisebit.scpescape.game.model
 
 import com.onewisebit.scpescape.game.IntroContract
-import com.onewisebit.scpescape.model.ModeDataClass
-import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.repositories.*
 
 class IntroModelImpl(

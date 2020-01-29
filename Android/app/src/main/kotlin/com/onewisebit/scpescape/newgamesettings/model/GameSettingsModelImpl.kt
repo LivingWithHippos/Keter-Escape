@@ -1,6 +1,6 @@
 package com.onewisebit.scpescape.newgamesettings.model
 
-import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.repositories.InGameRepository
 import com.onewisebit.scpescape.model.repositories.InModelNewRepository

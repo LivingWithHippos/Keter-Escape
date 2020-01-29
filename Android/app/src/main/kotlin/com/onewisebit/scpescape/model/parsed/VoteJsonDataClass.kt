@@ -1,5 +1,7 @@
-package com.onewisebit.scpescape.fsm
+package com.onewisebit.scpescape.model.parsed
 import com.google.gson.annotations.SerializedName
+import com.onewisebit.scpescape.fsm.Input
+import com.onewisebit.scpescape.fsm.PlayersFilter
 
 // TODO: add default values to remove nullability
 data class VoteJsonDataClass(

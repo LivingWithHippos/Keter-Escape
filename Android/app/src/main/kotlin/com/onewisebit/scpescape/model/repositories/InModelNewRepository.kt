@@ -1,6 +1,6 @@
 package com.onewisebit.scpescape.model.repositories
 
-import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 
 interface InModelNewRepository {
 

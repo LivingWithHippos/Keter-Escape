@@ -1,6 +1,6 @@
 package com.onewisebit.scpescape.modesList
 
-import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 
 interface GameModesContract {
 

@@ -1,11 +1,5 @@
 package com.onewisebit.scpescape.fsm.states
 
-import com.onewisebit.scpescape.fsm.Input
-import com.onewisebit.scpescape.fsm.PlayersFilter
-import com.onewisebit.scpescape.fsm.VoteJsonDataClass
-import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.model.entities.Participant
-
 class VoteState {
 
     /*

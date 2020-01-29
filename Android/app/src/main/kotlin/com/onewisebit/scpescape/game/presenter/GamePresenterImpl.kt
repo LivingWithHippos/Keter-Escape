@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.GameContract
-import com.onewisebit.scpescape.model.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 
