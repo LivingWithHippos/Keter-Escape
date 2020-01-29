@@ -52,7 +52,7 @@ interface TurnDAO {
      * Get the last created turn for a game. Should be the only "active" one.
      * @return the latest Turn of the latest round from the table with a specific game id.
      */
-    //TODO: what if we count turns from 0 or 1 and just go on? No reset on new round.
+    //turns starts from 0 and go on, they don't restart from 0 on a new Round, only in a new Game
     @Query("SELECT * FROM turns WHERE game = :gameID AND turn_number = (SELECT MAX(turn_number) FROM turns WHERE game = :gameID)")
     fun getLastTurn(gameID: Long): Single<Turn>
 
