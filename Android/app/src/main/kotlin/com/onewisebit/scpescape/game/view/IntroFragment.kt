@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
+import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.ModeDataClass
 import kotlinx.coroutines.CoroutineScope
@@ -23,7 +24,7 @@ import org.koin.core.parameter.parametersOf
  * Use the [IntroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IntroFragment : Fragment(), IntroContract.IntroView {
+class IntroFragment(state: StateGame) : BaseGameFragment(state), IntroContract.IntroView {
 
     private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this) }
     private var _binding: FragmentIntroBinding? = null
@@ -69,16 +70,6 @@ class IntroFragment : Fragment(), IntroContract.IntroView {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment.
-         * @return A new instance of fragment IntroFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() =
-            IntroFragment()
-
         private val TAG = IntroFragment::class.java.simpleName
     }
 }
