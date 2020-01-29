@@ -10,4 +10,5 @@ sealed class Action {
     class EndRoundClicked : Action()
     class StartVotePowerClicked : Action()
     class StartRoundClicked : Action()
+    class StartGameClicked : Action()
 }
