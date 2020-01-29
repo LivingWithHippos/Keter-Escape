@@ -50,4 +50,11 @@ interface PlayerDAO {
      */
     @Query("SELECT * FROM players")
     fun getAllPlayers(): Flowable<List<Player>>
+
+    /**
+     * Get a list of players belonging to a game.
+     * @return the Players from the table who played in a game with a specific game id.
+     */
+    @Query("SELECT players.* FROM players INNER JOIN participants ON players.player_ID = participants.player WHERE participants.game = :gameID")
+    suspend fun getPlayersByGame(gameID: Long): List<Player>
 }

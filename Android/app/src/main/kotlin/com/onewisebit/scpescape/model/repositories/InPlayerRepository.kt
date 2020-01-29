@@ -17,4 +17,6 @@ interface InPlayerRepository {
     fun deleteAllPlayers()
 
     fun getPlayersByName(name: String): Flowable<List<Player>>
+
+    suspend fun getPlayersByGame(gameID: Long): List<Player>
 }
