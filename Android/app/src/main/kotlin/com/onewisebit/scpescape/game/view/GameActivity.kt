@@ -34,7 +34,7 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
         manageGameState(old, new)
     })
 
-    private val factory: SCPFragmentFactory by inject { parametersOf(currentState) }
+    private val factory: SCPFragmentFactory by inject { parametersOf(args.gameID, currentState) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //this NEEDS to be called before the super.onCreate()

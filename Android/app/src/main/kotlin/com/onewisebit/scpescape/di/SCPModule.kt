@@ -138,5 +138,5 @@ val appModule = module {
     }
 
     //TODO: check if this needs to be a factory or a single
-    factory<SCPFragmentFactory> { (state: StateGame) -> SCPFragmentFactory(state)}
+    factory<SCPFragmentFactory> { (game: Long, state: StateGame) -> SCPFragmentFactory(game, state)}
 }

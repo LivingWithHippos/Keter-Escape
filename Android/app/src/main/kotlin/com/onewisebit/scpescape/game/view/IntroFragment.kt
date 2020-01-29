@@ -24,12 +24,11 @@ import org.koin.core.parameter.parametersOf
  * Use the [IntroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IntroFragment(state: StateGame) : BaseGameFragment(state), IntroContract.IntroView {
+class IntroFragment(private val gameID: Long, state: StateGame) : BaseGameFragment(state), IntroContract.IntroView {
 
     private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this) }
     private var _binding: FragmentIntroBinding? = null
     private val binding get() = _binding!!
-    private val args by navArgs<IntroFragmentArgs>()
 
     private val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
@@ -47,7 +46,7 @@ class IntroFragment(state: StateGame) : BaseGameFragment(state), IntroContract.I
         super.onViewCreated(view, savedInstanceState)
         uiScope.launch {
             //val game: Game = presenter.getGame(args.gameID)
-            val mode: ModeDataClass? = presenter.getMode(args.gameID)
+            val mode: ModeDataClass? = presenter.getMode(gameID)
 
             if (mode != null) {
                 binding.tvDescription.text = mode.description
