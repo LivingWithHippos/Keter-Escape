@@ -10,7 +10,7 @@ class TurnRepository(private val turnDAO: TurnDAO) : InTurnRepository {
 
     override fun insertTurn(turn: Turn): Completable = turnDAO.insertTurn(turn)
 
-    override fun getGameTurns(gameID: Long): Flowable<List<Turn>> = turnDAO.getGameTurns(gameID)
+    override suspend fun getGameTurns(gameID: Long): List<Turn> = turnDAO.getGameTurns(gameID)
 
     override fun getPlayerTurns(gameID: Long, playerID: Long): Flowable<List<Turn>> =
         turnDAO.getPlayerTurns(gameID, playerID)

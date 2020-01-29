@@ -25,7 +25,7 @@ interface TurnDAO {
      * @return the list of Turns from the table with a specific game id.
      */
     @Query("SELECT * FROM turns WHERE turns.game = :gameID")
-    fun getGameTurns(gameID: Long): Flowable<List<Turn>>
+    suspend fun getGameTurns(gameID: Long): List<Turn>
 
     /**
      * Get all of the turns from a game's player.

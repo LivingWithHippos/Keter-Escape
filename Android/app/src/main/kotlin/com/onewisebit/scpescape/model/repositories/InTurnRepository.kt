@@ -9,7 +9,7 @@ interface InTurnRepository {
 
     fun insertTurn(turn: Turn): Completable
 
-    fun getGameTurns(gameID: Long): Flowable<List<Turn>>
+    suspend fun getGameTurns(gameID: Long): List<Turn>
 
     fun getPlayerTurns(gameID: Long, playerID: Long): Flowable<List<Turn>>
 
