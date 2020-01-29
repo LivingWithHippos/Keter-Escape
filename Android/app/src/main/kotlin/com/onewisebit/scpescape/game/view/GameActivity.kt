@@ -6,6 +6,9 @@ import androidx.navigation.navArgs
 import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
+import com.onewisebit.scpescape.fsm.states.DayNightState
+import com.onewisebit.scpescape.fsm.states.IntroState
+import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameStateContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +16,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import kotlin.properties.Delegates
 
 class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
 
@@ -26,20 +30,37 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
-    //private val machine: GameMachine = GameMachine(presenter)
+    var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
+        manageGameState(old, new)
+    })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //TODO: remove navigation here and manage Fragments with a FragmentManager and the FSM to allow more flexibility
+
         // setting this here since it's the starting activity of a new graph
         // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
-        navController.setGraph(R.navigation.nav_game, args.toBundle())
+        //navController.setGraph(R.navigation.nav_game, args.toBundle())
 
         uiScope.launch {
             presenter.assignRoles()
         }
+    }
+
+    private fun manageGameState(oldState: StateGame, newState: StateGame) {
+
+        /*
+        when (oldState) {
+            is IntroState ->
+        }
+
+        when (newState) {
+            is DayNightState ->
+        }
+         */
     }
 
     override fun onDestroy() {
