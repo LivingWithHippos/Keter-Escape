@@ -28,9 +28,6 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     private var _binding: ActivityGameBinding? = null
     private val binding get() = _binding!!
 
-    private val job = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + job)
-
     // not really necessary since we have the callback but nice to learn this
     private var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
         manageGameState(old, new)
@@ -55,9 +52,6 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
         //navController.setGraph(R.navigation.nav_game, args.toBundle())
 
-        uiScope.launch {
-            presenter.assignRoles()
-        }
     }
 
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
@@ -87,7 +81,6 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     }
 
     override fun onDestroy() {
-        job.cancel()
         presenter.onDestroy()
         _binding = null
         super.onDestroy()

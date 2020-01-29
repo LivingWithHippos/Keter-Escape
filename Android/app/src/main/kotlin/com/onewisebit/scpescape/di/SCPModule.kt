@@ -73,12 +73,18 @@ val appModule = module {
             get()
         )
     }
+
     factory<IntroContract.IntroModel> {
         IntroModelImpl(
+            get(),
+            get(),
+            get(),
+            get(),
             get(),
             get()
         )
     }
+
     factory<StartContract.StartPresenter> { (view: StartContract.StartView) ->
         StartActivityPresenterImpl(
             view,
@@ -98,10 +104,11 @@ val appModule = module {
         )
     }
 
-    factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView) ->
+    factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView, game: Long) ->
         IntroPresenterImpl(
             view,
-            get()
+            get(),
+            game
         )
     }
 

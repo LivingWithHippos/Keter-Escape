@@ -5,7 +5,7 @@ import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.repositories.*
 
-class GameModelImpl(
+open class GameModelImpl(
     val gameRepository: InGameRepository,
     val participantRepository: InParticipantRepository,
     val playerRepository: InPlayerRepository,
@@ -28,9 +28,6 @@ class GameModelImpl(
         val gameMode = gameRepository.getModeId(gameID)
         return modeRepository.getMode(gameMode)
     }
-
-    override suspend fun assignRole(gameID: Long, playerID: Long, roleName: String) =
-        participantRepository.setGameParticipantRole(gameID, playerID, roleName)
 
     override suspend fun getCurrentParticipant(gameID: Long): Participant = turnRepository.getCurrentParticipant(gameID)
 

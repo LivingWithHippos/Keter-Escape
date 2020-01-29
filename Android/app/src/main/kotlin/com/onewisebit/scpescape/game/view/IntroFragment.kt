@@ -22,12 +22,12 @@ import org.koin.core.parameter.parametersOf
 
 /**
  * A simple [Fragment] subclass.
- * Use the [IntroFragment.newInstance] factory method to
+ * Use the [SCPFragmentFactory] factory method to
  * create an instance of this fragment.
  */
 class IntroFragment(gameID: Long, private val onActionListener: (action:Action) -> Unit) : BaseGameFragment(gameID, onActionListener), IntroContract.IntroView {
 
-    private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this) }
+    private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this,gameID) }
     private var _binding: FragmentIntroBinding? = null
     private val binding get() = _binding!!
 
@@ -46,14 +46,16 @@ class IntroFragment(gameID: Long, private val onActionListener: (action:Action) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         uiScope.launch {
-            //val game: Game = presenter.getGame(args.gameID)
-            val mode: ModeDataClass? = presenter.getMode(gameID)
+            val mode: ModeDataClass? = presenter.getMode()
 
             if (mode != null) {
                 binding.tvDescription.text = mode.description
                 binding.tvRules.text = mode.rules
                 binding.fabPlay.setOnClickListener {
-                    onActionListener(Action.StartGameClicked())
+                    uiScope.launch {
+                        presenter.assignRoles()
+                        onActionListener(Action.StartGameClicked())
+                    }
                 }
             }
             else

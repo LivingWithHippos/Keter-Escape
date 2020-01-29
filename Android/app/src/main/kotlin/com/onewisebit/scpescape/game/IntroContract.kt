@@ -1,20 +1,14 @@
 package com.onewisebit.scpescape.game
 
-import com.onewisebit.scpescape.model.ModeDataClass
-import com.onewisebit.scpescape.model.entities.Game
-
 interface IntroContract {
 
-    interface IntroModel {
-        suspend fun getGame(id: Long): Game
-        suspend fun getMode(id: Long): ModeDataClass?
+    interface IntroModel: GameContract.GameModel{
+        suspend fun assignRole(gameID: Long, playerID: Long, roleName : String)
     }
 
-    interface IntroView {
-    }
+    interface IntroView : GameContract.GameView
 
-    interface IntroPresenter {
-        suspend fun getGame(id: Long): Game
-        suspend fun getMode(id: Long): ModeDataClass?
+    interface IntroPresenter : GameContract.GamePresenter {
+        suspend fun assignRoles()
     }
 }

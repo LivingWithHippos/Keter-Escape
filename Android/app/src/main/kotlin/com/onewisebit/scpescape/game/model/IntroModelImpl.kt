@@ -3,19 +3,18 @@ package com.onewisebit.scpescape.game.model
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
-import com.onewisebit.scpescape.model.repositories.InGameRepository
-import com.onewisebit.scpescape.model.repositories.InModelNewRepository
+import com.onewisebit.scpescape.model.repositories.*
 
-class IntroModelImpl(gameRepository: InGameRepository, modeRepository: InModelNewRepository) : IntroContract.IntroModel {
+class IntroModelImpl(
+    gameRepository: InGameRepository,
+    participantRepository: InParticipantRepository,
+    playerRepository: InPlayerRepository,
+    roundRepository: InRoundRepository,
+    turnRepository: InTurnRepository,
+    modeRepository: InModelNewRepository) :
+    GameModelImpl(gameRepository,participantRepository,playerRepository,roundRepository,turnRepository,modeRepository),
+    IntroContract.IntroModel {
 
-    private var gameRepo: InGameRepository = gameRepository
-    private var modeRepo: InModelNewRepository = modeRepository
-
-    override suspend fun getGame(id: Long): Game {
-        return gameRepo.getGameBlocking(id)
-    }
-
-    override suspend fun getMode(id: Long): ModeDataClass? {
-        return modeRepo.getMode(gameRepo.getModeId(id))
-    }
+    override suspend fun assignRole(gameID: Long, playerID: Long, roleName: String) =
+        participantRepository.setGameParticipantRole(gameID, playerID, roleName)
 }
