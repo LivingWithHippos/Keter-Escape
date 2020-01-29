@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameStateContract
 import com.onewisebit.scpescape.game.IntroContract
@@ -138,5 +139,6 @@ val appModule = module {
     }
 
     //TODO: check if this needs to be a factory or a single
-    factory<SCPFragmentFactory> { (game: Long, state: StateGame) -> SCPFragmentFactory(game, state)}
+    //factory<SCPFragmentFactory> { (game: Long, state: StateGame) -> SCPFragmentFactory(game, state)}
+    single<SCPFragmentFactory> { (game: Long,  onActionListener: (action: Action) -> Unit) -> SCPFragmentFactory(game, onActionListener)}
 }

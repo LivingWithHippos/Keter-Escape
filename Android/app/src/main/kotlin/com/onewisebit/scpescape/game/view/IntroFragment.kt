@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
+import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.model.ModeDataClass
@@ -24,7 +25,7 @@ import org.koin.core.parameter.parametersOf
  * Use the [IntroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IntroFragment(private val gameID: Long, state: StateGame) : BaseGameFragment(gameID, state), IntroContract.IntroView {
+class IntroFragment(gameID: Long, private val onActionListener: (action:Action) -> Unit) : BaseGameFragment(gameID, onActionListener), IntroContract.IntroView {
 
     private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this) }
     private var _binding: FragmentIntroBinding? = null
@@ -51,6 +52,9 @@ class IntroFragment(private val gameID: Long, state: StateGame) : BaseGameFragme
             if (mode != null) {
                 binding.tvDescription.text = mode.description
                 binding.tvRules.text = mode.rules
+                binding.fabPlay.setOnClickListener {
+                    onActionListener(Action.StartGameClicked())
+                }
             }
             else
                 Log.d(TAG, "Mode retrieval error")

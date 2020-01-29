@@ -1,11 +1,13 @@
 package com.onewisebit.scpescape.game.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.findNavController
 import androidx.navigation.navArgs
 import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
+import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.DayNightState
 import com.onewisebit.scpescape.fsm.states.IntroState
 import com.onewisebit.scpescape.fsm.states.StateGame
@@ -29,11 +31,12 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
+    // not really necessary since we have the callback but nice to learn this
     var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
         manageGameState(old, new)
     })
 
-    private val factory: SCPFragmentFactory by inject { parametersOf(args.gameID, currentState) }
+    private val factory: SCPFragmentFactory by inject { parametersOf(args.gameID, fun(action : Action) = actionReceived(action)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //this NEEDS to be called before the super.onCreate()
@@ -60,15 +63,17 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
 
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
 
-        /*
         when (oldState) {
-            is IntroState ->
+            is IntroState -> Log.d(TAG,"Play clicked from Intro GameState")
         }
 
         when (newState) {
-            is DayNightState ->
+            is DayNightState -> Log.d(TAG,"Preparing day or night GameState")
         }
-         */
+
+    }
+    private fun actionReceived(action: Action){
+        currentState = currentState.consumeAction(action)
     }
 
     override fun onDestroy() {
@@ -78,5 +83,9 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
         super.onDestroy()
     }
 
+
+    companion object {
+        private val TAG = GameActivity::class.java.simpleName
+    }
 
 }
