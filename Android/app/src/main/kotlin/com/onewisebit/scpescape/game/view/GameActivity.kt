@@ -11,7 +11,7 @@ import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.DayNightState
 import com.onewisebit.scpescape.fsm.states.IntroState
 import com.onewisebit.scpescape.fsm.states.StateGame
-import com.onewisebit.scpescape.game.GameStateContract
+import com.onewisebit.scpescape.game.GameContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,10 +20,10 @@ import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import kotlin.properties.Delegates
 
-class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
+class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private val args: GameActivityArgs by navArgs()
-    private val presenter: GameStateContract.GameStatePresenter by inject { parametersOf(this,args.gameID) }
+    private val presenter: GameContract.GamePresenter by inject { parametersOf(this,args.gameID) }
 
     private var _binding: ActivityGameBinding? = null
     private val binding get() = _binding!!
@@ -32,7 +32,7 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     // not really necessary since we have the callback but nice to learn this
-    var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
+    private var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
         manageGameState(old, new)
     })
 

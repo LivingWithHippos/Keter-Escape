@@ -1,14 +1,14 @@
 package com.onewisebit.scpescape.fsm.states
 
-import com.onewisebit.scpescape.fsm.GameMachine
 import com.onewisebit.scpescape.fsm.Input
 import com.onewisebit.scpescape.fsm.PlayersFilter
 import com.onewisebit.scpescape.fsm.VoteJsonDataClass
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.model.entities.Participant
 
-class VoteState : GameState {
+class VoteState {
 
+    /*
     override suspend fun handleInput(gameMachine: GameMachine, action: Action, rules: Input) {
         if (rules is VoteJsonDataClass){
             val participants : List<Participant> = gameMachine.participants
@@ -52,4 +52,6 @@ class VoteState : GameState {
     companion object {
         private val TAG = VoteState::class.java.simpleName
     }
+
+     */
 }
