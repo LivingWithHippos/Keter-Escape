@@ -24,7 +24,7 @@ import org.koin.core.parameter.parametersOf
  * Use the [IntroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IntroFragment(private val gameID: Long, state: StateGame) : BaseGameFragment(state), IntroContract.IntroView {
+class IntroFragment(private val gameID: Long, state: StateGame) : BaseGameFragment(gameID, state), IntroContract.IntroView {
 
     private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this) }
     private var _binding: FragmentIntroBinding? = null
