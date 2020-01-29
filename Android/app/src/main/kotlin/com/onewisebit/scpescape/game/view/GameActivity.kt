@@ -34,11 +34,20 @@ class GameActivity : BaseSCPActivity(), GameStateContract.GameStateView {
         manageGameState(old, new)
     })
 
+    private val factory: SCPFragmentFactory by inject { parametersOf(currentState) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        //this NEEDS to be called before the super.onCreate()
+        supportFragmentManager.fragmentFactory = factory
+
         super.onCreate(savedInstanceState)
 
         _binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, IntroFragment::class.java.name)
+        supportFragmentManager.beginTransaction().replace(R.id.rootLayout, fragment).commitNow()
+
         //TODO: remove navigation here and manage Fragments with a FragmentManager and the FSM to allow more flexibility
 
         // setting this here since it's the starting activity of a new graph
