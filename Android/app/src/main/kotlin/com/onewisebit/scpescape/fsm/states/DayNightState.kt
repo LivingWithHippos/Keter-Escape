@@ -1,8 +1,9 @@
 package com.onewisebit.scpescape.fsm.states
 
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.utilities.NIGHT
 
-class DayNightState(val dayOrNight : Int): StateGame {
+class DayNightState(val dayOrNight : Int = NIGHT): StateGame {
     override fun consumeAction(action: Action): StateGame {
         return when (action) {
             is Action.StartDayClicked -> PassDeviceState()
