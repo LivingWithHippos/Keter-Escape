@@ -9,6 +9,7 @@ const val ROLE_DATA_FILENAME = "roles.json"
 const val MODE_DATA_FILENAME = "modes.json"
 const val ACTION_DATA_FILENAME = "actions.json"
 const val ACTION_TEMPLATE_FILENAME = "actions_template.json"
+const val ROUND_DETAILS_FILENAME = "round_details.json"
 
 // preferences and themes
 const val PREF_FILE = "scpescape_preferences"
