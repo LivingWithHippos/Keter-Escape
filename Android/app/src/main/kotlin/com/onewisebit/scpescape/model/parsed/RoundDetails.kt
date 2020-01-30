@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 data class RoundDetails(
     @SerializedName("mode_id")
     val modeId: Int,
-    @SerializedName("roundDetails")
-    val roundDetails: List<RoundDetail>
+    @SerializedName("details")
+    val details: List<Details>
 )
 
-data class RoundDetail(
+data class Details(
     @SerializedName("code")
-    val id: String,
+    val code: String,
     @SerializedName("name")
     val name: String,
     @SerializedName("description")
