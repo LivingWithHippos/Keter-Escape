@@ -62,8 +62,5 @@ interface TurnDAO {
     @Query("DELETE FROM turns WHERE turns.game = :gameID")
     fun deleteGameTurns(gameID: Long): Completable
 
-    @Query("SELECT participants.* FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.turn_number = (SELECT max(turn_number) FROM turns WHERE turns.game = :gameID )")
-    suspend fun getCurrentParticipant(gameID: Long): Participant
-
 }
 

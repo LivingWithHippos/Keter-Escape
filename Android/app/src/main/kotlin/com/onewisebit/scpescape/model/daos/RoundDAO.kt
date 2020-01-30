@@ -34,13 +34,6 @@ interface RoundDAO {
     suspend fun getCurrentRound(gameID: Long): Round
 
     /**
-     * Get the list of Participants who have yet to play the current/last Round of a Game.
-     * @return the Participants from the table with a specific game id.
-     */
-    @Query("SELECT participants.* FROM participants WHERE participants.game = :gameID AND participants.state = 1 AND participants.player NOT IN (SELECT participants.player FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.round = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID))")
-    fun getMissingParticipants(gameID: Long): List<Participant>
-
-    /**
      * Delete all of a game's rounds
      */
     @Query("DELETE FROM rounds WHERE rounds.game = :gameID")

@@ -31,6 +31,8 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
         withContext(Dispatchers.IO) { participantDAO.setParticipantRole(gameID, playerID, roleName) }
 
+    override suspend fun getCurrentParticipant(gameID: Long): Participant = participantDAO.getLastParticipant(gameID)
+
     override fun getGamePlayers(gameID: Long): Single<List<Player>> =
         participantDAO.getGamePlayers(gameID)
 

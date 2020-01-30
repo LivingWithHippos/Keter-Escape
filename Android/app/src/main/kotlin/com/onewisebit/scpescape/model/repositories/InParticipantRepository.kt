@@ -13,6 +13,7 @@ interface InParticipantRepository {
     fun getGameParticipantsSingle(gameID: Long): Single<List<Participant>>
     suspend fun getGameParticipantsBlocking(gameID: Long): List<Participant>
     suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String)
+    suspend fun getCurrentParticipant(gameID: Long): Participant
     fun getGamePlayers(gameID: Long): Single<List<Player>>
     fun getGameParticipantsID(gameID: Long): Flowable<List<Long>>
     fun getParticipantState(gameID: Long, playerID: Long): Int
@@ -25,5 +26,6 @@ interface InParticipantRepository {
     fun getParticipantNumber(gameID: Long): Single<Int>
     fun getPlayers(gameID: Long): Single<List<Player>>
     fun getRoles(gameID: Long): Single<List<Role>>
+    fun getMissingParticipants(gameID: Long): List<Participant>
 
 }

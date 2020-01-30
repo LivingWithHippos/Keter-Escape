@@ -120,4 +120,19 @@ interface ParticipantDAO {
      */
     @Query("SELECT COUNT(*) FROM participants WHERE game = :gameID")
     fun getParticipantNumber(gameID: Long): Single<Int>
+
+
+    /**
+     * Get the current Participant, the one in the last existing turn of a Game.
+     * @return the Participants from the table with a specific game id and the last turn.
+     */
+    @Query("SELECT participants.* FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.turn_number = (SELECT max(turn_number) FROM turns WHERE turns.game = :gameID )")
+    suspend fun getLastParticipant(gameID: Long): Participant
+
+    /**
+     * Get the list of Participants who have yet to play the current/last Round of a Game.
+     * @return the Participants from the table with a specific game id.
+     */
+    @Query("SELECT participants.* FROM participants WHERE participants.game = :gameID AND participants.state = 1 AND participants.player NOT IN (SELECT participants.player FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.round = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID))")
+    fun getMissingParticipants(gameID: Long): List<Participant>
 }
