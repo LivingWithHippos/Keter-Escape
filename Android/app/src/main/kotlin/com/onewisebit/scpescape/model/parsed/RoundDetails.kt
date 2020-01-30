@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 data class RoundDetails(
     @SerializedName("mode_id")
     val modeId: Int,
-    @SerializedName("details")
-    val details: List<Details>
+    @SerializedName("info")
+    val details: List<RoundInformation>
 )
 
-data class Details(
+data class RoundInformation(
     @SerializedName("code")
     val code: String,
     @SerializedName("name")

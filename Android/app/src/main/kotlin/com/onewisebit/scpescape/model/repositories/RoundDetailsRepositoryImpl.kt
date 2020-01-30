@@ -5,7 +5,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.onewisebit.scpescape.model.parsed.Details
+import com.onewisebit.scpescape.model.parsed.RoundInformation
 import com.onewisebit.scpescape.model.parsed.RoundDetails
 import com.onewisebit.scpescape.utilities.ROUND_DETAILS_FILENAME
 import kotlinx.coroutines.Dispatchers
@@ -13,11 +13,11 @@ import kotlinx.coroutines.withContext
 
 class RoundDetailsRepositoryImpl(private val context: Context) : RoundDetailRepository {
 
-    override suspend fun getRoundDetail(modeId: Int, roundCode: String): Details? {
+    override suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundInformation? {
         return getAllDetails(modeId)?.firstOrNull { it.code == roundCode }
     }
 
-    override suspend fun getAllDetails(modeId: Int): List<Details>? {
+    override suspend fun getAllDetails(modeId: Int): List<RoundInformation>? {
         return getAllRoundsDetails()?.first { it.modeId == modeId }?.details
     }
 
