@@ -11,7 +11,7 @@ open class GameModelImpl(
     val playerRepository: InPlayerRepository,
     val roundRepository: InRoundRepository,
     val turnRepository: InTurnRepository,
-    val modeRepository: InModelNewRepository
+    val modeRepository: InModeJSONRepository
 ) : GameContract.GameModel {
 
     override suspend fun getGame(gameID: Long): Game = gameRepository.getGameBlocking(gameID)

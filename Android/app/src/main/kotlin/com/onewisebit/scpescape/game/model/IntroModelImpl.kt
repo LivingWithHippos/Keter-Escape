@@ -9,7 +9,7 @@ class IntroModelImpl(
     playerRepository: InPlayerRepository,
     roundRepository: InRoundRepository,
     turnRepository: InTurnRepository,
-    modeRepository: InModelNewRepository) :
+    modeRepository: InModeJSONRepository) :
     GameModelImpl(gameRepository,participantRepository,playerRepository,roundRepository,turnRepository,modeRepository),
     IntroContract.IntroModel {
 

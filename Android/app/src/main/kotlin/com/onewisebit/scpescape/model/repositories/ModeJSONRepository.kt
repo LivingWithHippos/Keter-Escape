@@ -10,7 +10,7 @@ import com.onewisebit.scpescape.utilities.MODE_DATA_FILENAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ModeNewRepository(private val context: Context) : InModelNewRepository {
+class ModeJSONRepository(private val context: Context) : InModeJSONRepository {
 
     override suspend fun getMode(id: Int): ModeDataClass? =
         withContext(Dispatchers.IO) {
@@ -59,6 +59,6 @@ class ModeNewRepository(private val context: Context) : InModelNewRepository {
 
 
     companion object {
-        private val TAG = ModeNewRepository::class.java.simpleName
+        private val TAG = ModeJSONRepository::class.java.simpleName
     }
 }

@@ -52,7 +52,7 @@ val appModule = module {
     single<InTurnRepository> { TurnRepository(get()) }
     single { ModeRepository(get()) }
     // TODO: replace other single with single<interface> {implementation}
-    single<InModelNewRepository> { ModeNewRepository(get()) }
+    single<InModeJSONRepository> { ModeJSONRepository(get()) }
 
     factory<StartContract.StartModel> {
         StartActivityModel(
