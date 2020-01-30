@@ -75,7 +75,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun setupDayNightFragment(dayOrNight: Int){
         supportFragmentManager.commit {
-            replace<DayNightFragment>(R.id.fragment_container_view)
+            replace<RoundInfoFragment>(R.id.fragment_container_view)
         }
     }
 
