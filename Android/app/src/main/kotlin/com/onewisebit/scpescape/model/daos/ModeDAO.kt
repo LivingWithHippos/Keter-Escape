@@ -18,6 +18,13 @@ interface ModeDAO {
     fun getModeById(id: Int): Single<Mode>
 
     /**
+     * Get a mode id from a game.
+     * @return the mode id from the table with a specific game id.
+     */
+    @Query("SELECT games.mode FROM games WHERE games.game_ID = :gameId")
+    suspend fun getGameModeId(gameId: Long): Int
+
+    /**
      * Get the minimum number of players from game mode id.
      * @return the minimum number of players needed to play this mode.
      */
