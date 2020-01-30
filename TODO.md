@@ -39,6 +39,8 @@ These are related to the Android app.
 
 - [x] change rxjava to livedata in the ui side
 
+- [ ] decide if the mvp implementation of basegame makes sense
+
 #### High Priority
 
 - [ ] Tutorial
