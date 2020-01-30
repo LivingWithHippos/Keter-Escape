@@ -39,7 +39,7 @@ interface TurnDAO {
      * @return the list of Turns from the table with a specific game id and round number.
      */
     @Query("SELECT * FROM turns WHERE turns.game = :gameID AND turns.round = :roundNumber")
-    fun getRoundTurns(gameID: Long, roundNumber: Int): Flowable<List<Turn>>
+    suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>
 
     /**
      * Get all the played turns from the last round (completed or not)

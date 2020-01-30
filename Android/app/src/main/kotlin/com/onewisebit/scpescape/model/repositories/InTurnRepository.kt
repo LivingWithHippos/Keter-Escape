@@ -13,7 +13,7 @@ interface InTurnRepository {
 
     fun getPlayerTurns(gameID: Long, playerID: Long): Flowable<List<Turn>>
 
-    fun getRoundTurns(gameID: Long, roundNumber: Int): Flowable<List<Turn>>
+    suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>
 
     fun deleteGameTurns(gameID: Long): Completable
 
