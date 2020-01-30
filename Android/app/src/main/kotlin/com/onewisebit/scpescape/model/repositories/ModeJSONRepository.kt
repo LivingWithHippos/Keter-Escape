@@ -12,33 +12,6 @@ import kotlinx.coroutines.withContext
 
 class ModeJSONRepository(private val context: Context) : InModeJSONRepository {
 
-    override suspend fun getMode(id: Int): ModeDataClass? =
-        withContext(Dispatchers.IO) {
-            try {
-                // retrieving modes
-                context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
-                    JsonReader(inputStream.reader()).use { jsonReader ->
-                        val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
-                        val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
-
-                        val modeFound = modesList.filter { mode ->
-                            mode.id == id
-                        }
-
-                        if (modeFound.isNotEmpty())
-                            modeFound[0]
-                        else
-                            null
-                    }
-                }
-            } catch (ex: Exception) {
-                Log.e(TAG, "Error reading modes", ex)
-                // is there a better way to handle this?
-                // if we can't read the file null seems a good return value
-                null
-            }
-        }
-
     override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {
             try {
@@ -57,6 +30,9 @@ class ModeJSONRepository(private val context: Context) : InModeJSONRepository {
             }
         }
 
+    override suspend fun getMode(id: Int): ModeDataClass? {
+        return getAllModes()?.firstOrNull { it.id == id }
+    }
 
     companion object {
         private val TAG = ModeJSONRepository::class.java.simpleName
