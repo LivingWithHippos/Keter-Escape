@@ -10,7 +10,7 @@ data class RoundDetails(
 )
 
 data class RoundDetail(
-    @SerializedName("id")
+    @SerializedName("code")
     val id: String,
     @SerializedName("name")
     val name: String,
