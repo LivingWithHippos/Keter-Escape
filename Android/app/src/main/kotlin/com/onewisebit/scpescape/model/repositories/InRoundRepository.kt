@@ -12,6 +12,4 @@ interface InRoundRepository {
     suspend fun getRounds(gameID: Long): List<Round>
 
     fun deleteGameRounds(gameID: Long): Completable
-
-    fun getMissingParticipants(gameID: Long): List<Participant>
 }

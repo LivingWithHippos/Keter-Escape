@@ -13,6 +13,4 @@ class RoundRepository(private val roundDAO: RoundDAO) : InRoundRepository {
     override suspend fun getRounds(gameID: Long): List<Round> = roundDAO.getRounds(gameID)
 
     override fun deleteGameRounds(gameID: Long): Completable = roundDAO.deleteGameRounds(gameID)
-
-    override fun getMissingParticipants(gameID: Long): List<Participant> = roundDAO.getMissingParticipants(gameID)
 }

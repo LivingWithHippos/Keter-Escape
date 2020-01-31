@@ -29,7 +29,7 @@ open class GameModelImpl(
         return modeRepository.getMode(gameMode)
     }
 
-    override suspend fun getCurrentParticipant(gameID: Long): Participant = turnRepository.getCurrentParticipant(gameID)
+    override suspend fun getCurrentParticipant(gameID: Long): Participant = participantRepository.getCurrentParticipant(gameID)
 
-    override suspend fun getMissingRoundParticipants(gameID: Long): List<Participant> = roundRepository.getMissingParticipants(gameID)
+    override suspend fun getMissingRoundParticipants(gameID: Long): List<Participant> = participantRepository.getMissingParticipants(gameID)
 }

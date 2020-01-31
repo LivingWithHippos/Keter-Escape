@@ -19,6 +19,4 @@ class TurnRepository(private val turnDAO: TurnDAO) : InTurnRepository {
         turnDAO.getRoundTurns(gameID, roundNumber)
 
     override fun deleteGameTurns(gameID: Long): Completable = turnDAO.deleteGameTurns(gameID)
-
-    override suspend fun getCurrentParticipant(gameID: Long): Participant = turnDAO.getCurrentParticipant(gameID)
 }

@@ -16,6 +16,4 @@ interface InTurnRepository {
     suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>
 
     fun deleteGameTurns(gameID: Long): Completable
-
-    suspend fun getCurrentParticipant(gameID: Long): Participant
 }
