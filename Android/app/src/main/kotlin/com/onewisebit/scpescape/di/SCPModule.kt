@@ -53,7 +53,6 @@ val appModule = module {
     single<InRoundRepository> { RoundRepository(get(),get()) }
     single<InTurnRepository> { TurnRepository(get()) }
     single { ModeRepository(get()) }
-    // TODO: replace other single with single<interface> {implementation}
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
 
     factory<StartContract.StartModel> {
