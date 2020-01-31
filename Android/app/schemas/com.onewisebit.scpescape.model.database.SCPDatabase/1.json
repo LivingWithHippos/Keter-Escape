@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3f2742adaf642b7ae32076d6d6382622",
+    "identityHash": "badcd51a5cc8bb04a7fa419546770a6c",
     "entities": [
       {
         "tableName": "players",
@@ -451,6 +451,17 @@
         },
         "indices": [
           {
+            "name": "index_votes_turn_round_game_player",
+            "unique": false,
+            "columnNames": [
+              "turn",
+              "round",
+              "game",
+              "player"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_votes_turn_round_game_player` ON `${TABLE_NAME}` (`turn`, `round`, `game`, `player`)"
+          },
+          {
             "name": "index_votes_player",
             "unique": false,
             "columnNames": [
@@ -494,7 +505,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3f2742adaf642b7ae32076d6d6382622')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'badcd51a5cc8bb04a7fa419546770a6c')"
     ]
   }
 }

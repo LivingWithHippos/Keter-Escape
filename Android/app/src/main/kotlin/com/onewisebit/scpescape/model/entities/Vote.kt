@@ -1,12 +1,10 @@
 package com.onewisebit.scpescape.model.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(
     tableName = "votes",
+    indices = [Index(value = arrayOf("turn","round", "game","player"))],
     foreignKeys = [ForeignKey(
         entity = Turn::class,
         parentColumns = ["turn_number","round", "game","player"],
