@@ -50,12 +50,11 @@ val appModule = module {
     single<InGameRepository> { GameRepository(get()) }
     single<InPlayerRepository> { PlayerRepository(get()) }
     single<InParticipantRepository> { ParticipantRepository(get()) }
-    single<InRoundRepository> { RoundRepository(get()) }
+    single<InRoundRepository> { RoundRepository(get(),get()) }
     single<InTurnRepository> { TurnRepository(get()) }
     single { ModeRepository(get()) }
     // TODO: replace other single with single<interface> {implementation}
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
-    single<RoundDetailRepository> { RoundDetailsRepositoryImpl(get()) }
 
     factory<StartContract.StartModel> {
         StartActivityModel(
