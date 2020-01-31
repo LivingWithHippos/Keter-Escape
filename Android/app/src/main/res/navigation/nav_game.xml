@@ -13,17 +13,5 @@
         <argument
             android:name="gameID"
             app:argType="long" />
-        <action
-            android:id="@+id/action_introFragment_to_roundChangeFragment"
-            app:destination="@id/roundChangeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/roundChangeFragment"
-        android:name="com.onewisebit.scpescape.game.view.RoundChangeFragment"
-        android:label="fragment_round_change"
-        tools:layout="@layout/fragment_round_change">
-        <argument
-            android:name="introID"
-            app:argType="integer" />
     </fragment>
 </navigation>
