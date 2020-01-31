@@ -5,11 +5,14 @@ import android.content.SharedPreferences
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.game.RoundInfoContract
 import com.onewisebit.scpescape.game.basemvp.*
 import com.onewisebit.scpescape.game.model.GameModelImpl
 import com.onewisebit.scpescape.game.model.IntroModelImpl
+import com.onewisebit.scpescape.game.model.RoundInfoModelImpl
 import com.onewisebit.scpescape.game.presenter.GamePresenterImpl
 import com.onewisebit.scpescape.game.presenter.IntroPresenterImpl
+import com.onewisebit.scpescape.game.presenter.RoundInfoPresenterImpl
 import com.onewisebit.scpescape.game.view.SCPFragmentFactory
 import com.onewisebit.scpescape.main.StartContract
 import com.onewisebit.scpescape.main.model.StartActivityModel
@@ -109,7 +112,7 @@ val appModule = module {
     factory<ContractMode.PresenterMode> { (game: Long) ->
         PresenterModeImpl(get(), game)
     }
-    
+
     // MainActivity MVP
     factory<StartContract.StartModel> {
         StartActivityModel(
@@ -213,6 +216,25 @@ val appModule = module {
             view,
             get(),
             get { parametersOf(game) },
+            get { parametersOf(game) },
+            game
+        )
+    }
+
+    // RoundInfo Fragment MVP
+
+
+    factory<RoundInfoContract.RoundInfoModel> {
+        RoundInfoModelImpl(
+            get(),
+            get()
+        )
+    }
+
+    factory<RoundInfoContract.RoundInfoPresenter> { (view: RoundInfoContract.RoundInfoView, game: Long) ->
+        RoundInfoPresenterImpl(
+            view,
+            get(),
             get { parametersOf(game) },
             game
         )

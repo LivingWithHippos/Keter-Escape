@@ -1,10 +1,12 @@
 package com.onewisebit.scpescape.game
 
+import com.onewisebit.scpescape.game.basemvp.ContractRound
+
 interface RoundInfoContract {
 
-    interface RoundInfoModel : GameContract.GameModel
+    interface RoundInfoModel : ContractRound.ModelRound
 
-    interface RoundInfoView : GameContract.GameView
+    interface RoundInfoView
 
-    interface RoundInfoPresenter : GameContract.GamePresenter
+    interface RoundInfoPresenter : ContractRound.PresenterRound
 }
