@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.navigation.NavController
 import androidx.navigation.navArgs
 import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
@@ -47,12 +48,6 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
         setupIntroFragment()
 
-        //TODO: remove navigation here and manage Fragments with a FragmentManager and the FSM to allow more flexibility
-
-        // setting this here since it's the starting activity of a new graph
-        // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
-        //navController.setGraph(R.navigation.nav_game, args.toBundle())
-
     }
 
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
@@ -81,6 +76,12 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         supportFragmentManager.commit {
             replace<RoundInfoFragment>(R.id.fragment_container_view)
         }
+    }
+
+    private fun setupNavigation(navController: NavController){
+        // setting this here since it's the starting activity of a new graph
+        // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
+        navController.setGraph(R.navigation.nav_game, args.toBundle())
     }
 
     override fun onDestroy() {
