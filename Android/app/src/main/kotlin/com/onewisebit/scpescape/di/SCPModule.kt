@@ -38,6 +38,7 @@ val appModule = module {
         )
     }
 
+    // DAOs
     single { SCPDatabase.getInstance(get()) }
     single { get<SCPDatabase>().playerDAO() }
     single { get<SCPDatabase>().roleDAO() }
@@ -47,107 +48,20 @@ val appModule = module {
     single { get<SCPDatabase>().roundDAO() }
     single { get<SCPDatabase>().turnDAO() }
 
+    // Repositories
+
     single<InGameRepository> { GameRepository(get()) }
     single<InPlayerRepository> { PlayerRepository(get()) }
     single<InParticipantRepository> { ParticipantRepository(get()) }
     single<InRoundRepository> { RoundRepository(get(),get()) }
     single<InTurnRepository> { TurnRepository(get()) }
+    // TODO: remove when/if Mode is removed
     single { ModeRepository(get()) }
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
 
-    factory<StartContract.StartModel> {
-        StartActivityModel(
-            get(),
-            get()
-        )
-    }
-    factory<GameSettingsContract.GameSettingsModel> {
-        GameSettingsModelImpl(
-            get(),
-            get()
-        )
-    }
-    factory<PlayersContract.PlayersModel> {
-        PlayersModelImpl(
-            get(),
-            get(),
-            get()
-        )
-    }
 
-    factory<IntroContract.IntroModel> {
-        IntroModelImpl(
-            get(),
-            get(),
-            get()
-        )
-    }
+    // Composable Game MVP, see ContractGame.kt
 
-    factory<StartContract.StartPresenter> { (view: StartContract.StartView) ->
-        StartActivityPresenterImpl(
-            view,
-            get()
-        )
-    }
-    factory<PlayersContract.PlayersPresenter> { (view: PlayersContract.PlayersView) ->
-        PlayersPresenterImpl(
-            view,
-            get()
-        )
-    }
-    factory<GameSettingsContract.GameSettingsPresenter> { (view: GameSettingsContract.GameSettingsView) ->
-        GameSettingsPresenterImpl(
-            view,
-            get()
-        )
-    }
-
-    factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView, game: Long) ->
-        IntroPresenterImpl(
-            view,
-            get(),
-            get { parametersOf(game) },
-            get { parametersOf(game) },
-            game
-        )
-    }
-
-    factory<GameContract.GameModel> {
-        GameModelImpl(
-        )
-    }
-
-    factory<GameContract.GamePresenter> { (view: GameContract.GameView, game: Long) ->
-        GamePresenterImpl(
-            view,
-            get(),
-            game
-        )
-    }
-
-    factory<GameModesContract.GameModesModel> {
-        GameModesModelImpl(
-            get()
-        )
-    }
-
-    factory<GameModesContract.GameModesPresenter> { (view: GameModesContract.GameModesView) ->
-        GameModesPresenterImpl(
-            view,
-            get()
-        )
-    }
-
-    //TODO: check if this needs to be a factory or a single
-    //factory<SCPFragmentFactory> { (game: Long, state: StateGame) -> SCPFragmentFactory(game, state)}
-    single<SCPFragmentFactory> { (game: Long, onActionListener: (action: Action) -> Unit) ->
-        SCPFragmentFactory(
-            game,
-            onActionListener
-        )
-    }
-
-    //Game MVP, see ContractGame.kt
     factory<ContractGame.ModelGame> {
         ModelGameImpl(get())
     }
@@ -195,4 +109,113 @@ val appModule = module {
     factory<ContractMode.PresenterMode> { (game: Long) ->
         PresenterModeImpl(get(), game)
     }
+    
+    // MainActivity MVP
+    factory<StartContract.StartModel> {
+        StartActivityModel(
+            get(),
+            get()
+        )
+    }
+
+    factory<StartContract.StartPresenter> { (view: StartContract.StartView) ->
+        StartActivityPresenterImpl(
+            view,
+            get()
+        )
+    }
+
+    // NewGameSettings Fragment
+    factory<GameSettingsContract.GameSettingsModel> {
+        GameSettingsModelImpl(
+            get(),
+            get()
+        )
+    }
+
+
+    factory<GameSettingsContract.GameSettingsPresenter> { (view: GameSettingsContract.GameSettingsView) ->
+        GameSettingsPresenterImpl(
+            view,
+            get()
+        )
+    }
+
+    // Players List MVP
+
+    factory<PlayersContract.PlayersModel> {
+        PlayersModelImpl(
+            get(),
+            get(),
+            get()
+        )
+    }
+
+
+    factory<PlayersContract.PlayersPresenter> { (view: PlayersContract.PlayersView) ->
+        PlayersPresenterImpl(
+            view,
+            get()
+        )
+    }
+
+    // Game modes list MVP
+
+    factory<GameModesContract.GameModesModel> {
+        GameModesModelImpl(
+            get()
+        )
+    }
+
+    factory<GameModesContract.GameModesPresenter> { (view: GameModesContract.GameModesView) ->
+        GameModesPresenterImpl(
+            view,
+            get()
+        )
+    }
+
+    //TODO: check if this needs to be a factory or a single
+    //factory<SCPFragmentFactory> { (game: Long, state: StateGame) -> SCPFragmentFactory(game, state)}
+    single<SCPFragmentFactory> { (game: Long, onActionListener: (action: Action) -> Unit) ->
+        SCPFragmentFactory(
+            game,
+            onActionListener
+        )
+    }
+
+    // GameActivity MVP
+
+    factory<GameContract.GameModel> {
+        GameModelImpl(
+        )
+    }
+
+    factory<GameContract.GamePresenter> { (view: GameContract.GameView, game: Long) ->
+        GamePresenterImpl(
+            view,
+            get(),
+            game
+        )
+    }
+
+    // IntroFragment MVP
+
+    factory<IntroContract.IntroModel> {
+        IntroModelImpl(
+            get(),
+            get(),
+            get()
+        )
+    }
+
+    factory<IntroContract.IntroPresenter> { (view: IntroContract.IntroView, game: Long) ->
+        IntroPresenterImpl(
+            view,
+            get(),
+            get { parametersOf(game) },
+            get { parametersOf(game) },
+            game
+        )
+    }
+
 }
