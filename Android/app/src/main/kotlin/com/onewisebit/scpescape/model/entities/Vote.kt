@@ -4,11 +4,11 @@ import androidx.room.*
 
 @Entity(
     tableName = "votes",
-    indices = [Index(value = arrayOf("turn","round", "game","player"))],
+    indices = [Index(value = arrayOf("turn", "round", "game", "player"))],
     foreignKeys = [ForeignKey(
         entity = Turn::class,
-        parentColumns = ["turn_number","round", "game","player"],
-        childColumns = ["turn","round", "game","player"],
+        parentColumns = ["turn_number", "round", "game", "player"],
+        childColumns = ["turn", "round", "game", "player"],
         onDelete = ForeignKey.CASCADE
     ), ForeignKey(
         entity = Player::class,
@@ -17,7 +17,7 @@ import androidx.room.*
         onDelete = ForeignKey.CASCADE
     )]
 )
-class Vote (
+class Vote(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "vote_ID")
     val id: Long,

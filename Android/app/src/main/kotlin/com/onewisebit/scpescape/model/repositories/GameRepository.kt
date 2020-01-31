@@ -19,7 +19,7 @@ class GameRepository(private val gameDAO: GameDAO) :
 
     override fun getAllGames(): List<Game> = gameDAO.getAllGames()
 
-    override suspend fun getModeId(id: Long): Int  = gameDAO.getModeID(id)
+    override suspend fun getModeId(id: Long): Int = gameDAO.getModeID(id)
 
     override fun deleteGame(game: Game) = gameDAO.removeGame(game)
 

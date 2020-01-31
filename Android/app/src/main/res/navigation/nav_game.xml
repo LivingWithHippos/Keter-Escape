@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This is loaded programmatically in GameActivity.kt -->
+<?xml version="1.0" encoding="utf-8"?><!-- This is loaded programmatically in GameActivity.kt -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +9,7 @@
         android:id="@+id/introFragment"
         android:name="com.onewisebit.scpescape.game.view.IntroFragment"
         android:label="fragment_intro"
-        tools:layout="@layout/fragment_intro" >
+        tools:layout="@layout/fragment_intro">
         <argument
             android:name="gameID"
             app:argType="long" />
@@ -22,7 +21,7 @@
         android:id="@+id/roundChangeFragment"
         android:name="com.onewisebit.scpescape.game.view.RoundChangeFragment"
         android:label="fragment_round_change"
-        tools:layout="@layout/fragment_round_change" >
+        tools:layout="@layout/fragment_round_change">
         <argument
             android:name="introID"
             app:argType="integer" />

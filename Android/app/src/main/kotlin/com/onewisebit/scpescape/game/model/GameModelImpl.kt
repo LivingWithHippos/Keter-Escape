@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.game.model
 
 import com.onewisebit.scpescape.game.GameContract
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.entities.*
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.repositories.*
 
 open class GameModelImpl(
@@ -16,9 +16,11 @@ open class GameModelImpl(
 
     override suspend fun getGame(gameID: Long): Game = gameRepository.getGameBlocking(gameID)
 
-    override suspend fun getParticipants(gameID: Long): List<Participant> = participantRepository.getGameParticipantsBlocking(gameID)
+    override suspend fun getParticipants(gameID: Long): List<Participant> =
+        participantRepository.getGameParticipantsBlocking(gameID)
 
-    override suspend fun getPlayers(gameID: Long): List<Player> = playerRepository.getPlayersByGame(gameID)
+    override suspend fun getPlayers(gameID: Long): List<Player> =
+        playerRepository.getPlayersByGame(gameID)
 
     override suspend fun getRounds(gameID: Long): List<Round> = roundRepository.getRounds(gameID)
 
@@ -29,7 +31,9 @@ open class GameModelImpl(
         return modeRepository.getMode(gameMode)
     }
 
-    override suspend fun getCurrentParticipant(gameID: Long): Participant = participantRepository.getCurrentParticipant(gameID)
+    override suspend fun getCurrentParticipant(gameID: Long): Participant =
+        participantRepository.getCurrentParticipant(gameID)
 
-    override suspend fun getMissingRoundParticipants(gameID: Long): List<Participant> = participantRepository.getMissingParticipants(gameID)
+    override suspend fun getMissingRoundParticipants(gameID: Long): List<Participant> =
+        participantRepository.getMissingParticipants(gameID)
 }

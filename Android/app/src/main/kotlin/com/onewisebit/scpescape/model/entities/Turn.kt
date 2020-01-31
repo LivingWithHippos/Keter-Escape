@@ -19,7 +19,7 @@ import androidx.room.Index
         childColumns = ["player"],
         onDelete = ForeignKey.CASCADE
     )],
-    indices = [Index(value = ["turn_number", "round", "game","player"], unique = true)]
+    indices = [Index(value = ["turn_number", "round", "game", "player"], unique = true)]
 )
 data class Turn(
     @ColumnInfo(name = "round")

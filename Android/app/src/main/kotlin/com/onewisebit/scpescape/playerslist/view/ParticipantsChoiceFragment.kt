@@ -44,7 +44,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding  = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
+        _binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         layoutManager = GridLayoutManager(this.context, 2)
         adapter = ParticipantsAdapter(
             emptyList(),

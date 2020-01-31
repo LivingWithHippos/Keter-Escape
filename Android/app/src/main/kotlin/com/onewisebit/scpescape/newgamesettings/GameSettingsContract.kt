@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.newgamesettings
 
 import androidx.lifecycle.LiveData
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import io.reactivex.Single
 
 interface GameSettingsContract {

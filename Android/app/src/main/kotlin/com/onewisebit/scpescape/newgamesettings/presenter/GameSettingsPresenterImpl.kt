@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.entities.Game
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.newgamesettings.GameSettingsContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -33,7 +33,11 @@ class GameSettingsPresenterImpl(
             .subscribe(
                 { game -> gameID.postValue(game) },
                 { error ->
-                    Log.d(TAG,"Error getting game id from GameSettingsModel into presenter: ",error)
+                    Log.d(
+                        TAG,
+                        "Error getting game id from GameSettingsModel into presenter: ",
+                        error
+                    )
                 }
             )
     }

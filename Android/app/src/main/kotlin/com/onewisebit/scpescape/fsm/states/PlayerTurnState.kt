@@ -2,7 +2,7 @@ package com.onewisebit.scpescape.fsm.states
 
 import com.onewisebit.scpescape.fsm.actions.Action
 
-class PlayerTurnState: StateGame {
+class PlayerTurnState : StateGame {
     override fun consumeAction(action: Action): StateGame {
         return when (action) {
             is Action.EndRoundClicked -> ShowResultsState()

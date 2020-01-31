@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game
 
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.entities.*
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 
 /**
  * Generic contract with all the game data needed, is implemented by the game single contract
@@ -26,7 +26,7 @@ interface GameContract {
         fun onDestroy()
     }
 
-    interface GameModel{
+    interface GameModel {
 
         suspend fun getGame(gameID: Long): Game
         suspend fun getParticipants(gameID: Long): List<Participant>

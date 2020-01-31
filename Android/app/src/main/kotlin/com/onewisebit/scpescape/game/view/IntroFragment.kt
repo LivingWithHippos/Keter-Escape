@@ -23,9 +23,10 @@ import org.koin.core.parameter.parametersOf
  * Use the [SCPFragmentFactory] factory method to
  * create an instance of this fragment.
  */
-class IntroFragment(gameID: Long, private val onActionListener: (action:Action) -> Unit) : BaseGameFragment(gameID, onActionListener), IntroContract.IntroView {
+class IntroFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
+    BaseGameFragment(gameID, onActionListener), IntroContract.IntroView {
 
-    private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this,gameID) }
+    private val presenter: IntroContract.IntroPresenter by inject { parametersOf(this, gameID) }
     private var _binding: FragmentIntroBinding? = null
     private val binding get() = _binding!!
 
@@ -55,8 +56,7 @@ class IntroFragment(gameID: Long, private val onActionListener: (action:Action) 
                         onActionListener(Action.StartGameClicked())
                     }
                 }
-            }
-            else
+            } else
                 Log.d(TAG, "Mode retrieval error")
         }
 

@@ -11,8 +11,8 @@
         android:id="@+id/tvSelectPlayersTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/select_players"
         android:layout_margin="20dp"
+        android:text="@string/select_players"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -23,9 +23,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/svPlayersList"
         app:layout_constraintTop_toBottomOf="@+id/tvSelectPlayersTitle">
 
@@ -36,8 +36,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:iconifiedByDefault="false"
-            android:inputType="textPersonName"
             android:imeOptions="actionDone"
+            android:inputType="textPersonName"
             android:queryHint="@string/players_filter" />
 
         <Button
@@ -55,11 +55,11 @@
         android:id="@+id/svPlayersList"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/fabStartGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="20dp"
         app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -74,13 +74,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabStartGame"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_media_play"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -9,7 +9,7 @@
         android:id="@+id/startScreenFragment"
         android:name="com.onewisebit.scpescape.main.view.StartScreenFragment"
         android:label="fragment_start_screen"
-        tools:layout="@layout/fragment_start_screen" >
+        tools:layout="@layout/fragment_start_screen">
         <action
             android:id="@+id/actionStartToAbout"
             app:destination="@id/aboutFragment"
@@ -37,7 +37,7 @@
         android:id="@+id/newGameFragment"
         android:name="com.onewisebit.scpescape.main.view.NewGameFragment"
         android:label="fragment_new_game"
-        tools:layout="@layout/fragment_new_game" >
+        tools:layout="@layout/fragment_new_game">
         <action
             android:id="@+id/actionNewGameToGameMode"
             app:destination="@id/gameModeFragment" />
@@ -46,10 +46,10 @@
         android:id="@+id/gameModeFragment"
         android:name="com.onewisebit.scpescape.modesList.view.GameModeFragment"
         android:label="fragment_game_mode"
-        tools:layout="@layout/fragment_game_mode" >
+        tools:layout="@layout/fragment_game_mode">
         <argument
             android:name="game_type"
-            app:argType="integer"  />
+            app:argType="integer" />
         <action
             android:id="@+id/actionGameModeToNewGameSettings"
             app:destination="@id/newGameSettingsFragment" />
@@ -58,14 +58,14 @@
         android:id="@+id/newGameSettingsFragment"
         android:name="com.onewisebit.scpescape.newgamesettings.view.NewGameSettingsFragment"
         android:label="fragment_new_game_settings"
-        tools:layout="@layout/fragment_new_game_settings" >
+        tools:layout="@layout/fragment_new_game_settings">
         <action
             android:id="@+id/actionNewGameSettingsToParticipantsChoice"
             app:destination="@id/participantsChoiceFragment" />
         <argument
             android:name="game_type"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
         <argument
             android:name="game_mode"
             app:argType="integer" />
@@ -74,7 +74,7 @@
         android:id="@+id/participantsChoiceFragment"
         android:name="com.onewisebit.scpescape.playerslist.view.ParticipantsChoiceFragment"
         android:label="ParticipantsChoiceFragment"
-        tools:layout="@layout/fragment_participants_choice" >
+        tools:layout="@layout/fragment_participants_choice">
         <argument
             android:name="tot_players"
             app:argType="integer" />

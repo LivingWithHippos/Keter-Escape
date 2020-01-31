@@ -3,9 +3,9 @@ package com.onewisebit.scpescape.game.presenter
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.game.basemvp.ContractMode
 import com.onewisebit.scpescape.game.basemvp.ContractParticipant
+import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.parsed.RolesDetail
-import com.onewisebit.scpescape.model.entities.Participant
 import kotlin.random.Random
 
 class IntroPresenterImpl(
@@ -14,7 +14,8 @@ class IntroPresenterImpl(
     private val participantPresenter: ContractParticipant.PresenterParticipant,
     private val modePresenter: ContractMode.PresenterMode,
     val gameID: Long
-) : IntroContract.IntroPresenter, ContractParticipant.PresenterParticipant by participantPresenter, ContractMode.PresenterMode by modePresenter {
+) : IntroContract.IntroPresenter, ContractParticipant.PresenterParticipant by participantPresenter,
+    ContractMode.PresenterMode by modePresenter {
 
     override suspend fun assignRoles() {
         //if it's a game in progress this doesn't need to be called or we can check from here directly
@@ -26,7 +27,7 @@ class IntroPresenterImpl(
                 mode.rolesDivision.filter { participants.size >= it.minPlayers && participants.size <= it.maxPlayers }[0].roles
             // for simplicity we build a string array with every necessary role
             val possibleRoles: ArrayList<String> = ArrayList()
-            roles.filter{!it.default}.forEach{ details ->
+            roles.filter { !it.default }.forEach { details ->
                 for (i in 0 until details.quantity)
                     possibleRoles.add(details.role)
             }
@@ -42,8 +43,7 @@ class IntroPresenterImpl(
                 introModel.assignRole(gameID, it.playerID, roleName)
             }
 
-        }
-        else
+        } else
             throw IllegalArgumentException("GamePresenter couldn't get the mode from game $gameID to assign roles")
     }
 

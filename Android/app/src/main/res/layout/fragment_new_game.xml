@@ -8,9 +8,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvNewGamePass"
-        android:layout_gravity="center"
         android:layout_width="320dp"
         android:layout_height="200dp"
+        android:layout_gravity="center"
         card_view:cardCornerRadius="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

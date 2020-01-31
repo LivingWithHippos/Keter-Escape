@@ -62,10 +62,10 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
         binding.tvRoles.setText(R.string.mode_classic_players_lower)
         binding.npPlayerPicker.minValue = mode.min
         binding.npPlayerPicker.maxValue = mode.max
-        updateRolesDivision(mode,npPlayerPicker.value)
+        updateRolesDivision(mode, npPlayerPicker.value)
         // change description string according to players number
         binding.npPlayerPicker.setOnValueChangedListener { _, _, newVal ->
-            updateRolesDivision(mode,newVal)
+            updateRolesDivision(mode, newVal)
         }
 
         // observe if a new game is created and move to the next settings page
@@ -86,9 +86,9 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
     }
 
     //TODO: move this to the presenter
-    private fun updateRolesDivision(mode: ModeDataClass, newVal: Int){
-        mode.rolesDivision.forEach{
-            if ((newVal >= it.minPlayers) && (newVal <= it.maxPlayers)){
+    private fun updateRolesDivision(mode: ModeDataClass, newVal: Int) {
+        mode.rolesDivision.forEach {
+            if ((newVal >= it.minPlayers) && (newVal <= it.maxPlayers)) {
                 val builder = StringBuilder()
                 var lastLine = ""
                 it.roles.forEach { rolediv ->

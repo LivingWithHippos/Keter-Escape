@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <SwitchPreferenceCompat
         app:key="scp1471"
-        app:title="@string/enable_scp_1471"/>
+        app:title="@string/enable_scp_1471" />
 
     <Preference
         app:key="reportescape"
-        app:title="@string/report_breach"
-        app:summary="@string/report_bug_description"/>
+        app:summary="@string/report_bug_description"
+        app:title="@string/report_breach" />
 
 </PreferenceScreen>

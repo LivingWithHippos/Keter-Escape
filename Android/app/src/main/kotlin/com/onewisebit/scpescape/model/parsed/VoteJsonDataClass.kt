@@ -1,4 +1,5 @@
 package com.onewisebit.scpescape.model.parsed
+
 import com.google.gson.annotations.SerializedName
 import com.onewisebit.scpescape.fsm.Input
 import com.onewisebit.scpescape.fsm.PlayersFilter
@@ -38,7 +39,7 @@ data class VoteShow(
     override val role: List<String>?,
     @SerializedName("no_role")
     override val noRole: List<String>?
-): PlayersFilter
+) : PlayersFilter
 
 data class VoteRevealRole(
     @SerializedName("all")
@@ -50,7 +51,7 @@ data class VoteRevealRole(
     override val role: List<String>?,
     @SerializedName("no_role")
     override val noRole: List<String>?
-): PlayersFilter
+) : PlayersFilter
 
 data class VoteChoiceEnabled(
     @SerializedName("all")
@@ -61,7 +62,7 @@ data class VoteChoiceEnabled(
     override val role: List<String>?,
     @SerializedName("no_role")
     override val noRole: List<String>?
-): PlayersFilter
+) : PlayersFilter
 
 data class VoteChoiceNumber(
     @SerializedName("exactly")

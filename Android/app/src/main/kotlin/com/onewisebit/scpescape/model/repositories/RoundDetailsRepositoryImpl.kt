@@ -5,8 +5,8 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
-import com.onewisebit.scpescape.model.parsed.RoundInformation
 import com.onewisebit.scpescape.model.parsed.RoundDetails
+import com.onewisebit.scpescape.model.parsed.RoundInformation
 import com.onewisebit.scpescape.utilities.ROUND_DETAILS_FILENAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

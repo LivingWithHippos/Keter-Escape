@@ -16,9 +16,9 @@ interface ContractGame {
     }
 }
 
-interface ContractParticipant{
+interface ContractParticipant {
 
-    interface PresenterParticipant{
+    interface PresenterParticipant {
         suspend fun getParticipants(): List<Participant>
         suspend fun getAliveParticipants(): List<Participant>
         suspend fun getCurrentParticipant(): Participant
@@ -31,7 +31,7 @@ interface ContractParticipant{
     }
 }
 
-interface ContractPlayer{
+interface ContractPlayer {
 
     interface PresenterPlayer {
         suspend fun getPlayers(): List<Player>
@@ -42,7 +42,7 @@ interface ContractPlayer{
     }
 }
 
-interface ContractRound{
+interface ContractRound {
 
     interface PresenterRound {
         suspend fun getRounds(): List<Round>
@@ -54,9 +54,9 @@ interface ContractRound{
     }
 }
 
-interface ContractTurn{
+interface ContractTurn {
 
-    interface PresenterTurn{
+    interface PresenterTurn {
         suspend fun getTurns(): List<Turn>
         suspend fun getRoundTurns(roundNumber: Int): List<Turn>
         suspend fun isLastTurn(): Boolean
@@ -68,8 +68,8 @@ interface ContractTurn{
     }
 }
 
-interface ContractMode{
-    interface PresenterMode{
+interface ContractMode {
+    interface PresenterMode {
         suspend fun getMode(): ModeDataClass
     }
 

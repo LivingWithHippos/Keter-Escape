@@ -10,6 +10,7 @@ class GameModesModelImpl(modeRepository: InModeJSONRepository) : GameModesContra
     private var modeRepo: InModeJSONRepository = modeRepository
 
     override suspend fun getModes(): List<ModeDataClass> {
-        return modeRepo.getAllModes() ?: throw IllegalArgumentException("No modes could be loaded from $MODE_DATA_FILENAME")
+        return modeRepo.getAllModes()
+            ?: throw IllegalArgumentException("No modes could be loaded from $MODE_DATA_FILENAME")
     }
 }

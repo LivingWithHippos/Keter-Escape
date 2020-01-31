@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.model.repositories
 
-import com.onewisebit.scpescape.model.parsed.RoundInformation
 import com.onewisebit.scpescape.model.parsed.RoundDetails
+import com.onewisebit.scpescape.model.parsed.RoundInformation
 
 interface RoundDetailRepository {
 

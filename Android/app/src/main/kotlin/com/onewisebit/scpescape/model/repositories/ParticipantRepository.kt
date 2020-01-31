@@ -29,9 +29,16 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
         participantDAO.getGameParticipantsBlocking(gameID)
 
     override suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
-        withContext(Dispatchers.IO) { participantDAO.setParticipantRole(gameID, playerID, roleName) }
+        withContext(Dispatchers.IO) {
+            participantDAO.setParticipantRole(
+                gameID,
+                playerID,
+                roleName
+            )
+        }
 
-    override suspend fun getCurrentParticipant(gameID: Long): Participant = participantDAO.getLastParticipant(gameID)
+    override suspend fun getCurrentParticipant(gameID: Long): Participant =
+        participantDAO.getLastParticipant(gameID)
 
     override fun getGamePlayers(gameID: Long): Single<List<Player>> =
         participantDAO.getGamePlayers(gameID)
@@ -51,7 +58,8 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override fun getRoles(gameID: Long): Single<List<Role>> =
         participantDAO.getParticipantsRoles(gameID)
 
-    override suspend fun getMissingParticipants(gameID: Long): List<Participant> = participantDAO.getMissingParticipants(gameID)
+    override suspend fun getMissingParticipants(gameID: Long): List<Participant> =
+        participantDAO.getMissingParticipants(gameID)
 
     override fun getParticipantRole(gameID: Long, playerID: Long): Single<Role> =
         participantDAO.getParticipantRole(gameID, playerID)

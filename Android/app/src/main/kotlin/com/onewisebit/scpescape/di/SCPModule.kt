@@ -108,8 +108,8 @@ val appModule = module {
         IntroPresenterImpl(
             view,
             get(),
-            get{parametersOf(game)},
-            get{parametersOf(game)},
+            get { parametersOf(game) },
+            get { parametersOf(game) },
             game
         )
     }
@@ -148,7 +148,12 @@ val appModule = module {
 
     //TODO: check if this needs to be a factory or a single
     //factory<SCPFragmentFactory> { (game: Long, state: StateGame) -> SCPFragmentFactory(game, state)}
-    single<SCPFragmentFactory> { (game: Long,  onActionListener: (action: Action) -> Unit) -> SCPFragmentFactory(game, onActionListener)}
+    single<SCPFragmentFactory> { (game: Long, onActionListener: (action: Action) -> Unit) ->
+        SCPFragmentFactory(
+            game,
+            onActionListener
+        )
+    }
 
     //Game MVP, see ContractGame.kt
     factory<ContractGame.ModelGame> {
@@ -156,7 +161,7 @@ val appModule = module {
     }
 
     factory<ContractGame.PresenterGame> { (game: Long) ->
-        PresenterGameImpl(get(),game)
+        PresenterGameImpl(get(), game)
     }
 
     factory<ContractParticipant.ModelParticipant> {
@@ -164,7 +169,7 @@ val appModule = module {
     }
 
     factory<ContractParticipant.PresenterParticipant> { (game: Long) ->
-        PresenterParticipantImpl(get(),game)
+        PresenterParticipantImpl(get(), game)
     }
 
     factory<ContractPlayer.ModelPlayer> {
@@ -172,7 +177,7 @@ val appModule = module {
     }
 
     factory<ContractPlayer.PresenterPlayer> { (game: Long) ->
-        PresenterPlayerImpl(get(),game)
+        PresenterPlayerImpl(get(), game)
     }
 
     factory<ContractRound.ModelRound> {
@@ -180,7 +185,7 @@ val appModule = module {
     }
 
     factory<ContractRound.PresenterRound> { (game: Long) ->
-        PresenterRoundImpl(get(),game)
+        PresenterRoundImpl(get(), game)
     }
 
     factory<ContractTurn.ModelTurn> {
@@ -188,14 +193,14 @@ val appModule = module {
     }
 
     factory<ContractTurn.PresenterTurn> { (game: Long) ->
-        PresenterTurnImpl(get(),get(),game)
+        PresenterTurnImpl(get(), get(), game)
     }
 
     factory<ContractMode.ModelMode> {
-        ModelModeImpl(get(),get())
+        ModelModeImpl(get(), get())
     }
 
     factory<ContractMode.PresenterMode> { (game: Long) ->
-        PresenterModeImpl(get(),game)
+        PresenterModeImpl(get(), game)
     }
 }

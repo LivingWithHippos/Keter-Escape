@@ -8,7 +8,10 @@ import com.onewisebit.scpescape.utilities.CURRENT_THEME
 import com.onewisebit.scpescape.utilities.DEFAULT_THEME
 
 
-class StartActivityModel(playerRepository: InPlayerRepository, sharedPreferences: SharedPreferences) :
+class StartActivityModel(
+    playerRepository: InPlayerRepository,
+    sharedPreferences: SharedPreferences
+) :
     StartContract.StartModel {
 
     private var repository: InPlayerRepository = playerRepository

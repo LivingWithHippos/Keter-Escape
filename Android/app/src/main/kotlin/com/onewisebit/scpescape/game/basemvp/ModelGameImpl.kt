@@ -5,7 +5,7 @@ import com.onewisebit.scpescape.model.repositories.InGameRepository
 
 class ModelGameImpl(
     val gameRepository: InGameRepository
-): ContractGame.ModelGame {
+) : ContractGame.ModelGame {
 
     override suspend fun getGame(gameID: Long): Game = gameRepository.getGameBlocking(gameID)
 }

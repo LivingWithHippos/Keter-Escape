@@ -20,7 +20,7 @@ import kotlin.properties.Delegates
 class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private val args: GameActivityArgs by navArgs()
-    private val presenter: GameContract.GamePresenter by inject { parametersOf(this,args.gameID) }
+    private val presenter: GameContract.GamePresenter by inject { parametersOf(this, args.gameID) }
 
     private var _binding: ActivityGameBinding? = null
     private val binding get() = _binding!!
@@ -30,7 +30,11 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         manageGameState(old, new)
     })
 
-    private val factory: SCPFragmentFactory by inject { parametersOf(args.gameID, fun(action : Action) = actionReceived(action)) }
+    private val factory: SCPFragmentFactory by inject {
+        parametersOf(
+            args.gameID,
+            fun(action: Action) = actionReceived(action))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //this NEEDS to be called before the super.onCreate()
@@ -54,7 +58,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
 
         when (oldState) {
-            is IntroState -> Log.d(TAG,"Play clicked from Intro GameState")
+            is IntroState -> Log.d(TAG, "Play clicked from Intro GameState")
         }
 
         when (newState) {
@@ -63,17 +67,17 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     }
 
-    private fun actionReceived(action: Action){
+    private fun actionReceived(action: Action) {
         currentState = currentState.consumeAction(action)
     }
 
-    private fun setupIntroFragment(){
+    private fun setupIntroFragment() {
         supportFragmentManager.commit {
             replace<IntroFragment>(R.id.fragment_container_view)
         }
     }
 
-    private fun setupDayNightFragment(dayOrNight: Int){
+    private fun setupDayNightFragment(dayOrNight: Int) {
         supportFragmentManager.commit {
             replace<RoundInfoFragment>(R.id.fragment_container_view)
         }
