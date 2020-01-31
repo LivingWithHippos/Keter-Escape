@@ -116,12 +116,6 @@ val appModule = module {
 
     factory<GameContract.GameModel> {
         GameModelImpl(
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            get()
         )
     }
 

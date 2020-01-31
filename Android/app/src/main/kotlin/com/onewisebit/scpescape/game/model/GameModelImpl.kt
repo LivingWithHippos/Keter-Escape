@@ -6,34 +6,5 @@ import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.repositories.*
 
 open class GameModelImpl(
-    val gameRepository: InGameRepository,
-    val participantRepository: InParticipantRepository,
-    val playerRepository: InPlayerRepository,
-    val roundRepository: InRoundRepository,
-    val turnRepository: InTurnRepository,
-    val modeRepository: InModeJSONRepository
 ) : GameContract.GameModel {
-
-    override suspend fun getGame(gameID: Long): Game = gameRepository.getGameBlocking(gameID)
-
-    override suspend fun getParticipants(gameID: Long): List<Participant> =
-        participantRepository.getGameParticipantsBlocking(gameID)
-
-    override suspend fun getPlayers(gameID: Long): List<Player> =
-        playerRepository.getPlayersByGame(gameID)
-
-    override suspend fun getRounds(gameID: Long): List<Round> = roundRepository.getRounds(gameID)
-
-    override suspend fun getTurns(gameID: Long): List<Turn> = turnRepository.getGameTurns(gameID)
-
-    override suspend fun getMode(gameID: Long): ModeDataClass? {
-        val gameMode = gameRepository.getModeId(gameID)
-        return modeRepository.getMode(gameMode)
-    }
-
-    override suspend fun getCurrentParticipant(gameID: Long): Participant =
-        participantRepository.getCurrentParticipant(gameID)
-
-    override suspend fun getMissingRoundParticipants(gameID: Long): List<Participant> =
-        participantRepository.getMissingParticipants(gameID)
 }
