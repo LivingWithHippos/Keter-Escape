@@ -1,14 +1,17 @@
 package com.onewisebit.scpescape.game
 
+import com.onewisebit.scpescape.game.basemvp.ContractMode
+import com.onewisebit.scpescape.game.basemvp.ContractParticipant
+
 interface IntroContract {
 
-    interface IntroModel: GameContract.GameModel{
+    interface IntroModel : ContractParticipant.ModelParticipant, ContractMode.ModelMode {
         suspend fun assignRole(gameID: Long, playerID: Long, roleName : String)
     }
 
-    interface IntroView : GameContract.GameView
+    interface IntroView
 
-    interface IntroPresenter : GameContract.GamePresenter {
+    interface IntroPresenter : ContractParticipant.PresenterParticipant, ContractMode.PresenterMode {
         suspend fun assignRoles()
     }
 }

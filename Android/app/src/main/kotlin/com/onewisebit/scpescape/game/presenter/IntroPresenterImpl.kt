@@ -1,6 +1,8 @@
 package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.game.basemvp.ContractMode
+import com.onewisebit.scpescape.game.basemvp.ContractParticipant
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.parsed.RolesDetail
 import com.onewisebit.scpescape.model.entities.Participant
@@ -9,14 +11,15 @@ import kotlin.random.Random
 class IntroPresenterImpl(
     introView: IntroContract.IntroView,
     private val introModel: IntroContract.IntroModel,
-    gameID: Long
-) : GamePresenterImpl(introView, introModel,gameID),
-    IntroContract.IntroPresenter {
+    private val participantPresenter: ContractParticipant.PresenterParticipant,
+    private val modePresenter: ContractMode.PresenterMode,
+    val gameID: Long
+) : IntroContract.IntroPresenter, ContractParticipant.PresenterParticipant by participantPresenter, ContractMode.PresenterMode by modePresenter {
 
     override suspend fun assignRoles() {
         //if it's a game in progress this doesn't need to be called or we can check from here directly
-        val participants: List<Participant> = gameModel.getParticipants(gameID)
-        val mode: ModeDataClass? = gameModel.getMode(gameID)
+        val participants: List<Participant> = introModel.getParticipants(gameID)
+        val mode: ModeDataClass? = introModel.getMode(gameID)
         if (mode != null) {
             // get roles division for this mode
             val roles: List<RolesDetail> =

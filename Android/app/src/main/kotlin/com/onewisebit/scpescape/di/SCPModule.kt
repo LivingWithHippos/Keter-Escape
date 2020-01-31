@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.game.basemvp.*
 import com.onewisebit.scpescape.game.model.GameModelImpl
 import com.onewisebit.scpescape.game.model.IntroModelImpl
 import com.onewisebit.scpescape.game.presenter.GamePresenterImpl
@@ -26,6 +27,7 @@ import com.onewisebit.scpescape.playerslist.model.PlayersModelImpl
 import com.onewisebit.scpescape.playerslist.presenter.PlayersPresenterImpl
 import com.onewisebit.scpescape.utilities.PREF_FILE
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 val appModule = module {
@@ -53,6 +55,7 @@ val appModule = module {
     single { ModeRepository(get()) }
     // TODO: replace other single with single<interface> {implementation}
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
+    single<RoundDetailRepository> { RoundDetailsRepositoryImpl(get()) }
 
     factory<StartContract.StartModel> {
         StartActivityModel(
@@ -76,9 +79,6 @@ val appModule = module {
 
     factory<IntroContract.IntroModel> {
         IntroModelImpl(
-            get(),
-            get(),
-            get(),
             get(),
             get(),
             get()
@@ -108,6 +108,8 @@ val appModule = module {
         IntroPresenterImpl(
             view,
             get(),
+            get{parametersOf(game)},
+            get{parametersOf(game)},
             game
         )
     }
@@ -147,4 +149,53 @@ val appModule = module {
     //TODO: check if this needs to be a factory or a single
     //factory<SCPFragmentFactory> { (game: Long, state: StateGame) -> SCPFragmentFactory(game, state)}
     single<SCPFragmentFactory> { (game: Long,  onActionListener: (action: Action) -> Unit) -> SCPFragmentFactory(game, onActionListener)}
+
+    //Game MVP, see ContractGame.kt
+    factory<ContractGame.ModelGame> {
+        ModelGameImpl(get())
+    }
+
+    factory<ContractGame.PresenterGame> { (game: Long) ->
+        PresenterGameImpl(get(),game)
+    }
+
+    factory<ContractParticipant.ModelParticipant> {
+        ModelParticipantImpl(get())
+    }
+
+    factory<ContractParticipant.PresenterParticipant> { (game: Long) ->
+        PresenterParticipantImpl(get(),game)
+    }
+
+    factory<ContractPlayer.ModelPlayer> {
+        ModelPlayerImpl(get())
+    }
+
+    factory<ContractPlayer.PresenterPlayer> { (game: Long) ->
+        PresenterPlayerImpl(get(),game)
+    }
+
+    factory<ContractRound.ModelRound> {
+        ModelRoundImpl(get())
+    }
+
+    factory<ContractRound.PresenterRound> { (game: Long) ->
+        PresenterRoundImpl(get(),game)
+    }
+
+    factory<ContractTurn.ModelTurn> {
+        ModelTurnImpl(get())
+    }
+
+    factory<ContractTurn.PresenterTurn> { (game: Long) ->
+        PresenterTurnImpl(get(),get(),game)
+    }
+
+    factory<ContractMode.ModelMode> {
+        ModelModeImpl(get(),get())
+    }
+
+    factory<ContractMode.PresenterMode> { (game: Long) ->
+        PresenterModeImpl(get(),game)
+    }
 }
