@@ -12,6 +12,7 @@ class SCPFragmentFactory(
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
         return when (className) {
             IntroFragment::class.java.name -> IntroFragment(gameID, onActionListener)
+            RoundInfoFragment::class.java.name -> RoundInfoFragment(gameID, onActionListener)
             else -> super.instantiate(classLoader, className)
         }
     }
