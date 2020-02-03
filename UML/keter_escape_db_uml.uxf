@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>15</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1130</x>
-      <y>650</y>
-      <w>100</w>
-      <h>110</h>
+      <x>1140</x>
+      <y>855</y>
+      <w>150</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>Players
 --
@@ -21,10 +21,10 @@ image: String
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1190</x>
-      <y>340</y>
-      <w>240</w>
-      <h>220</h>
+      <x>1230</x>
+      <y>390</y>
+      <w>360</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>Games
 --
@@ -47,10 +47,10 @@ game start</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1460</x>
-      <y>100</y>
-      <w>220</w>
-      <h>210</h>
+      <x>1635</x>
+      <y>30</y>
+      <w>330</w>
+      <h>315</h>
     </coordinates>
     <panel_attributes>Modes
 --
@@ -70,10 +70,10 @@ and is managed from a JSON</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1600</x>
-      <y>660</y>
-      <w>150</w>
-      <h>110</h>
+      <x>1845</x>
+      <y>870</y>
+      <w>225</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>Roles
 --
@@ -87,10 +87,10 @@ group: String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1420</x>
-      <y>300</y>
-      <w>180</w>
-      <h>220</h>
+      <x>1575</x>
+      <y>330</y>
+      <w>270</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..1
@@ -101,10 +101,10 @@ run with &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1370</x>
-      <y>550</y>
-      <w>50</w>
-      <h>130</h>
+      <x>1500</x>
+      <y>705</y>
+      <w>75</w>
+      <h>195</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 0..n</panel_attributes>
@@ -113,10 +113,10 @@ run with &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1220</x>
-      <y>700</y>
-      <w>120</w>
-      <h>40</h>
+      <x>1275</x>
+      <y>930</y>
+      <w>180</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -125,10 +125,10 @@ m1=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1460</x>
-      <y>700</y>
-      <w>160</w>
-      <h>40</h>
+      <x>1635</x>
+      <y>930</y>
+      <w>240</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -137,26 +137,27 @@ m1=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>780</x>
-      <y>640</y>
-      <w>120</w>
-      <h>120</h>
+      <x>615</x>
+      <y>840</y>
+      <w>225</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>Rounds
 --
 *gameID: Long*
 *number: Int*
 --
+information: String
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
-      <y>440</y>
-      <w>340</w>
-      <h>220</h>
+      <x>750</x>
+      <y>540</y>
+      <w>510</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -167,10 +168,10 @@ belongs to &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>970</x>
-      <y>830</y>
-      <w>120</w>
-      <h>120</h>
+      <x>900</x>
+      <y>1125</y>
+      <w>180</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>Turns
 --
@@ -184,10 +185,10 @@ belongs to &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>750</y>
-      <w>160</w>
-      <h>160</h>
+      <x>690</x>
+      <y>1005</y>
+      <w>240</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -196,10 +197,10 @@ m1=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1010</x>
-      <y>690</y>
-      <w>140</w>
-      <h>160</h>
+      <x>960</x>
+      <y>915</y>
+      <w>210</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -208,10 +209,10 @@ m1=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1320</x>
-      <y>660</y>
-      <w>150</w>
-      <h>110</h>
+      <x>1425</x>
+      <y>870</y>
+      <w>225</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>Participant
 --
@@ -226,10 +227,10 @@ state: String
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>1000</y>
-      <w>260</w>
-      <h>220</h>
+      <x>1125</x>
+      <y>1380</y>
+      <w>390</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>Vote
 --
@@ -249,10 +250,10 @@ vote_type: Long</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>940</y>
-      <w>120</w>
-      <h>190</h>
+      <x>975</x>
+      <y>1290</y>
+      <w>180</w>
+      <h>285</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..1</panel_attributes>
@@ -261,10 +262,10 @@ m1=0..1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1210</x>
-      <y>750</y>
-      <w>120</w>
-      <h>270</h>
+      <x>1260</x>
+      <y>1005</y>
+      <w>180</w>
+      <h>405</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1..n
@@ -274,10 +275,10 @@ vote player/s &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>180</y>
-      <w>140</w>
-      <h>80</h>
+      <x>555</x>
+      <y>150</y>
+      <w>210</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>RoundDetails
 --
@@ -291,10 +292,10 @@ read from JSON
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>160</y>
-      <w>180</w>
-      <h>120</h>
+      <x>0</x>
+      <y>120</y>
+      <w>270</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>RoundInformations
 --
@@ -308,10 +309,10 @@ description: String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
-      <y>190</y>
-      <w>610</w>
-      <h>50</h>
+      <x>750</x>
+      <y>165</y>
+      <w>915</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -322,10 +323,10 @@ used in &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>200</y>
-      <w>220</w>
-      <h>40</h>
+      <x>255</x>
+      <y>180</y>
+      <w>330</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..n
@@ -335,10 +336,10 @@ m2=1..1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>270</y>
-      <w>360</w>
-      <h>440</h>
+      <x>105</x>
+      <y>285</y>
+      <w>540</w>
+      <h>660</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
