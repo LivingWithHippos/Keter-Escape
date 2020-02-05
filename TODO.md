@@ -43,6 +43,8 @@ These are related to the Android app.
 
 - [ ] add PK and FK annotations to UMLs
 
+- [ ] use kotlin scope functions
+
 #### High Priority
 
 - [ ] Tutorial
