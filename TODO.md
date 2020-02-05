@@ -41,6 +41,8 @@ These are related to the Android app.
 
 - [ ] decide if the mvp implementation of basegame makes sense
 
+- [ ] add PK and FK annotations to UMLs
+
 #### High Priority
 
 - [ ] Tutorial
