@@ -2,7 +2,6 @@ package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.parsed.RoundDetails
-import com.onewisebit.scpescape.model.parsed.RoundInformation
 import io.reactivex.Completable
 
 interface InRoundRepository {
@@ -13,9 +12,13 @@ interface InRoundRepository {
 
     fun deleteGameRounds(gameID: Long): Completable
 
-    suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundInformation?
+    suspend fun getGameRoundInfo(gameId: Long, roundCode: String): RoundDetails?
 
-    suspend fun getAllDetails(modeId: Int): List<RoundInformation>?
+    suspend fun getRoundInfo(modeId: Int, roundCode: String): RoundDetails?
 
-    suspend fun getAllRoundsDetails(): List<RoundDetails>?
+    suspend fun getAllGameRoundDetails(gameId: Long): List<RoundDetails>?
+
+    suspend fun getAllModeRoundInfo(modeId: Int): List<RoundDetails>?
+
+    suspend fun getAllRoundsInformations(): List<RoundDetails>?
 }

@@ -5,16 +5,16 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
+import com.onewisebit.scpescape.model.daos.GameDAO
 import com.onewisebit.scpescape.model.daos.RoundDAO
 import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.parsed.RoundDetails
-import com.onewisebit.scpescape.model.parsed.RoundInformation
 import com.onewisebit.scpescape.utilities.ROUND_DETAILS_FILENAME
 import io.reactivex.Completable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RoundRepository(private val roundDAO: RoundDAO, private val context: Context) : InRoundRepository {
+class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameDAO, private val context: Context) : InRoundRepository {
 
     override fun insertRound(round: Round): Completable = roundDAO.insertRound(round)
 
@@ -22,15 +22,29 @@ class RoundRepository(private val roundDAO: RoundDAO, private val context: Conte
 
     override fun deleteGameRounds(gameID: Long): Completable = roundDAO.deleteGameRounds(gameID)
 
-    override suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundInformation? {
-        return getAllDetails(modeId)?.firstOrNull { it.code == roundCode }
+    override suspend fun getGameRoundInfo(
+        gameId: Long,
+        roundCode: String
+    ): RoundDetails? {
+        return getAllGameRoundDetails(gameId)?.firstOrNull{ it.code == roundCode }
     }
 
-    override suspend fun getAllDetails(modeId: Int): List<RoundInformation>? {
-        return getAllRoundsDetails()?.first { it.modeId == modeId }?.details
+    override suspend fun getRoundInfo(modeId: Int, roundCode: String): RoundDetails? {
+        return getAllModeRoundInfo(modeId)?.firstOrNull { it.code == roundCode }
     }
 
-    override suspend fun getAllRoundsDetails(): List<RoundDetails>? =
+    override suspend fun getAllGameRoundDetails(
+        gameId: Long
+    ): List<RoundDetails>? {
+        val gameMode = gameDAO.getModeID(gameId)
+        return getAllModeRoundInfo(gameMode)
+    }
+
+    override suspend fun getAllModeRoundInfo(modeId: Int): List<RoundDetails>? {
+        return getAllRoundsInformations()?.filter { it.mode == modeId }
+    }
+
+    override suspend fun getAllRoundsInformations(): List<RoundDetails>? =
         withContext(Dispatchers.IO) {
             try {
                 // retrieving round details

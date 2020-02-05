@@ -10,11 +10,11 @@ import androidx.room.Index
     primaryKeys = ["game", "number"],
     foreignKeys = [ForeignKey(
         entity = Game::class,
-        parentColumns = ["game_ID"],
-        childColumns = ["game"],
+        parentColumns = ["game_ID","mode"],
+        childColumns = ["game","mode"],
         onDelete = ForeignKey.CASCADE
     )],
-    indices = [Index(value = ["game", "number"], unique = true)]
+    indices = [Index(value = ["game", "mode"], unique = true)]
 )
 //TODO: evaluate if this can be flattened into turn as a field or if it should be kept separated for expansion purposes
 data class Round(
@@ -25,6 +25,10 @@ data class Round(
     val num: Int,
     @ColumnInfo(name = "game")
     val gameID: Long,
+    @ColumnInfo(name = "mode")
+    val modeID: Int,
+    @ColumnInfo(name = "details")
+    val details: String,
     @ColumnInfo(name = "type")
     val type: String
 )

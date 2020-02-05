@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "games",
-    indices = [Index(value = arrayOf("mode"))]
+    indices = [Index(value = ["game_ID", "mode"], unique = true)]
 )
 data class Game(
     @PrimaryKey(autoGenerate = true)

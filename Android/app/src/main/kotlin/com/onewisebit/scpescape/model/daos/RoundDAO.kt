@@ -25,11 +25,25 @@ interface RoundDAO {
     suspend fun getRounds(gameID: Long): List<Round>
 
     /**
+     * Get a round's details code.
+     * @return the details string from the table with a specific game id and round number.
+     */
+    @Query("SELECT rounds.details FROM rounds WHERE rounds.game = :gameID AND rounds.number = :roundNumber")
+    suspend fun getRoundInfo(gameID: Long, roundNumber : Int): String
+    
+    /**
      * Get the current (or last) round of a Game.
      * @return the Round from the table with a specific game id.
      */
     @Query("SELECT * FROM rounds WHERE rounds.game = :gameID AND rounds.number = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID)")
     suspend fun getCurrentRound(gameID: Long): Round
+
+    /**
+     * Get the current (or last) round's details code.
+     * @return the details string from the table with a specific game id.
+     */
+    @Query("SELECT rounds.details FROM rounds WHERE rounds.game = :gameID AND rounds.number = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID)")
+    suspend fun getCurrentRoundDetails(gameID: Long): String
 
     /**
      * Delete all of a game's rounds

@@ -1,15 +1,14 @@
-{
-  "mode_id": 0,
-  "info": [
+[
     {
+      "mode_id": 0,
       "code": "lights_out",
       "name": "Lights Out",
       "description": "Darkness descends upon the group; It's time to hide.\nUse your abilities to survive, or hope you're not the next one getting dragged away.\nThe hunters will have to choose their prey carefully, or they'll risk being spotted."
     },
     {
+      "mode_id": 0,
       "code": "lights_on",
       "name": "Lights On",
       "description": "The lights flicker and turn on. You scan your surroundings and check who's still there. \nIt's time to spot the hidden enemy and kill him. Discuss together and vote someone to kill before the lights go out again."
     }
-  ]
-}
+]

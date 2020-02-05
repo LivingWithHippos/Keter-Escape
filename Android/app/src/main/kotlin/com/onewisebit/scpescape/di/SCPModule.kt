@@ -34,6 +34,9 @@ import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 val appModule = module {
+
+    // Shared Preferences
+
     single<SharedPreferences> {
         androidContext().getSharedPreferences(
             PREF_FILE,
@@ -42,6 +45,7 @@ val appModule = module {
     }
 
     // DAOs
+
     single { SCPDatabase.getInstance(get()) }
     single { get<SCPDatabase>().playerDAO() }
     single { get<SCPDatabase>().roleDAO() }
@@ -56,12 +60,11 @@ val appModule = module {
     single<InGameRepository> { GameRepository(get()) }
     single<InPlayerRepository> { PlayerRepository(get()) }
     single<InParticipantRepository> { ParticipantRepository(get()) }
-    single<InRoundRepository> { RoundRepository(get(),get()) }
+    single<InRoundRepository> { RoundRepository(get(),get(),get()) }
     single<InTurnRepository> { TurnRepository(get()) }
     // TODO: remove when/if Mode is removed
     single { ModeRepository(get()) }
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
-
 
     // Composable Game MVP, see ContractGame.kt
 

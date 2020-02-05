@@ -2,7 +2,13 @@ package com.onewisebit.scpescape.game.basemvp
 
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.RoundDetails
 
+/**
+ * This is an attempt to create a composable MVP, since most of the game related parts are using similar or the same things.
+ * Every model takes a game ID, which is provided once to the presenter constructor and then passed down to the model.
+ * This is why the presenters do not have any game Id in their functions (see [PresenterGameImpl] and [ModelGameImpl]).
+ */
 interface ContractGame {
 
     interface ViewGame
@@ -47,10 +53,15 @@ interface ContractRound {
     interface PresenterRound {
         suspend fun getRounds(): List<Round>
         suspend fun getCurrentRound(): Round
+        suspend fun getCurrentRoundDetails(): RoundDetails?
+        suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails?
+        suspend fun getAllDetails(modeId: Int): List<RoundDetails>?
     }
 
     interface ModelRound {
         suspend fun getRounds(gameID: Long): List<Round>
+        suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails?
+        suspend fun getAllModeDetails(modeId: Int): List<RoundDetails>?
     }
 }
 
