@@ -4,10 +4,15 @@ import com.onewisebit.scpescape.game.RoundInfoContract
 import com.onewisebit.scpescape.game.basemvp.ContractRound
 
 class RoundInfoPresenterImpl(
-    roundiInfoView: RoundInfoContract.RoundInfoView,
-    roundInfoModel: RoundInfoContract.RoundInfoModel,
-    roundPresenter: ContractRound.PresenterRound,
+    val roundiInfoView: RoundInfoContract.RoundInfoView,
+    val roundInfoModel: RoundInfoContract.RoundInfoModel,
+    val roundPresenter: ContractRound.PresenterRound,
     val gameID: Long
 ) : RoundInfoContract.RoundInfoPresenter, ContractRound.PresenterRound by roundPresenter {
+
+    override suspend fun loadRoundInfo() {
+        val info = roundPresenter.getCurrentRoundDetails()
+        roundiInfoView.initView(info)
+    }
 
 }

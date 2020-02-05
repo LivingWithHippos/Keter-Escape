@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import com.onewisebit.scpescape.databinding.FragmentDayNightBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.RoundInfoContract
+import com.onewisebit.scpescape.model.parsed.RoundDetails
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -34,6 +36,14 @@ class RoundInfoFragment(gameID: Long, onActionListener: (action: Action) -> Unit
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        uiScope.launch {
+            presenter.loadRoundInfo()
+        }
+    }
+
+    override fun initView(info: RoundDetails?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onDestroyView() {
