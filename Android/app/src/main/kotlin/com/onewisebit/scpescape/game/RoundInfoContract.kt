@@ -8,7 +8,7 @@ interface RoundInfoContract {
     interface RoundInfoModel : ContractRound.ModelRound
 
     interface RoundInfoView {
-        fun initView(info: RoundDetails?)
+        fun initView(info: RoundDetails)
     }
 
     interface RoundInfoPresenter : ContractRound.PresenterRound {

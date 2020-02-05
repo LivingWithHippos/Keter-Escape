@@ -41,8 +41,9 @@ class RoundInfoFragment(gameID: Long, onActionListener: (action: Action) -> Unit
         }
     }
 
-    override fun initView(info: RoundDetails?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun initView(info: RoundDetails) {
+        binding.tvTitle.text = info.name
+        binding.tvDescription.text = info.description
     }
 
     override fun onDestroyView() {
