@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-//TODO: rename this to RoundSwitchFragment. This fragment will be shown between rounds an will describe what is going to happen in the next round. Also rename the other day/light pieces.
 class RoundInfoFragment(gameID: Long, onActionListener: (action: Action) -> Unit) :
     BaseGameFragment(gameID, onActionListener), RoundInfoContract.RoundInfoView {
 
