@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class RoundInfoFragment(gameID: Long, onActionListener: (action: Action) -> Unit) :
+class RoundInfoFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
     BaseGameFragment(gameID, onActionListener), RoundInfoContract.RoundInfoView {
 
     private val presenter: RoundInfoContract.RoundInfoPresenter by inject { parametersOf(this, gameID) }
@@ -44,6 +44,7 @@ class RoundInfoFragment(gameID: Long, onActionListener: (action: Action) -> Unit
     override fun initView(info: RoundDetails) {
         binding.tvTitle.text = info.name
         binding.tvDescription.text = info.description
+        binding.fabNextStep.setOnClickListener { onActionListener(Action.PassedToPlayerClicked()) }
     }
 
     override fun onDestroyView() {
