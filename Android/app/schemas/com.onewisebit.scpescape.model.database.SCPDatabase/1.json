@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "10bbef24ac7df06acd4252dc53e5c4b2",
+    "identityHash": "c1193e58f575877c02c749c8e1814ff2",
     "entities": [
       {
         "tableName": "players",
@@ -259,7 +259,7 @@
       },
       {
         "tableName": "rounds",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`number` INTEGER NOT NULL, `game` INTEGER NOT NULL, `mode` INTEGER NOT NULL, `details` TEXT NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`game`, `number`), FOREIGN KEY(`game`, `mode`) REFERENCES `games`(`game_ID`, `mode`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`number` INTEGER NOT NULL, `game` INTEGER NOT NULL, `mode` INTEGER NOT NULL, `details` TEXT NOT NULL, PRIMARY KEY(`game`, `number`), FOREIGN KEY(`game`, `mode`) REFERENCES `games`(`game_ID`, `mode`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "num",
@@ -282,12 +282,6 @@
           {
             "fieldPath": "details",
             "columnName": "details",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "type",
-            "columnName": "type",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -520,7 +514,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '10bbef24ac7df06acd4252dc53e5c4b2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c1193e58f575877c02c749c8e1814ff2')"
     ]
   }
 }

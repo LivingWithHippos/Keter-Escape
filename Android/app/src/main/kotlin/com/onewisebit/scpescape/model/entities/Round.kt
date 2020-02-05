@@ -28,7 +28,5 @@ data class Round(
     @ColumnInfo(name = "mode")
     val modeID: Int,
     @ColumnInfo(name = "details")
-    val details: String,
-    @ColumnInfo(name = "type")
-    val type: String
+    val details: String
 )
