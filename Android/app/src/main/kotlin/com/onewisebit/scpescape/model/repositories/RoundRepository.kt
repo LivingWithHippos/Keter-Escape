@@ -41,10 +41,10 @@ class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameD
     }
 
     override suspend fun getAllModeRoundInfo(modeId: Int): List<RoundDetails>? {
-        return getAllRoundsInformations()?.filter { it.mode == modeId }
+        return getAllRoundsDetails()?.filter { it.mode == modeId }
     }
 
-    override suspend fun getAllRoundsInformations(): List<RoundDetails>? =
+    override suspend fun getAllRoundsDetails(): List<RoundDetails>? =
         withContext(Dispatchers.IO) {
             try {
                 // retrieving round details
