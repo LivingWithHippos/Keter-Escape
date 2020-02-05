@@ -15,11 +15,19 @@ class PresenterRoundImpl(val modelRound: ContractRound.ModelRound, val gameID: L
 
     override suspend fun getCurrentRoundDetails(): RoundDetails? {
         val round = getCurrentRound()
-        return getRoundDetail(round.modeID,round.details)
+        return getRoundDetail(round.details)
     }
 
-    override suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails? = modelRound.getRoundDetail(modeId, roundCode)
+    override suspend fun getRoundDetail(roundCode: String): RoundDetails? {
+        val modeId = modelRound.getRoundsMode(gameID)
+        return modelRound.getRoundDetail(modeId, roundCode)
+    }
 
-    override suspend fun getAllDetails(modeId: Int): List<RoundDetails>? = modelRound.getAllModeDetails(modeId)
+    override suspend fun getAllModeDetails(): List<RoundDetails>? {
+        val modeId = modelRound.getRoundsMode(gameID)
+        return modelRound.getAllModeDetails(modeId)
+    }
+
+    override suspend fun addRound(details: String) = modelRound.addRound(gameID, details)
 
 }

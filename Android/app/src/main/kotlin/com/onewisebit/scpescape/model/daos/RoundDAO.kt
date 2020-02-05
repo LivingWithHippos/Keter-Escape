@@ -15,7 +15,7 @@ interface RoundDAO {
      * @param round the Round to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertRound(round: Round): Completable
+    suspend fun insertRound(round: Round)
 
     /**
      * Get all of the rounds from a game id.
@@ -30,6 +30,13 @@ interface RoundDAO {
      */
     @Query("SELECT count(*) FROM rounds WHERE rounds.game = :gameID")
     suspend fun getRoundsNumber(gameID: Long): Int
+
+    /**
+     * Get the rounds mode
+     * @return the mode id from the game table, which will be used for all its rounds.
+     */
+    @Query("SELECT games.mode FROM games WHERE games.game_ID = :gameID")
+    suspend fun getRoundMode(gameID: Long): Int
 
     /**
      * Get a round's details code.
