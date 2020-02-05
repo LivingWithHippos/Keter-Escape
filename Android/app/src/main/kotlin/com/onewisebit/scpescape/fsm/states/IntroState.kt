@@ -6,7 +6,7 @@ import com.onewisebit.scpescape.utilities.NIGHT
 class IntroState : StateGame {
     override fun consumeAction(action: Action): StateGame {
         return when (action) {
-            is Action.StartGameClicked -> DayNightState(NIGHT)
+            is Action.StartGameClicked -> RoundInfoState(NIGHT)
             else -> throw IllegalStateException("Invalid action: $action passed to an Intro state")
         }
     }

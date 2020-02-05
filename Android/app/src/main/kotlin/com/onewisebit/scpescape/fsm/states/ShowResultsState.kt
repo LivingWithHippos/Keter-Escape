@@ -5,7 +5,7 @@ import com.onewisebit.scpescape.fsm.actions.Action
 class ShowResultsState : StateGame {
     override fun consumeAction(action: Action): StateGame {
         return when (action) {
-            is Action.StartRoundClicked -> DayNightState()
+            is Action.StartRoundClicked -> RoundInfoState()
             else -> throw IllegalStateException("Invalid action: $action passed to a ShowResults state")
         }
     }
