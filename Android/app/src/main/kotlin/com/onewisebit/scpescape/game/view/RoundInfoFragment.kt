@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.onewisebit.scpescape.databinding.FragmentDayNightBinding
+import com.onewisebit.scpescape.databinding.FragmentRoundInfoBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.RoundInfoContract
 import com.onewisebit.scpescape.model.parsed.RoundDetails
@@ -20,7 +20,7 @@ class RoundInfoFragment(gameID: Long, onActionListener: (action: Action) -> Unit
     BaseGameFragment(gameID, onActionListener), RoundInfoContract.RoundInfoView {
 
     private val presenter: RoundInfoContract.RoundInfoPresenter by inject { parametersOf(this, gameID) }
-    private var _binding: FragmentDayNightBinding? = null
+    private var _binding: FragmentRoundInfoBinding? = null
     private val binding get() = _binding!!
 
     private val job = Job()
@@ -30,7 +30,7 @@ class RoundInfoFragment(gameID: Long, onActionListener: (action: Action) -> Unit
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDayNightBinding.inflate(layoutInflater)
+        _binding = FragmentRoundInfoBinding.inflate(layoutInflater)
         return binding.root
     }
 
