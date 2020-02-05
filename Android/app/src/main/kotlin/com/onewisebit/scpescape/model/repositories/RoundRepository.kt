@@ -62,6 +62,7 @@ class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameD
             }
         }
 
+    override suspend fun getRoundsNumber(gameId: Long): Int = roundDAO.getRoundsNumber(gameId)
 
     companion object {
         private val TAG = RoundRepository::class.java.simpleName

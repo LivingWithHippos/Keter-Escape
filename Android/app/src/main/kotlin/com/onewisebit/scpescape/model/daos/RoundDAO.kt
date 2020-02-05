@@ -25,6 +25,13 @@ interface RoundDAO {
     suspend fun getRounds(gameID: Long): List<Round>
 
     /**
+     * Get the number of saved round for a game
+     * @return the list of Rounds from the table with a specific game id.
+     */
+    @Query("SELECT count(*) FROM rounds WHERE rounds.game = :gameID")
+    suspend fun getRoundsNumber(gameID: Long): Int
+
+    /**
      * Get a round's details code.
      * @return the details string from the table with a specific game id and round number.
      */
