@@ -5,7 +5,8 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".game.view.RoundInfoFragment">
+    tools:context=".game.view.RoundInfoFragment"
+    tools:ignore="HardcodedText">
 
     <TextView
         android:id="@+id/tvTitle"
