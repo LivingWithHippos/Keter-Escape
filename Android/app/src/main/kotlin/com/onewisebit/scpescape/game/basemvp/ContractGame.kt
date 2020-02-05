@@ -54,14 +54,17 @@ interface ContractRound {
         suspend fun getRounds(): List<Round>
         suspend fun getCurrentRound(): Round
         suspend fun getCurrentRoundDetails(): RoundDetails?
-        suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails?
-        suspend fun getAllDetails(modeId: Int): List<RoundDetails>?
+        suspend fun getRoundDetail(roundCode: String): RoundDetails?
+        suspend fun getAllModeDetails(): List<RoundDetails>?
+        suspend fun addRound(details: String)
     }
 
     interface ModelRound {
         suspend fun getRounds(gameID: Long): List<Round>
         suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails?
         suspend fun getAllModeDetails(modeId: Int): List<RoundDetails>?
+        suspend fun addRound(gameID: Long, details: String)
+        suspend fun getRoundsMode(gameId: Long): Int
     }
 }
 

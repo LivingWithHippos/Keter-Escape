@@ -14,6 +14,11 @@ import com.onewisebit.scpescape.fsm.states.DayNightState
 import com.onewisebit.scpescape.fsm.states.IntroState
 import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameContract
+import com.onewisebit.scpescape.utilities.NIGHT
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import kotlin.properties.Delegates
@@ -25,6 +30,9 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private var _binding: ActivityGameBinding? = null
     private val binding get() = _binding!!
+
+    private val job = Job()
+    val uiScope = CoroutineScope(Dispatchers.Main + job)
 
     // not really necessary since we have the callback but nice to learn this
     private var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
@@ -38,7 +46,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //this NEEDS to be called before the super.onCreate()
+        //this NEEDS to be called before super.onCreate()
         supportFragmentManager.fragmentFactory = factory
 
         super.onCreate(savedInstanceState)
@@ -73,8 +81,12 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     }
 
     private fun setupDayNightFragment(dayOrNight: Int) {
-        supportFragmentManager.commit {
-            replace<RoundInfoFragment>(R.id.fragment_container_view)
+        uiScope.launch {
+            val roundCode = if (dayOrNight == NIGHT) "lights_out" else "lights_on"
+            presenter.addRound(roundCode)
+            supportFragmentManager.commit {
+                replace<RoundInfoFragment>(R.id.fragment_container_view)
+            }
         }
     }
 
