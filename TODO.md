@@ -64,3 +64,5 @@ These are related to the Android app.
 - [ ] Unsubscribe/Dispose rxjava when not needed
 
 - [ ] add base interface to presenter to dispose of view when it's destroyed
+
+- [ ] add null? to all the return types of the db that could be nullable in the DAOs
