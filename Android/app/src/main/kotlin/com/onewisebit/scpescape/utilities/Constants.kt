@@ -30,5 +30,6 @@ const val DAY = 0
 const val NIGHT = 1
 
 // Bundle arguments
-const val TURN_NUMBER = "turn_number"
+const val ARG_TURN_NUMBER = "turn_number"
+const val ARG_PLAYER_NAME = "player_name"
 
