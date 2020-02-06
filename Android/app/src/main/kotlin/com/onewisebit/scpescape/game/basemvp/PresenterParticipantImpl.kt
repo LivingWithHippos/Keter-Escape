@@ -9,11 +9,11 @@ open class PresenterParticipantImpl(
 ) : ContractParticipant.PresenterParticipant {
 
 
-    override suspend fun getParticipants(): List<Participant> =
+    override suspend fun getParticipants(): List<Participant>? =
         modelParticipant.getParticipants(gameID)
 
     override suspend fun getAliveParticipants(): List<Participant> {
-        return getParticipants().filter { it.stateValue == PARTICIPANT_STATE_ALIVE }
+        return getParticipants()?.filter { it.stateValue == PARTICIPANT_STATE_ALIVE } ?: throw IllegalArgumentException("No participants found for game $gameID")
     }
 
     override suspend fun getCurrentParticipant(): Participant =
