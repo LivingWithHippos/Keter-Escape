@@ -45,4 +45,7 @@
     <string name="mode_short_description">Mode Short Description</string>
     <string name="mode_image">Image for the Mode</string>
     <string name="remaining_players">"The remaining players will play as %1s"</string>
+    <string name="pass_to_player">Pass device to %1s</string>
+    <string name="i_am_player">I\'m %1s</string>
+    <string name="player_picture">Player Picture</string>
 </resources>
