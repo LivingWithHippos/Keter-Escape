@@ -9,9 +9,15 @@ class PresenterTurnImpl(
 ) : ContractTurn.PresenterTurn {
     override suspend fun getTurns(): List<Turn> = modelTurn.getTurns(gameID)
 
-    override suspend fun getRoundTurns(roundNumber: Int): List<Turn> =
+    override suspend fun getRoundTurns(roundNumber: Int): List<Turn>? =
         modelTurn.getRoundTurns(gameID, roundNumber)
+
+    override suspend fun getLatestRoundTurns(): List<Turn>? = modelTurn.getLatestRoundTurns(gameID)
 
     override suspend fun isLastTurn(): Boolean =
         modelParticipant.getMissingRoundParticipants(gameID).isEmpty()
+
+    override suspend fun addTurn(playerId: Long): Int {
+        return modelTurn.addTurn(gameID,playerId)
+    }
 }
