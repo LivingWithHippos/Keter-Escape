@@ -29,3 +29,6 @@ const val PARTICIPANT_STATE_ALIVE = 1
 const val DAY = 0
 const val NIGHT = 1
 
+// Bundle arguments
+const val TURN_NUMBER = "turn_number"
+
