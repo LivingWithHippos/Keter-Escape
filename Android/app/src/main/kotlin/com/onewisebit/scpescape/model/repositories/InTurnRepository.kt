@@ -6,13 +6,21 @@ import io.reactivex.Flowable
 
 interface InTurnRepository {
 
-    fun insertTurn(turn: Turn): Completable
+    suspend fun insertTurn(turn: Turn)
 
     suspend fun getGameTurns(gameID: Long): List<Turn>
 
+    suspend fun getLastTurn(gameID: Long): Turn?
+
+    suspend fun getLastRoundTurn(gameID: Long): Turn?
+
     fun getPlayerTurns(gameID: Long, playerID: Long): Flowable<List<Turn>>
 
-    suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>
+    suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>?
+
+    suspend fun getLatestRoundTurns(gameID: Long): List<Turn>?
+
+    suspend fun getMissingRoundPlayers(gameID: Long): List<Long>?
 
     fun deleteGameTurns(gameID: Long): Completable
 }
