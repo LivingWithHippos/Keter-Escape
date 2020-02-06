@@ -44,7 +44,7 @@ class RoundInfoFragment(gameID: Long, private val onActionListener: (action: Act
     override fun initView(info: RoundDetails) {
         binding.tvTitle.text = info.name
         binding.tvDescription.text = info.description
-        binding.fabNextStep.setOnClickListener { onActionListener(Action.PassedToPlayerClicked()) }
+        binding.fabNextStep.setOnClickListener { onActionListener(Action.StartRoundClicked()) }
     }
 
     override fun onDestroyView() {

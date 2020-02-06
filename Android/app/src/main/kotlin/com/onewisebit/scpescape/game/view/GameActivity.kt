@@ -16,6 +16,7 @@ import com.onewisebit.scpescape.fsm.states.PassDeviceState
 import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.utilities.NIGHT
+import com.onewisebit.scpescape.utilities.TURN_NUMBER
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -68,7 +69,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
 
         when (newState) {
-            is RoundInfoState -> setupDayNightFragment(newState.dayOrNight)
+            is RoundInfoState -> setupRoundInfoFragment(newState.dayOrNight)
             is PassDeviceState -> setupPassDeviceFragment()
         }
 
@@ -84,7 +85,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    private fun setupDayNightFragment(dayOrNight: Int) {
+    private fun setupRoundInfoFragment(dayOrNight: Int) {
         uiScope.launch {
             val roundCode = if (dayOrNight == NIGHT) "lights_out" else "lights_on"
             presenter.addRound(roundCode)
@@ -96,9 +97,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun setupPassDeviceFragment() {
         uiScope.launch {
-            val turn: Int = presenter.addTurn()
             supportFragmentManager.commit {
-                replace<PassDeviceFragment>(R.id.fragment_container_view, args = )
             }
         }
     }
