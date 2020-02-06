@@ -134,5 +134,5 @@ interface ParticipantDAO {
      * @return the Participants from the table with a specific game id.
      */
     @Query("SELECT participants.* FROM participants WHERE participants.game = :gameID AND participants.state = 1 AND participants.player NOT IN (SELECT participants.player FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.round = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID))")
-    suspend fun getMissingParticipants(gameID: Long): List<Participant>
+    suspend fun getLatestRoundMissingParticipants(gameID: Long): List<Participant>
 }
