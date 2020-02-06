@@ -8,4 +8,6 @@ class ModelPlayerImpl(
 ) : ContractPlayer.ModelPlayer {
     override suspend fun getPlayers(gameID: Long): List<Player> =
         playerRepository.getPlayersByGame(gameID)
+
+    override suspend fun getPlayerName(playerId: Long): String? = playerRepository.getPlayerName(playerId)
 }

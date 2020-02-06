@@ -61,6 +61,7 @@ interface ContractPlayer {
 
     interface ModelPlayer {
         suspend fun getPlayers(gameID: Long): List<Player>
+        suspend fun getPlayerName(playerId: Long): String?
     }
 }
 
