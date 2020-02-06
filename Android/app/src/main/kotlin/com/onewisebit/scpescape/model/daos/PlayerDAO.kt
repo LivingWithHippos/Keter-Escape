@@ -57,4 +57,11 @@ interface PlayerDAO {
      */
     @Query("SELECT players.* FROM players INNER JOIN participants ON players.player_ID = participants.player WHERE participants.game = :gameID")
     suspend fun getPlayersByGame(gameID: Long): List<Player>
+
+    /**
+     * Get the name of a player from the id.
+     * @return String with the name of the player with a specific player id or null if not found.
+     */
+    @Query("SELECT players.player_name FROM players WHERE players.player_ID = :playerId")
+    suspend fun getPlayerNameById(playerId: Long): String?
 }

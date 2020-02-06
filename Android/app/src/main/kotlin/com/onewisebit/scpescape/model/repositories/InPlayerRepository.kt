@@ -19,4 +19,6 @@ interface InPlayerRepository {
     fun getPlayersByName(name: String): Flowable<List<Player>>
 
     suspend fun getPlayersByGame(gameID: Long): List<Player>
+
+    suspend fun getPlayerName(playerId: Long): String?
 }

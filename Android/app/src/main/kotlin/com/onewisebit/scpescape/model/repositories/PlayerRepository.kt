@@ -45,6 +45,8 @@ class PlayerRepository(private val playerDAO: PlayerDAO) :
     override suspend fun getPlayersByGame(gameID: Long): List<Player> =
         playerDAO.getPlayersByGame(gameID)
 
+    override suspend fun getPlayerName(playerId: Long): String? = playerDAO.getPlayerNameById(playerId)
+
     override fun deleteAllPlayers() {
         Completable.fromAction { playerDAO.deleteAllPlayers() }
             .subscribeOn(Schedulers.io())
