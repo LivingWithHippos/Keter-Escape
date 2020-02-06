@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentPassDeviceBinding
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 
 /**
  * A simple [Fragment] subclass.
@@ -24,11 +25,20 @@ BaseGameFragment(gameID, onActionListener) {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPassDeviceBinding.inflate(layoutInflater)
+        val playerName : String = arguments?.getString(ARG_PLAYER_NAME) ?: throw IllegalArgumentException("Couldn't load player name from arguments")
+        initView(playerName)
         return binding.root
     }
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    fun initView(playerName : String){
+        //TODO: add player picture loading
+        binding.tvPassDevice.text = getString(R.string.pass_to_player, playerName)
+        binding.bConfirmPlayer.text = getString(R.string.i_am_player, playerName)
+        binding.bConfirmPlayer.setOnClickListener { onActionListener(Action.PassedToPlayerClicked()) }
     }
 }

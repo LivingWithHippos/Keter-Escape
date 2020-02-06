@@ -15,8 +15,9 @@ import com.onewisebit.scpescape.fsm.states.IntroState
 import com.onewisebit.scpescape.fsm.states.PassDeviceState
 import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameContract
+import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 import com.onewisebit.scpescape.utilities.NIGHT
-import com.onewisebit.scpescape.utilities.TURN_NUMBER
+import com.onewisebit.scpescape.utilities.ARG_TURN_NUMBER
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -98,9 +99,9 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun setupPassDeviceFragment() {
         uiScope.launch {
-            val turn: Int = presenter.newPlayerTurn()
+            val playerName: String = presenter.newPlayerTurn()
             val arguments = Bundle()
-            arguments.putInt(TURN_NUMBER,turn)
+            arguments.putString(ARG_PLAYER_NAME,playerName)
             supportFragmentManager.commit {
                 replace<PassDeviceFragment>(R.id.fragment_container_view, args = arguments)
             }
