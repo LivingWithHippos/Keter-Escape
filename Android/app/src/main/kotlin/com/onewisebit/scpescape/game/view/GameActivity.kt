@@ -97,7 +97,11 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun setupPassDeviceFragment() {
         uiScope.launch {
+            val turn: Int = presenter.newPlayerTurn()
+            val arguments = Bundle()
+            arguments.putInt(TURN_NUMBER,turn)
             supportFragmentManager.commit {
+                replace<PassDeviceFragment>(R.id.fragment_container_view, args = arguments)
             }
         }
     }
