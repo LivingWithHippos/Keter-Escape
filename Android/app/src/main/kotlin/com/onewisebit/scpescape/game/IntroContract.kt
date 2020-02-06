@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.game
 import com.onewisebit.scpescape.game.basemvp.ContractMode
 import com.onewisebit.scpescape.game.basemvp.ContractParticipant
 
+//TODO: for simple fragment a contract may not be needed and we could just pass values from the activity
 interface IntroContract {
 
     interface IntroModel : ContractParticipant.ModelParticipant, ContractMode.ModelMode {
