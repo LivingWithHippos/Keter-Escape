@@ -87,6 +87,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun setupRoundInfoFragment(dayOrNight: Int) {
         uiScope.launch {
+            //TODO: replace with round state managing
             val roundCode = if (dayOrNight == NIGHT) "lights_out" else "lights_on"
             presenter.addRound(roundCode)
             supportFragmentManager.commit {
