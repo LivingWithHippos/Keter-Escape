@@ -10,8 +10,9 @@ import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.fsm.states.DayNightState
+import com.onewisebit.scpescape.fsm.states.RoundInfoState
 import com.onewisebit.scpescape.fsm.states.IntroState
+import com.onewisebit.scpescape.fsm.states.PassDeviceState
 import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.utilities.NIGHT
@@ -60,12 +61,15 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
 
+        //TODO: remove logs
         when (oldState) {
             is IntroState -> Log.d(TAG, "Play clicked from Intro GameState")
+            is RoundInfoState -> Log.d(TAG, "Start round clicked from RoundInfo GameState")
         }
 
         when (newState) {
-            is DayNightState -> setupDayNightFragment(newState.dayOrNight)
+            is RoundInfoState -> setupDayNightFragment(newState.dayOrNight)
+            is PassDeviceState -> setupPassDeviceFragment()
         }
 
     }
@@ -86,6 +90,15 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             presenter.addRound(roundCode)
             supportFragmentManager.commit {
                 replace<RoundInfoFragment>(R.id.fragment_container_view)
+            }
+        }
+    }
+
+    private fun setupPassDeviceFragment() {
+        uiScope.launch {
+            val turn: Int = presenter.addTurn()
+            supportFragmentManager.commit {
+                replace<PassDeviceFragment>(R.id.fragment_container_view, args = )
             }
         }
     }
