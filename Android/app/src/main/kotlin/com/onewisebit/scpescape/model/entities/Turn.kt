@@ -22,6 +22,8 @@ import androidx.room.Index
     indices = [Index(value = ["turn_number", "round", "game", "player"], unique = true)]
 )
 data class Turn(
+    @ColumnInfo(name = "game")
+    val gameID: Long,
     @ColumnInfo(name = "round")
     val roundNumber: Int,
     /**
@@ -30,8 +32,6 @@ data class Turn(
      */
     @ColumnInfo(name = "turn_number")
     val turnNumber: Int,
-    @ColumnInfo(name = "game")
-    val gameID: Long,
     @ColumnInfo(name = "player", index = true)
     val playerID: Long
 )
