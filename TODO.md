@@ -45,6 +45,8 @@ These are related to the Android app.
 
 - [ ] use kotlin scope functions
 
+- [ ] with KOIN 2.1.0 add KoinApplication and KoinFragmentFactory
+
 #### High Priority
 
 - [ ] Tutorial
