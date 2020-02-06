@@ -39,6 +39,9 @@ BaseGameFragment(gameID, onActionListener) {
         //TODO: add player picture loading
         binding.tvPassDevice.text = getString(R.string.pass_to_player, playerName)
         binding.bConfirmPlayer.text = getString(R.string.i_am_player, playerName)
-        binding.bConfirmPlayer.setOnClickListener { onActionListener(Action.PassedToPlayerClicked()) }
+        binding.bConfirmPlayer.setOnClickListener {
+            binding.bConfirmPlayer.isEnabled = false
+            onActionListener(Action.PassedToPlayerClicked())
+        }
     }
 }
