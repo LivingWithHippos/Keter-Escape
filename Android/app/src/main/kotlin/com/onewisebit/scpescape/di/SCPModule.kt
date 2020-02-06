@@ -193,6 +193,8 @@ val appModule = module {
 
     factory<GameContract.GameModel> {
         GameModelImpl(
+            get(),
+            get(),
             get()
         )
     }
@@ -201,6 +203,8 @@ val appModule = module {
         GamePresenterImpl(
             view,
             get(),
+            get { parametersOf(game) },
+            get { parametersOf(game) },
             get { parametersOf(game) },
             game
         )
