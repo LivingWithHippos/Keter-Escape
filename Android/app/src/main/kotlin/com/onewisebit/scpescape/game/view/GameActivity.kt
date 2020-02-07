@@ -117,6 +117,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
+    // using fragmentFactory to manage navigation for now
     private fun setupNavigation(navController: NavController){
         // setting this here since it's the starting activity of a new graph
         // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
