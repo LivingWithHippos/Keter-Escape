@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.IntroContract
+import com.onewisebit.scpescape.game.PlayerTurnContract
 import com.onewisebit.scpescape.game.RoundInfoContract
 import com.onewisebit.scpescape.game.basemvp.*
 import com.onewisebit.scpescape.game.model.GameModelImpl
@@ -217,7 +218,6 @@ val appModule = module {
     factory<IntroContract.IntroModel> {
         IntroModelImpl(
             get(),
-            get(),
             get()
         )
     }
@@ -233,7 +233,6 @@ val appModule = module {
     }
 
     // RoundInfo Fragment MVP
-
 
     factory<RoundInfoContract.RoundInfoModel> {
         RoundInfoModelImpl(

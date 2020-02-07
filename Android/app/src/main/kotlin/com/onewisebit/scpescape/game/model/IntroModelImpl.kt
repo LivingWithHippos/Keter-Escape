@@ -6,7 +6,6 @@ import com.onewisebit.scpescape.game.basemvp.ContractParticipant
 import com.onewisebit.scpescape.model.repositories.InParticipantRepository
 
 class IntroModelImpl(
-    val participantRepository: InParticipantRepository,
     val participantModel: ContractParticipant.ModelParticipant,
     val modeModel: ContractMode.ModelMode
 ) :
@@ -15,5 +14,5 @@ class IntroModelImpl(
     IntroContract.IntroModel {
 
     override suspend fun assignRole(gameID: Long, playerID: Long, roleName: String) =
-        participantRepository.setGameParticipantRole(gameID, playerID, roleName)
+        setGameParticipantRole(gameID, playerID, roleName)
 }

@@ -15,4 +15,7 @@ open class ModelParticipantImpl(
 
     override suspend fun getMissingRoundParticipants(gameID: Long): List<Participant> =
         participantRepository.getMissingParticipants(gameID)
+
+    override suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
+        participantRepository.setGameParticipantRole(gameID, playerID, roleName)
 }
