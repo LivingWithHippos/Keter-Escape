@@ -35,7 +35,7 @@ class PlayerRepository(private val playerDAO: PlayerDAO) :
     }
 
 
-    override fun getPlayerById(id: String): Single<Player> = playerDAO.getPlayerById(id)
+    override suspend fun getPlayerById(id: Long): Player? = playerDAO.getPlayerById(id)
 
     override fun getAllPlayers(): Flowable<List<Player>> = playerDAO.getAllPlayers()
 

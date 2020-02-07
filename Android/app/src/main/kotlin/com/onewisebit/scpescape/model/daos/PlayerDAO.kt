@@ -14,7 +14,7 @@ interface PlayerDAO {
      * @return the player from the table with a specific id.
      */
     @Query("SELECT * FROM players WHERE player_ID = :id")
-    fun getPlayerById(id: String): Single<Player>
+    suspend fun getPlayerById(id: Long): Player
 
     /**
      * Get a list of players by searching their name.

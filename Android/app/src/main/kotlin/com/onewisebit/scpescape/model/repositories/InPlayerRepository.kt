@@ -10,7 +10,7 @@ interface InPlayerRepository {
 
     fun updatePlayer(player: Player)
 
-    fun getPlayerById(id: String): Single<Player>
+    suspend fun getPlayerById(id: Long): Player?
 
     fun getAllPlayers(): Flowable<List<Player>>
 
