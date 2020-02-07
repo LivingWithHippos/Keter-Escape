@@ -24,7 +24,9 @@ import com.onewisebit.scpescape.model.parsed.RoundDetails
  * Parameters can be passed to composable classes using parametersOf(args):
  * factory<MyPresenter> { MyPresenterImpl(get{ parametersOf(args) }) }
  */
-// TODO: decide if we can compose only the model since most of the times it's what is needed. Change composed presenter to use their composed model and not the composed presenter.
+// TODO: decide if we can compose only the model since most of the times it's what is needed.
+//  Change composed presenter to use their composed model and not the composed presenter.
+// Problem seems to be that models passed to presenterImpl do not give access to implemented composable models.
 interface ContractGame {
 
     interface ViewGame
@@ -58,10 +60,12 @@ interface ContractPlayer {
 
     interface PresenterPlayer {
         suspend fun getPlayers(): List<Player>
+        suspend fun getPlayer(id: Long): Player
     }
 
     interface ModelPlayer {
         suspend fun getPlayers(gameID: Long): List<Player>
+        suspend fun getPlayer(id: Long): Player?
         suspend fun getPlayerName(playerId: Long): String?
     }
 }
@@ -92,6 +96,7 @@ interface ContractTurn {
         suspend fun getTurns(): List<Turn>
         suspend fun getRoundTurns(roundNumber: Int): List<Turn>?
         suspend fun getLatestRoundTurns(): List<Turn>?
+        suspend fun getLatestTurn(): Turn
         suspend fun isLastTurn(): Boolean
         suspend fun addTurn(playerId: Long) : Int
     }
@@ -100,6 +105,7 @@ interface ContractTurn {
         suspend fun getTurns(gameID: Long): List<Turn>
         suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>?
         suspend fun getLatestRoundTurns(gameID : Long): List<Turn>?
+        suspend fun getLatestTurn(gameID : Long): Turn?
         suspend fun addTurn(gameID : Long, playerId: Long) : Int
         suspend fun getMissingTurnsParticipants(gameID : Long) : List<Long>?
     }

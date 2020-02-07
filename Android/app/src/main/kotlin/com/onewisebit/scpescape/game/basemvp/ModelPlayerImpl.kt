@@ -9,5 +9,7 @@ class ModelPlayerImpl(
     override suspend fun getPlayers(gameID: Long): List<Player> =
         playerRepository.getPlayersByGame(gameID)
 
+    override suspend fun getPlayer(id: Long): Player? = playerRepository.getPlayerById(id)
+
     override suspend fun getPlayerName(playerId: Long): String? = playerRepository.getPlayerName(playerId)
 }

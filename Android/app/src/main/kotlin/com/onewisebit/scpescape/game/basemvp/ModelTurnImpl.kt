@@ -11,6 +11,8 @@ class ModelTurnImpl(val turnRepository: InTurnRepository) : ContractTurn.ModelTu
     override suspend fun getLatestRoundTurns(gameID: Long): List<Turn>? =
         turnRepository.getLatestRoundTurns(gameID)
 
+    override suspend fun getLatestTurn(gameID: Long): Turn? = turnRepository.getLastTurn(gameID)
+
     override suspend fun addTurn(gameID : Long, playerId: Long): Int {
         // Note: this is supposing Rounds are always created before Turns
         // this is equivalent to the first turn of a game

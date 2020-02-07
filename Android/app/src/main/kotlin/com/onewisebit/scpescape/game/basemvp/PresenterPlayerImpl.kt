@@ -6,4 +6,8 @@ class PresenterPlayerImpl(val model: ContractPlayer.ModelPlayer, val gameId: Lon
     ContractPlayer.PresenterPlayer {
     override suspend fun getPlayers(): List<Player> = model.getPlayers(gameId)
 
+    override suspend fun getPlayer(id: Long): Player {
+        return model.getPlayer(id) ?: throw IllegalArgumentException("No Player found for id $id")
+    }
+
 }

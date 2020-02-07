@@ -14,6 +14,10 @@ class PresenterTurnImpl(
 
     override suspend fun getLatestRoundTurns(): List<Turn>? = modelTurn.getLatestRoundTurns(gameID)
 
+    override suspend fun getLatestTurn(): Turn {
+        return modelTurn.getLatestTurn(gameID) ?: throw IllegalArgumentException("No turns found for game $gameID or error loading turns.")
+    }
+
     override suspend fun isLastTurn(): Boolean =
         modelParticipant.getMissingRoundParticipants(gameID).isEmpty()
 
