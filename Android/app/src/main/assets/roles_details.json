@@ -1,0 +1,20 @@
+[
+  {
+    "mode_id": 0,
+    "roles_list": [
+      {
+        "role_name": "MTF - Mobile Task Force",
+        "round_actions": [
+          {
+            "round_code": "lights_out",
+            "action_name": "MTF protection"
+          },
+          {
+            "round_code": "lights_on",
+            "action_name": "Daily vote"
+          }
+        ]
+      }
+    ]
+  }
+]
