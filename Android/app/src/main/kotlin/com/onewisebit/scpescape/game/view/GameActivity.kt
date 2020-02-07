@@ -10,10 +10,7 @@ import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.fsm.states.RoundInfoState
-import com.onewisebit.scpescape.fsm.states.IntroState
-import com.onewisebit.scpescape.fsm.states.PassDeviceState
-import com.onewisebit.scpescape.fsm.states.StateGame
+import com.onewisebit.scpescape.fsm.states.*
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 import com.onewisebit.scpescape.utilities.NIGHT
@@ -67,11 +64,13 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         when (oldState) {
             is IntroState -> Log.d(TAG, "Play clicked from Intro GameState")
             is RoundInfoState -> Log.d(TAG, "Start round clicked from RoundInfo GameState")
+            is PassDeviceState -> Log.d(TAG, "Device passed clicked from PassDevice GameState")
         }
 
         when (newState) {
             is RoundInfoState -> setupRoundInfoFragment(newState.dayOrNight)
             is PassDeviceState -> setupPassDeviceFragment()
+            is PlayerTurnState -> setupPlayerTurnFragment()
         }
 
     }
@@ -104,6 +103,16 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             arguments.putString(ARG_PLAYER_NAME,playerName)
             supportFragmentManager.commit {
                 replace<PassDeviceFragment>(R.id.fragment_container_view, args = arguments)
+            }
+        }
+    }
+
+
+    private fun setupPlayerTurnFragment() {
+        uiScope.launch {
+            // this will run with the last created turn
+            supportFragmentManager.commit {
+                replace<PlayerTurnFragment>(R.id.fragment_container_view)
             }
         }
     }

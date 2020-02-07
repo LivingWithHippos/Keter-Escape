@@ -39,7 +39,7 @@
     <string name="rules">Rules</string>
     <string name="play">Play</string>
     <string name="round_title">Round Title</string>
-    <string name="round_description">Round Descritpion</string>
+    <string name="round_description">Round Description</string>
     <string name="round_descriptive_image">Round Descriptive Image</string>
     <string name="mode_name">Mode Name</string>
     <string name="mode_short_description">Mode Short Description</string>
@@ -48,4 +48,7 @@
     <string name="pass_to_player">Pass device to %1s</string>
     <string name="i_am_player">I\'m %1s</string>
     <string name="player_picture">Player Picture</string>
+    <string name="player_name_placeholder">%1s</string>
+    <string name="player_role_placeholder">%1s</string>
+    <string name="player_role_description_placeholder">%1s</string>
 </resources>

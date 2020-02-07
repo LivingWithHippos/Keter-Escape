@@ -15,6 +15,7 @@ class SCPFragmentFactory(
             IntroFragment::class.java.name -> IntroFragment(gameID, onActionListener)
             RoundInfoFragment::class.java.name -> RoundInfoFragment(gameID, onActionListener)
             PassDeviceFragment::class.java.name -> PassDeviceFragment(gameID, onActionListener)
+            PlayerTurnFragment::class.java.name -> PlayerTurnFragment(gameID, onActionListener)
             else -> super.instantiate(classLoader, className)
         }
     }
