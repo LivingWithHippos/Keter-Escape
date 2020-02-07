@@ -1,7 +1,7 @@
 [
   {
-    "extends": "vote",
-    "name": "vote",
+    "extends": "template_vote",
+    "name": "template_vote",
     "description": "Choose someone to apply an effect to.",
     "show": {
       "all": true,
@@ -11,6 +11,13 @@
     },
     "reveal_role": {
       "all": false,
+      "self": false,
+      "role": [],
+      "no_role": []
+    },
+    "reveal_vote": {
+      "all": true,
+      "self": false,
       "role": [],
       "no_role": []
     },
@@ -33,8 +40,8 @@
       "action": false
     },
     "draw": {
-      "re_vote_no_draw_players": true,
-      "re_vote_all": false,
+      "re_vote_all": true,
+      "re_vote_no_draw_players": false,
       "random": false,
       "max_random": false,
       "ignore": false,
@@ -45,7 +52,8 @@
       "save_on_death": false,
       "self_saved_if_targeted" : false,
       "die_on_death": false,
-      "die_if_group": []
+      "die_if_group": [],
+      "die_if_role": []
     },
     "applied":{
       "end_turn": false,

@@ -1,6 +1,6 @@
 [
   {
-    "extends": "vote",
+    "extends": "template_vote",
     "name": "Daily vote",
     "description": "Choose someone to kill with SCP-[REDACTED].",
     "show": {
@@ -9,6 +9,9 @@
     },
     "reveal_role": {
       "none": true
+    },
+    "reveal_vote": {
+      "all": true
     },
     "choice_enabled": {
       "all": true
@@ -31,7 +34,15 @@
     }
   },
   {
-    "extends": "vote",
+  "extends": "Daily vote",
+  "name": "Daily SCP vote",
+  "description": "Choose someone to kill with SCP-[REDACTED]. You'll be able to see your companions' vote.",
+  "reveal_role": {
+    "role": ["SCP-106"]
+  }
+},
+  {
+    "extends": "template_vote",
     "name": "MTF protection",
     "description": "Choose someone to save in case of death (yourself included). Die if an SCP is picked",
     "show": {
@@ -62,7 +73,7 @@
     }
   },
   {
-    "extends": "vote",
+    "extends": "template_vote",
     "name": "Scientist hiding",
     "description": "Choose someone to hide behind. Will be saved if you're picked. Will die if they're picked or if they're an SCP",
     "show": {
@@ -95,7 +106,7 @@
     }
   },
   {
-    "extends": "vote",
+    "extends": "template_vote",
     "name": "SCP 106 attack",
     "description": "Choose someone to kill at the end of the round.",
     "show": {
