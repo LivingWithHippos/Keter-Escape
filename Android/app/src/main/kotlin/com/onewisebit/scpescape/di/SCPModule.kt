@@ -10,9 +10,11 @@ import com.onewisebit.scpescape.game.RoundInfoContract
 import com.onewisebit.scpescape.game.basemvp.*
 import com.onewisebit.scpescape.game.model.GameModelImpl
 import com.onewisebit.scpescape.game.model.IntroModelImpl
+import com.onewisebit.scpescape.game.model.PlayerTurnModelImpl
 import com.onewisebit.scpescape.game.model.RoundInfoModelImpl
 import com.onewisebit.scpescape.game.presenter.GamePresenterImpl
 import com.onewisebit.scpescape.game.presenter.IntroPresenterImpl
+import com.onewisebit.scpescape.game.presenter.PlayerTurnPresenterImpl
 import com.onewisebit.scpescape.game.presenter.RoundInfoPresenterImpl
 import com.onewisebit.scpescape.game.view.SCPFragmentFactory
 import com.onewisebit.scpescape.main.StartContract
@@ -245,6 +247,25 @@ val appModule = module {
         RoundInfoPresenterImpl(
             view,
             get(),
+            get { parametersOf(game) },
+            game
+        )
+    }
+
+    // Player Turn Fragment MVP
+
+    factory<PlayerTurnContract.PlayerTurnModel> {
+        PlayerTurnModelImpl(
+            get(),
+            get()
+        )
+    }
+
+    factory<PlayerTurnContract.PlayerTurnPresenter> { (view: PlayerTurnContract.PlayerTurnView, game: Long) ->
+        PlayerTurnPresenterImpl(
+            view,
+            get(),
+            get { parametersOf(game) },
             get { parametersOf(game) },
             game
         )
