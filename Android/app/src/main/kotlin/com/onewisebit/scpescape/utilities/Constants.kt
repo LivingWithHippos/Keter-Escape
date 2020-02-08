@@ -11,7 +11,7 @@ const val ACTION_DATA_FILENAME = "actions.json"
 const val ACTION_TEMPLATE_FILENAME = "actions_template.json"
 const val ROUND_DETAILS_FILENAME = "round_details.json"
 
-// preferences and themes
+// shared preferences
 const val PREF_FILE = "scpescape_preferences"
 const val DEFAULT_THEME = "theme_foundation"
 const val CURRENT_THEME = "preference_current_theme"
@@ -22,7 +22,8 @@ const val GAME_TYPE_PASS = 0
 const val GAME_TYPE_LOCAL = 1
 const val GAME_TYPE_NET = 2
 
-const val PLAYER_STATE_DEAD = 0
+// game states
+const val PARTICIPANT_STATE_DEAD = 0
 const val PARTICIPANT_STATE_ALIVE = 1
 
 // Classic mode values
