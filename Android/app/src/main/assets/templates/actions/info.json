@@ -1,0 +1,19 @@
+{
+  "extends": "template",
+  "name": "info",
+  "description": "Show some information to the player. No active action possible.",
+  "information": {
+    "title": "Show this on top",
+    "description": "Show this under title"
+  },
+  "settings": {
+    "background": {
+      "active": false,
+      "color": "0a0a0a"
+    },
+    "timer": {
+      "active": false,
+      "seconds": 0
+    }
+  }
+}
