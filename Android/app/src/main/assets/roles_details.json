@@ -14,6 +14,45 @@
             "action_name": "Daily vote"
           }
         ]
+      },
+      {
+        "role_name": "Researcher",
+        "round_actions": [
+          {
+            "round_code": "lights_out",
+            "action_name": "Scientist hiding"
+          },
+          {
+            "round_code": "lights_on",
+            "action_name": "Daily vote"
+          }
+        ]
+      },
+      {
+        "role_name": "SCP-106",
+        "round_actions": [
+          {
+            "round_code": "lights_out",
+            "action_name": "SCP 106 attack"
+          },
+          {
+            "round_code": "lights_on",
+            "action_name": "Daily SCP vote"
+          }
+        ]
+      },
+      {
+        "role_name": "Security Officer",
+        "round_actions": [
+          {
+            "round_code": "lights_out",
+            "action_name": "survive"
+          },
+          {
+            "round_code": "lights_on",
+            "action_name": "Daily vote"
+          }
+        ]
       }
     ]
   }
