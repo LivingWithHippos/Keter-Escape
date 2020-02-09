@@ -1,5 +1,5 @@
 {
-  "extends": "template",
+  "extends": "vote",
   "name": "vote",
   "description": "Choose someone to apply an effect to.",
   "show": {
@@ -33,7 +33,7 @@
     "zero_allowed": false
   },
   "vote_group": {
-    "single": false,
+    "self": false,
     "all": true,
     "group": [],
     "action": false

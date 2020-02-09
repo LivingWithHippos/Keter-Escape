@@ -1,5 +1,5 @@
 {
-  "extends": "template",
+  "extends": "info",
   "name": "info",
   "description": "Show some information to the player. No active action possible.",
   "information": {

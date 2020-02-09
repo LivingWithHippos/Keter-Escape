@@ -59,7 +59,7 @@
       "zero_allowed": true
     },
     "vote_group": {
-      "single": true
+      "self": true
     },
     "draw": {
       "not_applicable": true
@@ -91,7 +91,7 @@
       "zero_allowed": true
     },
     "vote_group": {
-      "single": true
+      "self": true
     },
     "draw": {
       "not_applicable": true
