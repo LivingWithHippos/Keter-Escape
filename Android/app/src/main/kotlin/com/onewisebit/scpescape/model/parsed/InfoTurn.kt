@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class InfoTurn(
     @SerializedName("extends")
-    val extends: String,
+    override val extends: String,
     @SerializedName("name")
-    val name: String,
+    override val name: String,
     @SerializedName("description")
-    val description: String,
+    override val description: String,
     @SerializedName("information")
     val information: Information,
     @SerializedName("settings")
     val settings: Settings
-)
+) : TurnAction()
 
 data class Information(
     @SerializedName("title")

@@ -3,11 +3,11 @@ import com.google.gson.annotations.SerializedName
 
 data class VoteTurn(
     @SerializedName("extends")
-    val extends: String,
+    override val extends: String,
     @SerializedName("name")
-    val name: String,
+    override val name: String,
     @SerializedName("description")
-    val description: String,
+    override val description: String,
     @SerializedName("show")
     val show: Show,
     @SerializedName("reveal_role")
@@ -26,7 +26,7 @@ data class VoteTurn(
     val effect: Effect,
     @SerializedName("applied")
     val applied: Applied
-)
+) : TurnAction()
 
 data class Show(
     @SerializedName("all")
