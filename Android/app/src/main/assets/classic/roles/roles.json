@@ -52,7 +52,7 @@
       "round_actions": [
         {
           "round_code": "lights_out",
-          "action_name": "survive"
+          "action_name": "Survive"
         },
         {
           "round_code": "lights_on",
