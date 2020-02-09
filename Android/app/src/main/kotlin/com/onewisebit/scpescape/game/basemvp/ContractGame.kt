@@ -27,6 +27,8 @@ import com.onewisebit.scpescape.model.parsed.RoundDetails
 // TODO: decide if we can compose only the model since most of the times it's what is needed.
 //  Change composed presenter to use their composed model and not the composed presenter.
 // Problem seems to be that models passed to presenterImpl do not give access to implemented composable models.
+// There`s also an option not to extend our model with composable models, since they are accessed only through the presenters.
+// Otherwise to remove composable presenters we should pass references of the composable models to our presenter
 interface ContractGame {
 
     interface ViewGame
