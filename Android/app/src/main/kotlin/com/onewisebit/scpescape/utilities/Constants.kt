@@ -11,16 +11,18 @@ const val DATABASE_NAME = "SCP.db"
 // assets files and folders
 
 const val TEMPLATE_FOLDER = "template/"
-const val TEMPLATE_FILE_VOTE = "info.json"
-const val TEMPLATE_FILE_INFO = "vote.json"
+const val TEMPLATE_FILE_INFO = "info.json"
+const val TEMPLATE_FILE_VOTE = "vote.json"
 
-const val MODE_file = "mode.json"
+const val MODE_FILE = "mode.json"
 const val ACTION_FOLDER = "actions/"
-const val ACTION_FILE = "actions.json"
+//todo: use only these or template const
+const val VOTE_FILE = "vote.json"
+const val INFO_FILE = "info.json"
 const val ROLE_FOLDER = "roles/"
 const val ROLE_FILE = "roles.json"
 const val ROUND_FOLDER = "rounds/"
-const val ROLE_DETAILS_FILE = "rounds.json"
+const val ROUND_FILE = "rounds.json"
 
 // shared preferences
 
