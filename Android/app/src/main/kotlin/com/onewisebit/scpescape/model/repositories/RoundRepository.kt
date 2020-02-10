@@ -9,12 +9,14 @@ import com.onewisebit.scpescape.model.daos.GameDAO
 import com.onewisebit.scpescape.model.daos.RoundDAO
 import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.parsed.RoundDetails
-import com.onewisebit.scpescape.utilities.ROUND_DETAILS_FILENAME
+import com.onewisebit.scpescape.utilities.ROUND_FILE
+import com.onewisebit.scpescape.utilities.ROUND_FOLDER
 import io.reactivex.Completable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.IllegalArgumentException
 
-class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameDAO, private val context: Context) : InRoundRepository {
+class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameDAO, context: Context) : JSONRepository(context), InRoundRepository {
 
     override suspend fun insertRound(round: Round) = roundDAO.insertRound(round)
 
@@ -32,25 +34,26 @@ class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameD
     }
 
     override suspend fun getRoundInfo(modeId: Int, roundCode: String): RoundDetails? {
-        return getAllModeRoundInfo(modeId)?.firstOrNull { it.code == roundCode }
+        return getAllRoundsDetails(modeId)?.firstOrNull { it.code == roundCode }
     }
 
     override suspend fun getAllGameRoundDetails(
         gameId: Long
     ): List<RoundDetails>? {
         val gameMode = gameDAO.getModeID(gameId)
-        return getAllModeRoundInfo(gameMode)
+        return getAllRoundsDetails(gameMode)
     }
 
-    override suspend fun getAllModeRoundInfo(modeId: Int): List<RoundDetails>? {
-        return getAllRoundsDetails()?.filter { it.mode == modeId }
-    }
-
-    override suspend fun getAllRoundsDetails(): List<RoundDetails>? =
+    override suspend fun getAllRoundsDetails(modeId: Int): List<RoundDetails>? =
         withContext(Dispatchers.IO) {
+            val modePath : String = getModeFolder(modeId)
+            ?: throw IllegalArgumentException("No mode found for mode id $modeId")
+
+            val roundPath : String = modePath.plus(ROUND_FOLDER).plus(ROUND_FILE)
+
             try {
                 // retrieving round details
-                context.assets.open(ROUND_DETAILS_FILENAME).use { inputStream ->
+                context.assets.open(roundPath).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
                         val roundType = object : TypeToken<List<RoundDetails>>() {}.type
                         val roundList: List<RoundDetails> = Gson().fromJson(jsonReader, roundType)

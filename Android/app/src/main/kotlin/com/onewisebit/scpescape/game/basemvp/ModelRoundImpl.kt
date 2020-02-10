@@ -11,7 +11,7 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) : ContractRound.Mod
         roundRepository.getRoundInfo(modeId, roundCode)
 
     override suspend fun getAllModeDetails(modeId: Int): List<RoundDetails>? =
-        roundRepository.getAllModeRoundInfo(modeId)
+        roundRepository.getAllModeRoundDetails(modeId)
 
     override suspend fun getRoundsMode(gameId: Long): Int = roundRepository.getRoundsMode(gameId)
 

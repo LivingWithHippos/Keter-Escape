@@ -18,10 +18,9 @@ interface InRoundRepository {
 
     suspend fun getAllGameRoundDetails(gameId: Long): List<RoundDetails>?
 
-    suspend fun getAllModeRoundInfo(modeId: Int): List<RoundDetails>?
-
-    suspend fun getAllRoundsDetails(): List<RoundDetails>?
+    suspend fun getAllRoundsDetails(modeId: Int): List<RoundDetails>?
 
     suspend fun getRoundsNumber(gameId: Long): Int
+
     suspend fun getRoundsMode(gameID: Long): Int
 }
