@@ -68,6 +68,7 @@ val appModule = module {
     // TODO: remove when/if Mode is removed
     single { ModeRepository(get()) }
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
+    single<InTurnActionRepository> { TurnActionRepository(get()) }
 
     // Composable Game MVP, see ContractGame.kt
 
