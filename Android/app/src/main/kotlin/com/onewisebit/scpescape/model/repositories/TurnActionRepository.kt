@@ -74,7 +74,6 @@ class TurnActionRepository(context: Context): JSONRepository(context), InTurnAct
     override suspend fun getModeActions(modeId: Int): List<TurnAction> =
         withContext(Dispatchers.IO) {
             val actions : MutableList<TurnAction> = mutableListOf()
-            var found: Boolean = false
             // check in folders two levels in (first level is the assets folder)
             val modePath : String = getModeFolder(modeId)
                 ?: throw IllegalArgumentException("No mode found for mode id $modeId")
