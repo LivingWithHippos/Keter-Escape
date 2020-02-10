@@ -169,6 +169,21 @@ val appModule = module {
         )
     }
 
+    // Turn Actions MVP
+
+    factory<ContractAction.ModelAction> {
+        ModelActionImpl(
+            get()
+        )
+    }
+
+    factory<ContractAction.PresenterAction> { (modeId: Int) ->
+        PresenterActionImpl(
+            get(),
+            modeId
+        )
+    }
+
     // Game modes list MVP
 
     factory<GameModesContract.GameModesModel> {

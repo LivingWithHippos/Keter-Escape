@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.game.basemvp
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.parsed.RoundDetails
+import com.onewisebit.scpescape.model.parsed.TurnAction
 
 /**
  * This is an attempt to create a composable MVP, since most of the game related parts are using similar or the same things.
@@ -110,6 +111,19 @@ interface ContractTurn {
         suspend fun getLatestTurn(gameID : Long): Turn?
         suspend fun addTurn(gameID : Long, playerId: Long) : Int
         suspend fun getMissingTurnsParticipants(gameID : Long) : List<Long>?
+    }
+}
+
+interface ContractAction {
+
+    interface ModelAction {
+        suspend fun getTemplates(): List<TurnAction>
+        suspend fun getRoleAction(modeId: Int, roleName: String, roundCode: String): TurnAction
+        suspend fun getModeActions(modeId: Int): List<TurnAction>
+    }
+
+    interface PresenterAction {
+        suspend fun getRoleAction(roleName: String, roundCode: String): TurnAction
     }
 }
 
