@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c1193e58f575877c02c749c8e1814ff2",
+    "identityHash": "b6a270e8401f47492adca2a7b6fa55fe",
     "entities": [
       {
         "tableName": "players",
@@ -38,8 +38,14 @@
       },
       {
         "tableName": "roles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`role_name` TEXT NOT NULL, `role_description` TEXT NOT NULL, `role_group` TEXT NOT NULL, PRIMARY KEY(`role_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mode` INTEGER NOT NULL, `role_name` TEXT NOT NULL, `role_description` TEXT NOT NULL, `role_group` TEXT NOT NULL, PRIMARY KEY(`mode`, `role_name`), FOREIGN KEY(`mode`) REFERENCES `modes`(`mode_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
+          {
+            "fieldPath": "modeId",
+            "columnName": "mode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "name",
             "columnName": "role_name",
@@ -61,12 +67,34 @@
         ],
         "primaryKey": {
           "columnNames": [
+            "mode",
             "role_name"
           ],
           "autoGenerate": false
         },
-        "indices": [],
-        "foreignKeys": []
+        "indices": [
+          {
+            "name": "index_roles_role_name",
+            "unique": true,
+            "columnNames": [
+              "role_name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_roles_role_name` ON `${TABLE_NAME}` (`role_name`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "modes",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "mode"
+            ],
+            "referencedColumns": [
+              "mode_ID"
+            ]
+          }
+        ]
       },
       {
         "tableName": "games",
@@ -322,8 +350,14 @@
       },
       {
         "tableName": "turns",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`round` INTEGER NOT NULL, `turn_number` INTEGER NOT NULL, `game` INTEGER NOT NULL, `player` INTEGER NOT NULL, PRIMARY KEY(`round`, `game`, `player`), FOREIGN KEY(`round`, `game`) REFERENCES `rounds`(`number`, `game`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `round` INTEGER NOT NULL, `turn_number` INTEGER NOT NULL, `player` INTEGER NOT NULL, PRIMARY KEY(`round`, `game`, `player`), FOREIGN KEY(`round`, `game`) REFERENCES `rounds`(`number`, `game`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
+          {
+            "fieldPath": "gameID",
+            "columnName": "game",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "roundNumber",
             "columnName": "round",
@@ -333,12 +367,6 @@
           {
             "fieldPath": "turnNumber",
             "columnName": "turn_number",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "gameID",
-            "columnName": "game",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -514,7 +542,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c1193e58f575877c02c749c8e1814ff2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b6a270e8401f47492adca2a7b6fa55fe')"
     ]
   }
 }

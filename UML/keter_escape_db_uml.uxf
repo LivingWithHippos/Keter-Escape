@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>6</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>456</x>
-      <y>636</y>
-      <w>60</w>
-      <h>66</h>
+      <x>846</x>
+      <y>648</y>
+      <w>90</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Players
 --
@@ -21,10 +21,10 @@ image: String
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>492</x>
-      <y>450</y>
-      <w>144</w>
-      <h>132</h>
+      <x>900</x>
+      <y>369</y>
+      <w>216</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>Games
 --
@@ -47,10 +47,10 @@ game start</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>654</x>
-      <y>306</y>
-      <w>132</w>
-      <h>126</h>
+      <x>1143</x>
+      <y>153</y>
+      <w>198</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>Modes
 --
@@ -70,14 +70,17 @@ and is managed from a JSON</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>738</x>
-      <y>642</y>
-      <w>90</w>
-      <h>66</h>
+      <x>1269</x>
+      <y>657</y>
+      <w>180</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>Roles
 --
+PKs:
 *name: String*
+FK:
+*mode: Int*
 --
 description: String
 group: String
@@ -87,10 +90,10 @@ group: String
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>426</y>
-      <w>108</w>
-      <h>132</h>
+      <x>1107</x>
+      <y>333</y>
+      <w>162</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..1
@@ -101,10 +104,10 @@ run with &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>576</y>
-      <w>30</w>
-      <h>78</h>
+      <x>1062</x>
+      <y>558</y>
+      <w>45</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 0..n</panel_attributes>
@@ -113,10 +116,10 @@ run with &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>666</y>
-      <w>72</w>
-      <h>24</h>
+      <x>927</x>
+      <y>693</y>
+      <w>108</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -125,10 +128,10 @@ m1=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>654</x>
-      <y>666</y>
-      <w>96</w>
-      <h>24</h>
+      <x>1143</x>
+      <y>693</y>
+      <w>144</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -137,10 +140,10 @@ m1=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>246</x>
-      <y>630</y>
-      <w>108</w>
-      <h>90</h>
+      <x>531</x>
+      <y>639</y>
+      <w>162</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>Rounds
 --
@@ -157,10 +160,10 @@ type: String</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>510</y>
-      <w>204</w>
-      <h>132</h>
+      <x>612</x>
+      <y>459</y>
+      <w>306</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -171,10 +174,10 @@ belongs to &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>744</y>
-      <w>72</w>
-      <h>72</h>
+      <x>702</x>
+      <y>810</y>
+      <w>108</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>Turns
 --
@@ -188,10 +191,10 @@ belongs to &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>276</x>
-      <y>714</y>
-      <w>96</w>
-      <h>78</h>
+      <x>576</x>
+      <y>765</y>
+      <w>144</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -200,10 +203,10 @@ m1=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
-      <y>660</y>
-      <w>84</w>
-      <h>96</h>
+      <x>738</x>
+      <y>684</y>
+      <w>126</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
@@ -212,10 +215,10 @@ m1=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>642</y>
-      <w>90</w>
-      <h>66</h>
+      <x>1017</x>
+      <y>657</y>
+      <w>135</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Participant
 --
@@ -230,10 +233,10 @@ state: String
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>846</y>
-      <w>156</w>
-      <h>132</h>
+      <x>837</x>
+      <y>963</y>
+      <w>234</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>Vote
 --
@@ -253,10 +256,10 @@ vote_type: Long</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>810</y>
-      <w>72</w>
-      <h>114</h>
+      <x>747</x>
+      <y>909</y>
+      <w>108</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..1</panel_attributes>
@@ -265,10 +268,10 @@ m1=0..1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>696</y>
-      <w>72</w>
-      <h>162</h>
+      <x>918</x>
+      <y>738</y>
+      <w>108</w>
+      <h>243</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1..n
@@ -278,10 +281,10 @@ vote player/s &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>78</x>
-      <y>324</y>
-      <w>120</w>
-      <h>96</h>
+      <x>279</x>
+      <y>180</y>
+      <w>180</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>RoundInformations
 --
@@ -300,10 +303,10 @@ read from JSON
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>192</x>
-      <y>360</y>
-      <w>474</w>
-      <h>30</h>
+      <x>450</x>
+      <y>234</y>
+      <w>711</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -314,14 +317,28 @@ played in &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>132</x>
-      <y>414</y>
-      <w>126</w>
-      <h>258</h>
+      <x>360</x>
+      <y>315</y>
+      <w>189</w>
+      <h>387</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
 m2=1..1</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;400.0;190.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1305</x>
+      <y>333</y>
+      <w>90</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1..n
+m2=1..1
+provides &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;360.0</additional_attributes>
   </element>
 </diagram>
