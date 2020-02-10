@@ -1,10 +1,7 @@
 package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.GameContract
-import com.onewisebit.scpescape.game.basemvp.ContractParticipant
-import com.onewisebit.scpescape.game.basemvp.ContractPlayer
-import com.onewisebit.scpescape.game.basemvp.ContractRound
-import com.onewisebit.scpescape.game.basemvp.ContractTurn
+import com.onewisebit.scpescape.game.basemvp.*
 
 open class GamePresenterImpl(
     val gameView: GameContract.GameView,
@@ -13,12 +10,15 @@ open class GamePresenterImpl(
     val turnPresenter: ContractTurn.PresenterTurn,
     val participantPresenter: ContractParticipant.PresenterParticipant,
     val playerPresenter: ContractPlayer.PresenterPlayer,
+    val actionPresenter: ContractAction.PresenterAction,
     val gameID: Long
 ) : GameContract.GamePresenter,
     ContractRound.PresenterRound by roundPresenter,
     ContractTurn.PresenterTurn by turnPresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
-    ContractPlayer.PresenterPlayer by playerPresenter {
+    ContractPlayer.PresenterPlayer by playerPresenter,
+    ContractAction.PresenterAction by actionPresenter
+{
 
     override fun onDestroy() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
