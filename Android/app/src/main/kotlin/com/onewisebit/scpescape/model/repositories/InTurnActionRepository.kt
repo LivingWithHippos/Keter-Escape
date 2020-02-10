@@ -15,4 +15,5 @@ interface InTurnActionRepository {
     suspend fun getVote(path: String): List<VoteTurn>?
 
     suspend fun getInfo(path: String): List<InfoTurn>?
+    suspend fun getMode(gameId: Long): Int
 }

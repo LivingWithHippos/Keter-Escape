@@ -120,6 +120,7 @@ interface ContractAction {
         suspend fun getTemplates(): List<TurnAction>
         suspend fun getRoleAction(modeId: Int, roleName: String, roundCode: String): TurnAction
         suspend fun getModeActions(modeId: Int): List<TurnAction>
+        suspend fun getModeId(gameId: Long): Int
     }
 
     interface PresenterAction {

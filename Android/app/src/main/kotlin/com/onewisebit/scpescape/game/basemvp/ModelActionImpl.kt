@@ -9,6 +9,8 @@ class ModelActionImpl(
 
     override suspend fun getTemplates(): List<TurnAction> = actionRepository.getTemplates()
 
+    override suspend fun getModeId(gameId: Long): Int= actionRepository.getMode(gameId)
+
     override suspend fun getRoleAction(
         modeId: Int,
         roleName: String,

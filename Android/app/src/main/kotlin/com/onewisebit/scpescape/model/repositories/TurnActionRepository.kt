@@ -5,6 +5,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
+import com.onewisebit.scpescape.model.daos.ModeDAO
 import com.onewisebit.scpescape.model.parsed.InfoTurn
 import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
@@ -13,7 +14,7 @@ import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class TurnActionRepository(context: Context) : JSONRepository(context), InTurnActionRepository {
+class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSONRepository(context), InTurnActionRepository {
 
     override suspend fun getTemplates(): List<TurnAction> {
         val path = TEMPLATE_FOLDER.plus(ACTION_FOLDER)
@@ -132,6 +133,9 @@ class TurnActionRepository(context: Context) : JSONRepository(context), InTurnAc
 
             roles
         }
+
+
+    override suspend fun getMode(gameId: Long): Int = modeDAO.getGameModeId(gameId)
 
     companion object {
         private val TAG = TurnActionRepository::class.java.simpleName

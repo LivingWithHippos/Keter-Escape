@@ -68,7 +68,7 @@ val appModule = module {
     // TODO: remove when/if Mode is removed
     single { ModeRepository(get()) }
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
-    single<InTurnActionRepository> { TurnActionRepository(get()) }
+    single<InTurnActionRepository> { TurnActionRepository(get(),get()) }
 
     // Composable Game MVP, see ContractGame.kt
 
@@ -177,10 +177,10 @@ val appModule = module {
         )
     }
 
-    factory<ContractAction.PresenterAction> { (modeId: Int) ->
+    factory<ContractAction.PresenterAction> { (gameId: Long) ->
         PresenterActionImpl(
             get(),
-            modeId
+            gameId
         )
     }
 
@@ -215,6 +215,7 @@ val appModule = module {
             get(),
             get(),
             get(),
+            get(),
             get()
         )
     }
@@ -223,6 +224,7 @@ val appModule = module {
         GamePresenterImpl(
             view,
             get(),
+            get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },
