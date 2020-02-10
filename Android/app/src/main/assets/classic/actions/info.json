@@ -1,19 +1,21 @@
-{
-  "extends": "info",
-  "name": "Survive",
-  "description": "Shown during the guard`s turn.",
-  "information": {
-    "title": "Do your best!",
-    "description": "Surviving ain't easy, but you've always been good at it. At least until now."
-  },
-  "settings": {
-    "background": {
-      "active": false,
-      "color": "0a0a0a"
+[
+  {
+    "extends": "info",
+    "name": "Survive",
+    "description": "Shown during the guard`s turn.",
+    "information": {
+      "title": "Do your best!",
+      "description": "Surviving ain't easy, but you've always been good at it. At least until now."
     },
-    "timer": {
-      "active": true,
-      "seconds": 3
+    "settings": {
+      "background": {
+        "active": false,
+        "color": "0a0a0a"
+      },
+      "timer": {
+        "active": true,
+        "seconds": 3
+      }
     }
   }
-}
+]
