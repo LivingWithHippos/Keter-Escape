@@ -4,7 +4,7 @@ import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.basemvp.*
 
 open class GamePresenterImpl(
-    val gameView: GameContract.GameView,
+    var gameView: GameContract.GameView,
     val gameModel: GameContract.GameModel,
     val roundPresenter: ContractRound.PresenterRound,
     val turnPresenter: ContractTurn.PresenterTurn,
@@ -21,7 +21,15 @@ open class GamePresenterImpl(
 {
 
     override fun onDestroy() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override suspend fun setupPlayerTurnFragment() {
+        val turn = turnPresenter.getLatestTurn()
+        val player = playerPresenter.getPlayer(turn.playerID)
+        val participant = participantPresenter.getParticipant(turn.playerID)
+        val round = roundPresenter.getCurrentRound()
+        val action = actionPresenter.getRoleAction(participant.roleName!!,round.details)
+        gameView.showPlayerTurnFragment(player.name,action.name,action.description)
     }
 
     override suspend fun newPlayerTurn(): String {

@@ -51,4 +51,6 @@ const val NIGHT = 1
 
 const val ARG_TURN_NUMBER = "turn_number"
 const val ARG_PLAYER_NAME = "player_name"
+const val ARG_ROLE_NAME = "role_name"
+const val ARG_ROLE_DESCRIPTION = "role_description"
 

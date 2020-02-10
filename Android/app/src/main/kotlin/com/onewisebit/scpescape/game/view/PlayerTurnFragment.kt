@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentPlayerTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.PlayerTurnContract
+import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
+import com.onewisebit.scpescape.utilities.ARG_ROLE_DESCRIPTION
+import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -40,6 +43,9 @@ class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Ac
     ): View? {
         // initialize binding
         _binding = FragmentPlayerTurnBinding.inflate(layoutInflater, container, false)
+        binding.tvPlayerName.text = arguments?.getString(ARG_PLAYER_NAME)
+        binding.tvPlayerRole.text = arguments?.getString(ARG_ROLE_NAME)
+        binding.tvRoleShortDescription.text = arguments?.getString(ARG_ROLE_DESCRIPTION)
         return binding.root
     }
 

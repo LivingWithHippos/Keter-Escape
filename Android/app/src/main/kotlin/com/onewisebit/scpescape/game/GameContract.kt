@@ -7,11 +7,14 @@ import com.onewisebit.scpescape.game.basemvp.*
  */
 interface GameContract {
 
-    interface GameView
+    interface GameView {
+        fun showPlayerTurnFragment(name: String, role: String, description: String)
+    }
 
     interface GamePresenter : ContractRound.PresenterRound, ContractTurn.PresenterTurn,
         ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer, ContractAction.PresenterAction {
         fun onDestroy()
+        suspend fun setupPlayerTurnFragment()
         suspend fun newPlayerTurn(): String
     }
 

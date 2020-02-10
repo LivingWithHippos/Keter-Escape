@@ -13,6 +13,8 @@ import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.*
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
+import com.onewisebit.scpescape.utilities.ARG_ROLE_DESCRIPTION
+import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
 import com.onewisebit.scpescape.utilities.NIGHT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -65,11 +67,11 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             is RoundInfoState -> Log.d(TAG, "Start round clicked from RoundInfo GameState")
             is PassDeviceState -> Log.d(TAG, "Device passed clicked from PassDevice GameState")
         }
-
+        //TODO: check what can be moved to presenter/view
         when (newState) {
             is RoundInfoState -> setupRoundInfoFragment(newState.dayOrNight)
             is PassDeviceState -> setupPassDeviceFragment()
-            is PlayerTurnState -> setupPlayerTurnFragment()
+            is PlayerTurnState -> uiScope.launch { presenter.setupPlayerTurnFragment() }
         }
 
     }
@@ -107,11 +109,15 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     }
 
 
-    private fun setupPlayerTurnFragment() {
+    override fun showPlayerTurnFragment(name: String, role: String, description: String) {
         uiScope.launch {
+            val arguments = Bundle()
+            arguments.putString(ARG_PLAYER_NAME, name)
+            arguments.putString(ARG_ROLE_NAME, role)
+            arguments.putString(ARG_ROLE_DESCRIPTION, description)
             // this will run with the last created turn
             supportFragmentManager.commit {
-                replace<PlayerTurnFragment>(R.id.fragment_container_view)
+                replace<PlayerTurnFragment>(R.id.fragment_container_view, args = arguments)
             }
         }
     }
