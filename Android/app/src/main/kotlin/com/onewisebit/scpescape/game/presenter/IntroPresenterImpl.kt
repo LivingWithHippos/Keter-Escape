@@ -19,7 +19,8 @@ class IntroPresenterImpl(
 
     override suspend fun assignRoles() {
         //if it's a game in progress this doesn't need to be called or we can check from here directly
-        val participants: List<Participant> = introModel.getParticipants(gameID) ?: throw IllegalArgumentException("No participants found for game $gameID in assignRoles")
+        val participants: List<Participant> = introModel.getParticipants(gameID)
+            ?: throw IllegalArgumentException("No participants found for game $gameID in assignRoles")
         val mode: ModeDataClass? = introModel.getMode(gameID)
         if (mode != null) {
             // get roles division for this mode

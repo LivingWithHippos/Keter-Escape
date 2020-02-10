@@ -1,11 +1,10 @@
 package com.onewisebit.scpescape.game.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentPlayerTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.PlayerTurnContract
@@ -19,12 +18,17 @@ import org.koin.core.parameter.parametersOf
 /**
  * A simple [Fragment] subclass.
  */
-class PlayerTurnFragment (gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-BaseGameFragment(gameID, onActionListener), PlayerTurnContract.PlayerTurnView {
+class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
+    BaseGameFragment(gameID, onActionListener), PlayerTurnContract.PlayerTurnView {
 
-    private val presenter: PlayerTurnContract.PlayerTurnPresenter by inject { parametersOf(this, gameID) }
+    private val presenter: PlayerTurnContract.PlayerTurnPresenter by inject {
+        parametersOf(
+            this,
+            gameID
+        )
+    }
 
-    private var _binding : FragmentPlayerTurnBinding? = null
+    private var _binding: FragmentPlayerTurnBinding? = null
     private val binding get() = _binding!!
 
     private val job = Job()
@@ -47,7 +51,11 @@ BaseGameFragment(gameID, onActionListener), PlayerTurnContract.PlayerTurnView {
         }
     }
 
-    override fun initView(playerName: String, playerRoleName: String, playerRoleDescription : String){
+    override fun initView(
+        playerName: String,
+        playerRoleName: String,
+        playerRoleDescription: String
+    ) {
         //TODO: add player pic
         binding.tvPlayerName.text = playerName
         binding.tvPlayerRole.text = playerRoleName

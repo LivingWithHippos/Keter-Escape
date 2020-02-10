@@ -11,5 +11,6 @@ class ModelPlayerImpl(
 
     override suspend fun getPlayer(id: Long): Player? = playerRepository.getPlayerById(id)
 
-    override suspend fun getPlayerName(playerId: Long): String? = playerRepository.getPlayerName(playerId)
+    override suspend fun getPlayerName(playerId: Long): String? =
+        playerRepository.getPlayerName(playerId)
 }

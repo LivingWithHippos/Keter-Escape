@@ -10,7 +10,6 @@ import com.google.gson.stream.JsonReader
 import com.onewisebit.scpescape.model.database.SCPDatabase
 import com.onewisebit.scpescape.model.entities.Mode
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
-import com.onewisebit.scpescape.model.repositories.InModeJSONRepository
 import com.onewisebit.scpescape.model.repositories.JSONRepository
 import com.onewisebit.scpescape.utilities.MODE_FILE
 import kotlinx.coroutines.coroutineScope
@@ -27,7 +26,7 @@ class PopulateDatabaseModesWorker(
 
     override suspend fun doWork(): Result = coroutineScope {
 
-        val modePaths : MutableList<String> = repo.searchFile(MODE_FILE,maxDepth = 2)
+        val modePaths: MutableList<String> = repo.searchFile(MODE_FILE, maxDepth = 2)
 
         val database = SCPDatabase.getInstance(applicationContext)
 
@@ -37,7 +36,16 @@ class PopulateDatabaseModesWorker(
                     JsonReader(inputStream.reader()).use { jsonReader ->
                         val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
                         val modeDetails: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
-                        database.modeDAO().insertAll(modeDetails.map { Mode(it.id,it.name,it.description,it.rules,it.max,it.min) })
+                        database.modeDAO().insertAll(modeDetails.map {
+                            Mode(
+                                it.id,
+                                it.name,
+                                it.description,
+                                it.rules,
+                                it.max,
+                                it.min
+                            )
+                        })
                     }
                 }
             } catch (ex: Exception) {

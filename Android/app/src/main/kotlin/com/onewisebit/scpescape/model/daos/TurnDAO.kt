@@ -7,7 +7,6 @@ import androidx.room.Query
 import com.onewisebit.scpescape.model.entities.Turn
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Single
 
 @Dao
 interface TurnDAO {

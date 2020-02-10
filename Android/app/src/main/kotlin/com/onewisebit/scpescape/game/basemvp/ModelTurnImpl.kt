@@ -13,7 +13,7 @@ class ModelTurnImpl(val turnRepository: InTurnRepository) : ContractTurn.ModelTu
 
     override suspend fun getLatestTurn(gameID: Long): Turn? = turnRepository.getLastTurn(gameID)
 
-    override suspend fun addTurn(gameID : Long, playerId: Long): Int {
+    override suspend fun addTurn(gameID: Long, playerId: Long): Int {
         // Note: this is supposing Rounds are always created before Turns
         // this is equivalent to the first turn of a game
         var roundNumber: Int = 0
@@ -23,7 +23,7 @@ class ModelTurnImpl(val turnRepository: InTurnRepository) : ContractTurn.ModelTu
         val lastRoundTurn: Turn? = turnRepository.getLastRoundTurn(gameID)
 
         // check if we're in a new round
-        if (lastRoundTurn == null){
+        if (lastRoundTurn == null) {
             val lastTurn = turnRepository.getLastTurn(gameID)
             // check if we're in the first turn of a new round (not the first one)
             if (lastTurn != null) {
@@ -38,14 +38,18 @@ class ModelTurnImpl(val turnRepository: InTurnRepository) : ContractTurn.ModelTu
             turnNumber = lastRoundTurn.turnNumber + 1
         }
 
-        turnRepository.insertTurn( Turn(
-            gameID,
-            roundNumber,
-            turnNumber,
-            playerId))
+        turnRepository.insertTurn(
+            Turn(
+                gameID,
+                roundNumber,
+                turnNumber,
+                playerId
+            )
+        )
 
         return turnNumber
     }
 
-    override suspend fun getMissingTurnsParticipants(gameID: Long): List<Long>? = turnRepository.getMissingRoundPlayers(gameID)
+    override suspend fun getMissingTurnsParticipants(gameID: Long): List<Long>? =
+        turnRepository.getMissingRoundPlayers(gameID)
 }

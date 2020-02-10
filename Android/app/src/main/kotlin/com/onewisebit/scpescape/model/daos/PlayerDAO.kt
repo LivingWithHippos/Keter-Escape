@@ -3,9 +3,7 @@ package com.onewisebit.scpescape.model.daos
 import androidx.room.*
 import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Completable
-
 import io.reactivex.Flowable
-import io.reactivex.Single
 
 @Dao
 interface PlayerDAO {

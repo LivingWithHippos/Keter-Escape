@@ -23,6 +23,6 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) : ContractRound.Mod
                 this + 1
         }
 
-        roundRepository.insertRound(Round(roundsNumber,gameID,getRoundsMode(gameID),details))
+        roundRepository.insertRound(Round(roundsNumber, gameID, getRoundsMode(gameID), details))
     }
 }

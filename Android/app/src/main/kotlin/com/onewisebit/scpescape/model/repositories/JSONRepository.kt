@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 open class JSONRepository(val context: Context) {
 
-    private val systemAssetFolders: Array<String> = arrayOf("images","webkit")
+    private val systemAssetFolders: Array<String> = arrayOf("images", "webkit")
 
     fun getFiles(path: String): Array<String>? {
         return context.assets.list(path)
@@ -23,7 +23,12 @@ open class JSONRepository(val context: Context) {
         return context.assets.list(path).isNullOrEmpty()
     }
 
-    fun searchFile(fileName: String, startingPath: String = "", maxDepth: Int = 1, skipSystemFolders: Boolean = true): MutableList<String> {
+    fun searchFile(
+        fileName: String,
+        startingPath: String = "",
+        maxDepth: Int = 1,
+        skipSystemFolders: Boolean = true
+    ): MutableList<String> {
         val results: MutableList<String> = mutableListOf()
         val pathList = context.assets.list(startingPath)
         val regex = Regex("($fileName)$")
@@ -34,20 +39,27 @@ open class JSONRepository(val context: Context) {
                 if (skipSystemFolders && systemAssetFolders.contains(path))
                     continue
 
-                val newPath = if (startingPath == "" ) path else startingPath.plus("/").plus(path)
+                val newPath = if (startingPath == "") path else startingPath.plus("/").plus(path)
                 // the path is a file
-                if (isFile(newPath)){
+                if (isFile(newPath)) {
                     // if the name is correct we add it to the list
                     if (regex.containsMatchIn(newPath))
                         results.add(newPath)
                 }
                 // the path is a directory
-                else{
+                else {
                     // we go deeper in the folder structure if required
                     // 1 is equivalent to looking only in the current directory
                     // system folders are only in root directory so we set skipSystemFolders to false
                     if (maxDepth > 1)
-                        results.addAll(searchFile(fileName,newPath,maxDepth-1,skipSystemFolders = false))
+                        results.addAll(
+                            searchFile(
+                                fileName,
+                                newPath,
+                                maxDepth - 1,
+                                skipSystemFolders = false
+                            )
+                        )
                 }
 
 
@@ -60,11 +72,11 @@ open class JSONRepository(val context: Context) {
     suspend fun getModeFolder(modeId: Int): String? =
         withContext(Dispatchers.IO) {
             var found: Boolean = false
-            var modePath : String? = null
+            var modePath: String? = null
             // check in folders two levels in (first level is the assets folder)
-            val modePaths : MutableList<String> = searchFile(MODE_FILE,maxDepth = 2)
+            val modePaths: MutableList<String> = searchFile(MODE_FILE, maxDepth = 2)
 
-            pathLoop@ for (path in modePaths){
+            pathLoop@ for (path in modePaths) {
                 if (found)
                     break@pathLoop
 
@@ -73,11 +85,12 @@ open class JSONRepository(val context: Context) {
                         JsonReader(inputStream.reader()).use { jsonReader ->
                             // load the current mode.json
                             val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
-                            val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
+                            val modesList: List<ModeDataClass> =
+                                Gson().fromJson(jsonReader, modeType)
 
                             // check if it's the mode we're looking for
-                            modeLoop@ for (parsedMode in modesList){
-                                if (parsedMode.id == modeId){
+                            modeLoop@ for (parsedMode in modesList) {
+                                if (parsedMode.id == modeId) {
                                     // we get the mode path from the mode.json path
                                     modePath = path.removeSuffix(MODE_FILE)
                                     found = true

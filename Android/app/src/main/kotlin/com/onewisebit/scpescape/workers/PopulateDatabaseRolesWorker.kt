@@ -8,7 +8,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.onewisebit.scpescape.model.database.SCPDatabase
-import com.onewisebit.scpescape.model.entities.Mode
 import com.onewisebit.scpescape.model.entities.Role
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.parsed.RoleDetails
@@ -58,7 +57,14 @@ class PopulateDatabaseRolesWorker(
                         val roleType = object : TypeToken<List<RoleDetails>>() {}.type
                         val rolesList: List<RoleDetails> = Gson().fromJson(jsonReader, roleType)
                         val modeId = modeDetails[0].id
-                        database.roleDAO().insertAll(rolesList.map { Role(modeId,it.name,it.description,it.group) })
+                        database.roleDAO().insertAll(rolesList.map {
+                            Role(
+                                modeId,
+                                it.name,
+                                it.description,
+                                it.group
+                            )
+                        })
                     }
                     Result.success()
                 }

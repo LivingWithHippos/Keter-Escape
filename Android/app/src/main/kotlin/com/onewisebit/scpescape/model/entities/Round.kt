@@ -10,8 +10,8 @@ import androidx.room.Index
     primaryKeys = ["game", "number"],
     foreignKeys = [ForeignKey(
         entity = Game::class,
-        parentColumns = ["game_ID","mode"],
-        childColumns = ["game","mode"],
+        parentColumns = ["game_ID", "mode"],
+        childColumns = ["game", "mode"],
         onDelete = ForeignKey.CASCADE
     )],
     indices = [Index(value = ["game", "mode"], unique = true)]

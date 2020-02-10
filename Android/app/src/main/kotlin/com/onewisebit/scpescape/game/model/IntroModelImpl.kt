@@ -3,7 +3,6 @@ package com.onewisebit.scpescape.game.model
 import com.onewisebit.scpescape.game.IntroContract
 import com.onewisebit.scpescape.game.basemvp.ContractMode
 import com.onewisebit.scpescape.game.basemvp.ContractParticipant
-import com.onewisebit.scpescape.model.repositories.InParticipantRepository
 
 class IntroModelImpl(
     val participantModel: ContractParticipant.ModelParticipant,

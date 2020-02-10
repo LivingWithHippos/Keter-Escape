@@ -14,9 +14,12 @@ import com.onewisebit.scpescape.utilities.ROUND_FOLDER
 import io.reactivex.Completable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.IllegalArgumentException
 
-class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameDAO, context: Context) : JSONRepository(context), InRoundRepository {
+class RoundRepository(
+    private val roundDAO: RoundDAO,
+    private val gameDAO: GameDAO,
+    context: Context
+) : JSONRepository(context), InRoundRepository {
 
     override suspend fun insertRound(round: Round) = roundDAO.insertRound(round)
 
@@ -30,7 +33,7 @@ class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameD
         gameId: Long,
         roundCode: String
     ): RoundDetails? {
-        return getAllGameRoundDetails(gameId)?.firstOrNull{ it.code == roundCode }
+        return getAllGameRoundDetails(gameId)?.firstOrNull { it.code == roundCode }
     }
 
     override suspend fun getRoundInfo(modeId: Int, roundCode: String): RoundDetails? {
@@ -46,10 +49,10 @@ class RoundRepository(private val roundDAO: RoundDAO, private val gameDAO: GameD
 
     override suspend fun getAllRoundsDetails(modeId: Int): List<RoundDetails>? =
         withContext(Dispatchers.IO) {
-            val modePath : String = getModeFolder(modeId)
-            ?: throw IllegalArgumentException("No mode found for mode id $modeId")
+            val modePath: String = getModeFolder(modeId)
+                ?: throw IllegalArgumentException("No mode found for mode id $modeId")
 
-            val roundPath : String = modePath.plus(ROUND_FOLDER).plus(ROUND_FILE)
+            val roundPath: String = modePath.plus(ROUND_FOLDER).plus(ROUND_FILE)
 
             try {
                 // retrieving round details

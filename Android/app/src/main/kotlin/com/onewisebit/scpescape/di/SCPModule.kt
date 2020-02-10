@@ -63,7 +63,7 @@ val appModule = module {
     single<InGameRepository> { GameRepository(get()) }
     single<InPlayerRepository> { PlayerRepository(get()) }
     single<InParticipantRepository> { ParticipantRepository(get()) }
-    single<InRoundRepository> { RoundRepository(get(),get(),get()) }
+    single<InRoundRepository> { RoundRepository(get(), get(), get()) }
     single<InTurnRepository> { TurnRepository(get()) }
     // TODO: remove when/if Mode is removed
     single { ModeRepository(get()) }

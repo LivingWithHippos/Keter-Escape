@@ -14,23 +14,23 @@ class ModeJSONRepository(context: Context) : JSONRepository(context), InModeJSON
 
     override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {
-            val modePaths : MutableList<String> = searchFile(MODE_FILE,maxDepth = 2)
-            val modesList : MutableList<ModeDataClass> = mutableListOf()
+            val modePaths: MutableList<String> = searchFile(MODE_FILE, maxDepth = 2)
+            val modesList: MutableList<ModeDataClass> = mutableListOf()
 
             for (path in modePaths) {
 
-            try {
-                // retrieving modes
-                context.assets.open(path).use { inputStream ->
-                    JsonReader(inputStream.reader()).use { jsonReader ->
-                        val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
-                        val added = modesList.addAll(Gson().fromJson(jsonReader, modeType))
+                try {
+                    // retrieving modes
+                    context.assets.open(path).use { inputStream ->
+                        JsonReader(inputStream.reader()).use { jsonReader ->
+                            val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
+                            val added = modesList.addAll(Gson().fromJson(jsonReader, modeType))
+                        }
                     }
+                } catch (ex: Exception) {
+                    Log.e(TAG, "Error reading modes", ex)
                 }
-            } catch (ex: Exception) {
-                Log.e(TAG, "Error reading modes", ex)
             }
-        }
             modesList
         }
 

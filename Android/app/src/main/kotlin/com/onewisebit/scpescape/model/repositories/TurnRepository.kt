@@ -24,9 +24,11 @@ class TurnRepository(private val turnDAO: TurnDAO) : InTurnRepository {
     override suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>? =
         turnDAO.getRoundTurns(gameID, roundNumber)
 
-    override suspend fun getLatestRoundTurns(gameID: Long): List<Turn>? = turnDAO.getLatestRoundTurns(gameID)
+    override suspend fun getLatestRoundTurns(gameID: Long): List<Turn>? =
+        turnDAO.getLatestRoundTurns(gameID)
 
-    override suspend fun getMissingRoundPlayers(gameID: Long): List<Long>? = turnDAO.getLatestRoundMissingPlayers(gameID)
+    override suspend fun getMissingRoundPlayers(gameID: Long): List<Long>? =
+        turnDAO.getLatestRoundMissingPlayers(gameID)
 
     override fun deleteGameTurns(gameID: Long): Completable = turnDAO.deleteGameTurns(gameID)
 }

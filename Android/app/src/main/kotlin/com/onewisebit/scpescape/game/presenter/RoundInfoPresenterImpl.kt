@@ -14,7 +14,7 @@ class RoundInfoPresenterImpl(
         val info = roundPresenter.getCurrentRoundDetails()
         if (info != null) {
             roundiInfoView.initView(info)
-        }else{
+        } else {
             throw IllegalArgumentException("Loaded round info were null. Game $gameID.")
         }
     }

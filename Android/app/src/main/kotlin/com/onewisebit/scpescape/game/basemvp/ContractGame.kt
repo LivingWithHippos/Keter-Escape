@@ -101,16 +101,16 @@ interface ContractTurn {
         suspend fun getLatestRoundTurns(): List<Turn>?
         suspend fun getLatestTurn(): Turn
         suspend fun isLastTurn(): Boolean
-        suspend fun addTurn(playerId: Long) : Int
+        suspend fun addTurn(playerId: Long): Int
     }
 
     interface ModelTurn {
         suspend fun getTurns(gameID: Long): List<Turn>
         suspend fun getRoundTurns(gameID: Long, roundNumber: Int): List<Turn>?
-        suspend fun getLatestRoundTurns(gameID : Long): List<Turn>?
-        suspend fun getLatestTurn(gameID : Long): Turn?
-        suspend fun addTurn(gameID : Long, playerId: Long) : Int
-        suspend fun getMissingTurnsParticipants(gameID : Long) : List<Long>?
+        suspend fun getLatestRoundTurns(gameID: Long): List<Turn>?
+        suspend fun getLatestTurn(gameID: Long): Turn?
+        suspend fun addTurn(gameID: Long, playerId: Long): Int
+        suspend fun getMissingTurnsParticipants(gameID: Long): List<Long>?
     }
 }
 

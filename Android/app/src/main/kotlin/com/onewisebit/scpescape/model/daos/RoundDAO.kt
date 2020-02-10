@@ -43,8 +43,8 @@ interface RoundDAO {
      * @return the details string from the table with a specific game id and round number.
      */
     @Query("SELECT rounds.details FROM rounds WHERE rounds.game = :gameID AND rounds.number = :roundNumber")
-    suspend fun getRoundInfo(gameID: Long, roundNumber : Int): String
-    
+    suspend fun getRoundInfo(gameID: Long, roundNumber: Int): String
+
     /**
      * Get the current (or last) round of a Game.
      * @return the Round from the table with a specific game id.

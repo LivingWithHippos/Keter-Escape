@@ -2,7 +2,6 @@ package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Flowable
-import io.reactivex.Single
 
 interface InPlayerRepository {
 

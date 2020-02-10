@@ -1,14 +1,19 @@
 package com.onewisebit.scpescape.model.entities
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
 
-@Entity(tableName = "roles",
-        primaryKeys = ["mode", "role_name"],
+@Entity(
+    tableName = "roles",
+    primaryKeys = ["mode", "role_name"],
     foreignKeys = [ForeignKey(
         entity = Mode::class,
         parentColumns = ["mode_ID"],
         childColumns = ["mode"],
-        onDelete = ForeignKey.CASCADE)
+        onDelete = ForeignKey.CASCADE
+    )
     ],
     indices = [Index(value = ["role_name"], unique = true)]
 )

@@ -18,7 +18,12 @@ import org.koin.core.parameter.parametersOf
 class RoundInfoFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
     BaseGameFragment(gameID, onActionListener), RoundInfoContract.RoundInfoView {
 
-    private val presenter: RoundInfoContract.RoundInfoPresenter by inject { parametersOf(this, gameID) }
+    private val presenter: RoundInfoContract.RoundInfoPresenter by inject {
+        parametersOf(
+            this,
+            gameID
+        )
+    }
     private var _binding: FragmentRoundInfoBinding? = null
     private val binding get() = _binding!!
 

@@ -1,4 +1,5 @@
 package com.onewisebit.scpescape.model.parsed
+
 import com.google.gson.annotations.SerializedName
 
 

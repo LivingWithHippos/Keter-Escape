@@ -14,7 +14,6 @@ import com.onewisebit.scpescape.fsm.states.*
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 import com.onewisebit.scpescape.utilities.NIGHT
-import com.onewisebit.scpescape.utilities.ARG_TURN_NUMBER
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -100,7 +99,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         uiScope.launch {
             val playerName: String = presenter.newPlayerTurn()
             val arguments = Bundle()
-            arguments.putString(ARG_PLAYER_NAME,playerName)
+            arguments.putString(ARG_PLAYER_NAME, playerName)
             supportFragmentManager.commit {
                 replace<PassDeviceFragment>(R.id.fragment_container_view, args = arguments)
             }
@@ -118,7 +117,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     }
 
     // using fragmentFactory to manage navigation for now
-    private fun setupNavigation(navController: NavController){
+    private fun setupNavigation(navController: NavController) {
         // setting this here since it's the starting activity of a new graph
         // see https://developer.android.com/guide/navigation/navigation-migrate#pass_activity_destination_args_to_a_start_destination_fragment
         navController.setGraph(R.navigation.nav_game, args.toBundle())

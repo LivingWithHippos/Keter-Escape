@@ -6,7 +6,6 @@ import com.onewisebit.scpescape.model.daos.PlayerDAO
 import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -45,7 +44,8 @@ class PlayerRepository(private val playerDAO: PlayerDAO) :
     override suspend fun getPlayersByGame(gameID: Long): List<Player> =
         playerDAO.getPlayersByGame(gameID)
 
-    override suspend fun getPlayerName(playerId: Long): String? = playerDAO.getPlayerNameById(playerId)
+    override suspend fun getPlayerName(playerId: Long): String? =
+        playerDAO.getPlayerNameById(playerId)
 
     override fun deleteAllPlayers() {
         Completable.fromAction { playerDAO.deleteAllPlayers() }

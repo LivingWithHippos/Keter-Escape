@@ -12,11 +12,12 @@ interface GameContract {
 
     interface GameView
 
-    interface GamePresenter: ContractRound.PresenterRound, ContractTurn.PresenterTurn, ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer {
+    interface GamePresenter : ContractRound.PresenterRound, ContractTurn.PresenterTurn,
+        ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer {
         fun onDestroy()
         suspend fun newPlayerTurn(): String
     }
 
-    interface GameModel : ContractRound.ModelRound, ContractTurn.ModelTurn, ContractParticipant.ModelParticipant, ContractPlayer.ModelPlayer {
-    }
+    interface GameModel : ContractRound.ModelRound, ContractTurn.ModelTurn,
+        ContractParticipant.ModelParticipant, ContractPlayer.ModelPlayer
 }

@@ -5,17 +5,14 @@ import com.onewisebit.scpescape.game.basemvp.ContractParticipant
 import com.onewisebit.scpescape.game.basemvp.ContractPlayer
 import com.onewisebit.scpescape.game.basemvp.ContractRound
 import com.onewisebit.scpescape.game.basemvp.ContractTurn
-import com.onewisebit.scpescape.model.entities.*
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
-import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 
 open class GamePresenterImpl(
     val gameView: GameContract.GameView,
     val gameModel: GameContract.GameModel,
     val roundPresenter: ContractRound.PresenterRound,
-    val turnPresenter : ContractTurn.PresenterTurn,
-    val participantPresenter : ContractParticipant.PresenterParticipant,
-    val playerPresenter : ContractPlayer.PresenterPlayer,
+    val turnPresenter: ContractTurn.PresenterTurn,
+    val participantPresenter: ContractParticipant.PresenterParticipant,
+    val playerPresenter: ContractPlayer.PresenterPlayer,
     val gameID: Long
 ) : GameContract.GamePresenter,
     ContractRound.PresenterRound by roundPresenter,
@@ -30,11 +27,12 @@ open class GamePresenterImpl(
     override suspend fun newPlayerTurn(): String {
         // if this is null either the game is finished and no more turn should have been created
         // or there was a problem retrieving participants
-        val missingParticipants : List<Long> = gameModel.getMissingTurnsParticipants(gameID)!!
+        val missingParticipants: List<Long> = gameModel.getMissingTurnsParticipants(gameID)!!
         // this is supposing the round is created before the turns
         val playerID = missingParticipants.random()
-        gameModel.addTurn(gameID,playerID)
+        gameModel.addTurn(gameID, playerID)
         //load and return player name
-        return gameModel.getPlayerName(playerID) ?: throw IllegalArgumentException("No player's name found for player id $playerID")
+        return gameModel.getPlayerName(playerID)
+            ?: throw IllegalArgumentException("No player's name found for player id $playerID")
     }
 }

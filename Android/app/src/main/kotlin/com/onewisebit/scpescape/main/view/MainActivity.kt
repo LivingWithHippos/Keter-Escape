@@ -19,7 +19,7 @@ class MainActivity : BaseSCPActivity(), StartView,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
