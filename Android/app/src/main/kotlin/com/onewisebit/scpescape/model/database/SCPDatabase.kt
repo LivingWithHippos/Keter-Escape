@@ -55,12 +55,13 @@ abstract class SCPDatabase : RoomDatabase() {
                     //populate the database on creation
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
+                        val manager : WorkManager = WorkManager.getInstance(context)
                         val roleRequest =
                             OneTimeWorkRequestBuilder<PopulateDatabaseRolesWorker>().build()
-                        WorkManager.getInstance(context).enqueue(roleRequest)
+                        manager.enqueue(roleRequest)
                         val modeRequest =
                             OneTimeWorkRequestBuilder<PopulateDatabaseModesWorker>().build()
-                        WorkManager.getInstance(context).enqueue(modeRequest)
+                        manager.enqueue(modeRequest)
                     }
                 })
                 .build()
