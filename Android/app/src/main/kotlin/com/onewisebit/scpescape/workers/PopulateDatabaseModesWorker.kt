@@ -33,7 +33,7 @@ class PopulateDatabaseModesWorker(
 
         for (path in modePaths) {
             try {
-                applicationContext.assets.open("asd.json").use { inputStream ->
+                applicationContext.assets.open(path).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
                         val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
                         val modeDetails: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
