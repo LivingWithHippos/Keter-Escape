@@ -6,28 +6,32 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
-import com.onewisebit.scpescape.utilities.MODE_DATA_FILENAME
+import com.onewisebit.scpescape.utilities.MODE_FILE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ModeJSONRepository(private val context: Context) : InModeJSONRepository {
+class ModeJSONRepository(context: Context) : JSONRepository(context), InModeJSONRepository {
 
     override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {
+            val modePaths : MutableList<String> = searchFile(MODE_FILE,maxDepth = 2)
+            val modesList : MutableList<ModeDataClass> = mutableListOf()
+
+            for (path in modePaths) {
+
             try {
                 // retrieving modes
-                context.assets.open(MODE_DATA_FILENAME).use { inputStream ->
+                context.assets.open(path).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
                         val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
-                        val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
-
-                        modesList
+                        val added = modesList.addAll(Gson().fromJson(jsonReader, modeType))
                     }
                 }
             } catch (ex: Exception) {
                 Log.e(TAG, "Error reading modes", ex)
-                null
             }
+        }
+            modesList
         }
 
     override suspend fun getMode(id: Int): ModeDataClass? {
