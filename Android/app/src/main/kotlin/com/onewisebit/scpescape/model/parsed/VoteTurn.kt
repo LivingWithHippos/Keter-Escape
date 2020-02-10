@@ -1,6 +1,7 @@
 package com.onewisebit.scpescape.model.parsed
 import com.google.gson.annotations.SerializedName
 
+//TODO: rename this to voteAction and rename Action to transition
 data class VoteTurn(
     @SerializedName("extends")
     override val extends: String,
@@ -9,13 +10,13 @@ data class VoteTurn(
     @SerializedName("description")
     override val description: String,
     @SerializedName("show")
-    val show: Show,
+    val show: PlayerFilter,
     @SerializedName("reveal_role")
-    val revealRole: RevealRole,
+    val revealRole: PlayerFilter,
     @SerializedName("reveal_vote")
-    val revealVote: RevealVote,
+    val revealVote: PlayerFilter,
     @SerializedName("choice_enabled")
-    val choiceEnabled: ChoiceEnabled,
+    val choiceEnabled: PlayerFilter,
     @SerializedName("choice_number")
     val choiceNumber: ChoiceNumber,
     @SerializedName("vote_group")
@@ -26,42 +27,9 @@ data class VoteTurn(
     val effect: Effect,
     @SerializedName("applied")
     val applied: Applied
-) : TurnAction()
+) : TurnAction
 
-data class Show(
-    @SerializedName("all")
-    override val all: Boolean,
-    @SerializedName("self")
-    override val self: Boolean,
-    @SerializedName("role")
-    override val role: List<String>,
-    @SerializedName("no_role")
-    override val noRole: List<String>
-): PlayerFilterOption()
-
-data class RevealRole(
-    @SerializedName("all")
-    val all: Boolean,
-    @SerializedName("self")
-    val self: Boolean,
-    @SerializedName("role")
-    val role: List<String>,
-    @SerializedName("no_role")
-    val noRole: List<String>
-)
-
-data class RevealVote(
-    @SerializedName("all")
-    val all: Boolean,
-    @SerializedName("self")
-    val self: Boolean,
-    @SerializedName("role")
-    val role: List<String>,
-    @SerializedName("no_role")
-    val noRole: List<String>
-)
-
-data class ChoiceEnabled(
+data class PlayerFilter(
     @SerializedName("all")
     val all: Boolean,
     @SerializedName("self")

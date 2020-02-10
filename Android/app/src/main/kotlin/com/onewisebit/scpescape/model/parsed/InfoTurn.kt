@@ -13,7 +13,7 @@ data class InfoTurn(
     val information: Information,
     @SerializedName("settings")
     val settings: Settings
-) : TurnAction()
+) : TurnAction
 
 data class Information(
     @SerializedName("title")
