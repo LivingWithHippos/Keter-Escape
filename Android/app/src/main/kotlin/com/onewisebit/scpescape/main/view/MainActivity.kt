@@ -19,7 +19,7 @@ class MainActivity : BaseSCPActivity(), StartView,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //TODO: ping the db so it'll get created here if it's not present
+        
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
