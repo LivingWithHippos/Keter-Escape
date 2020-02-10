@@ -9,7 +9,10 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.onewisebit.scpescape.model.database.SCPDatabase
 import com.onewisebit.scpescape.model.entities.Mode
-import com.onewisebit.scpescape.utilities.MODE_DATA_FILENAME
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
+import com.onewisebit.scpescape.model.repositories.InModeJSONRepository
+import com.onewisebit.scpescape.model.repositories.JSONRepository
+import com.onewisebit.scpescape.utilities.MODE_FILE
 import kotlinx.coroutines.coroutineScope
 
 /**
@@ -19,26 +22,34 @@ class PopulateDatabaseModesWorker(
     context: Context,
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
-    override suspend fun doWork(): Result = coroutineScope {
-        try {
-            // Populating roles
-            applicationContext.assets.open(MODE_DATA_FILENAME).use { inputStream ->
-                JsonReader(inputStream.reader()).use { jsonReader ->
-                    val modeType = object : TypeToken<List<Mode>>() {}.type
-                    val modesList: List<Mode> = Gson().fromJson(jsonReader, modeType)
 
-                    val database = SCPDatabase.getInstance(applicationContext)
-                    database.modeDAO().insertAll(modesList)
+    private val repo = JSONRepository(context)
+
+    override suspend fun doWork(): Result = coroutineScope {
+
+        val modePaths : MutableList<String> = repo.searchFile(MODE_FILE,maxDepth = 2)
+
+        val database = SCPDatabase.getInstance(applicationContext)
+
+        for (path in modePaths) {
+            try {
+                applicationContext.assets.open("asd.json").use { inputStream ->
+                    JsonReader(inputStream.reader()).use { jsonReader ->
+                        val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
+                        val modeDetails: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
+                        database.modeDAO().insertAll(modeDetails.map { Mode(it.id,it.name,it.description,it.rules,it.max,it.min) })
+                    }
                 }
-                Result.success()
+            } catch (ex: Exception) {
+                Log.e(TAG, "Error populating the mode database from path $path", ex)
+                Result.failure()
             }
-        } catch (ex: Exception) {
-            Log.e(TAG, "Error populating the database", ex)
-            Result.failure()
         }
+
+        Result.success()
     }
 
     companion object {
-        private val TAG = PopulateDatabaseRolesWorker::class.java.simpleName
+        private val TAG = PopulateDatabaseModesWorker::class.java.simpleName
     }
 }
