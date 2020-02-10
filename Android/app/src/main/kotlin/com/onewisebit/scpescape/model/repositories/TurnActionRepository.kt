@@ -128,42 +128,6 @@ class TurnActionRepository(context: Context): JSONRepository(context), InTurnAct
         roles
     }
 
-    suspend fun getModeFolder(modeId: Int): String? =
-    withContext(Dispatchers.IO) {
-        var found: Boolean = false
-        var modePath : String? = null
-        // check in folders two levels in (first level is the assets folder)
-        val modePaths : MutableList<String> = searchFile(MODE_FILE,maxDepth = 2)
-
-        pathLoop@ for (path in modePaths){
-            if (found)
-                break@pathLoop
-
-            try {
-                context.assets.open(path).use { inputStream ->
-                    JsonReader(inputStream.reader()).use { jsonReader ->
-                        // load the current mode.json
-                        val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
-                        val modesList: List<ModeDataClass> = Gson().fromJson(jsonReader, modeType)
-
-                        // check if it's the mode we're looking for
-                        modeLoop@ for (parsedMode in modesList){
-                            if (parsedMode.id == modeId){
-                                // we get the mode path from the mode.json path
-                                modePath = path.removeSuffix(MODE_FILE)
-                                found = true
-                                break@modeLoop
-                            }
-                        }
-                    }
-                }
-            } catch (ex: Exception) {
-                Log.e(TAG, "Error reading file in path $path", ex)
-            }
-        }
-        modePath
-    }
-
     companion object {
         private val TAG = TurnActionRepository::class.java.simpleName
     }
