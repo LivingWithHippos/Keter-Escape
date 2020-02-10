@@ -49,10 +49,12 @@ interface ContractParticipant {
         suspend fun getParticipants(): List<Participant>?
         suspend fun getAliveParticipants(): List<Participant>
         suspend fun getCurrentParticipant(): Participant
+        suspend fun getParticipant(playerId: Long): Participant
     }
 
     interface ModelParticipant {
         suspend fun getParticipants(gameID: Long): List<Participant>?
+        suspend fun getParticipant(gameID: Long, playerId: Long): Participant
         suspend fun getCurrentParticipant(gameID: Long): Participant
         suspend fun getMissingRoundParticipants(gameID: Long): List<Participant>
         suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String)

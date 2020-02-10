@@ -8,7 +8,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 
 interface InParticipantRepository {
-    fun getParticipant(gameID: Long, playerID: Long): Participant
+    suspend fun getParticipant(gameID: Long, playerID: Long): Participant
     fun getGameParticipants(gameID: Long): Flowable<List<Participant>>
     fun getGameParticipantsSingle(gameID: Long): Single<List<Participant>>
     suspend fun getGameParticipantsBlocking(gameID: Long): List<Participant>

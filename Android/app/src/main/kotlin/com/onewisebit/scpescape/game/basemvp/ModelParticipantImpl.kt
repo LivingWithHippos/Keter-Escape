@@ -10,6 +10,9 @@ open class ModelParticipantImpl(
     override suspend fun getParticipants(gameID: Long): List<Participant> =
         participantRepository.getGameParticipantsBlocking(gameID)
 
+    override suspend fun getParticipant(gameID: Long, playerID: Long): Participant =
+        participantRepository.getParticipant(gameID, playerID)
+
     override suspend fun getCurrentParticipant(gameID: Long): Participant =
         participantRepository.getCurrentParticipant(gameID)
 

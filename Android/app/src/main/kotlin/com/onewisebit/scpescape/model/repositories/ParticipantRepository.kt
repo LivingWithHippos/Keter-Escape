@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     InParticipantRepository {
 
-    override fun getParticipant(gameID: Long, playerID: Long): Participant =
+    override suspend fun getParticipant(gameID: Long, playerID: Long): Participant =
         participantDAO.getParticipantById(gameID, playerID)
 
     override fun getGameParticipants(gameID: Long): Flowable<List<Participant>> =

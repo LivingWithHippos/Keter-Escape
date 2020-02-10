@@ -17,7 +17,7 @@ interface ParticipantDAO {
      * @return the Participant from the table with a specific game and player id.
      */
     @Query("SELECT * FROM participants WHERE game = :gameID AND player = :playerID")
-    fun getParticipantById(gameID: Long, playerID: Long): Participant
+    suspend fun getParticipantById(gameID: Long, playerID: Long): Participant
 
     /**
      * Get a participant by id.
