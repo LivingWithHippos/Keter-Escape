@@ -9,12 +9,15 @@ interface GameContract {
 
     interface GameView {
         fun showPlayerTurnFragment(name: String, role: String, description: String)
+        fun showPlayerVoteFragment()
+        fun showPlayerInfoFragment(title: String, description: String)
     }
 
     interface GamePresenter : ContractRound.PresenterRound, ContractTurn.PresenterTurn,
         ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer, ContractAction.PresenterAction {
         fun onDestroy()
         suspend fun setupPlayerTurnFragment()
+        suspend fun setupPlayerPowerFragment()
         suspend fun newPlayerTurn(): String
     }
 

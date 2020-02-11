@@ -12,10 +12,7 @@ import com.onewisebit.scpescape.databinding.ActivityGameBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.*
 import com.onewisebit.scpescape.game.GameContract
-import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
-import com.onewisebit.scpescape.utilities.ARG_ROLE_DESCRIPTION
-import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
-import com.onewisebit.scpescape.utilities.NIGHT
+import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -66,12 +63,14 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             is IntroState -> Log.d(TAG, "Play clicked from Intro GameState")
             is RoundInfoState -> Log.d(TAG, "Start round clicked from RoundInfo GameState")
             is PassDeviceState -> Log.d(TAG, "Device passed clicked from PassDevice GameState")
+            is PlayerTurnState -> Log.d(TAG, "Play turn clicked from PlayerTurn GameState")
         }
         //TODO: check what can be moved to presenter/view
         when (newState) {
             is RoundInfoState -> setupRoundInfoFragment(newState.dayOrNight)
             is PassDeviceState -> setupPassDeviceFragment()
             is PlayerTurnState -> uiScope.launch { presenter.setupPlayerTurnFragment() }
+            is PlayerPowerState -> uiScope.launch { presenter.setupPlayerPowerFragment() }
         }
 
     }
@@ -119,6 +118,21 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             supportFragmentManager.commit {
                 replace<PlayerTurnFragment>(R.id.fragment_container_view, args = arguments)
             }
+        }
+    }
+
+    override fun showPlayerVoteFragment() {
+        supportFragmentManager.commit {
+            replace<VoteTurnFragment>(R.id.fragment_container_view)
+        }
+    }
+
+    override fun showPlayerInfoFragment(title: String, description: String) {
+        val arguments = Bundle()
+        arguments.putString(ARG_ACTION_INFO_TITLE, title)
+        arguments.putString(ARG_ACTION_INFO_TITLE_DESCRIPTION, description)
+        supportFragmentManager.commit {
+            replace<InfoTurnFragment>(R.id.fragment_container_view, args = arguments)
         }
     }
 

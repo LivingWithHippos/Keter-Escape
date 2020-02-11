@@ -47,6 +47,11 @@ const val PARTICIPANT_STATE_ALIVE = 1
 const val DAY = 0
 const val NIGHT = 1
 
+// role powers
+
+const val POWER_VOTE = "vote"
+const val POWER_INFO = "info"
+
 // Bundle arguments
 
 const val ARG_TURN_NUMBER = "turn_number"

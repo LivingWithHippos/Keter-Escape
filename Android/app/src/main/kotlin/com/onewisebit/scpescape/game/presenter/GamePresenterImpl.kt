@@ -2,6 +2,10 @@ package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.basemvp.*
+import com.onewisebit.scpescape.model.parsed.InfoTurn
+import com.onewisebit.scpescape.model.parsed.TurnAction
+import com.onewisebit.scpescape.utilities.POWER_INFO
+import com.onewisebit.scpescape.utilities.POWER_VOTE
 
 open class GamePresenterImpl(
     var gameView: GameContract.GameView,
@@ -32,6 +36,25 @@ open class GamePresenterImpl(
         val actionDescription = actionPresenter.getRoleAction(roleName, roundName).description
 
         gameView.showPlayerTurnFragment(playerName,roleName,actionDescription)
+    }
+
+    override suspend fun setupPlayerPowerFragment() {
+
+        val playerId = turnPresenter.getLatestTurn().playerID
+        val roleName : String = participantPresenter.getParticipant(playerId).roleName!!
+        val roundName = roundPresenter.getCurrentRound().details
+        val action = actionPresenter.getRoleAction(roleName, roundName)
+
+        when (action.extends) {
+            POWER_VOTE -> gameView.showPlayerVoteFragment()
+            POWER_INFO -> {
+
+                gameView.showPlayerInfoFragment((action as InfoTurn).information.title,
+                    (action as InfoTurn).information.description)
+            }
+            else -> throw IllegalArgumentException("No action found to extend: ${action.extends}")
+        }
+
     }
 
     override suspend fun newPlayerTurn(): String {
