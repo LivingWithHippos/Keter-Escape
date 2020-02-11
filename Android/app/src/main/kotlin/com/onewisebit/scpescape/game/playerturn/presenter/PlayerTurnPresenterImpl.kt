@@ -13,7 +13,4 @@ class PlayerTurnPresenterImpl(
 ) : PlayerTurnContract.PlayerTurnPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter,
     ContractParticipant.PresenterParticipant by participantPresenter {
-
-    override suspend fun loadValues() {
-    }
 }

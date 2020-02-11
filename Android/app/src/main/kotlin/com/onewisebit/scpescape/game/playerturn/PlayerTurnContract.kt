@@ -13,6 +13,5 @@ interface PlayerTurnContract {
 
     interface PlayerTurnPresenter : ContractPlayer.PresenterPlayer,
         ContractParticipant.PresenterParticipant {
-        suspend fun loadValues()
     }
 }
