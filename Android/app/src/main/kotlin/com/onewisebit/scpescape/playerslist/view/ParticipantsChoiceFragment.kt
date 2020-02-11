@@ -95,8 +95,7 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
 
             val totPlayers: Int = args.totPlayers
             val missingPlayers = totPlayers - participantsList.size
-            binding.tvSelectPlayersTitle.text =
-                getString(R.string.select_players, totPlayers, missingPlayers)
+            binding.tvSelectPlayersTitle.text = resources.getQuantityString(R.plurals.select_players,missingPlayers,totPlayers,missingPlayers)
 
             if (participantsList.size == args.totPlayers)
                 binding.fabStartGame.visibility = View.VISIBLE

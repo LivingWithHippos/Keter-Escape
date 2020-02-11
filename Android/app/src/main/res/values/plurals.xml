@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="select_players">
+        <item quantity="one">Select %1d players. %2d player remaining.</item>
+        <item quantity="other">Select %1d players. %2d players remaining.</item>
+    </plurals>
+</resources>
