@@ -48,7 +48,10 @@
     <string name="pass_to_player">Pass device to %1s</string>
     <string name="i_am_player">I\'m %1s</string>
     <string name="player_picture">Player Picture</string>
+    <!-->placeholders<!-->
     <string name="player_name_placeholder">%1s</string>
     <string name="player_role_placeholder">%1s</string>
     <string name="player_role_description_placeholder">%1s</string>
+    <string name="info_title_placeholder">%1s</string>
+    <string name="info_description_placeholder">%1s</string>
 </resources>
