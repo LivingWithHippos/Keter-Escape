@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".game.view.VoteTurnFragment">
+    tools:context=".game.vote.view.VoteTurnFragment">
 
 </FrameLayout>

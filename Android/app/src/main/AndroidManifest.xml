@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.onewisebit.scpescape.game.view.GameActivity">
+            android:name="com.onewisebit.scpescape.game.activity.view.GameActivity">
         </activity>
     </application>
 
