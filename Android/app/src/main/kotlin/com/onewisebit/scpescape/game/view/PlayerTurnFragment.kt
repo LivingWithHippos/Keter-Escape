@@ -43,24 +43,24 @@ class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Ac
     ): View? {
         // initialize binding
         _binding = FragmentPlayerTurnBinding.inflate(layoutInflater, container, false)
-        binding.tvPlayerName.text = arguments?.getString(ARG_PLAYER_NAME)
-        binding.tvPlayerRole.text = arguments?.getString(ARG_ROLE_NAME)
-        binding.tvRoleShortDescription.text = arguments?.getString(ARG_ROLE_DESCRIPTION)
+
+        arguments?.let {
+            initView(it.getString(ARG_PLAYER_NAME),it.getString(ARG_ROLE_NAME),it.getString(ARG_ROLE_DESCRIPTION))
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        uiScope.launch {
-            presenter.loadValues()
-        }
+        binding.fabPlayTurn.setOnClickListener { onActionListener(Action.PlayTurnClicked()) }
     }
 
     override fun initView(
-        playerName: String,
-        playerRoleName: String,
-        playerRoleDescription: String
+        playerName: String?,
+        playerRoleName: String?,
+        playerRoleDescription: String?
     ) {
         //TODO: add player pic
         binding.tvPlayerName.text = playerName

@@ -6,7 +6,7 @@ import com.onewisebit.scpescape.game.basemvp.ContractPlayer
 interface PlayerTurnContract {
 
     interface PlayerTurnView {
-        fun initView(playerName: String, playerRoleName: String, playerRoleDescription: String)
+        fun initView(playerName: String?, playerRoleName: String?, playerRoleDescription: String?)
     }
 
     interface PlayerTurnModel : ContractPlayer.ModelPlayer, ContractParticipant.ModelParticipant
