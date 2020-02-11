@@ -53,4 +53,5 @@
     <string name="player_role_description_placeholder">%1s</string>
     <string name="info_title_placeholder">%1s</string>
     <string name="info_description_placeholder">%1s</string>
+    <string name="voted_by">Voted By</string>
 </resources>
