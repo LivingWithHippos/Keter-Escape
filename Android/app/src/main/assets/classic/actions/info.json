@@ -2,7 +2,7 @@
   {
     "extends": "info",
     "name": "Survive",
-    "description": "Shown during the guard`s turn.",
+    "description": "Collaborate with other guards and scientists to kill SCP-███.",
     "information": {
       "title": "Do your best!",
       "description": "Surviving ain't easy, but you've always been good at it. At least until now."
