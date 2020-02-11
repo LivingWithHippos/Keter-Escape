@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game.model
 
 import com.onewisebit.scpescape.game.GameContract
-import com.onewisebit.scpescape.game.basemvp.*
+import com.onewisebit.scpescape.game.composable.*
 
 open class GameModelImpl(
     val roundModel: ContractRound.ModelRound,

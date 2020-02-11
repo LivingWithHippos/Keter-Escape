@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game
 
-import com.onewisebit.scpescape.game.basemvp.ContractParticipant
-import com.onewisebit.scpescape.game.basemvp.ContractPlayer
+import com.onewisebit.scpescape.game.composable.ContractParticipant
+import com.onewisebit.scpescape.game.composable.ContractPlayer
 
 interface PlayerTurnContract {
 

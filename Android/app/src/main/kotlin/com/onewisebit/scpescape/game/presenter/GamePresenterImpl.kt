@@ -1,9 +1,8 @@
 package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.GameContract
-import com.onewisebit.scpescape.game.basemvp.*
+import com.onewisebit.scpescape.game.composable.*
 import com.onewisebit.scpescape.model.parsed.InfoTurn
-import com.onewisebit.scpescape.model.parsed.TurnAction
 import com.onewisebit.scpescape.model.parsed.VoteTurn
 import com.onewisebit.scpescape.utilities.POWER_INFO
 import com.onewisebit.scpescape.utilities.POWER_VOTE

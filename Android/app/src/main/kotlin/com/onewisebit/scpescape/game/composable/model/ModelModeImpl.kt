@@ -1,5 +1,6 @@
-package com.onewisebit.scpescape.game.basemvp
+package com.onewisebit.scpescape.game.composable.model
 
+import com.onewisebit.scpescape.game.composable.ContractMode
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.repositories.InGameRepository
 import com.onewisebit.scpescape.model.repositories.InModeJSONRepository

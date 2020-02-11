@@ -1,4 +1,4 @@
-package com.onewisebit.scpescape.game.basemvp
+package com.onewisebit.scpescape.game.composable
 
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.parsed.ModeDataClass

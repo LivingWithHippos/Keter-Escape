@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.game.model
 
 import com.onewisebit.scpescape.game.PlayerTurnContract
-import com.onewisebit.scpescape.game.basemvp.ContractParticipant
-import com.onewisebit.scpescape.game.basemvp.ContractPlayer
+import com.onewisebit.scpescape.game.composable.ContractParticipant
+import com.onewisebit.scpescape.game.composable.ContractPlayer
 
 class PlayerTurnModelImpl(
     val playerModel: ContractPlayer.ModelPlayer,

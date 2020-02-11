@@ -1,5 +1,6 @@
-package com.onewisebit.scpescape.game.basemvp
+package com.onewisebit.scpescape.game.composable.presenter
 
+import com.onewisebit.scpescape.game.composable.ContractAction
 import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
 

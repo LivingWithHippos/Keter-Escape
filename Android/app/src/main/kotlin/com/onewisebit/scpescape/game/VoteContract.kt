@@ -1,6 +1,6 @@
 package com.onewisebit.scpescape.game
 
-import com.onewisebit.scpescape.game.basemvp.ContractAction
+import com.onewisebit.scpescape.game.composable.ContractAction
 
 interface VoteContract {
 

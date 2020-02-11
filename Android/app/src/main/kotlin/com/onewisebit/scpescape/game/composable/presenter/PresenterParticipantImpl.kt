@@ -1,5 +1,6 @@
-package com.onewisebit.scpescape.game.basemvp
+package com.onewisebit.scpescape.game.composable.presenter
 
+import com.onewisebit.scpescape.game.composable.ContractParticipant
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 

@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.game.model
 
 import com.onewisebit.scpescape.game.IntroContract
-import com.onewisebit.scpescape.game.basemvp.ContractMode
-import com.onewisebit.scpescape.game.basemvp.ContractParticipant
+import com.onewisebit.scpescape.game.composable.ContractMode
+import com.onewisebit.scpescape.game.composable.ContractParticipant
 
 class IntroModelImpl(
     val participantModel: ContractParticipant.ModelParticipant,

@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game.presenter
 
 import com.onewisebit.scpescape.game.VoteContract
-import com.onewisebit.scpescape.game.basemvp.ContractAction
+import com.onewisebit.scpescape.game.composable.ContractAction
 
 class VotePresenterImpl(
     val view: VoteContract.VoteView,

@@ -1,5 +1,7 @@
-package com.onewisebit.scpescape.game.basemvp
+package com.onewisebit.scpescape.game.composable.presenter
 
+import com.onewisebit.scpescape.game.composable.ContractParticipant
+import com.onewisebit.scpescape.game.composable.ContractTurn
 import com.onewisebit.scpescape.model.entities.Turn
 
 class PresenterTurnImpl(

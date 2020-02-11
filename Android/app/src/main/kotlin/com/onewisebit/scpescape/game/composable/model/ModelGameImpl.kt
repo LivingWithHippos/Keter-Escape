@@ -1,5 +1,6 @@
-package com.onewisebit.scpescape.game.basemvp
+package com.onewisebit.scpescape.game.composable.model
 
+import com.onewisebit.scpescape.game.composable.ContractGame
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.repositories.InGameRepository
 

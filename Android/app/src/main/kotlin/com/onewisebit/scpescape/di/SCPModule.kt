@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.*
-import com.onewisebit.scpescape.game.basemvp.*
+import com.onewisebit.scpescape.game.composable.*
+import com.onewisebit.scpescape.game.composable.model.*
+import com.onewisebit.scpescape.game.composable.presenter.*
 import com.onewisebit.scpescape.game.model.*
 import com.onewisebit.scpescape.game.presenter.*
 import com.onewisebit.scpescape.game.view.SCPFragmentFactory
@@ -68,7 +70,10 @@ val appModule = module {
     }
 
     factory<ContractGame.PresenterGame> { (game: Long) ->
-        PresenterGameImpl(get(), game)
+        PresenterGameImpl(
+            get(),
+            game
+        )
     }
 
     factory<ContractParticipant.ModelParticipant> {
@@ -76,7 +81,10 @@ val appModule = module {
     }
 
     factory<ContractParticipant.PresenterParticipant> { (game: Long) ->
-        PresenterParticipantImpl(get(), game)
+        PresenterParticipantImpl(
+            get(),
+            game
+        )
     }
 
     factory<ContractPlayer.ModelPlayer> {
@@ -84,7 +92,10 @@ val appModule = module {
     }
 
     factory<ContractPlayer.PresenterPlayer> { (game: Long) ->
-        PresenterPlayerImpl(get(), game)
+        PresenterPlayerImpl(
+            get(),
+            game
+        )
     }
 
     factory<ContractRound.ModelRound> {
@@ -92,7 +103,10 @@ val appModule = module {
     }
 
     factory<ContractRound.PresenterRound> { (game: Long) ->
-        PresenterRoundImpl(get(), game)
+        PresenterRoundImpl(
+            get(),
+            game
+        )
     }
 
     factory<ContractTurn.ModelTurn> {
@@ -100,7 +114,11 @@ val appModule = module {
     }
 
     factory<ContractTurn.PresenterTurn> { (game: Long) ->
-        PresenterTurnImpl(get(), get(), game)
+        PresenterTurnImpl(
+            get(),
+            get(),
+            game
+        )
     }
 
     factory<ContractMode.ModelMode> {
@@ -108,7 +126,10 @@ val appModule = module {
     }
 
     factory<ContractMode.PresenterMode> { (game: Long) ->
-        PresenterModeImpl(get(), game)
+        PresenterModeImpl(
+            get(),
+            game
+        )
     }
 
     // MainActivity MVP

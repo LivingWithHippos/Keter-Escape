@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game.model
 
 import com.onewisebit.scpescape.game.VoteContract
-import com.onewisebit.scpescape.game.basemvp.ContractAction
+import com.onewisebit.scpescape.game.composable.ContractAction
 
 class VoteModelImpl(
     val actionModel : ContractAction.ModelAction

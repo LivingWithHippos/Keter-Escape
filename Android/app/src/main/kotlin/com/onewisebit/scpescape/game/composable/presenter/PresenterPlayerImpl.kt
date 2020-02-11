@@ -1,5 +1,6 @@
-package com.onewisebit.scpescape.game.basemvp
+package com.onewisebit.scpescape.game.composable.presenter
 
+import com.onewisebit.scpescape.game.composable.ContractPlayer
 import com.onewisebit.scpescape.model.entities.Player
 
 class PresenterPlayerImpl(val model: ContractPlayer.ModelPlayer, val gameId: Long) :
