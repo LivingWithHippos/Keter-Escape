@@ -24,12 +24,14 @@ open class GamePresenterImpl(
     }
 
     override suspend fun setupPlayerTurnFragment() {
-        val turn = turnPresenter.getLatestTurn()
-        val player = playerPresenter.getPlayer(turn.playerID)
-        val participant = participantPresenter.getParticipant(turn.playerID)
-        val round = roundPresenter.getCurrentRound()
-        val action = actionPresenter.getRoleAction(participant.roleName!!,round.details)
-        gameView.showPlayerTurnFragment(player.name,action.name,action.description)
+
+        val playerId = turnPresenter.getLatestTurn().playerID
+        val playerName = playerPresenter.getPlayer(playerId).name
+        val roleName : String = participantPresenter.getParticipant(playerId).roleName!!
+        val roundName = roundPresenter.getCurrentRound().details
+        val actionDescription = actionPresenter.getRoleAction(roleName, roundName).description
+
+        gameView.showPlayerTurnFragment(playerName,roleName,actionDescription)
     }
 
     override suspend fun newPlayerTurn(): String {
