@@ -15,11 +15,5 @@ class PlayerTurnPresenterImpl(
     ContractParticipant.PresenterParticipant by participantPresenter {
 
     override suspend fun loadValues() {
-
-        val participant = getCurrentParticipant()
-        val player = getPlayer(participant.playerID)
-        //view.initView(player.name, "playerRoleName", "playerRoleDescription")
-
-
     }
 }
