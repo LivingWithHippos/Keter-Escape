@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.model.repositories
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.onewisebit.scpescape.model.daos.RoleDAO
 import com.onewisebit.scpescape.model.entities.Role
@@ -13,6 +14,7 @@ class RoleRepository(private val roleDAO: RoleDAO) :
 
     override fun getRoleByName(name: String) = roleDAO.getRoleByName(name)
 
+    @SuppressLint("CheckResult")
     override fun insertRole(role: Role) {
         roleDAO.insertRole(role)
             .subscribeOn(Schedulers.io())
