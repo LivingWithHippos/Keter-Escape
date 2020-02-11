@@ -40,35 +40,3 @@ class InfoTurnFragment(gameID: Long, private val onActionListener: (action: Acti
     }
 
 }
-
-/**
- * A simple [Fragment] subclass.
- */
-class InfoTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment(gameID, onActionListener) {
-
-
-    private var _binding: FragmentInfoTurnBinding? = null
-    private val binding get() = _binding!!
-
-    private val job = Job()
-    val uiScope =
-        CoroutineScope(Dispatchers.Main + job)
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // initialize binding
-        _binding =
-            FragmentInfoTurnBinding.inflate(
-                layoutInflater,
-                container,
-                false
-            )
-        binding.tvInfoTitle.text = arguments?.getString(ARG_ACTION_INFO_TITLE)
-        binding.tvInfoDescription.text = arguments?.getString(ARG_ACTION_INFO_TITLE_DESCRIPTION)
-        return binding.root
-    }
-
-}
