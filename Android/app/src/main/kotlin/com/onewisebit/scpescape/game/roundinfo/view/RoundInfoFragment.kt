@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.onewisebit.scpescape.databinding.FragmentRoundInfoBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
-import com.onewisebit.scpescape.game.view.BaseGameFragment
+import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.model.parsed.RoundDetails
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -11,13 +11,13 @@ import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityGameBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.*
+import com.onewisebit.scpescape.game.SCPFragmentFactory
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.infoturn.view.InfoTurnFragment
 import com.onewisebit.scpescape.game.intro.view.IntroFragment
 import com.onewisebit.scpescape.game.passdevice.view.PassDeviceFragment
 import com.onewisebit.scpescape.game.playerturn.view.PlayerTurnFragment
 import com.onewisebit.scpescape.game.roundinfo.view.RoundInfoFragment
-import com.onewisebit.scpescape.game.view.*
 import com.onewisebit.scpescape.game.vote.view.VoteTurnFragment
 import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.CoroutineScope

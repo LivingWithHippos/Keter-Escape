@@ -1,4 +1,4 @@
-package com.onewisebit.scpescape.game.view
+package com.onewisebit.scpescape.game
 
 import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.fsm.actions.Action

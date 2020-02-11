@@ -19,7 +19,7 @@ import com.onewisebit.scpescape.game.playerturn.presenter.PlayerTurnPresenterImp
 import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 import com.onewisebit.scpescape.game.roundinfo.model.RoundInfoModelImpl
 import com.onewisebit.scpescape.game.roundinfo.presenter.RoundInfoPresenterImpl
-import com.onewisebit.scpescape.game.view.SCPFragmentFactory
+import com.onewisebit.scpescape.game.SCPFragmentFactory
 import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.game.vote.model.VoteModelImpl
 import com.onewisebit.scpescape.main.activity.StartContract

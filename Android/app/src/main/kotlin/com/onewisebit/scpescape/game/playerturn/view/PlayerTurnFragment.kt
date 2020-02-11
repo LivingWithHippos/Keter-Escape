@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentPlayerTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
-import com.onewisebit.scpescape.game.view.BaseGameFragment
+import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 import com.onewisebit.scpescape.utilities.ARG_ROLE_DESCRIPTION
 import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME

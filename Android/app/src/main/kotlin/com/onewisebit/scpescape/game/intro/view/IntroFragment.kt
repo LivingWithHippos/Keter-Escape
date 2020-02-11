@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentIntroBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.intro.IntroContract
-import com.onewisebit.scpescape.game.view.BaseGameFragment
+import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentPassDeviceBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.game.view.BaseGameFragment
+import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 
 /**
