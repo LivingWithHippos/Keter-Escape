@@ -4,6 +4,7 @@ import com.onewisebit.scpescape.game.GameContract
 import com.onewisebit.scpescape.game.basemvp.*
 import com.onewisebit.scpescape.model.parsed.InfoTurn
 import com.onewisebit.scpescape.model.parsed.TurnAction
+import com.onewisebit.scpescape.model.parsed.VoteTurn
 import com.onewisebit.scpescape.utilities.POWER_INFO
 import com.onewisebit.scpescape.utilities.POWER_VOTE
 
@@ -46,11 +47,15 @@ open class GamePresenterImpl(
         val action = actionPresenter.getRoleAction(roleName, roundName)
 
         when (action.extends) {
-            POWER_VOTE -> gameView.showPlayerVoteFragment()
-            POWER_INFO -> {
+            POWER_VOTE -> {
+                (action as VoteTurn).run {
+                    gameView.showPlayerVoteFragment()
+                }
+            }
+            POWER_INFO -> (action as InfoTurn).run {
                 gameView.showPlayerInfoFragment(
-                    (action as InfoTurn).information.title,
-                    action.information.description
+                    this.information.title,
+                    this.information.description
                 )
             }
             else -> throw IllegalArgumentException("No action found to extend: ${action.extends}")
