@@ -48,9 +48,10 @@ open class GamePresenterImpl(
         when (action.extends) {
             POWER_VOTE -> gameView.showPlayerVoteFragment()
             POWER_INFO -> {
-
-                gameView.showPlayerInfoFragment((action as InfoTurn).information.title,
-                    (action as InfoTurn).information.description)
+                gameView.showPlayerInfoFragment(
+                    (action as InfoTurn).information.title,
+                    action.information.description
+                )
             }
             else -> throw IllegalArgumentException("No action found to extend: ${action.extends}")
         }
