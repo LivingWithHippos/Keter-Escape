@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startScreenFragment"
-        android:name="com.onewisebit.scpescape.main.view.StartScreenFragment"
+        android:name="com.onewisebit.scpescape.main.activity.view.StartScreenFragment"
         android:label="fragment_start_screen"
         tools:layout="@layout/fragment_start_screen">
         <action
@@ -25,17 +25,17 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.onewisebit.scpescape.about.view.AboutFragment"
+        android:name="com.onewisebit.scpescape.main.view.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.onewisebit.scpescape.main.view.SettingsFragment"
+        android:name="com.onewisebit.scpescape.main.activity.view.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@xml/preferences" />
     <fragment
         android:id="@+id/newGameFragment"
-        android:name="com.onewisebit.scpescape.main.view.NewGameFragment"
+        android:name="com.onewisebit.scpescape.main.activity.view.NewGameFragment"
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_new_game">
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameModeFragment"
-        android:name="com.onewisebit.scpescape.modesList.view.GameModeFragment"
+        android:name="com.onewisebit.scpescape.main.modesList.view.GameModeFragment"
         android:label="fragment_game_mode"
         tools:layout="@layout/fragment_game_mode">
         <argument
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/newGameSettingsFragment"
-        android:name="com.onewisebit.scpescape.newgamesettings.view.NewGameSettingsFragment"
+        android:name="com.onewisebit.scpescape.main.newgamesettings.view.NewGameSettingsFragment"
         android:label="fragment_new_game_settings"
         tools:layout="@layout/fragment_new_game_settings">
         <action
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/participantsChoiceFragment"
-        android:name="com.onewisebit.scpescape.playerslist.view.ParticipantsChoiceFragment"
+        android:name="com.onewisebit.scpescape.main.playerslist.view.ParticipantsChoiceFragment"
         android:label="ParticipantsChoiceFragment"
         tools:layout="@layout/fragment_participants_choice">
         <argument
