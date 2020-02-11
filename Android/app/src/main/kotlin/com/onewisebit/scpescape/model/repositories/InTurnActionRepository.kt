@@ -1,6 +1,7 @@
 package com.onewisebit.scpescape.model.repositories
 
 import com.onewisebit.scpescape.model.parsed.InfoTurn
+import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
 import com.onewisebit.scpescape.model.parsed.VoteTurn
 
@@ -16,4 +17,5 @@ interface InTurnActionRepository {
 
     suspend fun getInfo(path: String): List<InfoTurn>?
     suspend fun getMode(gameId: Long): Int
+    suspend fun getRoleDetails(modeId: Int): List<RoleDetails>
 }

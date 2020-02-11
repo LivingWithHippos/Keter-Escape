@@ -107,7 +107,7 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
         return actions.first { it.name == turnActionName }
     }
 
-    suspend fun getRoleDetails(modeId: Int): List<RoleDetails> =
+    override suspend fun getRoleDetails(modeId: Int): List<RoleDetails> =
         withContext(Dispatchers.IO) {
 
             val roles: MutableList<RoleDetails> = mutableListOf()

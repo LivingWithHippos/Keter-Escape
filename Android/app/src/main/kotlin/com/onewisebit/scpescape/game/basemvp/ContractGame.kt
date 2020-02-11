@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.game.basemvp
 
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
+import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.RoundDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
 
@@ -121,12 +122,14 @@ interface ContractAction {
     interface ModelAction {
         suspend fun getTemplates(): List<TurnAction>
         suspend fun getRoleAction(modeId: Int, roleName: String, roundCode: String): TurnAction
+        suspend fun getRoleDetails(modeId: Int, roleName: String): RoleDetails
         suspend fun getModeActions(modeId: Int): List<TurnAction>
         suspend fun getModeId(gameId: Long): Int
     }
 
     interface PresenterAction {
         suspend fun getRoleAction(roleName: String, roundCode: String): TurnAction
+        suspend fun getRoleDetails(roleName: String): RoleDetails
     }
 }
 
