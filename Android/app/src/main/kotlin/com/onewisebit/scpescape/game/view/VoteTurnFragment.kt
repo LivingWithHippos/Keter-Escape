@@ -8,16 +8,21 @@ import android.view.ViewGroup
 
 import com.onewisebit.scpescape.databinding.FragmentVoteTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.game.GameContract
+import com.onewisebit.scpescape.game.VoteContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 /**
  * A simple [Fragment] subclass.
  */
 class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment(gameID, onActionListener) {
+    BaseGameFragment(gameID, onActionListener), VoteContract.VoteView {
 
+    private val presenter: VoteContract.VotePresenter by inject { parametersOf(this) }
 
     private var _binding: FragmentVoteTurnBinding? = null
     private val binding get() = _binding!!
