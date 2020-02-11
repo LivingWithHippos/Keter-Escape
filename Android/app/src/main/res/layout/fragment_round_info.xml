@@ -40,8 +40,8 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/keyboard_arrow_right_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

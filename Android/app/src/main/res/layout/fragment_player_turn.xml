@@ -25,34 +25,34 @@
         android:layout_height="150dp"
         android:contentDescription="@string/player_picture"
         android:src="@drawable/profile"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerName"
         app:layout_constraintBottom_toTopOf="@+id/tvPlayerRole"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerName" />
 
     <TextView
         android:id="@+id/tvPlayerRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/player_role_placeholder"
-        app:layout_constraintTop_toBottomOf="@+id/ivPlayer"
         app:layout_constraintBottom_toTopOf="@+id/tvRoleShortDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPlayer" />
 
     <TextView
         android:id="@+id/tvRoleShortDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/player_role_description_placeholder"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlayerRole"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"/>
-    
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayerRole" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabPlayTurn"
         android:layout_width="wrap_content"
