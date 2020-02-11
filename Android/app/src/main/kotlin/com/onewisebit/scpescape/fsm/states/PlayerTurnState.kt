@@ -7,7 +7,8 @@ class PlayerTurnState : StateGame {
         return when (action) {
             is Action.EndRoundClicked -> ShowResultsState()
             is Action.EndTurnClicked -> PassDeviceState()
-            is Action.StartVotePowerClicked -> StateVote()
+            is Action.StartVotePowerClicked -> VoteState()
+            is Action.PlayTurnClicked -> VoteState()
             else -> throw IllegalStateException("Invalid action: $action passed to a PlayerTurn state")
         }
     }
