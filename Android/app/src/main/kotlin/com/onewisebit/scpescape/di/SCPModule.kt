@@ -208,6 +208,21 @@ val appModule = module {
         )
     }
 
+    // Vote MVP
+
+    factory<ContractVote.ModelVote> {
+        ModelVoteImpl(
+            get()
+        )
+    }
+
+    factory<ContractVote.PresenterVote> { (gameId: Long) ->
+        PresenterVoteImpl(
+            get(),
+            gameId
+        )
+    }
+
     // Game modes list MVP
 
     factory<GameModesContract.GameModesModel> {
