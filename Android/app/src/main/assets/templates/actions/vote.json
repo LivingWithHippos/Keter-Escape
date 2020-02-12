@@ -35,7 +35,7 @@
   "vote_group": {
     "self": false,
     "all": true,
-    "group": [],
+    "role": [],
     "action": false
   },
   "draw": {

@@ -37,10 +37,16 @@
   "extends": "Daily vote",
   "name": "Daily SCP vote",
   "description": "Choose someone to kill with SCP-[REDACTED]. You'll be able to see your companions' vote.",
-  "reveal_role": {
+    "reveal_role": {
+      "role": ["SCP-106"]
+    },
+    "reveal_vote": {
     "role": ["SCP-106"]
-  }
-},
+  },
+    "vote_group": {
+      "role": ["SCP-106"]
+    }
+  },
   {
     "extends": "vote",
     "name": "MTF protection",
@@ -114,6 +120,9 @@
       "self": false
     },
     "reveal_role": {
+      "role": ["SCP"]
+    },
+    "reveal_vote": {
       "role": ["SCP"]
     },
     "choice_enabled": {
