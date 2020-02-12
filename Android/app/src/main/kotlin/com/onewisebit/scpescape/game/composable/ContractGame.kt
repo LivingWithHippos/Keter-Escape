@@ -133,6 +133,25 @@ interface ContractAction {
     }
 }
 
+interface ContractVote {
+
+    interface ModelVote {
+        suspend fun getGameVotes(gameId: Long): List<Vote>
+        suspend fun getRoundVotes(gameId: Long, roundNumber: Int): List<Vote>
+        suspend fun addVote(
+            gameId: Long,
+            roundNumber: Int,
+            turnNumber: Int,
+            playerID: Long,
+            votedPlayerID: Long,
+            voteType: String
+        )
+    }
+
+    interface PresenterVote {
+    }
+}
+
 interface ContractMode {
     interface PresenterMode {
         suspend fun getMode(): ModeDataClass
