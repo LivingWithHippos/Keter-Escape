@@ -13,11 +13,11 @@ class ModelActionImpl(
 
     override suspend fun getModeId(gameId: Long): Int= actionRepository.getMode(gameId)
 
-    override suspend fun getRoleAction(
+    override suspend fun getCompleteAction(
         modeId: Int,
         roleName: String,
         roundCode: String
-    ): TurnAction = actionRepository.getRoleAction(modeId, roleName, roundCode)
+    ): TurnAction = actionRepository.getCompleteAction(modeId, roleName, roundCode)
 
     override suspend fun getRoleDetails(modeId: Int, roleName: String): RoleDetails {
         val details = actionRepository.getRoleDetails(modeId)

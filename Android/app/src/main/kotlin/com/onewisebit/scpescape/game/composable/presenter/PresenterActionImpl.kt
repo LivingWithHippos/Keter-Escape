@@ -7,9 +7,9 @@ import com.onewisebit.scpescape.model.parsed.TurnAction
 class PresenterActionImpl(val model: ContractAction.ModelAction, val gameId: Long) :
     ContractAction.PresenterAction {
 
-    override suspend fun getRoleAction(roleName: String, roundCode: String): TurnAction {
+    override suspend fun getAction(roleName: String, roundCode: String): TurnAction {
         val modeId = model.getModeId(gameId)
-        return model.getRoleAction(modeId, roleName, roundCode)
+        return model.getCompleteAction(modeId, roleName, roundCode)
     }
 
     override suspend fun getRoleDetails(roleName: String): RoleDetails {
