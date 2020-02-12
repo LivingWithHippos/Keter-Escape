@@ -321,11 +321,13 @@ val appModule = module {
         )
     }
 
-    factory<VoteContract.VotePresenter> { (view: VoteContract.VoteView, game: Long) ->
+    factory<VoteContract.VotePresenter> { (view: VoteContract.VoteView, game: Long, roundCode : String, roleName: String) ->
         VotePresenterImpl(
             view,
             get { parametersOf(game) },
-            game
+            game,
+            roundCode,
+            roleName
         )
     }
 

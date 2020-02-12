@@ -128,9 +128,12 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun showPlayerVoteFragment() {
+    override fun showPlayerVoteFragment(round: String, role: String) {
+        val arguments = Bundle()
+        arguments.putString(ARG_ROUND_CODE, round)
+        arguments.putString(ARG_ROLE_NAME, role)
         supportFragmentManager.commit {
-            replace<VoteTurnFragment>(R.id.fragment_container_view)
+            replace<VoteTurnFragment>(R.id.fragment_container_view, args = arguments)
         }
     }
 
