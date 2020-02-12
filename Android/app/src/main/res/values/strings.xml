@@ -54,4 +54,5 @@
     <string name="info_title_placeholder">%1s</string>
     <string name="info_description_placeholder">%1s</string>
     <string name="voted_by">Voted By</string>
+    <string name="voted">Voted</string>
 </resources>

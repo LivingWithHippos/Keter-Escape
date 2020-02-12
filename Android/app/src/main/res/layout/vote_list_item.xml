@@ -58,30 +58,43 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llVoteBy"
-            android:visibility="gone"
+            android:id="@+id/llVoted"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivPlayerPic">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
+                android:id="@+id/tvVoted"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/voted_by"
+                android:text="@string/voted"
                 android:textAllCaps="true"
                 android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvVotedByList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tvVotedPlayerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/player_name_placeholder"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/ivVotedPlayerPic"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:contentDescription="@string/player_picture"
+                android:src="@drawable/profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
 
