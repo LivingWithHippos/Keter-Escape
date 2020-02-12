@@ -5,41 +5,83 @@ import com.google.gson.annotations.SerializedName
 
 data class InfoTurn(
     @SerializedName("extends")
-    override val extends: String,
+    override var extends: String,
     @SerializedName("name")
-    override val name: String,
+    override var name: String,
     @SerializedName("description")
-    override val description: String,
+    override var description: String,
     @SerializedName("information")
-    val information: Information,
+    var information: Information?,
     @SerializedName("settings")
-    val settings: Settings
-) : TurnAction
+    var settings: Settings?
+) : TurnAction {
+    // see [VoteTurn.kt] for info about this
+    override fun merge(derived: Mergeable) {
+        if (derived is InfoTurn){
+            extends = derived.extends
+            name = derived.name
+            description = derived.description
+
+            derived.information?.let { information!!.merge(it) }
+            derived.settings?.let { settings!!.merge(it) }
+        }
+    else
+        throw IllegalArgumentException("Merging class was not a VoteTurn one but $derived")
+    }
+}
 
 data class Information(
     @SerializedName("title")
-    val title: String,
+    var title: String?,
     @SerializedName("description")
-    val description: String
-)
+    var description: String?
+): Mergeable {
+    override fun merge(derived: Mergeable) {
+        if (derived is Information){
+            derived.title?.let { title = it }
+            derived.description?.let { description = it }
+        }
+    }
+}
 
 data class Settings(
     @SerializedName("background")
-    val background: Background,
+    var background: Background?,
     @SerializedName("timer")
-    val timer: Timer
-)
+    var timer: Timer?
+): Mergeable {
+    override fun merge(derived: Mergeable) {
+        if (derived is Settings){
+            derived.background?.let { background = it }
+            derived.timer?.let { timer!!.merge(it) }
+        }
+    }
+}
 
 data class Background(
     @SerializedName("active")
-    val active: Boolean,
+    var active: Boolean?,
     @SerializedName("color")
-    val color: String
-)
+    var color: String?
+): Mergeable {
+    override fun merge(derived: Mergeable) {
+        if (derived is Background){
+            derived.active?.let { active = it }
+            derived.color?.let { color = it }
+        }
+    }
+}
 
 data class Timer(
     @SerializedName("active")
-    val active: Boolean,
+    var active: Boolean?,
     @SerializedName("seconds")
-    val seconds: Int
-)
+    var seconds: Int?
+): Mergeable {
+    override fun merge(derived: Mergeable) {
+        if (derived is Timer){
+            derived.active?.let { active = it }
+            derived.seconds?.let { seconds = it }
+        }
+    }
+}

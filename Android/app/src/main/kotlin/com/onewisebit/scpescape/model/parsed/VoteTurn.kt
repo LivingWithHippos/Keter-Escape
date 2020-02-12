@@ -2,102 +2,184 @@ package com.onewisebit.scpescape.model.parsed
 
 import com.google.gson.annotations.SerializedName
 
-//TODO: rename this to voteAction and rename Action to transition
+//TODO: rename this to voteAction and rename Action in fsm to transition or something else
 data class VoteTurn(
     @SerializedName("extends")
-    override val extends: String,
+    override var extends: String,
     @SerializedName("name")
-    override val name: String,
+    override var name: String,
     @SerializedName("description")
-    override val description: String,
+    override var description: String,
     @SerializedName("show")
-    val show: PlayerFilter,
+    var show: PlayerFilter?,
     @SerializedName("reveal_role")
-    val revealRole: PlayerFilter,
+    var revealRole: PlayerFilter?,
     @SerializedName("reveal_vote")
-    val revealVote: PlayerFilter,
+    var revealVote: PlayerFilter?,
     @SerializedName("choice_enabled")
-    val choiceEnabled: PlayerFilter,
+    var choiceEnabled: PlayerFilter?,
     @SerializedName("choice_number")
-    val choiceNumber: ChoiceNumber,
+    var choiceNumber: ChoiceNumber?,
     @SerializedName("vote_group")
-    val voteGroup: VoteGroup,
+    var voteGroup: VoteGroup?,
     @SerializedName("draw")
-    val draw: Draw,
+    var draw: Draw?,
     @SerializedName("effect")
-    val effect: Effect,
+    var effect: Effect?,
     @SerializedName("applied")
-    val applied: Applied
-) : TurnAction
+    var applied: Applied?
+) : TurnAction {
+    // if the merging values are different from null, load them
+    // merge needs to be used from the template -> templateVote.merge(loadedVote)
+    override fun merge(derived: Mergeable) {
+        if (derived is VoteTurn){
+            // primitives can be assigned directly, other data classes must use merge()
+            extends = derived.extends
+            name = derived.name
+            description = derived.description
+            // using !! and not ? since we MUST call this from the template, and get an error otherwise
+            // by using let we don't need to use show, reveal_role etc in the extending vote powers
+            // if their value correspond to the template ones
+            derived.show?.let { show!!.merge(it) }
+            derived.revealRole?.let { revealRole!!.merge(it) }
+            derived.revealVote?.let { revealVote!!.merge(it) }
+            derived.choiceEnabled?.let { choiceEnabled!!.merge(it) }
+            derived.choiceNumber?.let { choiceNumber!!.merge(it) }
+            derived.voteGroup?.let { voteGroup!!.merge(it) }
+            derived.draw?.let { draw!!.merge(it) }
+            derived.effect?.let { effect!!.merge(it) }
+            derived.applied?.let { applied!!.merge(it) }
+        }
+        else
+            throw IllegalArgumentException("Merging class was not a VoteTurn one but $derived")
+    }
+}
 
 data class PlayerFilter(
     @SerializedName("all")
-    val all: Boolean,
+    var all: Boolean?,
     @SerializedName("self")
-    val self: Boolean,
+    var self: Boolean?,
     @SerializedName("role")
-    val role: List<String>,
+    var role: List<String>?,
     @SerializedName("no_role")
-    val noRole: List<String>
-)
+    var noRole: List<String>?
+): Mergeable {
+    override fun merge(derived: Mergeable) {
+        if (derived is PlayerFilter){
+            derived.all?.let { all = it }
+            derived.self?.let { self = it }
+            derived.role?.let { role = it }
+            derived.noRole?.let { noRole = it }
+        }
+    }
+}
 
 data class ChoiceNumber(
     @SerializedName("exactly")
-    val exactly: Int,
+    var exactly: Int?,
     @SerializedName("min")
-    val min: String,
+    var min: String?,
     @SerializedName("max")
-    val max: String,
+    var max: String?,
     @SerializedName("zero_allowed")
-    val zeroAllowed: Boolean
-)
+    var zeroAllowed: Boolean?
+): Mergeable {
+    override fun merge(derived: Mergeable) {
+        if (derived is ChoiceNumber){
+            derived.exactly?.let { exactly = it }
+            derived.min?.let { min = it }
+            derived.max?.let { max = it }
+            derived.zeroAllowed?.let { zeroAllowed = it }
+        }
+    }
+}
 
 data class VoteGroup(
     @SerializedName("self")
-    val self: Boolean,
+    var self: Boolean?,
     @SerializedName("all")
-    val all: Boolean,
-    @SerializedName("group")
-    val group: List<String>,
+    var all: Boolean?,
+    @SerializedName("role")
+    var role: List<String>?,
     @SerializedName("action")
-    val action: Boolean
-)
+    var action: Boolean?
+): Mergeable {
+    override fun merge(derived: Mergeable) {
+        if (derived is VoteGroup){
+            derived.self?.let { self = it }
+            derived.all?.let { all = it }
+            derived.role?.let { role = it }
+            derived.action?.let { action = it }
+        }
+    }
+}
 
 data class Draw(
     @SerializedName("re_vote_all")
-    val reVoteAll: Boolean,
+    var reVoteAll: Boolean?,
     @SerializedName("re_vote_no_draw_players")
-    val reVoteNoDrawPlayers: Boolean,
+    var reVoteNoDrawPlayers: Boolean?,
     @SerializedName("random")
-    val random: Boolean,
+    var random: Boolean?,
     @SerializedName("max_random")
-    val maxRandom: Boolean,
+    var maxRandom: Boolean?,
     @SerializedName("ignore")
-    val ignore: Boolean,
+    var ignore: Boolean?,
     @SerializedName("not_applicable")
-    val notApplicable: Boolean
-)
+    var notApplicable: Boolean?
+):Mergeable{
+    override fun merge(derived: Mergeable) {
+        if (derived is Draw) {
+            derived.reVoteAll?.let { reVoteAll = it }
+            derived.reVoteNoDrawPlayers?.let { reVoteNoDrawPlayers = it }
+            derived.random?.let { random = it }
+            derived.maxRandom?.let { maxRandom = it }
+            derived.ignore?.let { ignore = it }
+            derived.notApplicable?.let { notApplicable = it }
+        }
+    }
+}
 
 data class Effect(
     @SerializedName("kill")
-    val kill: Boolean,
+    var kill: Boolean?,
     @SerializedName("save_on_death")
-    val saveOnDeath: Boolean,
+    var saveOnDeath: Boolean?,
     @SerializedName("self_saved_if_targeted")
-    val selfSavedIfTargeted: Boolean,
+    var selfSavedIfTargeted: Boolean?,
     @SerializedName("die_on_death")
-    val dieOnDeath: Boolean,
+    var dieOnDeath: Boolean?,
     @SerializedName("die_if_group")
-    val dieIfGroup: List<String>,
+    var dieIfGroup: List<String>?,
     @SerializedName("die_if_role")
-    val dieIfRole: List<String>
-)
+    var dieIfRole: List<String>?
+):Mergeable{
+    override fun merge(derived: Mergeable) {
+        if (derived is Effect) {
+            derived.kill?.let { kill = it }
+            derived.saveOnDeath?.let { saveOnDeath = it }
+            derived.selfSavedIfTargeted?.let { selfSavedIfTargeted = it }
+            derived.dieOnDeath?.let { dieOnDeath = it }
+            derived.dieIfGroup?.let { dieIfGroup = it }
+            derived.dieIfRole?.let { dieIfRole = it }
+        }
+    }
+}
 
 data class Applied(
     @SerializedName("end_turn")
-    val endTurn: Boolean,
+    var endTurn: Boolean?,
     @SerializedName("end_round")
-    val endRound: Boolean,
+    var endRound: Boolean?,
     @SerializedName("last_voter")
-    val lastVoter: Boolean
-)
+    var lastVoter: Boolean?
+):Mergeable{
+    override fun merge(derived: Mergeable) {
+        if (derived is Applied) {
+            derived.endTurn?.let { endTurn = it }
+            derived.endRound?.let { endRound = it }
+            derived.lastVoter?.let { lastVoter = it }
+        }
+    }
+}

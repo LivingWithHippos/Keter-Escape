@@ -1,7 +1,11 @@
 package com.onewisebit.scpescape.model.parsed
 
-interface TurnAction {
-    val extends: String
-    val name: String
-    val description: String
+interface TurnAction: Mergeable {
+    var extends: String
+    var name: String
+    var description: String
+}
+
+interface Mergeable{
+    fun merge(derived: Mergeable)
 }
