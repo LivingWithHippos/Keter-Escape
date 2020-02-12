@@ -135,6 +135,6 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
     }
 
     companion object {
-        private val TAG = ParticipantsAdapter::class.java.simpleName
+        private val TAG = ParticipantsChoiceFragment::class.java.simpleName
     }
 }
