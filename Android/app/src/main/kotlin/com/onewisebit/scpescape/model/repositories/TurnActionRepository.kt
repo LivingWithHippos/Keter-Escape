@@ -107,6 +107,14 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
         return actions.first { it.name == turnActionName }
     }
 
+    override suspend fun getCompleteAction(
+        modeId: Int,
+        roleName: String,
+        roundCode: String): TurnAction{
+        val action = getRoleAction(modeId, roleName, roundCode)
+        return mergeAction(modeId, action)
+    }
+
     override suspend fun getRoleDetails(modeId: Int): List<RoleDetails> =
         withContext(Dispatchers.IO) {
 
@@ -136,6 +144,43 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
 
 
     override suspend fun getMode(gameId: Long): Int = modeDAO.getGameModeId(gameId)
+
+    private suspend fun mergeAction(modeId: Int, action: TurnAction): TurnAction{
+
+        // the merged action to be returned
+        val mergedAction : TurnAction
+        // the map to quickly get every action by its name
+        val actionMap :HashMap<String,TurnAction> = hashMapOf()
+        // a stack to put the actions in the correct merging order.
+        val mergingStack: MutableList<String> = mutableListOf()
+
+        // populating the actions map with the templates and a mode actions
+        getTemplates().forEach { actionMap[it.name] = it }
+        getModeActions(modeId).forEach { actionMap[it.name] = it }
+
+        mergingStack.add(action.name)
+
+        var currentAction : TurnAction = action
+
+        //todo: by changing the extends: value of the template json we could create a generic method
+        //  for every kind of TurnAction (like checking currentAction.template != "template")
+        while (currentAction.name != "vote") {
+            // since the map is manually generated we can use !!
+            currentAction = actionMap[currentAction.extends]!!
+            // we start inserting the action name from the current action and end with the template action
+            mergingStack.add(currentAction.name)
+        }
+
+        // there is at least the action we put in so we use !!
+        mergedAction = actionMap[mergingStack.pop()]!!
+        // for every action name inserted, from the last (template) to the first (our action), we launch a merge
+        while (mergingStack.isNotEmpty()) {
+            //todo: check if we should make merge() return the a new object instead of editing it in place. Look at kotlin data classes copy()
+            mergedAction.merge(actionMap[mergingStack.pop()]!!)
+        }
+
+        return mergedAction
+    }
 
     companion object {
         private val TAG = TurnActionRepository::class.java.simpleName

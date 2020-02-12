@@ -18,4 +18,5 @@ interface InTurnActionRepository {
     suspend fun getInfo(path: String): List<InfoTurn>?
     suspend fun getMode(gameId: Long): Int
     suspend fun getRoleDetails(modeId: Int): List<RoleDetails>
+    suspend fun getCompleteAction(modeId: Int, roleName: String, roundCode: String): TurnAction
 }
