@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scpescape.databinding.ParticipantListItemBinding
 import com.onewisebit.scpescape.databinding.PlayerListItemBinding
 import com.onewisebit.scpescape.model.entities.Player
+import java.lang.RuntimeException
+import kotlin.RuntimeException
 
 
 class ParticipantsAdapter(
@@ -33,12 +35,13 @@ class ParticipantsAdapter(
                     participantBinding
                 )
             }
-            else -> {
+            TYPE_PLAYER -> {
                 val playerBinding = PlayerListItemBinding.inflate(layoutInflater, parent, false)
                 return PlayerHolder(
                     playerBinding
                 )
             }
+            else -> throw NoSuchRecyclerItemType("No correspondent binding found for viewType $viewType")
         }
 
     }
@@ -120,3 +123,4 @@ class ParticipantsAdapter(
     }
 }
 
+class NoSuchRecyclerItemType(message: String) : RuntimeException(message)
