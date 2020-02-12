@@ -16,5 +16,24 @@ class VotePresenterImpl(
 
     override suspend fun loadValues() {
 
+        // list of players to be shown, cannot be null, base on "show" from vote.json
+        var players: List<Player> =
+        // list of roles to be shown, can be null, base on "reveal_role" from vote.json
+        var participants: List<Participant> = participantPresenter.getAliveParticipants()
+        // list of votes to be shown, can be null, base on "reveal_vote" from vote.json
+        var votes: List<Vote> = votesList
+        // list of players voted, must correspond to player voted in vote list
+        var votedPlayers: List<Player> = votedPlayersList
+        // list of player id that can be selected, can be null, based on "choice_enabled" from vote.json
+        var enabledPlayers: List<Long> = enabledPlayersList
+
+        val action = getAction(roleName,roundCode)
+        if (action is VoteTurn)
+        {
+           // action.
+        }
+        else throw IllegalArgumentException("Wrong action loaded in turn fragment for game $gameID, round $roundCode, role $roleName")
+
+        //view.updateList()
     }
 }

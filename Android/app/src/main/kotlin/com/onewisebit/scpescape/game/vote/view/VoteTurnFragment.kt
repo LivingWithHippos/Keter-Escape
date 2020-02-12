@@ -20,6 +20,7 @@ import com.onewisebit.scpescape.utilities.ARG_ROUND_CODE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -71,7 +72,9 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.loadValues()
+        uiScope.launch {
+            presenter.loadValues()
+        }
     }
 
     override fun updateList(playersList: List<Player>,

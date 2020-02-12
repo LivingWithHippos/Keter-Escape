@@ -1,14 +1,16 @@
 package com.onewisebit.scpescape.game.vote
 
 import com.onewisebit.scpescape.game.composable.ContractAction
+import com.onewisebit.scpescape.game.composable.ContractParticipant
+import com.onewisebit.scpescape.game.composable.ContractVote
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Vote
 
 interface VoteContract {
 
-    interface VoteModel: ContractAction.ModelAction
-    interface VotePresenter: ContractAction.PresenterAction {
+    interface VoteModel: ContractVote.ModelVote, ContractAction.ModelAction, ContractParticipant.ModelParticipant
+    interface VotePresenter: ContractVote.PresenterVote, ContractAction.PresenterAction, ContractParticipant.PresenterParticipant {
         suspend fun loadValues()
     }
 
