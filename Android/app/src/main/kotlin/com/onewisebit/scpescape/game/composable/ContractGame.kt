@@ -66,6 +66,7 @@ interface ContractPlayer {
 
     interface PresenterPlayer {
         suspend fun getPlayers(): List<Player>
+        suspend fun getPlayers(participantList: List<Participant>): List<Player>
         suspend fun getPlayer(id: Long): Player
     }
 
