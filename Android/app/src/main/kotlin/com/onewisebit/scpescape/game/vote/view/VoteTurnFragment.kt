@@ -27,15 +27,18 @@ import org.koin.core.parameter.parametersOf
 class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
     BaseGameFragment(gameID, onActionListener), VoteContract.VoteView {
 
-    private val args = arguments
+    // todo: this is null here, needs to be called later or replace with navigationarguments()
+    //private val args = arguments
+
     private val presenter: VoteContract.VotePresenter by inject {
         parametersOf(
             this,
-            gameID,
-            args?.getString(ARG_ROUND_CODE),
-            args?.getString(ARG_ROLE_NAME)
+            gameID
         )
     }
+
+    private lateinit var roleName: String
+    private lateinit var roundCode: String
 
     private var _binding: FragmentVoteTurnBinding? = null
     private val binding get() = _binding!!
@@ -61,13 +64,18 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         binding.rvVotes.layoutManager = layoutManager
         binding.rvVotes.adapter = adapter
 
+        arguments?.let {
+            roleName = it.getString(ARG_ROLE_NAME)!!
+            roundCode = it.getString(ARG_ROUND_CODE)!!
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         uiScope.launch {
-            presenter.loadValues()
+            presenter.loadValues(roleName, roundCode)
         }
     }
 

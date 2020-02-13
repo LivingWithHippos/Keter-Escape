@@ -13,7 +13,7 @@ interface VoteContract {
 
     interface VotePresenter : ContractVote.PresenterVote, ContractAction.PresenterAction,
         ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer {
-        suspend fun loadValues()
+        suspend fun loadValues(roleName: String, roundCode: String)
     }
 
     interface VoteView {

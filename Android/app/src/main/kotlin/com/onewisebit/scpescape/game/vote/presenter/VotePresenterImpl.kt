@@ -18,16 +18,14 @@ class VotePresenterImpl(
     val actionPresenter: ContractAction.PresenterAction,
     val participantPresenter: ContractParticipant.PresenterParticipant,
     val playerPresenter: ContractPlayer.PresenterPlayer,
-    val gameID: Long,
-    val roundCode: String,
-    val roleName: String
+    val gameID: Long
 ) : VoteContract.VotePresenter,
     ContractVote.PresenterVote by votePresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractAction.PresenterAction by actionPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter {
 
-    override suspend fun loadValues() {
+    override suspend fun loadValues(roleName: String, roundCode: String) {
 
         // list of roles to be shown, can be null, base on "reveal_role" from vote.json
         var participants: List<Participant> = participantPresenter.getAliveParticipants()

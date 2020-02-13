@@ -346,9 +346,7 @@ val appModule = module {
             get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },
-            game,
-            roundCode,
-            roleName
+            game
         )
     }
 
