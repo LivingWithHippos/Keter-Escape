@@ -3,6 +3,18 @@ package com.onewisebit.scpescape.model.parsed
 import com.google.gson.annotations.SerializedName
 
 //TODO: rename this to voteAction and rename Action in fsm to transition or something else
+/**
+ * This class is used to parse all the vote.json.
+ * The first three parameters are implementing TurnAction and must be passed in very json.
+ * Only the template needs to include every value. Other vote action can extend vote and each other and
+ * be merged one another calling merge(). Use is template.merge(voteTurn), if more than one needs to be extended
+ * they must be extended from the template to the needed VoteTurn:
+ * if voteTurnA extends voteTurnB and voteTurnB extends voteTurnC we need to call merge with the order
+ * template.merge(voteTurnC)
+ * template.merge(voteTurnB)
+ * template.merge(voteTurnA)
+ * for now the edits are in place, check if it would be better to make merge() return the class instead
+ */
 data class VoteTurn(
     @SerializedName("extends")
     override var extends: String,
@@ -58,19 +70,19 @@ data class VoteTurn(
 data class PlayerFilter(
     @SerializedName("all")
     var all: Boolean?,
-    @SerializedName("self")
-    var self: Boolean?,
     @SerializedName("role")
     var role: List<String>?,
     @SerializedName("no_role")
-    var noRole: List<String>?
+    var noRole: List<String>?,
+    @SerializedName("self")
+    var self: Boolean?
 ): Mergeable {
     override fun merge(derived: Mergeable) {
         if (derived is PlayerFilter){
             derived.all?.let { all = it }
-            derived.self?.let { self = it }
             derived.role?.let { role = it }
             derived.noRole?.let { noRole = it }
+            derived.self?.let { self = it }
         }
     }
 }
@@ -96,21 +108,21 @@ data class ChoiceNumber(
 }
 
 data class VoteGroup(
-    @SerializedName("self")
-    var self: Boolean?,
     @SerializedName("all")
     var all: Boolean?,
     @SerializedName("role")
     var role: List<String>?,
     @SerializedName("action")
-    var action: Boolean?
+    var action: Boolean?,
+    @SerializedName("self")
+    var self: Boolean?
 ): Mergeable {
     override fun merge(derived: Mergeable) {
         if (derived is VoteGroup){
-            derived.self?.let { self = it }
             derived.all?.let { all = it }
             derived.role?.let { role = it }
             derived.action?.let { action = it }
+            derived.self?.let { self = it }
         }
     }
 }

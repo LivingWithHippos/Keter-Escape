@@ -4,27 +4,27 @@
   "description": "Choose someone to apply an effect to.",
   "show": {
     "all": true,
-    "self": false,
     "role": [],
-    "no_role": []
+    "no_role": [],
+    "self": false
   },
   "reveal_role": {
     "all": false,
-    "self": false,
     "role": [],
-    "no_role": []
+    "no_role": [],
+    "self": false
   },
   "reveal_vote": {
     "all": true,
-    "self": false,
     "role": [],
-    "no_role": []
+    "no_role": [],
+    "self": false
   },
   "choice_enabled": {
     "all": true,
-    "self": false,
     "role": [],
-    "no_role": []
+    "no_role": [],
+    "self": false
   },
   "choice_number": {
     "exactly": 1,
@@ -33,10 +33,10 @@
     "zero_allowed": false
   },
   "vote_group": {
-    "self": false,
     "all": true,
     "role": [],
-    "action": false
+    "action": false,
+    "self": false
   },
   "draw": {
     "re_vote_all": true,
