@@ -35,6 +35,8 @@ class InfoTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         _binding = FragmentInfoTurnBinding.inflate(layoutInflater, container, false)
         binding.tvInfoTitle.text = arguments?.getString(ARG_ACTION_INFO_TITLE)
         binding.tvInfoDescription.text = arguments?.getString(ARG_ACTION_INFO_TITLE_DESCRIPTION)
+
+        binding.fabEndTurn.setOnClickListener { onActionListener(Action.EndTurnClicked()) }
         return binding.root
     }
 
