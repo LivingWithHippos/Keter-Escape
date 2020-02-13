@@ -139,6 +139,7 @@ interface ContractVote {
     interface ModelVote {
         suspend fun getGameVotes(gameId: Long): List<Vote>
         suspend fun getRoundVotes(gameId: Long, roundNumber: Int): List<Vote>
+        suspend fun getLastRoundVotes(gameId: Long): List<Vote>
         suspend fun addVote(
             gameId: Long,
             roundNumber: Int,
@@ -150,6 +151,7 @@ interface ContractVote {
     }
 
     interface PresenterVote {
+        suspend fun getLastRoundVotes(): List<Vote>
     }
 }
 

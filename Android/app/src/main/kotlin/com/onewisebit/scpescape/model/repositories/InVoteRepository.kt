@@ -10,5 +10,7 @@ interface InVoteRepository {
 
     suspend fun getRoundVotes(gameID: Long, roundNumber: Int): List<Vote>
 
+    suspend fun getLastRoundVotes(gameID: Long): List<Vote>
+
     suspend fun getRoundVotedPlayersId(gameID: Long, roundNumber: Int, type: String): List<Long>
 }
