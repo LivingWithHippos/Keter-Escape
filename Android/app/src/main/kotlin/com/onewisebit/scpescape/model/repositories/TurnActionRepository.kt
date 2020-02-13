@@ -14,7 +14,8 @@ import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSONRepository(context), InTurnActionRepository {
+class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) :
+    JSONRepository(context), InTurnActionRepository {
 
     override suspend fun getTemplates(): List<TurnAction> {
         val path = TEMPLATE_FOLDER.plus(ACTION_FOLDER)
@@ -110,7 +111,8 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
     override suspend fun getCompleteAction(
         modeId: Int,
         roleName: String,
-        roundCode: String): TurnAction{
+        roundCode: String
+    ): TurnAction {
         val action = getPartialAction(modeId, roleName, roundCode)
         return mergeAction(modeId, action)
     }
@@ -145,12 +147,12 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
 
     override suspend fun getMode(gameId: Long): Int = modeDAO.getGameModeId(gameId)
 
-    private suspend fun mergeAction(modeId: Int, action: TurnAction): TurnAction{
+    private suspend fun mergeAction(modeId: Int, action: TurnAction): TurnAction {
 
         // the merged action to be returned
-        val mergedAction : TurnAction
+        val mergedAction: TurnAction
         // the map to quickly get every action by its name
-        val actionMap :HashMap<String,TurnAction> = hashMapOf()
+        val actionMap: HashMap<String, TurnAction> = hashMapOf()
         // a stack to put the actions in the correct merging order.
         val mergingStack: MutableList<String> = mutableListOf()
 
@@ -160,7 +162,7 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
 
         mergingStack.add(action.name)
 
-        var currentAction : TurnAction = action
+        var currentAction: TurnAction = action
 
         //todo: by changing the extends: value of the template json we could create a generic method
         //  for every kind of TurnAction (like checking currentAction.template != "template")

@@ -12,6 +12,5 @@ interface PlayerTurnContract {
     interface PlayerTurnModel : ContractPlayer.ModelPlayer, ContractParticipant.ModelParticipant
 
     interface PlayerTurnPresenter : ContractPlayer.PresenterPlayer,
-        ContractParticipant.PresenterParticipant {
-    }
+        ContractParticipant.PresenterParticipant
 }

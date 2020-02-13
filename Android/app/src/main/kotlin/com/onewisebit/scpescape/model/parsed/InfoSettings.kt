@@ -17,16 +17,15 @@ data class InfoSettings(
 ) : TurnAction {
     // see [VoteTurn.kt] for info about this
     override fun merge(derived: Mergeable) {
-        if (derived is InfoSettings){
+        if (derived is InfoSettings) {
             extends = derived.extends
             name = derived.name
             description = derived.description
 
             derived.information?.let { information!!.merge(it) }
             derived.settings?.let { settings!!.merge(it) }
-        }
-    else
-        throw IllegalArgumentException("Merging class was not a VoteTurn one but $derived")
+        } else
+            throw IllegalArgumentException("Merging class was not a VoteTurn one but $derived")
     }
 }
 
@@ -35,9 +34,9 @@ data class Information(
     var title: String?,
     @SerializedName("description")
     var description: String?
-): Mergeable {
+) : Mergeable {
     override fun merge(derived: Mergeable) {
-        if (derived is Information){
+        if (derived is Information) {
             derived.title?.let { title = it }
             derived.description?.let { description = it }
         }
@@ -49,9 +48,9 @@ data class Settings(
     var background: Background?,
     @SerializedName("timer")
     var timer: Timer?
-): Mergeable {
+) : Mergeable {
     override fun merge(derived: Mergeable) {
-        if (derived is Settings){
+        if (derived is Settings) {
             derived.background?.let { background = it }
             derived.timer?.let { timer!!.merge(it) }
         }
@@ -63,9 +62,9 @@ data class Background(
     var active: Boolean?,
     @SerializedName("color")
     var color: String?
-): Mergeable {
+) : Mergeable {
     override fun merge(derived: Mergeable) {
-        if (derived is Background){
+        if (derived is Background) {
             derived.active?.let { active = it }
             derived.color?.let { color = it }
         }
@@ -77,9 +76,9 @@ data class Timer(
     var active: Boolean?,
     @SerializedName("seconds")
     var seconds: Int?
-): Mergeable {
+) : Mergeable {
     override fun merge(derived: Mergeable) {
-        if (derived is Timer){
+        if (derived is Timer) {
             derived.active?.let { active = it }
             derived.seconds?.let { seconds = it }
         }

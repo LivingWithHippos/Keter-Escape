@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scpescape.databinding.ParticipantListItemBinding
 import com.onewisebit.scpescape.databinding.PlayerListItemBinding
 import com.onewisebit.scpescape.model.entities.Player
-import kotlin.RuntimeException
 
 
 class ParticipantsAdapter(

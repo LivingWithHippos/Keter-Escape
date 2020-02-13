@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.game.intro.presenter
 
-import com.onewisebit.scpescape.game.intro.IntroContract
 import com.onewisebit.scpescape.game.composable.ContractMode
 import com.onewisebit.scpescape.game.composable.ContractParticipant
+import com.onewisebit.scpescape.game.intro.IntroContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.parsed.RolesDetail

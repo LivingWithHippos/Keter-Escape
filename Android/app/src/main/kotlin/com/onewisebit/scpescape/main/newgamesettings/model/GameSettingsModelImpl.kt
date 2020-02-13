@@ -1,10 +1,10 @@
 package com.onewisebit.scpescape.main.newgamesettings.model
 
+import com.onewisebit.scpescape.main.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.repositories.InGameRepository
 import com.onewisebit.scpescape.model.repositories.InModeJSONRepository
-import com.onewisebit.scpescape.main.newgamesettings.GameSettingsContract
 import io.reactivex.Single
 
 class GameSettingsModelImpl(

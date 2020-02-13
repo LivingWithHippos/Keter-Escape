@@ -2,19 +2,15 @@ package com.onewisebit.scpescape.game.vote.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.onewisebit.scpescape.databinding.FragmentVoteTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.game.vote.VoteContract
-import com.onewisebit.scpescape.model.entities.Participant
-import com.onewisebit.scpescape.model.entities.Player
-import com.onewisebit.scpescape.model.entities.Vote
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
 import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
 import com.onewisebit.scpescape.utilities.ARG_ROUND_CODE
@@ -38,7 +34,8 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
             gameID,
             args.getString(ARG_ROUND_CODE),
             args.getString(ARG_ROLE_NAME)
-        ) }
+        )
+    }
 
     private var _binding: FragmentVoteTurnBinding? = null
     private val binding get() = _binding!!
@@ -57,9 +54,9 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         _binding = FragmentVoteTurnBinding.inflate(layoutInflater, container, false)
 
         layoutManager = LinearLayoutManager(this.context)
-        adapter = VoteAdapter (
+        adapter = VoteAdapter(
             emptyList()
-        ) { id:Long -> playerVoted(id) }
+        ) { id: Long -> playerVoted(id) }
 
         binding.rvVotes.layoutManager = layoutManager
         binding.rvVotes.adapter = adapter
@@ -75,15 +72,14 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
     }
 
     override fun updateList(voteParticipants: List<VoteParticipant>) {
-
-        adapter.updateLists( voteParticipants )
+        adapter.updateLists(voteParticipants)
     }
 
-    fun playerVoted(id: Long){
-        Log.d(TAG,"Voted player $id")
+    fun playerVoted(id: Long) {
+        Log.d(TAG, "Voted player $id")
     }
 
-    override fun enableFab(){
+    override fun enableFab() {
         binding.fabCastVote.visibility = View.VISIBLE
     }
 

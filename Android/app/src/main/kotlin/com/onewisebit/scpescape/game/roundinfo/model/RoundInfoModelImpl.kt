@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game.roundinfo.model
 
-import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 import com.onewisebit.scpescape.game.composable.ContractRound
+import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 import com.onewisebit.scpescape.model.repositories.InRoundRepository
 
 class RoundInfoModelImpl(

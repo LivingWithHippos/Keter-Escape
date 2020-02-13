@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scpescape.databinding.VoteListItemBinding
 import com.onewisebit.scpescape.list.RecyclerItem
 import com.onewisebit.scpescape.main.playerslist.view.NoSuchRecyclerItemType
-import com.onewisebit.scpescape.model.entities.Participant
-import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
-import kotlinx.android.synthetic.main.vote_list_item.view.*
 
 class VoteAdapter(
     voteParticipants: List<VoteParticipant>,
-    private val clickListener: (Long) -> Unit) :
-            ListAdapter<RecyclerItem,
+    private val clickListener: (Long) -> Unit
+) :
+    ListAdapter<RecyclerItem,
             RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
     //todo: implement here
@@ -37,7 +35,7 @@ class VoteAdapter(
         }
     }
 
-    fun updateLists(_voteParticipants: List<VoteParticipant>){
+    fun updateLists(_voteParticipants: List<VoteParticipant>) {
         voteParticipants = _voteParticipants
         notifyDataSetChanged()
     }

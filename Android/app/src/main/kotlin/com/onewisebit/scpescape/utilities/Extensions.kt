@@ -13,11 +13,11 @@ fun View.hideKeyboard() {
  * Remove and returns the last element of a MutableList.
  * Useful for a stack-like behaviour.
  */
-fun <T> MutableList<T>.pop() : T? {
+fun <T> MutableList<T>.pop(): T? {
     val item = lastOrNull()
 
-    if (!isEmpty()){
-        removeAt(size -1)
+    if (!isEmpty()) {
+        removeAt(size - 1)
     }
     return item
 }

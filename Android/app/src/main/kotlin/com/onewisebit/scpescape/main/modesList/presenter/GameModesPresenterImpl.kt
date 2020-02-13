@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.main.modesList.presenter
 
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.main.modesList.GameModesContract
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 
 class GameModesPresenterImpl(
     gView: GameModesContract.GameModesView,

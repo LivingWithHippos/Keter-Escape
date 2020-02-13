@@ -11,13 +11,13 @@ class ModelActionImpl(
 
     override suspend fun getTemplates(): List<TurnAction> = actionRepository.getTemplates()
 
-    override suspend fun getModeId(gameId: Long): Int= actionRepository.getMode(gameId)
+    override suspend fun getModeId(gameId: Long): Int = actionRepository.getMode(gameId)
 
     override suspend fun getPartialAction(
         modeId: Int,
         roleName: String,
         roundName: String
-    ): TurnAction = actionRepository.getPartialAction(modeId,roleName,roundName)
+    ): TurnAction = actionRepository.getPartialAction(modeId, roleName, roundName)
 
     override suspend fun getCompleteAction(
         modeId: Int,

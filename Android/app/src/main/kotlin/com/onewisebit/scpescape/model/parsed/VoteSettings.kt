@@ -44,7 +44,7 @@ data class VoteSettings(
     // if the merging values are different from null, load them
     // merge needs to be used from the template -> templateVote.merge(loadedVote)
     override fun merge(derived: Mergeable) {
-        if (derived is VoteSettings){
+        if (derived is VoteSettings) {
             // primitives can be assigned directly, other data classes must use merge()
             extends = derived.extends
             name = derived.name
@@ -61,11 +61,11 @@ data class VoteSettings(
             derived.draw?.let { draw!!.merge(it) }
             derived.effect?.let { effect!!.merge(it) }
             derived.applied?.let { applied!!.merge(it) }
-        }
-        else
+        } else
             throw IllegalArgumentException("Merging class was not a VoteTurn one but $derived")
     }
 }
+
 //todo: add onlyAlive boolean? Could add powers over dead people
 data class PlayerFilter(
     @SerializedName("all")
@@ -76,9 +76,9 @@ data class PlayerFilter(
     var noRole: List<String>?,
     @SerializedName("self")
     var self: Boolean?
-): Mergeable {
+) : Mergeable {
     override fun merge(derived: Mergeable) {
-        if (derived is PlayerFilter){
+        if (derived is PlayerFilter) {
             derived.all?.let { all = it }
             derived.role?.let { role = it }
             derived.noRole?.let { noRole = it }
@@ -96,9 +96,9 @@ data class ChoiceNumber(
     var max: Int?,
     @SerializedName("zero_allowed")
     var zeroAllowed: Boolean?
-): Mergeable {
+) : Mergeable {
     override fun merge(derived: Mergeable) {
-        if (derived is ChoiceNumber){
+        if (derived is ChoiceNumber) {
             derived.exactly?.let { exactly = it }
             derived.min?.let { min = it }
             derived.max?.let { max = it }
@@ -119,9 +119,9 @@ data class VoteGroup(
     var action: Boolean?,
     @SerializedName("self")
     var self: Boolean?
-): Mergeable {
+) : Mergeable {
     override fun merge(derived: Mergeable) {
-        if (derived is VoteGroup){
+        if (derived is VoteGroup) {
             derived.all?.let { all = it }
             derived.role?.let { role = it }
             derived.action?.let { action = it }
@@ -143,7 +143,7 @@ data class Draw(
     var ignore: Boolean?,
     @SerializedName("not_applicable")
     var notApplicable: Boolean?
-):Mergeable{
+) : Mergeable {
     override fun merge(derived: Mergeable) {
         if (derived is Draw) {
             derived.reVoteAll?.let { reVoteAll = it }
@@ -169,7 +169,7 @@ data class Effect(
     var dieIfGroup: List<String>?,
     @SerializedName("die_if_role")
     var dieIfRole: List<String>?
-):Mergeable{
+) : Mergeable {
     override fun merge(derived: Mergeable) {
         if (derived is Effect) {
             derived.kill?.let { kill = it }
@@ -189,7 +189,7 @@ data class Applied(
     var endRound: Boolean?,
     @SerializedName("last_voter")
     var lastVoter: Boolean?
-):Mergeable{
+) : Mergeable {
     override fun merge(derived: Mergeable) {
         if (derived is Applied) {
             derived.endTurn?.let { endTurn = it }

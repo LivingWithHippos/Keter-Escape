@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.game.playerturn.presenter
 
-import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
 import com.onewisebit.scpescape.game.composable.ContractParticipant
 import com.onewisebit.scpescape.game.composable.ContractPlayer
+import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
 
 class PlayerTurnPresenterImpl(
     val view: PlayerTurnContract.PlayerTurnView,
@@ -12,5 +12,4 @@ class PlayerTurnPresenterImpl(
     val gameID: Long
 ) : PlayerTurnContract.PlayerTurnPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter,
-    ContractParticipant.PresenterParticipant by participantPresenter {
-}
+    ContractParticipant.PresenterParticipant by participantPresenter

@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentPlayerTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
 import com.onewisebit.scpescape.game.BaseGameFragment
+import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 import com.onewisebit.scpescape.utilities.ARG_ROLE_DESCRIPTION
 import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
@@ -45,7 +45,11 @@ class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Ac
         _binding = FragmentPlayerTurnBinding.inflate(layoutInflater, container, false)
 
         arguments?.let {
-            initView(it.getString(ARG_PLAYER_NAME),it.getString(ARG_ROLE_NAME),it.getString(ARG_ROLE_DESCRIPTION))
+            initView(
+                it.getString(ARG_PLAYER_NAME),
+                it.getString(ARG_ROLE_NAME),
+                it.getString(ARG_ROLE_DESCRIPTION)
+            )
         }
 
         return binding.root

@@ -9,7 +9,7 @@ class PresenterPlayerImpl(val model: ContractPlayer.ModelPlayer, val gameId: Lon
     override suspend fun getPlayers(): List<Player> = model.getPlayers(gameId)
 
     override suspend fun getPlayers(participantList: List<Participant>): List<Player> {
-        val players : MutableList<Player> = mutableListOf()
+        val players: MutableList<Player> = mutableListOf()
         for (p in participantList)
             players.add(getPlayer(p.playerID))
         return players

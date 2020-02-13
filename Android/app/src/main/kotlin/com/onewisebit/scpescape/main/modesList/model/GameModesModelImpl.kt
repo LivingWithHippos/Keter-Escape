@@ -1,8 +1,8 @@
 package com.onewisebit.scpescape.main.modesList.model
 
+import com.onewisebit.scpescape.main.modesList.GameModesContract
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.repositories.InModeJSONRepository
-import com.onewisebit.scpescape.main.modesList.GameModesContract
 
 class GameModesModelImpl(modeRepository: InModeJSONRepository) : GameModesContract.GameModesModel {
 

@@ -12,8 +12,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentNewGameSettingsBinding
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.main.newgamesettings.GameSettingsContract
+import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import kotlinx.android.synthetic.main.fragment_new_game_settings.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

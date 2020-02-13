@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.onewisebit.scpescape.main.newgamesettings.GameSettingsContract
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
-import com.onewisebit.scpescape.main.newgamesettings.GameSettingsContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

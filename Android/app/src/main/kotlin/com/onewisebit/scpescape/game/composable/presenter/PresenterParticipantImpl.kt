@@ -21,5 +21,6 @@ open class PresenterParticipantImpl(
     override suspend fun getCurrentParticipant(): Participant =
         modelParticipant.getCurrentParticipant(gameID)
 
-    override suspend fun getParticipant(playerId: Long): Participant = modelParticipant.getParticipant(gameID, playerId)
+    override suspend fun getParticipant(playerId: Long): Participant =
+        modelParticipant.getParticipant(gameID, playerId)
 }

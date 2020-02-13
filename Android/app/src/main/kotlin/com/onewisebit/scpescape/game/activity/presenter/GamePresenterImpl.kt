@@ -21,8 +21,7 @@ open class GamePresenterImpl(
     ContractTurn.PresenterTurn by turnPresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter,
-    ContractAction.PresenterAction by actionPresenter
-{
+    ContractAction.PresenterAction by actionPresenter {
 
     override fun onDestroy() {
     }
@@ -31,24 +30,24 @@ open class GamePresenterImpl(
 
         val playerId = turnPresenter.getLatestTurn().playerID
         val playerName = playerPresenter.getPlayer(playerId).name
-        val roleName : String = participantPresenter.getParticipant(playerId).roleName!!
+        val roleName: String = participantPresenter.getParticipant(playerId).roleName!!
         val roundName = roundPresenter.getCurrentRound().details
         val actionDescription = actionPresenter.getPartialAction(roleName, roundName).description
 
-        gameView.showPlayerTurnFragment(playerName,roleName,actionDescription)
+        gameView.showPlayerTurnFragment(playerName, roleName, actionDescription)
     }
 
     override suspend fun setupPlayerPowerFragment() {
 
         val playerId = turnPresenter.getLatestTurn().playerID
-        val roleName : String = participantPresenter.getParticipant(playerId).roleName!!
+        val roleName: String = participantPresenter.getParticipant(playerId).roleName!!
         val roundName = roundPresenter.getCurrentRound().details
         val action = actionPresenter.getAction(roleName, roundName)
 
         when (action.extends) {
             POWER_VOTE -> {
                 (action as VoteSettings).run {
-                    gameView.showPlayerVoteFragment(roleName,roundName)
+                    gameView.showPlayerVoteFragment(roleName, roundName)
                 }
             }
             POWER_INFO -> (action as InfoSettings).run {

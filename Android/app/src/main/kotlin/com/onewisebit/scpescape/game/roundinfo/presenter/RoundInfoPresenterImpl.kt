@@ -1,7 +1,7 @@
 package com.onewisebit.scpescape.game.roundinfo.presenter
 
-import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 import com.onewisebit.scpescape.game.composable.ContractRound
+import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 
 class RoundInfoPresenterImpl(
     val roundiInfoView: RoundInfoContract.RoundInfoView,

@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.game.SCPFragmentFactory
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.activity.model.GameModelImpl
 import com.onewisebit.scpescape.game.activity.presenter.GamePresenterImpl
@@ -14,19 +15,16 @@ import com.onewisebit.scpescape.game.intro.model.IntroModelImpl
 import com.onewisebit.scpescape.game.intro.presenter.IntroPresenterImpl
 import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
 import com.onewisebit.scpescape.game.playerturn.model.PlayerTurnModelImpl
-import com.onewisebit.scpescape.game.vote.presenter.VotePresenterImpl
 import com.onewisebit.scpescape.game.playerturn.presenter.PlayerTurnPresenterImpl
 import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 import com.onewisebit.scpescape.game.roundinfo.model.RoundInfoModelImpl
 import com.onewisebit.scpescape.game.roundinfo.presenter.RoundInfoPresenterImpl
-import com.onewisebit.scpescape.game.SCPFragmentFactory
 import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.game.vote.model.VoteModelImpl
+import com.onewisebit.scpescape.game.vote.presenter.VotePresenterImpl
 import com.onewisebit.scpescape.main.activity.StartContract
 import com.onewisebit.scpescape.main.activity.model.StartActivityModel
 import com.onewisebit.scpescape.main.activity.presenter.StartActivityPresenterImpl
-import com.onewisebit.scpescape.model.database.SCPDatabase
-import com.onewisebit.scpescape.model.repositories.*
 import com.onewisebit.scpescape.main.modesList.GameModesContract
 import com.onewisebit.scpescape.main.modesList.model.GameModesModelImpl
 import com.onewisebit.scpescape.main.modesList.presenter.GameModesPresenterImpl
@@ -36,6 +34,8 @@ import com.onewisebit.scpescape.main.newgamesettings.presenter.GameSettingsPrese
 import com.onewisebit.scpescape.main.playerslist.PlayersContract
 import com.onewisebit.scpescape.main.playerslist.model.PlayersModelImpl
 import com.onewisebit.scpescape.main.playerslist.presenter.PlayersPresenterImpl
+import com.onewisebit.scpescape.model.database.SCPDatabase
+import com.onewisebit.scpescape.model.repositories.*
 import com.onewisebit.scpescape.utilities.PREF_FILE
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.parameter.parametersOf
@@ -73,7 +73,7 @@ val appModule = module {
     // TODO: remove when/if Mode is removed
     single { ModeRepository(get()) }
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
-    single<InTurnActionRepository> { TurnActionRepository(get(),get()) }
+    single<InTurnActionRepository> { TurnActionRepository(get(), get()) }
 
     // Composable Game MVP, see ContractGame.kt
 
@@ -339,7 +339,7 @@ val appModule = module {
         )
     }
 
-    factory<VoteContract.VotePresenter> { (view: VoteContract.VoteView, game: Long, roundCode : String, roleName: String) ->
+    factory<VoteContract.VotePresenter> { (view: VoteContract.VoteView, game: Long, roundCode: String, roleName: String) ->
         VotePresenterImpl(
             view,
             get { parametersOf(game) },

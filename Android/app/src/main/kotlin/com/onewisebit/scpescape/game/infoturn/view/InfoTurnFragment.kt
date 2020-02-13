@@ -1,11 +1,10 @@
 package com.onewisebit.scpescape.game.infoturn.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentInfoTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment

@@ -3,9 +3,9 @@ package com.onewisebit.scpescape.main.playerslist.presenter
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.onewisebit.scpescape.main.playerslist.PlayersContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
-import com.onewisebit.scpescape.main.playerslist.PlayersContract
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
