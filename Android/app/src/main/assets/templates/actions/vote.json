@@ -16,7 +16,7 @@
       "self": false
     },
     "reveal_vote": {
-      "all": true,
+      "all": false,
       "role": [],
       "no_role": [],
       "self": false
