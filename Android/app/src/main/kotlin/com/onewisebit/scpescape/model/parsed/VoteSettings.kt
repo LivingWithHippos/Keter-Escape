@@ -66,7 +66,7 @@ data class VoteSettings(
             throw IllegalArgumentException("Merging class was not a VoteTurn one but $derived")
     }
 }
-
+//todo: add onlyAlive boolean? Could add powers over dead people
 data class PlayerFilter(
     @SerializedName("all")
     var all: Boolean?,
@@ -109,6 +109,7 @@ data class ChoiceNumber(
 
 // How to group the votes. For example the daily vote must be counted between everyone
 // while the scp attack vote may be shared only among them
+//TODO: rename to GroupVote or something else
 data class VoteGroup(
     @SerializedName("all")
     var all: Boolean?,
