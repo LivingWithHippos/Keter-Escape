@@ -87,7 +87,7 @@ class VotePresenterImpl(
                 result = false
 
         if (settings.self == true)
-            if (participant.playerID == participant.playerID)
+            if (participant.playerID == currentParticipant.playerID)
                 result = true
 
         return result
