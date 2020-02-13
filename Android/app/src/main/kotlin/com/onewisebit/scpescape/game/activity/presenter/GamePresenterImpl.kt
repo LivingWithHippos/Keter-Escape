@@ -2,7 +2,7 @@ package com.onewisebit.scpescape.game.activity.presenter
 
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
-import com.onewisebit.scpescape.model.parsed.InfoTurn
+import com.onewisebit.scpescape.model.parsed.InfoSettings
 import com.onewisebit.scpescape.model.parsed.VoteSettings
 import com.onewisebit.scpescape.utilities.POWER_INFO
 import com.onewisebit.scpescape.utilities.POWER_VOTE
@@ -51,7 +51,7 @@ open class GamePresenterImpl(
                     gameView.showPlayerVoteFragment(roleName,roundName)
                 }
             }
-            POWER_INFO -> (action as InfoTurn).run {
+            POWER_INFO -> (action as InfoSettings).run {
                 gameView.showPlayerInfoFragment(
                     this.information!!.title!!,
                     this.information!!.description!!

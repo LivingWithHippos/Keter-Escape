@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.onewisebit.scpescape.model.daos.ModeDAO
-import com.onewisebit.scpescape.model.parsed.InfoTurn
+import com.onewisebit.scpescape.model.parsed.InfoSettings
 import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
 import com.onewisebit.scpescape.model.parsed.VoteSettings
@@ -57,13 +57,13 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
             }
         }
 
-    override suspend fun getInfo(path: String): List<InfoTurn>? =
+    override suspend fun getInfo(path: String): List<InfoSettings>? =
         withContext(Dispatchers.IO) {
             try {
                 context.assets.open(path).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
-                        val infoType = object : TypeToken<List<InfoTurn>>() {}.type
-                        val infoList: List<InfoTurn> = Gson().fromJson(jsonReader, infoType)
+                        val infoType = object : TypeToken<List<InfoSettings>>() {}.type
+                        val infoList: List<InfoSettings> = Gson().fromJson(jsonReader, infoType)
 
                         infoList
                     }

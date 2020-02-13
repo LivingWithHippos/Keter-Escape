@@ -3,7 +3,7 @@ package com.onewisebit.scpescape.model.parsed
 import com.google.gson.annotations.SerializedName
 
 
-data class InfoTurn(
+data class InfoSettings(
     @SerializedName("extends")
     override var extends: String,
     @SerializedName("name")
@@ -17,7 +17,7 @@ data class InfoTurn(
 ) : TurnAction {
     // see [VoteTurn.kt] for info about this
     override fun merge(derived: Mergeable) {
-        if (derived is InfoTurn){
+        if (derived is InfoSettings){
             extends = derived.extends
             name = derived.name
             description = derived.description

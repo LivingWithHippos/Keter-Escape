@@ -1,6 +1,6 @@
 package com.onewisebit.scpescape.model.repositories
 
-import com.onewisebit.scpescape.model.parsed.InfoTurn
+import com.onewisebit.scpescape.model.parsed.InfoSettings
 import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
 import com.onewisebit.scpescape.model.parsed.VoteSettings
@@ -15,7 +15,7 @@ interface InTurnActionRepository {
     //TODO: check if these two can be private in the repo
     suspend fun getVote(path: String): List<VoteSettings>?
 
-    suspend fun getInfo(path: String): List<InfoTurn>?
+    suspend fun getInfo(path: String): List<InfoSettings>?
 
     suspend fun getMode(gameId: Long): Int
 
