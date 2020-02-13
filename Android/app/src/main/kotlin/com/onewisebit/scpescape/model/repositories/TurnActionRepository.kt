@@ -157,16 +157,16 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) :
         val mergingStack: MutableList<String> = mutableListOf()
 
         // populating the actions map with the templates and a mode actions
-        getTemplates().forEach { actionMap[it.name] = it }
+        val templates = getTemplates()
+        templates.forEach { actionMap[it.name] = it }
         getModeActions(modeId).forEach { actionMap[it.name] = it }
 
         mergingStack.add(action.name)
 
         var currentAction: TurnAction = action
 
-        //todo: by changing the extends: value of the template json we could create a generic method
-        //  for every kind of TurnAction (like checking currentAction.template != "template")
-        while (currentAction.name != "vote") {
+        // checking if the current action is a template one. Works because custom actions should not have the same name as template ones.
+        while (!templates.map { it.name }.contains(currentAction.name)) {
             // since the map is manually generated we can use !!
             currentAction = actionMap[currentAction.extends]!!
             // we start inserting the action name from the current action and end with the template action
