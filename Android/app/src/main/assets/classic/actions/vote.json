@@ -72,7 +72,7 @@
     },
     "effect": {
       "save_on_death": true,
-      "die_if_group": ["SCP"]
+      "die_if_group": ["SCP-106"]
     },
     "applied":{
       "end_turn": true
@@ -105,7 +105,7 @@
     "effect": {
       "die_on_death": true,
       "self_saved_if_targeted" : true,
-      "die_if_group": ["SCP"]
+      "die_if_group": ["SCP-106"]
     },
     "applied":{
       "end_turn": true
@@ -120,13 +120,13 @@
       "self": false
     },
     "reveal_role": {
-      "role": ["SCP"]
+      "role": ["SCP-106"]
     },
     "reveal_vote": {
-      "role": ["SCP"]
+      "role": ["SCP-106"]
     },
     "choice_enabled": {
-      "no_role": ["SCP"]
+      "no_role": ["SCP-106"]
     },
     "choice_number": {
       "exactly": 1,
