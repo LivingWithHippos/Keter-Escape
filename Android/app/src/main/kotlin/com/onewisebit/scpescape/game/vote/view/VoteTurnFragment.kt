@@ -27,13 +27,13 @@ import org.koin.core.parameter.parametersOf
 class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
     BaseGameFragment(gameID, onActionListener), VoteContract.VoteView {
 
-    private val args = requireArguments()
+    private val args = arguments
     private val presenter: VoteContract.VotePresenter by inject {
         parametersOf(
             this,
             gameID,
-            args.getString(ARG_ROUND_CODE),
-            args.getString(ARG_ROLE_NAME)
+            args?.getString(ARG_ROUND_CODE),
+            args?.getString(ARG_ROLE_NAME)
         )
     }
 
