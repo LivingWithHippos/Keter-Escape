@@ -128,19 +128,21 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun showPlayerVoteFragment(round: String, role: String) {
+    override fun showPlayerVoteFragment(round: String, role: String, isLastTurn: Boolean) {
         val arguments = Bundle()
         arguments.putString(ARG_ROUND_CODE, round)
         arguments.putString(ARG_ROLE_NAME, role)
+        arguments.putBoolean(ARG_LAST_TURN, isLastTurn)
         supportFragmentManager.commit {
             replace<VoteTurnFragment>(R.id.fragment_container_view, args = arguments)
         }
     }
 
-    override fun showPlayerInfoFragment(title: String, description: String) {
+    override fun showPlayerInfoFragment(title: String, description: String, isLastTurn: Boolean) {
         val arguments = Bundle()
         arguments.putString(ARG_ACTION_INFO_TITLE, title)
         arguments.putString(ARG_ACTION_INFO_TITLE_DESCRIPTION, description)
+        arguments.putBoolean(ARG_LAST_TURN, isLastTurn)
         supportFragmentManager.commit {
             replace<InfoTurnFragment>(R.id.fragment_container_view, args = arguments)
         }

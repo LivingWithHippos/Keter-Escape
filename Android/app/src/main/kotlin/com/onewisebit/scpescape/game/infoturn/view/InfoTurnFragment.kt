@@ -10,6 +10,7 @@ import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.utilities.ARG_ACTION_INFO_TITLE
 import com.onewisebit.scpescape.utilities.ARG_ACTION_INFO_TITLE_DESCRIPTION
+import com.onewisebit.scpescape.utilities.ARG_LAST_TURN
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -36,7 +37,15 @@ class InfoTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         binding.tvInfoTitle.text = arguments?.getString(ARG_ACTION_INFO_TITLE)
         binding.tvInfoDescription.text = arguments?.getString(ARG_ACTION_INFO_TITLE_DESCRIPTION)
 
-        binding.fabEndTurn.setOnClickListener { onActionListener(Action.EndTurnClicked()) }
+        binding.fabEndTurn.setOnClickListener {
+            arguments?.let {
+                if (it.getBoolean(ARG_LAST_TURN))
+                    onActionListener(Action.EndRoundClicked())
+                else
+                    onActionListener(Action.EndTurnClicked())
+            }
+        }
+
         return binding.root
     }
 

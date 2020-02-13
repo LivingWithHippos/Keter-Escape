@@ -12,6 +12,7 @@ import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
+import com.onewisebit.scpescape.utilities.ARG_LAST_TURN
 import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
 import com.onewisebit.scpescape.utilities.ARG_ROUND_CODE
 import kotlinx.coroutines.CoroutineScope
@@ -39,6 +40,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
 
     private lateinit var roleName: String
     private lateinit var roundCode: String
+    private var lastTurn: Boolean = false
 
     private var _binding: FragmentVoteTurnBinding? = null
     private val binding get() = _binding!!
@@ -67,6 +69,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         arguments?.let {
             roleName = it.getString(ARG_ROLE_NAME)!!
             roundCode = it.getString(ARG_ROUND_CODE)!!
+            lastTurn = it.getBoolean(ARG_LAST_TURN)
         }
 
         return binding.root

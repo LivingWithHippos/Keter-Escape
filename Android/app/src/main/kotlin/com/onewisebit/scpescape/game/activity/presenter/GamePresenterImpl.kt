@@ -43,17 +43,19 @@ open class GamePresenterImpl(
         val roleName: String = participantPresenter.getParticipant(playerId).roleName!!
         val roundName = roundPresenter.getCurrentRound().details
         val action = actionPresenter.getAction(roleName, roundName)
+        val lastTurn: Boolean = turnPresenter.isLastTurn()
 
         when (action.extends) {
             POWER_VOTE -> {
                 (action as VoteSettings).run {
-                    gameView.showPlayerVoteFragment(roundName, roleName)
+                    gameView.showPlayerVoteFragment(roundName, roleName, lastTurn)
                 }
             }
             POWER_INFO -> (action as InfoSettings).run {
                 gameView.showPlayerInfoFragment(
                     this.information!!.title!!,
-                    this.information!!.description!!
+                    this.information!!.description!!,
+                    lastTurn
                 )
             }
             else -> throw IllegalArgumentException("No action found to extend: ${action.extends}")
