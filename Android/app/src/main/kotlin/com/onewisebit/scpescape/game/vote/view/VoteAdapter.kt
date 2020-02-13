@@ -42,6 +42,7 @@ class VoteAdapter(
 
     // should be unneeded
     // override fun getItemCount(): Int = players.size
+    override fun getItemCount(): Int = voteParticipants.size
 
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)
