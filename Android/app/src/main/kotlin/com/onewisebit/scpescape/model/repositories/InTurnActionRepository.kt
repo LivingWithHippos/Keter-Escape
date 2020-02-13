@@ -3,7 +3,7 @@ package com.onewisebit.scpescape.model.repositories
 import com.onewisebit.scpescape.model.parsed.InfoTurn
 import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
-import com.onewisebit.scpescape.model.parsed.VoteTurn
+import com.onewisebit.scpescape.model.parsed.VoteSettings
 
 interface InTurnActionRepository {
 
@@ -13,7 +13,7 @@ interface InTurnActionRepository {
 
     suspend fun getModeActions(modeId: Int): List<TurnAction>
     //TODO: check if these two can be private in the repo
-    suspend fun getVote(path: String): List<VoteTurn>?
+    suspend fun getVote(path: String): List<VoteSettings>?
 
     suspend fun getInfo(path: String): List<InfoTurn>?
 

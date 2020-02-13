@@ -9,7 +9,7 @@ import com.onewisebit.scpescape.model.daos.ModeDAO
 import com.onewisebit.scpescape.model.parsed.InfoTurn
 import com.onewisebit.scpescape.model.parsed.RoleDetails
 import com.onewisebit.scpescape.model.parsed.TurnAction
-import com.onewisebit.scpescape.model.parsed.VoteTurn
+import com.onewisebit.scpescape.model.parsed.VoteSettings
 import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -39,13 +39,13 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
         return actions
     }
 
-    override suspend fun getVote(path: String): List<VoteTurn>? =
+    override suspend fun getVote(path: String): List<VoteSettings>? =
         withContext(Dispatchers.IO) {
             try {
                 context.assets.open(path).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
-                        val voteType = object : TypeToken<List<VoteTurn>>() {}.type
-                        val votesList: List<VoteTurn> = Gson().fromJson(jsonReader, voteType)
+                        val voteType = object : TypeToken<List<VoteSettings>>() {}.type
+                        val votesList: List<VoteSettings> = Gson().fromJson(jsonReader, voteType)
 
                         votesList
                     }

@@ -15,7 +15,7 @@ import com.google.gson.annotations.SerializedName
  * template.merge(voteTurnA)
  * for now the edits are in place, check if it would be better to make merge() return the class instead
  */
-data class VoteTurn(
+data class VoteSettings(
     @SerializedName("extends")
     override var extends: String,
     @SerializedName("name")
@@ -44,7 +44,7 @@ data class VoteTurn(
     // if the merging values are different from null, load them
     // merge needs to be used from the template -> templateVote.merge(loadedVote)
     override fun merge(derived: Mergeable) {
-        if (derived is VoteTurn){
+        if (derived is VoteSettings){
             // primitives can be assigned directly, other data classes must use merge()
             extends = derived.extends
             name = derived.name
