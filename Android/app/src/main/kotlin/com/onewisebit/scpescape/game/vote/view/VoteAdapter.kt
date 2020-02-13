@@ -10,6 +10,7 @@ import com.onewisebit.scpescape.databinding.VoteListItemBinding
 import com.onewisebit.scpescape.list.RecyclerItem
 import com.onewisebit.scpescape.main.playerslist.view.NoSuchRecyclerItemType
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
+import com.onewisebit.scpescape.utilities.TYPE_VOTE
 
 class VoteAdapter(
     voteParticipants: List<VoteParticipant>,
@@ -18,8 +19,6 @@ class VoteAdapter(
     ListAdapter<RecyclerItem,
             RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
-    //todo: implement here
-    // VoteParticipants
     private var voteParticipants: List<VoteParticipant> = voteParticipants
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -36,7 +35,7 @@ class VoteAdapter(
     }
 
     fun updateLists(_voteParticipants: List<VoteParticipant>) {
-        voteParticipants = _voteParticipants
+        submitList(_voteParticipants)
         notifyDataSetChanged()
     }
 
@@ -45,8 +44,10 @@ class VoteAdapter(
     override fun getItemCount(): Int = voteParticipants.size
 
     override fun getItemViewType(position: Int): Int {
-        val item = getItem(position)
-        return item.type
+        var type = TYPE_VOTE
+        if (voteParticipants.size > position )
+            type = getItem(position).type
+        return type
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -59,12 +60,10 @@ class VoteAdapter(
 
     companion object {
         private val TAG = VoteAdapter::class.java.simpleName
-        const val TYPE_VOTE: Int = 0
     }
 
     class VoteHolder(vBinding: VoteListItemBinding) :
-        RecyclerView.ViewHolder(vBinding.root),
-        RecyclerItem {
+        RecyclerView.ViewHolder(vBinding.root){
 
         private var voteParticipant: VoteParticipant? = null
 
@@ -94,20 +93,6 @@ class VoteAdapter(
                 binding.cvVotePlayer.setOnClickListener { _clickListener(_voteParticipant.participant.playerID) }
             }
         }
-
-        // type of ViewHolder
-        override val type: Int = TYPE_VOTE
-        // Will be used in the DiffUtil areItemsTheSame function
-        override val id: String? = voteParticipant?.participant?.playerID.toString()
-
-        // Will be used in the DiffUtil areContentsTheSame function, called only if areItemsTheSame is true
-        override fun equals(other: Any?): Boolean {
-
-            return (other is VoteHolder) &&
-                    (voteParticipant?.participant?.roleName == other.voteParticipant?.participant?.roleName) &&
-                    (voteParticipant?.playerName == other.voteParticipant?.playerName)
-        }
-
     }
 }
 
