@@ -59,12 +59,10 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         _binding = FragmentVoteTurnBinding.inflate(layoutInflater, container, false)
 
         layoutManager = LinearLayoutManager(this.context)
+
         adapter = VoteAdapter(
             emptyList()
         ) { id: Long -> playerVoted(id) }
-
-        binding.rvVotes.layoutManager = layoutManager
-        binding.rvVotes.adapter = adapter
 
         arguments?.let {
             roleName = it.getString(ARG_ROLE_NAME)!!
@@ -77,6 +75,10 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.rvVotes.layoutManager = layoutManager
+        binding.rvVotes.adapter = adapter
+
         uiScope.launch {
             presenter.loadValues(roleName, roundCode)
         }
