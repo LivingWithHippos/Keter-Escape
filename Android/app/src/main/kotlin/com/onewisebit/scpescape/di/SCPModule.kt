@@ -62,6 +62,7 @@ val appModule = module {
     single { get<SCPDatabase>().participantDAO() }
     single { get<SCPDatabase>().roundDAO() }
     single { get<SCPDatabase>().turnDAO() }
+    single { get<SCPDatabase>().voteDAO() }
 
     // Repositories
 
@@ -74,6 +75,7 @@ val appModule = module {
     single { ModeRepository(get()) }
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
     single<InTurnActionRepository> { TurnActionRepository(get(), get()) }
+    single<InVoteRepository> { VoteRepository(get()) }
 
     // Composable Game MVP, see ContractGame.kt
 
