@@ -12,7 +12,7 @@ import com.onewisebit.scpescape.main.playerslist.view.NoSuchRecyclerItemType
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
 import com.onewisebit.scpescape.utilities.TYPE_VOTE
 
-class VoteAdapter(
+class VoteAdapterBackup(
     voteParticipants: List<VoteParticipant>,
     private val clickListener: (Long) -> Unit
 ) :
@@ -35,8 +35,8 @@ class VoteAdapter(
     }
 
     fun updateLists(_voteParticipants: List<VoteParticipant>) {
+        submitList(null);
         submitList(_voteParticipants)
-        notifyDataSetChanged()
     }
 
     // should be unneeded
@@ -59,7 +59,7 @@ class VoteAdapter(
     }
 
     companion object {
-        private val TAG = VoteAdapter::class.java.simpleName
+        private val TAG = VoteAdapterBackup::class.java.simpleName
     }
 
     class VoteHolder(vBinding: VoteListItemBinding) :
