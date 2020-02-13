@@ -7,7 +7,7 @@ class PlayerTurnState : StateGame {
         return when (action) {
             is Action.EndRoundClicked -> ShowResultsState()
             is Action.EndTurnClicked -> PassDeviceState()
-            is Action.StartVotePowerClicked -> VoteState()
+            is Action.StartVotePowerClicked -> TurnVoteState()
             is Action.StartInfoPowerClicked -> TurnInfoState()
             is Action.PlayTurnClicked -> PlayerPowerState()
             //todo: replace all these with illegal argument?
