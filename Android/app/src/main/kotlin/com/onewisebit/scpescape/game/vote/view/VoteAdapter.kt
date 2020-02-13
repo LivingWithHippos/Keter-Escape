@@ -11,30 +11,18 @@ import com.onewisebit.scpescape.list.RecyclerItem
 import com.onewisebit.scpescape.main.playerslist.view.NoSuchRecyclerItemType
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
-import com.onewisebit.scpescape.model.entities.Vote
+import com.onewisebit.scpescape.model.parsed.VoteParticipant
+import kotlinx.android.synthetic.main.vote_list_item.view.*
 
 class VoteAdapter(
-    playersList: List<Player>,
-    participantsList: List<Participant>,
-    votesList: List<Vote>,
-    votedPlayersList: List<Player>,
-    enabledPlayersList: List<Long>,
+    voteParticipants: List<VoteParticipant>,
     private val clickListener: (Long) -> Unit) :
             ListAdapter<RecyclerItem,
             RecyclerView.ViewHolder>(BASE_DIFF_CALLBACK) {
 
     //todo: implement here
-
-    // list of players to be shown, cannot be null, base on "show" from vote.json
-    private var players: List<Player> = playersList
-    // list of roles to be shown, can be null, base on "reveal_role" from vote.json
-    private var participants: List<Participant> = participantsList
-    // list of votes to be shown, can be null, base on "reveal_vote" from vote.json
-    private var votes: List<Vote> = votesList
-    // list of players voted, must correspond to player voted in vote list
-    private var votedPlayers: List<Player> = votedPlayersList
-    // list of player id that can be selected, can be null, based on "choice_enabled" from vote.json
-    private var enabledPlayers: List<Long> = enabledPlayersList
+    // VoteParticipants
+    private var voteParticipants: List<VoteParticipant> = voteParticipants
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -49,16 +37,8 @@ class VoteAdapter(
         }
     }
 
-    fun updateLists(playersList: List<Player>,
-                    participantsList: List<Participant>,
-                    votesList: List<Vote>,
-                    votedPlayersList: List<Player>,
-                    enabledPlayersList: List<Long>){
-        players = playersList
-        participants = participantsList
-        votes = votesList
-        votedPlayers = votedPlayersList
-        enabledPlayers = enabledPlayersList
+    fun updateLists(_voteParticipants: List<VoteParticipant>){
+        voteParticipants = _voteParticipants
         notifyDataSetChanged()
     }
 
@@ -71,14 +51,9 @@ class VoteAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val player: Player = players[position]
-        val participant: Participant? = participants.firstOrNull { it.playerID == player.id }
-        val vote: Vote? = votes.firstOrNull { it.playerID == player.id }
-        val votedPlayer: Player? = votedPlayers.firstOrNull { it.id == vote?.votedPlayerID ?: -1 }
-        val checkable: Boolean = enabledPlayers.contains(player.id)
-
+        val participant: VoteParticipant = voteParticipants[position]
         if (holder is VoteHolder) {
-            holder.bind(player, participant, votedPlayer,checkable, clickListener)
+            holder.bind(participant, clickListener)
         }
 
     }
@@ -92,46 +67,46 @@ class VoteAdapter(
         RecyclerView.ViewHolder(vBinding.root),
         RecyclerItem {
 
-        private var player: Player? = null
-        private var participant: Participant? = null
-        private var votedPlayer: Player? = null
+        private var voteParticipant: VoteParticipant? = null
 
         private val binding: VoteListItemBinding = vBinding
 
-        fun bind(_player: Player, _participant: Participant?, _votedPlayer: Player?, checkable: Boolean = false, _clickListener: (Long) -> Unit) {
-            player = _player
-            participant = _participant
-            votedPlayer = _votedPlayer
+        fun bind(_voteParticipant: VoteParticipant, _clickListener: (Long) -> Unit) {
+            voteParticipant = _voteParticipant
 
             //TODO: add players pics
 
-            binding.tvName.text = _player.name
-            _participant?.let {
-                binding.tvRole.text = it.roleName
+            binding.tvName.text = _voteParticipant.playerName
+
+            if (_voteParticipant.revealRole) {
+                binding.tvRole.text = _voteParticipant.participant.roleName
                 binding.tvRole.visibility = View.VISIBLE
             }
-            _votedPlayer?.let {
-                binding.tvVotedPlayerName.text = _votedPlayer.name
+
+            if (_voteParticipant.revealVote && !_voteParticipant.votedPlayers.isNullOrEmpty()) {
+                var voted = ""
+                _voteParticipant.votedPlayers!!.forEach { voted = voted.plus(it.name).plus(", ") }
+                binding.tvVotedPlayerName.text = voted
                 binding.llVoted.visibility = View.VISIBLE
             }
 
-            if (checkable) {
-                binding.cvVotePlayer.isCheckable = checkable
-                binding.cvVotePlayer.setOnClickListener { _clickListener(_player.id) }
+            if (_voteParticipant.enabledVote) {
+                binding.cvVotePlayer.isCheckable = true
+                binding.cvVotePlayer.setOnClickListener { _clickListener(_voteParticipant.participant.playerID) }
             }
         }
 
         // type of ViewHolder
         override val type: Int = TYPE_VOTE
         // Will be used in the DiffUtil areItemsTheSame function
-        override val id: String? = player?.id.toString()
+        override val id: String? = voteParticipant?.participant?.playerID.toString()
 
         // Will be used in the DiffUtil areContentsTheSame function, called only if areItemsTheSame is true
         override fun equals(other: Any?): Boolean {
 
             return (other is VoteHolder) &&
-                    (participant?.roleName == other.participant?.roleName) &&
-                    (votedPlayer?.name == other.votedPlayer?.name)
+                    (voteParticipant?.participant?.roleName == other.voteParticipant?.participant?.roleName) &&
+                    (voteParticipant?.playerName == other.voteParticipant?.playerName)
         }
 
     }

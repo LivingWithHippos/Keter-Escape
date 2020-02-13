@@ -7,6 +7,7 @@ import com.onewisebit.scpescape.game.composable.ContractVote
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Vote
+import com.onewisebit.scpescape.model.parsed.VoteParticipant
 
 interface VoteContract {
 
@@ -17,12 +18,6 @@ interface VoteContract {
 
     interface VoteView {
         fun enableFab()
-        fun updateList(
-            playersList: List<Player>,
-            participantsList: List<Participant>?,
-            votesList: List<Vote>?,
-            votedPlayersList: List<Player>?,
-            enabledPlayersList: List<Long>?
-        )
+        fun updateList( voteParticipants: List<VoteParticipant> )
     }
 }

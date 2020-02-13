@@ -15,6 +15,7 @@ import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Vote
+import com.onewisebit.scpescape.model.parsed.VoteParticipant
 import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
 import com.onewisebit.scpescape.utilities.ARG_ROUND_CODE
 import kotlinx.coroutines.CoroutineScope
@@ -57,10 +58,6 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
 
         layoutManager = LinearLayoutManager(this.context)
         adapter = VoteAdapter (
-            emptyList(),
-            emptyList(),
-            emptyList(),
-            emptyList(),
             emptyList()
         ) { id:Long -> playerVoted(id) }
 
@@ -77,19 +74,9 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         }
     }
 
-    override fun updateList(playersList: List<Player>,
-                            participantsList: List<Participant>?,
-                            votesList: List<Vote>?,
-                            votedPlayersList: List<Player>?,
-                            enabledPlayersList: List<Long>?){
+    override fun updateList(voteParticipants: List<VoteParticipant>) {
 
-        adapter.updateLists(
-            playersList,
-            participantsList ?: emptyList(),
-            votesList ?: emptyList(),
-            votedPlayersList ?: emptyList(),
-            enabledPlayersList ?: emptyList()
-        )
+        adapter.updateLists( voteParticipants )
     }
 
     fun playerVoted(id: Long){
