@@ -64,3 +64,6 @@ const val ARG_ACTION_INFO_TITLE = "info_title"
 const val ARG_ACTION_INFO_TITLE_DESCRIPTION = "info_description"
 const val ARG_LAST_TURN = "last_turn"
 
+// list item types
+// todo: replace in code with R.layout.vote_list_item
+const val TYPE_VOTE: Int = 160
