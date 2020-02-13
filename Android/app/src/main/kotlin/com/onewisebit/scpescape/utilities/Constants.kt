@@ -17,6 +17,7 @@ const val TEMPLATE_FILE_VOTE = "vote.json"
 const val MODE_FILE = "mode.json"
 const val ACTION_FOLDER = "actions/"
 //todo: use only these or template const
+//todo: we can get the names from the template, easier to use in the long term
 const val VOTE_FILE = "vote.json"
 const val INFO_FILE = "info.json"
 const val ROLE_FOLDER = "roles/"
