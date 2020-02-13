@@ -82,7 +82,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         }
     }
 
-    override fun updateList(voteParticipants: List<VoteParticipant>) {
+    override fun initializeList(voteParticipants: List<VoteParticipant>) {
         adapter.updateLists(voteParticipants)
     }
 

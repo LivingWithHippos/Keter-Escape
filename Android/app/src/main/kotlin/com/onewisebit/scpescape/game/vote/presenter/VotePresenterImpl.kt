@@ -64,9 +64,10 @@ class VotePresenterImpl(
                     pVoteList.add(vp)
                 }
             }
+
+            view.initializeList(pVoteList)
         } else throw IllegalArgumentException("Wrong action loaded in turn fragment for game $gameID, round $roundCode, role $roleName")
 
-        view.updateList(pVoteList)
     }
 
     private fun applySettings(

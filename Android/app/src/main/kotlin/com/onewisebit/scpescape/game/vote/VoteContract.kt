@@ -18,6 +18,6 @@ interface VoteContract {
 
     interface VoteView {
         fun enableFab()
-        fun updateList(voteParticipants: List<VoteParticipant>)
+        fun initializeList(voteParticipants: List<VoteParticipant>)
     }
 }
