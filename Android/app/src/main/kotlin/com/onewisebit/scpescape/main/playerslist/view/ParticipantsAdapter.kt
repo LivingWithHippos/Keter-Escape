@@ -14,6 +14,7 @@ class ParticipantsAdapter(
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    //todo: check if something like VoteParticipant can be used
     private var fullPlayers: List<Player> = playersList
     private var players: List<Player> = playersList
 
