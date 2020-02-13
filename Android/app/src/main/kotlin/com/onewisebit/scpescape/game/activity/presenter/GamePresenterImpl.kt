@@ -47,7 +47,7 @@ open class GamePresenterImpl(
         when (action.extends) {
             POWER_VOTE -> {
                 (action as VoteSettings).run {
-                    gameView.showPlayerVoteFragment(roleName, roundName)
+                    gameView.showPlayerVoteFragment(roundName, roleName)
                 }
             }
             POWER_INFO -> (action as InfoSettings).run {
