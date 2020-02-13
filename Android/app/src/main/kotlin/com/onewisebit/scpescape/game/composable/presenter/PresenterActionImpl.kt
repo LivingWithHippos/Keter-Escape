@@ -17,4 +17,9 @@ class PresenterActionImpl(val model: ContractAction.ModelAction, val gameId: Lon
         return model.getRoleDetails(modeId, roleName)
     }
 
+    override suspend fun getPartialAction(roleName: String, roundName: String): TurnAction {
+        val modeId = model.getModeId(gameId)
+        return model.getPartialAction(modeId, roleName, roundName)
+    }
+
 }

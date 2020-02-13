@@ -33,7 +33,7 @@ open class GamePresenterImpl(
         val playerName = playerPresenter.getPlayer(playerId).name
         val roleName : String = participantPresenter.getParticipant(playerId).roleName!!
         val roundName = roundPresenter.getCurrentRound().details
-        val actionDescription = actionPresenter.getAction(roleName, roundName).description
+        val actionDescription = actionPresenter.getPartialAction(roleName, roundName).description
 
         gameView.showPlayerTurnFragment(playerName,roleName,actionDescription)
     }

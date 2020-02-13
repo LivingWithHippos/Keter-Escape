@@ -126,11 +126,13 @@ interface ContractAction {
         suspend fun getRoleDetails(modeId: Int, roleName: String): RoleDetails
         suspend fun getModeActions(modeId: Int): List<TurnAction>
         suspend fun getModeId(gameId: Long): Int
+        suspend fun getPartialAction(modeId: Int, roleName: String, roundName: String): TurnAction
     }
 
     interface PresenterAction {
         suspend fun getAction(roleName: String, roundCode: String): TurnAction
         suspend fun getRoleDetails(roleName: String): RoleDetails
+        suspend fun getPartialAction(roleName: String, roundName: String): TurnAction
     }
 }
 

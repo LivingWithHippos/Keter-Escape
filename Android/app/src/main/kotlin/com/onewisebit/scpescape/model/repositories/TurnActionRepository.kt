@@ -93,7 +93,7 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
             actions
         }
 
-    override suspend fun getRoleAction(
+    override suspend fun getPartialAction(
         modeId: Int,
         roleName: String,
         roundCode: String
@@ -111,7 +111,7 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) : JSO
         modeId: Int,
         roleName: String,
         roundCode: String): TurnAction{
-        val action = getRoleAction(modeId, roleName, roundCode)
+        val action = getPartialAction(modeId, roleName, roundCode)
         return mergeAction(modeId, action)
     }
 
