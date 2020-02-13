@@ -91,9 +91,9 @@ data class ChoiceNumber(
     @SerializedName("exactly")
     var exactly: Int?,
     @SerializedName("min")
-    var min: String?,
+    var min: Int?,
     @SerializedName("max")
-    var max: String?,
+    var max: Int?,
     @SerializedName("zero_allowed")
     var zeroAllowed: Boolean?
 ): Mergeable {
@@ -107,6 +107,8 @@ data class ChoiceNumber(
     }
 }
 
+// How to group the votes. For example the daily vote must be counted between everyone
+// while the scp attack vote may be shared only among them
 data class VoteGroup(
     @SerializedName("all")
     var all: Boolean?,
