@@ -78,6 +78,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             is PassDeviceState -> setupPassDeviceFragment()
             is PlayerTurnState -> uiScope.launch { presenter.setupPlayerTurnFragment() }
             is PlayerPowerState -> uiScope.launch { presenter.setupPlayerPowerFragment() }
+            is ShowResultsState -> uiScope.launch { presenter.setupRoundResultsFragment() }
         }
 
     }

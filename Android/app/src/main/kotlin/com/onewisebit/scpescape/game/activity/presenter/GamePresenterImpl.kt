@@ -74,4 +74,8 @@ open class GamePresenterImpl(
         return gameModel.getPlayerName(playerID)
             ?: throw IllegalArgumentException("No player's name found for player id $playerID")
     }
+
+    override suspend fun setupRoundResultsFragment() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

@@ -20,6 +20,7 @@ interface GameContract {
         suspend fun setupPlayerTurnFragment()
         suspend fun setupPlayerPowerFragment()
         suspend fun newPlayerTurn(): String
+        suspend fun setupRoundResultsFragment()
     }
 
     interface GameModel : ContractRound.ModelRound, ContractTurn.ModelTurn,
