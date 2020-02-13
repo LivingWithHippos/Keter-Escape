@@ -1,10 +1,10 @@
 package com.onewisebit.scpescape.game.vote.presenter
 
-import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.game.composable.ContractAction
 import com.onewisebit.scpescape.game.composable.ContractParticipant
 import com.onewisebit.scpescape.game.composable.ContractPlayer
 import com.onewisebit.scpescape.game.composable.ContractVote
+import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Vote
@@ -14,14 +14,14 @@ import com.onewisebit.scpescape.model.parsed.VoteSettings
 
 class VotePresenterImpl(
     val view: VoteContract.VoteView,
-    val votePresenter:ContractVote.PresenterVote,
-    val actionPresenter:ContractAction.PresenterAction,
-    val participantPresenter:ContractParticipant.PresenterParticipant,
-    val playerPresenter:ContractPlayer.PresenterPlayer,
+    val votePresenter: ContractVote.PresenterVote,
+    val actionPresenter: ContractAction.PresenterAction,
+    val participantPresenter: ContractParticipant.PresenterParticipant,
+    val playerPresenter: ContractPlayer.PresenterPlayer,
     val gameID: Long,
-    val roundCode : String,
+    val roundCode: String,
     val roleName: String
-): VoteContract.VotePresenter,
+) : VoteContract.VotePresenter,
     ContractVote.PresenterVote by votePresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractAction.PresenterAction by actionPresenter,
@@ -37,20 +37,20 @@ class VotePresenterImpl(
         // list of votes to be shown, can be null, base on "reveal_vote" from vote.json
         var votes: List<Vote> = votePresenter.getLastRoundVotes()
         // get the current player action
-        val action = getAction(roleName,roundCode)
+        val action = getAction(roleName, roundCode)
 
-        val pVoteList : MutableList<VoteParticipant> = mutableListOf()
+        val pVoteList: MutableList<VoteParticipant> = mutableListOf()
 
-        if (action is VoteSettings)
-        {
-            participants.forEach{
-                val vp: VoteParticipant = VoteParticipant(it,players.first{ pl -> pl.id == it.playerID}.name)
-                vp.show = applySettings(it,currentParticipant,action.show!!)
+        if (action is VoteSettings) {
+            participants.forEach {
+                val vp: VoteParticipant =
+                    VoteParticipant(it, players.first { pl -> pl.id == it.playerID }.name)
+                vp.show = applySettings(it, currentParticipant, action.show!!)
                 // shows only needed players
                 if (vp.show) {
 
-                    vp.revealRole = applySettings(it,currentParticipant,action.revealRole!!)
-                    vp.revealVote = applySettings(it,currentParticipant,action.revealVote!!)
+                    vp.revealRole = applySettings(it, currentParticipant, action.revealRole!!)
+                    vp.revealVote = applySettings(it, currentParticipant, action.revealVote!!)
                     if (vp.revealVote) {
 
                         val votedPlayers: List<Long> = votes
@@ -61,19 +61,22 @@ class VotePresenterImpl(
                             .filter { player -> votedPlayers.contains(player.id) }
 
                     }
-                    vp.enabledVote = applySettings(it,currentParticipant,action.choiceEnabled!!)
+                    vp.enabledVote = applySettings(it, currentParticipant, action.choiceEnabled!!)
 
                     pVoteList.add(vp)
                 }
             }
-        }
-        else throw IllegalArgumentException("Wrong action loaded in turn fragment for game $gameID, round $roundCode, role $roleName")
+        } else throw IllegalArgumentException("Wrong action loaded in turn fragment for game $gameID, round $roundCode, role $roleName")
 
         view.updateList(pVoteList)
     }
 
-    private fun applySettings(participant: Participant,currentParticipant: Participant, settings: PlayerFilter): Boolean{
-        var result : Boolean = false
+    private fun applySettings(
+        participant: Participant,
+        currentParticipant: Participant,
+        settings: PlayerFilter
+    ): Boolean {
+        var result = false
 
         if (settings.all == true)
             result = true
