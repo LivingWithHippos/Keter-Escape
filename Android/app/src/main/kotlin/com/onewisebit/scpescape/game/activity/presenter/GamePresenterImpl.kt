@@ -33,7 +33,7 @@ open class GamePresenterImpl(
         val playerName = playerPresenter.getPlayer(playerId).name
         val roleName : String = participantPresenter.getParticipant(playerId).roleName!!
         val roundName = roundPresenter.getCurrentRound().details
-        val actionDescription = actionPresenter.getRoleAction(roleName, roundName).description
+        val actionDescription = actionPresenter.getAction(roleName, roundName).description
 
         gameView.showPlayerTurnFragment(playerName,roleName,actionDescription)
     }
@@ -43,18 +43,18 @@ open class GamePresenterImpl(
         val playerId = turnPresenter.getLatestTurn().playerID
         val roleName : String = participantPresenter.getParticipant(playerId).roleName!!
         val roundName = roundPresenter.getCurrentRound().details
-        val action = actionPresenter.getRoleAction(roleName, roundName)
+        val action = actionPresenter.getAction(roleName, roundName)
 
         when (action.extends) {
             POWER_VOTE -> {
                 (action as VoteTurn).run {
-                    gameView.showPlayerVoteFragment()
+                    gameView.showPlayerVoteFragment(roleName,roundName)
                 }
             }
             POWER_INFO -> (action as InfoTurn).run {
                 gameView.showPlayerInfoFragment(
-                    this.information.title,
-                    this.information.description
+                    this.information!!.title!!,
+                    this.information!!.description!!
                 )
             }
             else -> throw IllegalArgumentException("No action found to extend: ${action.extends}")

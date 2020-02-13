@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.game.vote.presenter
 import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.game.composable.ContractAction
 import com.onewisebit.scpescape.game.composable.ContractParticipant
+import com.onewisebit.scpescape.game.composable.ContractPlayer
 import com.onewisebit.scpescape.game.composable.ContractVote
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
@@ -15,6 +16,7 @@ class VotePresenterImpl(
     val votePresenter:ContractVote.PresenterVote,
     val actionPresenter:ContractAction.PresenterAction,
     val participantPresenter:ContractParticipant.PresenterParticipant,
+    val playerPresenter:ContractPlayer.PresenterPlayer,
     val gameID: Long,
     val roundCode : String,
     val roleName: String
@@ -22,6 +24,8 @@ class VotePresenterImpl(
     ContractVote.PresenterVote by votePresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractAction.PresenterAction by actionPresenter {
+    ContractAction.PresenterAction by actionPresenter,
+    ContractPlayer.PresenterPlayer by playerPresenter {
 
     override suspend fun loadValues() {
 

@@ -334,6 +334,7 @@ val appModule = module {
         VoteModelImpl(
             get(),
             get(),
+            get(),
             get()
         )
     }
@@ -341,6 +342,7 @@ val appModule = module {
     factory<VoteContract.VotePresenter> { (view: VoteContract.VoteView, game: Long, roundCode : String, roleName: String) ->
         VotePresenterImpl(
             view,
+            get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },
