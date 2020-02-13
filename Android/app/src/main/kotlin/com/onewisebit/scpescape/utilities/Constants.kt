@@ -10,7 +10,7 @@ const val DATABASE_NAME = "SCP.db"
 
 // assets files and folders
 
-const val TEMPLATE_FOLDER = "template/"
+const val TEMPLATE_FOLDER = "templates/"
 const val TEMPLATE_FILE_INFO = "info.json"
 const val TEMPLATE_FILE_VOTE = "vote.json"
 
