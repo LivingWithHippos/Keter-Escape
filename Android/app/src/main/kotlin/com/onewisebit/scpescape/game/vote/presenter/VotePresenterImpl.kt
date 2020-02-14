@@ -68,9 +68,8 @@ class VotePresenterImpl(
                 }
 
                 view.initializeList(pVoteList)
-                // we enable the fab if zero choice is allowed
-                if (this.choiceNumber!!.zeroAllowed!!)
-                    view.setFab(enabled = true)
+                // useful for loading turns
+                checkVotes()
             } else
                 throw IllegalArgumentException("Wrong action loaded in turn fragment for game $gameID, round $roundCode, role $roleName")
         }
@@ -97,7 +96,7 @@ class VotePresenterImpl(
                 if (votes.isEmpty())
                     enableFab = true
 
-            view.setFab(enableFab)
+            view.setFab(visible = enableFab)
         }
     }
 

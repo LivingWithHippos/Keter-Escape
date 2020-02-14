@@ -92,9 +92,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         Log.d(TAG, "Voted player $id")
     }
 
-    //todo: look how many votes have been cast (livedata?)
-    // and if equal to min vote (or zero vote allowed) show this
-    override fun setFab(enabled: Boolean) {
+    override fun setFab(visibile: Boolean) {
         //if the status received is the one already present skip it
         binding.fabCastVote.visibility = View.VISIBLE
     }
