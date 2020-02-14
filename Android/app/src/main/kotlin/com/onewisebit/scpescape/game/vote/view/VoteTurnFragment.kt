@@ -94,7 +94,8 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
 
     //todo: look how many votes have been cast (livedata?)
     // and if equal to min vote (or zero vote allowed) show this
-    override fun enableFab() {
+    override fun setFab(enabled: Boolean) {
+        //if the status received is the one already present skip it
         binding.fabCastVote.visibility = View.VISIBLE
     }
 

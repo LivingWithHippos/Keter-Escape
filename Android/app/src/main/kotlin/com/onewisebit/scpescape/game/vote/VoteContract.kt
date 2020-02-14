@@ -17,7 +17,7 @@ interface VoteContract {
     }
 
     interface VoteView {
-        fun enableFab()
+        fun setFab(enabled: Boolean)
         fun initializeList(voteParticipants: List<VoteParticipant>)
     }
 }
