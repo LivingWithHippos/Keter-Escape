@@ -25,6 +25,8 @@ class VotePresenterImpl(
     ContractAction.PresenterAction by actionPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter {
 
+    private var action: VoteSettings? = null
+
     override suspend fun loadValues(roleName: String, roundCode: String) {
 
         // list of roles to be shown, can be null, base on "reveal_role" from vote.json
@@ -34,41 +36,71 @@ class VotePresenterImpl(
         val players: List<Player> = playerPresenter.getPlayers(participants)
         // list of votes to be shown, can be null, base on "reveal_vote" from vote.json
         val votes: List<Vote> = votePresenter.getLastRoundVotes()
-        // get the current player action
-        val action = getAction(roleName, roundCode)
+        // get the current player action. it's been merged with the template so no values should be null
+        getAction(roleName, roundCode).run {
+            if (this is VoteSettings) {
+                action = this
+                val pVoteList: MutableList<VoteParticipant> = mutableListOf()
 
-        val pVoteList: MutableList<VoteParticipant> = mutableListOf()
+                participants.forEach {
+                    val vp: VoteParticipant =
+                        VoteParticipant(it, players.first { pl -> pl.id == it.playerID }.name)
+                    vp.show = applySettings(it, currentParticipant, this.show!!)
+                    // shows only needed players
+                    if (vp.show) {
 
-        if (action is VoteSettings) {
-            participants.forEach {
-                val vp: VoteParticipant =
-                    VoteParticipant(it, players.first { pl -> pl.id == it.playerID }.name)
-                vp.show = applySettings(it, currentParticipant, action.show!!)
-                // shows only needed players
-                if (vp.show) {
+                        vp.revealRole = applySettings(it, currentParticipant, this.revealRole!!)
+                        vp.revealVote = applySettings(it, currentParticipant, this.revealVote!!)
+                        if (vp.revealVote) {
 
-                    vp.revealRole = applySettings(it, currentParticipant, action.revealRole!!)
-                    vp.revealVote = applySettings(it, currentParticipant, action.revealVote!!)
-                    if (vp.revealVote) {
+                            val votedPlayers: List<Long> = votes
+                                .filter { voter -> voter.playerID == it.playerID }
+                                .map { voter -> voter.votedPlayerID }
 
-                        val votedPlayers: List<Long> = votes
-                            .filter { voter -> voter.playerID == it.playerID }
-                            .map { voter -> voter.votedPlayerID }
+                            vp.votedPlayers = players
+                                .filter { player -> votedPlayers.contains(player.id) }
 
-                        vp.votedPlayers = players
-                            .filter { player -> votedPlayers.contains(player.id) }
+                        }
+                        vp.enabledVote = applySettings(it, currentParticipant, this.choiceEnabled!!)
 
+                        pVoteList.add(vp)
                     }
-                    vp.enabledVote = applySettings(it, currentParticipant, action.choiceEnabled!!)
-
-                    pVoteList.add(vp)
                 }
-            }
 
-            view.initializeList(pVoteList)
-        } else throw IllegalArgumentException("Wrong action loaded in turn fragment for game $gameID, round $roundCode, role $roleName")
+                view.initializeList(pVoteList)
+                // we enable the fab if zero choice is allowed
+                if (this.choiceNumber!!.zeroAllowed!!)
+                    view.setFab(enabled = true)
+            } else
+                throw IllegalArgumentException("Wrong action loaded in turn fragment for game $gameID, round $roundCode, role $roleName")
+        }
 
     }
+
+    override suspend fun checkVotes() {
+        action?.let {
+
+            val settings = it.choiceNumber!!
+            var enableFab = false
+            val votes = getLastRoundVotes()
+
+            if (settings.exactly!! > 0)
+                if (settings.exactly!! == votes.size)
+
+            if (settings.range!![1] > 0)
+                if (votes.size >=  settings.range!![0] &&
+                    votes.size <=  settings.range!![1])
+                    enableFab =  true
+
+
+            if (settings.zeroAllowed!!)
+                if (votes.isEmpty())
+                    enableFab = true
+
+            view.setFab(enableFab)
+        }
+    }
+
 
     private fun applySettings(
         participant: Participant,
