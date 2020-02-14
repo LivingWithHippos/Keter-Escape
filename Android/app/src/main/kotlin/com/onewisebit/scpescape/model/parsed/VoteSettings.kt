@@ -90,18 +90,17 @@ data class PlayerFilter(
 data class ChoiceNumber(
     @SerializedName("exactly")
     var exactly: Int?,
-    @SerializedName("min")
-    var min: Int?,
-    @SerializedName("max")
-    var max: Int?,
+    //todo: check if these are ordered or if we need to change List<> to something else
+    // see https://github.com/google/gson/blob/master/UserGuide.md#array-examples
+    @SerializedName("range")
+    var range: List<Int>?,
     @SerializedName("zero_allowed")
     var zeroAllowed: Boolean?
 ) : Mergeable {
     override fun merge(derived: Mergeable) {
         if (derived is ChoiceNumber) {
             derived.exactly?.let { exactly = it }
-            derived.min?.let { min = it }
-            derived.max?.let { max = it }
+            derived.range?.let { range = it }
             derived.zeroAllowed?.let { zeroAllowed = it }
         }
     }
@@ -198,3 +197,4 @@ data class Applied(
         }
     }
 }
+
