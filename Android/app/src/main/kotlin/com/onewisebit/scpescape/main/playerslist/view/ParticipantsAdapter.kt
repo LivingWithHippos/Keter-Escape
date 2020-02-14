@@ -49,6 +49,7 @@ class ParticipantsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = players[position]
+        
         if (holder is ParticipantHolder)
             holder.bind(item, clickListener)
         if (holder is PlayerHolder)
@@ -74,10 +75,12 @@ class ParticipantsAdapter(
     }
 
     private fun updatePlayers() {
-        if (nameFilter.isNullOrBlank())
-            players = fullPlayers
+        players = if (nameFilter.isNullOrBlank())
+            fullPlayers
         else
-            players = fullPlayers.filter { it.name.contains(nameFilter!!, ignoreCase = true) }
+            fullPlayers
+                .filter { it.name.contains(nameFilter!!, ignoreCase = true) }
+
         notifyDataSetChanged()
     }
 

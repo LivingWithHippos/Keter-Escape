@@ -28,12 +28,12 @@ class VotePresenterImpl(
     override suspend fun loadValues(roleName: String, roundCode: String) {
 
         // list of roles to be shown, can be null, base on "reveal_role" from vote.json
-        var participants: List<Participant> = participantPresenter.getAliveParticipants()
-        var currentParticipant: Participant = participantPresenter.getCurrentParticipant()
+        val participants: List<Participant> = participantPresenter.getAliveParticipants()
+        val currentParticipant: Participant = participantPresenter.getCurrentParticipant()
         // list of players to be shown, cannot be null, base on "show" from vote.json
-        var players: List<Player> = playerPresenter.getPlayers(participants)
+        val players: List<Player> = playerPresenter.getPlayers(participants)
         // list of votes to be shown, can be null, base on "reveal_vote" from vote.json
-        var votes: List<Vote> = votePresenter.getLastRoundVotes()
+        val votes: List<Vote> = votePresenter.getLastRoundVotes()
         // get the current player action
         val action = getAction(roleName, roundCode)
 
