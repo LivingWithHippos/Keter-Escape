@@ -10,4 +10,7 @@ class PresenterVoteImpl(
 
     override suspend fun getLastRoundVotes(): List<Vote> =
         model.getLastRoundVotes(gameID)
+
+    override suspend fun getCurrentPlayerVotes(): List<Vote> =
+        model.getCurrentTurnVotes(gameID)
 }

@@ -49,7 +49,7 @@ class ParticipantsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = players[position]
-        
+
         if (holder is ParticipantHolder)
             holder.bind(item, clickListener)
         if (holder is PlayerHolder)

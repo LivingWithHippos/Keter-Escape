@@ -15,6 +15,9 @@ class VoteRepository(private val voteDAO: VoteDAO) : InVoteRepository {
     override suspend fun getLastRoundVotes(gameID: Long): List<Vote> =
         voteDAO.getLastRoundVotes(gameID)
 
+    override suspend fun getCurrentPlayerVotes(gameID: Long): List<Vote> =
+        voteDAO.getCurrentPlayerVotes(gameID)
+
     override suspend fun getRoundVotedPlayersId(
         gameID: Long,
         roundNumber: Int,

@@ -37,6 +37,14 @@ interface VoteDAO {
     @Query("SELECT * FROM votes WHERE votes.game = :gameID AND votes.round = (SELECT MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID)")
     suspend fun getLastRoundVotes(gameID: Long): List<Vote>
 
+
+    /**
+     * Get all of all the votes from the current player/participant (last turn).
+     * @return the list of votes from the table with a specific game id
+     */
+    @Query("SELECT * FROM votes WHERE votes.game = :gameID AND votes.turn = (SELECT MAX(turn_number) FROM turns WHERE turns.game = :gameID)")
+    suspend fun getCurrentPlayerVotes(gameID: Long): List<Vote>
+
     /**
      * Get all of the votes from a round.
      * @return the list of Votes from the table with a specific game id, round number and vote type
