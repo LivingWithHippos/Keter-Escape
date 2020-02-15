@@ -13,4 +13,9 @@ class PresenterVoteImpl(
 
     override suspend fun getCurrentPlayerVotes(): List<Vote> =
         model.getCurrentTurnVotes(gameID)
+
+    override suspend fun addCurrentRoundVote(votedPlayerId: Long, voteType: String) {
+        model.addCurrentTurnVotes(gameID, votedPlayerId, voteType)
+    }
+
 }
