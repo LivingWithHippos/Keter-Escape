@@ -140,10 +140,11 @@ class VotePresenterImpl(
 
             val settings = it.choiceNumber!!
             var enableFab = false
-            val votes = getLastRoundVotes()
+            val votes = getCurrentPlayerVotes()
 
             if (settings.exactly!! > 0)
                 if (settings.exactly!! == votes.size)
+                    enableFab =  true
 
             if (settings.range!![1] > 0)
                 if (votes.size >=  settings.range!![0] &&
