@@ -76,12 +76,16 @@ class VotePresenterImpl(
 
     }
 
-    override suspend fun addCurrentTurnVote(votedPlayerId: Long) {
+    override suspend fun addCurrentTurnVote(votedPlayerId: Long): Boolean {
+        var inserted = false
+        
         if (action != null)
             addCurrentRoundVote(votedPlayerId,action!!.name)
         else
             //todo: optionally add a method to model to get current turn action
             throw NullActionException("Stored action was null.")
+
+        return inserted
     }
 
     private fun applySettings(
