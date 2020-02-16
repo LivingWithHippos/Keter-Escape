@@ -76,30 +76,6 @@ class VotePresenterImpl(
 
     }
 
-    override suspend fun checkVotes() {
-        action?.let {
-
-            val settings = it.choiceNumber!!
-            var enableFab = false
-            val votes = getLastRoundVotes()
-
-            if (settings.exactly!! > 0)
-                if (settings.exactly!! == votes.size)
-
-            if (settings.range!![1] > 0)
-                if (votes.size >=  settings.range!![0] &&
-                    votes.size <=  settings.range!![1])
-                    enableFab =  true
-
-
-            if (settings.zeroAllowed!!)
-                if (votes.isEmpty())
-                    enableFab = true
-
-            view.setFab(visible = enableFab)
-        }
-    }
-
 
     private fun applySettings(
         participant: Participant,
@@ -124,5 +100,29 @@ class VotePresenterImpl(
                 result = true
 
         return result
+    }
+
+    override suspend fun checkVotes() {
+        action?.let {
+
+            val settings = it.choiceNumber!!
+            var enableFab = false
+            val votes = getLastRoundVotes()
+
+            if (settings.exactly!! > 0)
+                if (settings.exactly!! == votes.size)
+
+            if (settings.range!![1] > 0)
+                if (votes.size >=  settings.range!![0] &&
+                    votes.size <=  settings.range!![1])
+                    enableFab =  true
+
+
+            if (settings.zeroAllowed!!)
+                if (votes.isEmpty())
+                    enableFab = true
+
+            view.setFab(visible = enableFab)
+        }
     }
 }
