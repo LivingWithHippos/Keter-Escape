@@ -63,6 +63,10 @@ open class GamePresenterImpl(
 
     }
 
+    override suspend fun setupRoundResultsFragment() {
+        gameView.showRoundResultFragment()
+    }
+
     override suspend fun newPlayerTurn(): String {
         // if this is null either the game is finished and no more turn should have been created
         // or there was a problem retrieving participants
@@ -73,9 +77,5 @@ open class GamePresenterImpl(
         //load and return player name
         return gameModel.getPlayerName(playerID)
             ?: throw IllegalArgumentException("No player's name found for player id $playerID")
-    }
-
-    override suspend fun setupRoundResultsFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

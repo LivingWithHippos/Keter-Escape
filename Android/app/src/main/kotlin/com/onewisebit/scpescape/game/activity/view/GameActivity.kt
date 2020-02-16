@@ -18,6 +18,7 @@ import com.onewisebit.scpescape.game.intro.view.IntroFragment
 import com.onewisebit.scpescape.game.passdevice.view.PassDeviceFragment
 import com.onewisebit.scpescape.game.playerturn.view.PlayerTurnFragment
 import com.onewisebit.scpescape.game.roundinfo.view.RoundInfoFragment
+import com.onewisebit.scpescape.game.roundresult.view.RoundResultFragment
 import com.onewisebit.scpescape.game.vote.view.VoteTurnFragment
 import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.CoroutineScope
@@ -146,6 +147,12 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         arguments.putBoolean(ARG_LAST_TURN, isLastTurn)
         supportFragmentManager.commit {
             replace<InfoTurnFragment>(R.id.fragment_container_view, args = arguments)
+        }
+    }
+
+    override fun showRoundResultFragment() {
+        supportFragmentManager.commit {
+            replace<RoundResultFragment>(R.id.fragment_container_view)
         }
     }
 
