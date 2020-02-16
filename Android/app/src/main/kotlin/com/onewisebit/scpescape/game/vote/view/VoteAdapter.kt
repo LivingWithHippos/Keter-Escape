@@ -11,7 +11,7 @@ import com.onewisebit.scpescape.utilities.TYPE_VOTE
 
 class VoteAdapter(
     voteParticipants: List<VoteParticipant>,
-    private val clickListener: (Long) -> Unit
+    private val clickListener: (Long, (Boolean) -> Unit ) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -62,7 +62,7 @@ class VoteAdapter(
         private var voteParticipant: VoteParticipant? = null
         private val binding: VoteListItemBinding = vBinding
 
-        fun bind(_voteParticipant: VoteParticipant, _clickListener: (Long) -> Unit) {
+        fun bind(_voteParticipant: VoteParticipant, _clickListener: (Long, (Boolean) -> Unit) -> Unit) {
             voteParticipant = _voteParticipant
 
             //TODO: add players pics
@@ -84,8 +84,13 @@ class VoteAdapter(
             if (_voteParticipant.enabledVote) {
                 binding.cvVotePlayer.isCheckable = true
                 binding.cvVotePlayer.isClickable = true
-                binding.cvVotePlayer.setOnClickListener { _clickListener(_voteParticipant.participant.playerID) }
+                binding.cvVotePlayer.setOnClickListener { _clickListener(_voteParticipant.participant.playerID)
+                    { check: Boolean -> setViewChecked(check) }}
             }
+        }
+
+        private fun setViewChecked(checked: Boolean){
+            binding.cvVotePlayer.isChecked = checked
         }
     }
 }
