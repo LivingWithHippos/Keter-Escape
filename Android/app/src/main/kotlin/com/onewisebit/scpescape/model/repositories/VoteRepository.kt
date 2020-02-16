@@ -39,4 +39,35 @@ class VoteRepository(private val voteDAO: VoteDAO, private val turnDAO: TurnDAO)
         roundNumber: Int,
         type: String
     ): List<Long> = voteDAO.getRoundVotedPlayersId(gameID, roundNumber, type)
+
+    override suspend fun removeCurrentTurnVote(
+        gameId: Long,
+        votedPlayerId: Long
+    ) {
+        val turn = turnDAO.getLastTurn(gameId)
+        turn?.let{
+            removeVote( gameId,
+                it.roundNumber,
+                it.turnNumber,
+                it.playerID,
+                votedPlayerId
+            )
+        }
+
+    }
+
+    override suspend fun removeVote(
+        gameId: Long,
+        roundNumber: Int,
+        turnNumber: Int,
+        playerID: Long,
+        votedPlayerId: Long
+    ) {
+        voteDAO.removeVote( gameId,
+            roundNumber,
+            turnNumber,
+            playerID,
+            votedPlayerId
+        )
+    }
 }

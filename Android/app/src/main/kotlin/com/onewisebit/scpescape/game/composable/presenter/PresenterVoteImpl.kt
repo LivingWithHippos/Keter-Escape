@@ -18,4 +18,8 @@ class PresenterVoteImpl(
         model.addCurrentTurnVotes(gameID, votedPlayerId, voteType)
     }
 
+    override suspend fun removeCurrentTurnVote(votedPlayerId: Long) {
+        model.removeCurrentTurnVote(gameID,votedPlayerId)
+    }
+
 }

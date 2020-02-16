@@ -152,12 +152,14 @@ interface ContractVote {
             votedPlayerID: Long,
             voteType: String
         )
+        suspend fun removeCurrentTurnVote(gameId: Long, votedPlayerId: Long)
     }
 
     interface PresenterVote {
         suspend fun getLastRoundVotes(): List<Vote>
         suspend fun getCurrentPlayerVotes(): List<Vote>
         suspend fun addCurrentRoundVote(votedPlayerId: Long, voteType: String)
+        suspend fun removeCurrentTurnVote(votedPlayerId: Long)
     }
 }
 

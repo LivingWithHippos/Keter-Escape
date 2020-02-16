@@ -66,4 +66,13 @@ interface VoteDAO {
      */
     @Query("SELECT votes.player_voted FROM votes WHERE votes.game = :gameID AND votes.round = :roundNumber")
     suspend fun getRoundVotedPlayersId(gameID: Long, roundNumber: Int): List<Long>
+
+    @Query("DELETE FROM votes WHERE votes.game = :gameId AND votes.round = :roundNumber AND votes.turn = :turnNumber AND votes.player = :playerID AND votes.player_voted = :votedPlayerId")
+    suspend fun removeVote(
+        gameId: Long,
+        roundNumber: Int,
+        turnNumber: Int,
+        playerID: Long,
+        votedPlayerId: Long
+    )
 }

@@ -24,4 +24,8 @@ class ModelVoteImpl(val voteRepository: InVoteRepository) : ContractVote.ModelVo
     override suspend fun addVote(gameId: Long, roundNumber: Int,turnNumber: Int,playerID: Long,votedPlayerID: Long,voteType: String) =
         voteRepository.insertVote(Vote(0,gameId,roundNumber,turnNumber,playerID,votedPlayerID,voteType))
 
+    override suspend fun removeCurrentTurnVote(gameId: Long, votedPlayerId: Long) {
+        voteRepository.removeCurrentTurnVote(gameId, votedPlayerId)
+    }
+
 }
