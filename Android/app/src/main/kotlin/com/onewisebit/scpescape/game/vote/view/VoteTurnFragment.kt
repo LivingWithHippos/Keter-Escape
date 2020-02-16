@@ -89,9 +89,11 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
     }
 
     private fun playerVoted(votedPlayerId: Long, setViewChecked: (Boolean) -> Unit) {
-        Log.d(TAG, "Voted player $id")
         uiScope.launch {
-            presenter.addCurrentTurnVote(votedPlayerId)
+            //todo: rename, this function must also manage removal of the vote
+            val voteAdded = presenter.addCurrentTurnVote(votedPlayerId)
+            Log.d(TAG, "Voted player $id: added: $voteAdded")
+            setViewChecked(voteAdded)
             //todo: move this in presenter.addCurrentTurnVote?
             presenter.checkVotes()
         }
