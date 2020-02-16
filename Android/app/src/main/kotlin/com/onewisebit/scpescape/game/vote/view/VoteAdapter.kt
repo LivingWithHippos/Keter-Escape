@@ -83,6 +83,7 @@ class VoteAdapter(
 
             if (_voteParticipant.enabledVote) {
                 binding.cvVotePlayer.isCheckable = true
+                binding.cvVotePlayer.isClickable = true
                 binding.cvVotePlayer.setOnClickListener { _clickListener(_voteParticipant.participant.playerID) }
             }
         }
