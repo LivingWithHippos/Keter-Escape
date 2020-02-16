@@ -88,8 +88,13 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         adapter.updateLists(voteParticipants)
     }
 
-    private fun playerVoted(id: Long) {
+    private fun playerVoted(votedPlayerId: Long) {
         Log.d(TAG, "Voted player $id")
+        uiScope.launch {
+            presenter.addCurrentTurnVote(votedPlayerId)
+            //todo: move this in presenter.addCurrentTurnVote?
+            presenter.checkVotes()
+        }
     }
 
     override fun setFab(visibile: Boolean) {

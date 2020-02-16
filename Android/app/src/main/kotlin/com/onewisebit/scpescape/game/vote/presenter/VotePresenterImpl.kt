@@ -76,6 +76,13 @@ class VotePresenterImpl(
 
     }
 
+    override suspend fun addCurrentTurnVote(votedPlayerId: Long) {
+        if (action != null)
+            addCurrentRoundVote(votedPlayerId,action!!.name)
+        else
+            //todo: optionally add a method to model to get current turn action
+            throw NullActionException("Stored action was null.")
+    }
 
     private fun applySettings(
         participant: Participant,
@@ -126,3 +133,5 @@ class VotePresenterImpl(
         }
     }
 }
+
+class NullActionException(message: String) : RuntimeException(message)
