@@ -23,6 +23,7 @@ class Vote(
     val id: Long,
     @ColumnInfo(name = "game")
     val gameID: Long,
+    //todo: from turn number we get round and player, we can remove these here
     @ColumnInfo(name = "round")
     val roundNumber: Int,
     @ColumnInfo(name = "turn")
