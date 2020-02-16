@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.onewisebit.scpescape.R
+import com.onewisebit.scpescape.databinding.FragmentRoundInfoBinding
+import com.onewisebit.scpescape.databinding.FragmentRoundResultBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
 
@@ -16,12 +18,21 @@ import com.onewisebit.scpescape.game.BaseGameFragment
 class RoundResultFragment (gameID: Long, private val onActionListener: (action: Action) -> Unit) :
     BaseGameFragment(gameID, onActionListener) {
 
+
+    private var _binding: FragmentRoundResultBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_round_result, container, false)
+        _binding = FragmentRoundResultBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
 }
