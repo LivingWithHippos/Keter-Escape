@@ -49,7 +49,6 @@
       "save_on_death": false,
       "self_saved_if_targeted": false,
       "die_on_death": false,
-      "die_if_group": [],
       "die_if_role": []
     },
     "applied": {

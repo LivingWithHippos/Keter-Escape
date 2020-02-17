@@ -105,7 +105,7 @@
     "effect": {
       "die_on_death": true,
       "self_saved_if_targeted" : true,
-      "die_if_group": ["SCP-106"]
+      "die_if_role": ["SCP-106"]
     },
     "applied":{
       "end_turn": true

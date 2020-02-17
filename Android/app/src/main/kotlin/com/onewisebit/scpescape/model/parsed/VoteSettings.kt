@@ -158,8 +158,6 @@ data class Effect(
     var selfSavedIfTargeted: Boolean?,
     @SerializedName("die_on_death")
     var dieOnDeath: Boolean?,
-    @SerializedName("die_if_group")
-    var dieIfGroup: List<String>?,
     @SerializedName("die_if_role")
     var dieIfRole: List<String>?
 ) : Mergeable {
@@ -169,7 +167,6 @@ data class Effect(
             derived.saveOnDeath?.let { saveOnDeath = it }
             derived.selfSavedIfTargeted?.let { selfSavedIfTargeted = it }
             derived.dieOnDeath?.let { dieOnDeath = it }
-            derived.dieIfGroup?.let { dieIfGroup = it }
             derived.dieIfRole?.let { dieIfRole = it }
         }
     }
