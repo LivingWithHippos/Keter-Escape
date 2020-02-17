@@ -22,4 +22,7 @@ open class ModelParticipantImpl(
 
     override suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String) =
         participantRepository.setGameParticipantRole(gameID, playerID, roleName)
+
+    override suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int) =
+        participantRepository.setParticipantState(gameID, playerID, state)
 }

@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.game.composable.presenter
 import com.onewisebit.scpescape.game.composable.ContractParticipant
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
+import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_DEAD
 
 open class PresenterParticipantImpl(
     val modelParticipant: ContractParticipant.ModelParticipant,
@@ -23,4 +24,10 @@ open class PresenterParticipantImpl(
 
     override suspend fun getParticipant(playerId: Long): Participant =
         modelParticipant.getParticipant(gameID, playerId)
+
+    override suspend fun killParticipantsList(ids: List<Long>) {
+        ids.forEach {
+            modelParticipant.setParticipantState(gameID, it, PARTICIPANT_STATE_DEAD)
+        }
+    }
 }

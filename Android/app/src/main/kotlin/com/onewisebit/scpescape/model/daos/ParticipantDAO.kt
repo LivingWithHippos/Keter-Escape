@@ -135,4 +135,10 @@ interface ParticipantDAO {
      */
     @Query("SELECT participants.* FROM participants WHERE participants.game = :gameID AND participants.state = 1 AND participants.player NOT IN (SELECT participants.player FROM participants INNER JOIN turns ON turns.player = participants.player WHERE turns.game = :gameID AND turns.round = (Select MAX(rounds.number) FROM rounds WHERE rounds.game = :gameID))")
     suspend fun getLatestRoundMissingParticipants(gameID: Long): List<Participant>
+
+    /**
+     * Update a participant's status.
+     */
+    @Query("UPDATE participants SET state = :state WHERE participants.game = :gameID AND participants.player = :playerID")
+    suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int)
 }

@@ -27,5 +27,6 @@ interface InParticipantRepository {
     fun getPlayers(gameID: Long): Single<List<Player>>
     fun getRoles(gameID: Long): Single<List<Role>>
     suspend fun getMissingParticipants(gameID: Long): List<Participant>
+    suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int)
 
 }

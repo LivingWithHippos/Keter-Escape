@@ -61,6 +61,10 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override suspend fun getMissingParticipants(gameID: Long): List<Participant> =
         participantDAO.getLatestRoundMissingParticipants(gameID)
 
+    override suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int) =
+        participantDAO.setParticipantState(gameID, playerID, state)
+
+
     override fun getParticipantRole(gameID: Long, playerID: Long): Single<Role> =
         participantDAO.getParticipantRole(gameID, playerID)
 
