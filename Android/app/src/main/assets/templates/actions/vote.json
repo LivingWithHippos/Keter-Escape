@@ -33,8 +33,6 @@
       "zero_allowed": false
     },
     "vote_group": {
-      "all": false,
-      "role": [],
       "action": false,
       "self": false
     },

@@ -21,7 +21,7 @@
       "zero_allowed": false
     },
     "vote_group": {
-      "all": true
+      "action": true
     },
     "draw": {
       "re_vote_all": true
@@ -41,10 +41,10 @@
       "role": ["SCP-106"]
     },
     "reveal_vote": {
-    "role": ["SCP-106"]
-  },
+      "all": true
+    },
     "vote_group": {
-      "role": ["SCP-106"]
+      "action": true
     }
   },
   {

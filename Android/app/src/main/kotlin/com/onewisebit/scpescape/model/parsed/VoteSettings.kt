@@ -110,10 +110,6 @@ data class ChoiceNumber(
 // while the scp attack vote may be shared only among them
 //TODO: rename to GroupVote or something else
 data class VoteGroup(
-    @SerializedName("all")
-    var all: Boolean?,
-    @SerializedName("role")
-    var role: List<String>?,
     @SerializedName("action")
     var action: Boolean?,
     @SerializedName("self")
@@ -121,8 +117,6 @@ data class VoteGroup(
 ) : Mergeable {
     override fun merge(derived: Mergeable) {
         if (derived is VoteGroup) {
-            derived.all?.let { all = it }
-            derived.role?.let { role = it }
             derived.action?.let { action = it }
             derived.self?.let { self = it }
         }
