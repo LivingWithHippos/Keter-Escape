@@ -22,7 +22,7 @@
       "self": false
     },
     "choice_enabled": {
-      "all": true,
+      "all": false,
       "role": [],
       "no_role": [],
       "self": false
@@ -33,13 +33,13 @@
       "zero_allowed": false
     },
     "vote_group": {
-      "all": true,
+      "all": false,
       "role": [],
       "action": false,
       "self": false
     },
     "draw": {
-      "re_vote_all": true,
+      "re_vote_all": false,
       "re_vote_no_draw_players": false,
       "random": false,
       "max_random": false,
@@ -47,7 +47,7 @@
       "not_applicable": false
     },
     "effect": {
-      "kill": true,
+      "kill": false,
       "save_on_death": false,
       "self_saved_if_targeted": false,
       "die_on_death": false,
