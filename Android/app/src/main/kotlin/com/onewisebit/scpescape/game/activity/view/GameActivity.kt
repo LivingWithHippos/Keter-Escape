@@ -150,7 +150,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun showRoundResultFragment() {
+    override fun showRoundResultFragment(killedPlayers: List<Long>) {
         supportFragmentManager.commit {
             replace<RoundResultFragment>(R.id.fragment_container_view)
         }
