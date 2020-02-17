@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.onewisebit.scpescape.databinding.FragmentVoteTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
-import com.onewisebit.scpescape.game.vote.VoteContract
+import com.onewisebit.scpescape.game.vote.VoteTurnContract
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
 import com.onewisebit.scpescape.utilities.ARG_LAST_TURN
 import com.onewisebit.scpescape.utilities.ARG_ROLE_NAME
@@ -26,12 +26,12 @@ import org.koin.core.parameter.parametersOf
  * A simple [Fragment] subclass.
  */
 class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment(gameID, onActionListener), VoteContract.VoteView {
+    BaseGameFragment(gameID, onActionListener), VoteTurnContract.VoteTurnView {
 
     // todo: this is null here, needs to be called later or replace with navigationarguments()
     //private val args = arguments
 
-    private val presenter: VoteContract.VotePresenter by inject {
+    private val presenter: VoteTurnContract.VoteTurnPresenter by inject {
         parametersOf(
             this,
             gameID

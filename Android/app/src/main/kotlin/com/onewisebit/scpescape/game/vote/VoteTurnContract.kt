@@ -6,19 +6,19 @@ import com.onewisebit.scpescape.game.composable.ContractPlayer
 import com.onewisebit.scpescape.game.composable.ContractVote
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
 
-interface VoteContract {
+interface VoteTurnContract {
 
-    interface VoteModel : ContractVote.ModelVote, ContractAction.ModelAction,
+    interface VoteTurnModel : ContractVote.ModelVote, ContractAction.ModelAction,
         ContractParticipant.ModelParticipant, ContractPlayer.ModelPlayer
 
-    interface VotePresenter : ContractVote.PresenterVote, ContractAction.PresenterAction,
+    interface VoteTurnPresenter : ContractVote.PresenterVote, ContractAction.PresenterAction,
         ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer {
         suspend fun loadValues(roleName: String, roundCode: String)
         suspend fun addCurrentTurnVote(votedPlayerId: Long): Boolean
         suspend fun checkVotes()
     }
 
-    interface VoteView {
+    interface VoteTurnView {
         fun setFab(visible: Boolean)
         fun initializeList(voteParticipants: List<VoteParticipant>)
     }

@@ -4,7 +4,7 @@ import com.onewisebit.scpescape.game.composable.ContractAction
 import com.onewisebit.scpescape.game.composable.ContractParticipant
 import com.onewisebit.scpescape.game.composable.ContractPlayer
 import com.onewisebit.scpescape.game.composable.ContractVote
-import com.onewisebit.scpescape.game.vote.VoteContract
+import com.onewisebit.scpescape.game.vote.VoteTurnContract
 import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.entities.Vote
@@ -12,14 +12,14 @@ import com.onewisebit.scpescape.model.parsed.PlayerFilter
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
 import com.onewisebit.scpescape.model.parsed.VoteSettings
 
-class VotePresenterImpl(
-    val view: VoteContract.VoteView,
+class VoteTurnPresenterImpl(
+    val view: VoteTurnContract.VoteTurnView,
     val votePresenter: ContractVote.PresenterVote,
     val actionPresenter: ContractAction.PresenterAction,
     val participantPresenter: ContractParticipant.PresenterParticipant,
     val playerPresenter: ContractPlayer.PresenterPlayer,
     val gameID: Long
-) : VoteContract.VotePresenter,
+) : VoteTurnContract.VoteTurnPresenter,
     ContractVote.PresenterVote by votePresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractAction.PresenterAction by actionPresenter,

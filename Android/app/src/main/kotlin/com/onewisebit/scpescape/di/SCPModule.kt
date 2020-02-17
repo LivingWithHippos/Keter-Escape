@@ -19,9 +19,9 @@ import com.onewisebit.scpescape.game.playerturn.presenter.PlayerTurnPresenterImp
 import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 import com.onewisebit.scpescape.game.roundinfo.model.RoundInfoModelImpl
 import com.onewisebit.scpescape.game.roundinfo.presenter.RoundInfoPresenterImpl
-import com.onewisebit.scpescape.game.vote.VoteContract
-import com.onewisebit.scpescape.game.vote.model.VoteModelImpl
-import com.onewisebit.scpescape.game.vote.presenter.VotePresenterImpl
+import com.onewisebit.scpescape.game.vote.VoteTurnContract
+import com.onewisebit.scpescape.game.vote.model.VoteTurnModelImpl
+import com.onewisebit.scpescape.game.vote.presenter.VoteTurnPresenterImpl
 import com.onewisebit.scpescape.main.activity.StartContract
 import com.onewisebit.scpescape.main.activity.model.StartActivityModel
 import com.onewisebit.scpescape.main.activity.presenter.StartActivityPresenterImpl
@@ -334,8 +334,8 @@ val appModule = module {
 
     // Player Vote Power Fragment MVP
 
-    factory<VoteContract.VoteModel> {
-        VoteModelImpl(
+    factory<VoteTurnContract.VoteTurnModel> {
+        VoteTurnModelImpl(
             get(),
             get(),
             get(),
@@ -343,8 +343,8 @@ val appModule = module {
         )
     }
 
-    factory<VoteContract.VotePresenter> { (view: VoteContract.VoteView, game: Long) ->
-        VotePresenterImpl(
+    factory<VoteTurnContract.VoteTurnPresenter> { (view: VoteTurnContract.VoteTurnView, game: Long) ->
+        VoteTurnPresenterImpl(
             view,
             get { parametersOf(game) },
             get { parametersOf(game) },
