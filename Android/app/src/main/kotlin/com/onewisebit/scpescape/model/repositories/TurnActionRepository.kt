@@ -94,6 +94,16 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) :
             actions
         }
 
+
+    override suspend fun getCompleteModeActions(modeId: Int): List<TurnAction> {
+        val partialActions = getModeActions(modeId)
+        val actions: MutableList<TurnAction> = mutableListOf()
+        partialActions.forEach{
+                actions.add(mergeAction(modeId,it))
+        }
+        return actions
+    }
+
     override suspend fun getPartialAction(
         modeId: Int,
         roleName: String,
