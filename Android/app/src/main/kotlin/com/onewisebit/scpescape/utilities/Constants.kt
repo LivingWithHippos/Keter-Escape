@@ -65,6 +65,7 @@ const val ARG_ROLE_DESCRIPTION = "role_description"
 const val ARG_ACTION_INFO_TITLE = "info_title"
 const val ARG_ACTION_INFO_TITLE_DESCRIPTION = "info_description"
 const val ARG_LAST_TURN = "last_turn"
+const val ARG_KILLED_PLAYERS = "killed_players"
 
 // list item types
 
