@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b6a270e8401f47492adca2a7b6fa55fe",
+    "identityHash": "5012d662644d0f9e6c1eec14c6c5f196",
     "entities": [
       {
         "tableName": "players",
@@ -435,11 +435,17 @@
       },
       {
         "tableName": "votes",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`vote_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `round` INTEGER NOT NULL, `turn` INTEGER NOT NULL, `game` INTEGER NOT NULL, `player` INTEGER NOT NULL, `player_voted` INTEGER NOT NULL, `vote_type` TEXT NOT NULL, FOREIGN KEY(`turn`, `round`, `game`, `player`) REFERENCES `turns`(`turn_number`, `round`, `game`, `player`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player_voted`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`vote_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `game` INTEGER NOT NULL, `round` INTEGER NOT NULL, `turn` INTEGER NOT NULL, `player` INTEGER NOT NULL, `player_voted` INTEGER NOT NULL, `vote_action` TEXT NOT NULL, FOREIGN KEY(`turn`, `round`, `game`, `player`) REFERENCES `turns`(`turn_number`, `round`, `game`, `player`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`player_voted`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "vote_ID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameID",
+            "columnName": "game",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -456,12 +462,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "gameID",
-            "columnName": "game",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
             "fieldPath": "playerID",
             "columnName": "player",
             "affinity": "INTEGER",
@@ -474,8 +474,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "voteType",
-            "columnName": "vote_type",
+            "fieldPath": "voteAction",
+            "columnName": "vote_action",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -542,7 +542,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b6a270e8401f47492adca2a7b6fa55fe')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5012d662644d0f9e6c1eec14c6c5f196')"
     ]
   }
 }

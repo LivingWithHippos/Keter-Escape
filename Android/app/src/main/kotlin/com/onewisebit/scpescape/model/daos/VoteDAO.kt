@@ -47,18 +47,18 @@ interface VoteDAO {
 
     /**
      * Get all of the votes from a round.
-     * @return the list of Votes from the table with a specific game id, round number and vote type
+     * @return the list of Votes from the table with a specific game id, round number and vote action
      */
-    @Query("SELECT * FROM votes WHERE votes.game = :gameID AND votes.round = :roundNumber AND votes.vote_type = :type")
-    suspend fun getRoundVotes(gameID: Long, roundNumber: Int, type: String): List<Vote>
+    @Query("SELECT * FROM votes WHERE votes.game = :gameID AND votes.round = :roundNumber AND votes.vote_action = :action")
+    suspend fun getRoundVotes(gameID: Long, roundNumber: Int, action: String): List<Vote>
 
 
     /**
      * Get all of the voted players from a round.
-     * @return the list of voted players id from the table with a specific game id, round number and vote type.
+     * @return the list of voted players id from the table with a specific game id, round number and vote action.
      */
-    @Query("SELECT votes.player_voted FROM votes WHERE votes.game = :gameID AND votes.round = :roundNumber AND votes.vote_type = :type")
-    suspend fun getRoundVotedPlayersId(gameID: Long, roundNumber: Int, type: String): List<Long>
+    @Query("SELECT votes.player_voted FROM votes WHERE votes.game = :gameID AND votes.round = :roundNumber AND votes.vote_action = :action")
+    suspend fun getRoundVotedPlayersId(gameID: Long, roundNumber: Int, action: String): List<Long>
 
     /**
      * Get all of the voted players from a round.

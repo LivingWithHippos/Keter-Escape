@@ -32,6 +32,6 @@ class Vote(
     val playerID: Long,
     @ColumnInfo(name = "player_voted")
     val votedPlayerID: Long,
-    @ColumnInfo(name = "vote_type")
-    val voteType: String
+    @ColumnInfo(name = "vote_action")
+    val voteAction: String
 )
