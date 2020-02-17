@@ -17,7 +17,7 @@ open class GamePresenterImpl(
     val participantPresenter: ContractParticipant.PresenterParticipant,
     val playerPresenter: ContractPlayer.PresenterPlayer,
     val actionPresenter: ContractAction.PresenterAction,
-    val votePresenter: VoteContract.VotePresenter,
+    val votePresenter: ContractVote.PresenterVote,
     val gameID: Long
 ) : GameContract.GamePresenter,
     ContractRound.PresenterRound by roundPresenter,
