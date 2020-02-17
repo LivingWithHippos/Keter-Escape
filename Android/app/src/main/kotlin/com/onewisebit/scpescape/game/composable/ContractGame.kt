@@ -133,6 +133,7 @@ interface ContractAction {
         suspend fun getAction(roleName: String, roundCode: String): TurnAction
         suspend fun getRoleDetails(roleName: String): RoleDetails
         suspend fun getPartialAction(roleName: String, roundName: String): TurnAction
+        suspend fun getModeActions(): List<TurnAction>
     }
 }
 

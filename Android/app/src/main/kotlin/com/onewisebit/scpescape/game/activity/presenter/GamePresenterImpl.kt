@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.game.activity.presenter
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
 import com.onewisebit.scpescape.game.vote.VoteContract
+import com.onewisebit.scpescape.model.entities.Vote
 import com.onewisebit.scpescape.model.parsed.InfoSettings
 import com.onewisebit.scpescape.model.parsed.VoteSettings
 import com.onewisebit.scpescape.utilities.POWER_INFO
