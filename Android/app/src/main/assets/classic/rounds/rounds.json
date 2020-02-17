@@ -3,12 +3,36 @@
       "mode_id": 0,
       "code": "lights_out",
       "name": "Lights Out",
-      "description": "Darkness descends upon the group; It's time to hide.\nUse your abilities to survive, or hope you're not the next one getting dragged away.\nThe hunters will have to choose their prey carefully, or they'll risk being spotted."
+      "description": "Darkness descends upon the group; It's time to hide.\nUse your abilities to survive, or hope you're not the next one getting dragged away.\nThe hunters will have to choose their prey carefully, or they'll risk being spotted.",
+      "end_round": [
+        {
+          "dead": [0,0],
+          "title": "You check your surroundings",
+          "description": "Everyone is still alive; the hunters have failed, but for how long?"
+        },
+        {
+          "dead": [1,1],
+          "title": "The smell of blood hits you",
+          "description": "One less of you."
+        },
+        {
+          "dead": [2,30],
+          "title": "The smell of blood hits you",
+          "description": "How many corpses can you see?"
+        }
+      ]
     },
     {
       "mode_id": 0,
       "code": "lights_on",
       "name": "Lights On",
-      "description": "The lights flicker and turn on. You scan your surroundings and check who's still there. \nIt's time to spot the hidden enemy and kill him. Discuss together and vote someone to kill before the lights go out again."
+      "description": "The lights flicker and turn on. You scan your surroundings and check who's still there. \nIt's time to spot the hidden enemy and kill him. Discuss together and vote someone to kill before the lights go out again.",
+      "end_round": [
+        {
+          "dead": [1,1],
+          "title": "Judgement has been passed",
+          "description": "SCP-███ starts humming, and someone starts screaming. A pile of ashes is soon on the floor. The room seems darker."
+        }
+      ]
     }
 ]
