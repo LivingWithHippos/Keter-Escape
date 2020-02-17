@@ -16,7 +16,7 @@ interface GameContract {
 
     interface GamePresenter : ContractRound.PresenterRound, ContractTurn.PresenterTurn,
         ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer,
-        ContractAction.PresenterAction {
+        ContractAction.PresenterAction, ContractVote.PresenterVote {
         fun onDestroy()
         suspend fun setupPlayerTurnFragment()
         suspend fun setupPlayerPowerFragment()
@@ -25,5 +25,5 @@ interface GameContract {
     }
 
     interface GameModel : ContractRound.ModelRound, ContractTurn.ModelTurn,
-        ContractParticipant.ModelParticipant, ContractPlayer.ModelPlayer, ContractAction.ModelAction
+        ContractParticipant.ModelParticipant, ContractPlayer.ModelPlayer, ContractAction.ModelAction, ContractVote.ModelVote
 }

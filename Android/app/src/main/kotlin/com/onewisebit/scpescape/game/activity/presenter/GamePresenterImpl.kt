@@ -2,6 +2,7 @@ package com.onewisebit.scpescape.game.activity.presenter
 
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
+import com.onewisebit.scpescape.game.vote.VoteContract
 import com.onewisebit.scpescape.model.parsed.InfoSettings
 import com.onewisebit.scpescape.model.parsed.VoteSettings
 import com.onewisebit.scpescape.utilities.POWER_INFO
@@ -15,13 +16,15 @@ open class GamePresenterImpl(
     val participantPresenter: ContractParticipant.PresenterParticipant,
     val playerPresenter: ContractPlayer.PresenterPlayer,
     val actionPresenter: ContractAction.PresenterAction,
+    val votePresenter: VoteContract.VotePresenter,
     val gameID: Long
 ) : GameContract.GamePresenter,
     ContractRound.PresenterRound by roundPresenter,
     ContractTurn.PresenterTurn by turnPresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter,
-    ContractAction.PresenterAction by actionPresenter {
+    ContractAction.PresenterAction by actionPresenter,
+    ContractVote.PresenterVote by votePresenter{
 
     override fun onDestroy() {
     }
