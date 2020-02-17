@@ -31,6 +31,6 @@ class ModelActionImpl(
     }
 
     override suspend fun getModeActions(modeId: Int): List<TurnAction> =
-        actionRepository.getModeActions(modeId)
+        actionRepository.getCompleteModeActions(modeId)
 
 }
