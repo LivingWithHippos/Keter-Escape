@@ -75,12 +75,16 @@ open class GamePresenterImpl(
         votes.addAll(getLastRoundVotes())
         val voteActions = getModeActions().filterIsInstance<VoteSettings>()
 
-        // players to be killed
-        val killPlayers: MutableList<Long> = mutableListOf()
-        // players to be protected
-        val protectPlayers: MutableList<Long> = mutableListOf()
+        // players to be killed directly
+        val deathCandidates: MutableList<Long> = mutableListOf()
+        // players to be protected on direct hit
+        val safePlayers: MutableList<Long> = mutableListOf()
+        // players to be killed for sure, passed to view.showRoundResultFragment()
+        val sureDeathPlayers: MutableSet<Long> = mutableSetOf()
+        // players to be killed on another player's death. If the first one dies, so does the second.
+        val pairedDeathPlayers: MutableList<Pair<Long,Long>> = mutableListOf()
 
-        while (votes.size > 0) {
+        voteLoop@ while (votes.size > 0) {
             // I always process from the first vote, then remove all the used votes
             val action = voteActions.first{ it.name == votes.first().voteAction }
             // all the votes involved in this action that will be removed from votes in the end
@@ -155,21 +159,71 @@ open class GamePresenterImpl(
             //todo: move to function
             val effect = action.effect!!
 
+            // add voted players to kill list
             if (effect.kill!!)
-                killPlayers.addAll(affectedPlayers)
+                deathCandidates.addAll(affectedPlayers)
 
+            // add voted players to safe list
             if (effect.saveOnDeath!!)
-                protectPlayers.addAll(affectedPlayers)
+                safePlayers.addAll(affectedPlayers)
 
-            // remove votes
+            // add voting players to safe list
+            if (effect.selfSavedIfTargeted!!)
+                safePlayers.addAll(currentVotes.map { it.playerID })
+
+            // add voting and voted players to paired list
+            if (effect.dieOnDeath!!)
+                currentVotes.forEach{
+                    pairedDeathPlayers
+                    .add(
+                        Pair(
+                            it.votedPlayerID,
+                            it.playerID)
+                    )
+                }
 
 
+            // add voting players to kill list
+            val participantList = getAliveParticipants()
+            if (!effect.dieIfRole.isNullOrEmpty())
+                currentVotes.forEach { vote ->
+                    if ( effect.dieIfRole!!
+                            .contains(
+                                participantList
+                                    .first{ vote.votedPlayerID == it.playerID }
+                                    .roleName!!
+                            ))
 
+                        sureDeathPlayers.add(vote.playerID)
+                }
+
+            // remove used votes
+            //todo: check if it works
+            votes.removeAll(currentVotes)
         }
 
-        gameView.showRoundResultFragment()
+        // populate kill list with the complete data from all the votes
+
+        deathCandidates.forEach { candidate ->
+            if (!safePlayers.contains(candidate))
+                sureDeathPlayers.add(candidate)
+        }
+
+        pairedDeathPlayers.forEach { playersPair ->
+            if (sureDeathPlayers.contains(playersPair.first))
+                sureDeathPlayers.add(playersPair.second)
+        }
+
+        // kill players
+        killParticipants(sureDeathPlayers.toList())
+
+        // pass kill list to be shown
+        gameView.showRoundResultFragment(sureDeathPlayers.toList())
     }
 
+    private suspend fun killParticipants(idList: List<Long>){
+        killParticipantsList(idList)
+    }
 
     override suspend fun newPlayerTurn(): String {
         // if this is null either the game is finished and no more turn should have been created
