@@ -53,7 +53,7 @@ These are related to the Android app.
 
 - [ ] Mini wiki for the powers, scp, roles etc
 
-- [ ] Add documentation to code
+- [ ] Add documentation to code (check inheritDocs annotation for presenter/model/repo)
 
 - [ ] Clean code from generated lines
 
