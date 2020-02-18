@@ -166,7 +166,7 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) :
         // a stack to put the actions in the correct merging order.
         val mergingStack: MutableList<String> = mutableListOf()
 
-        // populating the actions map with the templates and a mode actions
+        // populating the actions map with the templates and the mode's actions
         val templates = getTemplates()
         templates.forEach { actionMap[it.name] = it }
         getModeActions(modeId).forEach { actionMap[it.name] = it }
