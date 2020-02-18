@@ -13,9 +13,6 @@
     "reveal_vote": {
       "all": true
     },
-    "choice_enabled": {
-      "all": true
-    },
     "choice_number": {
       "exactly": 1,
       "zero_allowed": false
@@ -57,9 +54,6 @@
     "reveal_role": {
       "none": true
     },
-    "choice_enabled": {
-      "all": true
-    },
     "choice_number": {
       "exactly": 1,
       "zero_allowed": true
@@ -88,9 +82,6 @@
     },
     "reveal_role": {
       "none": true
-    },
-    "choice_enabled": {
-      "all": true
     },
     "choice_number": {
       "exactly": 1,

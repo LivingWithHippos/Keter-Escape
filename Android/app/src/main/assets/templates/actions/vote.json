@@ -22,7 +22,7 @@
       "self": false
     },
     "choice_enabled": {
-      "all": false,
+      "all": true,
       "role": [],
       "no_role": [],
       "self": false
