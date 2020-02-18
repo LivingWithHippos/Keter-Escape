@@ -7,9 +7,6 @@
       "all": true,
       "self": false
     },
-    "reveal_role": {
-      "none": true
-    },
     "reveal_vote": {
       "all": true
     },
@@ -25,9 +22,6 @@
     },
     "effect": {
       "kill": true
-    },
-    "applied":{
-      "last_voter": true
     }
   },
   {
@@ -36,12 +30,6 @@
   "description": "Choose someone to kill with SCP-[REDACTED]. You'll be able to see your companions' vote.",
     "reveal_role": {
       "role": ["SCP-106"]
-    },
-    "reveal_vote": {
-      "all": true
-    },
-    "vote_group": {
-      "action": true
     }
   },
   {
@@ -49,10 +37,14 @@
     "name": "MTF protection",
     "description": "Choose someone to save in case of death (yourself included). Die if an SCP is picked",
     "show": {
-      "all": true
+      "all": true,
+      "self": true
     },
     "reveal_role": {
-      "none": true
+      "self": true
+    },
+    "choice_enabled": {
+      "self": true
     },
     "choice_number": {
       "exactly": 1,
@@ -67,9 +59,6 @@
     "effect": {
       "save_on_death": true,
       "die_if_role": ["SCP-106"]
-    },
-    "applied":{
-      "end_turn": true
     }
   },
   {
@@ -79,9 +68,6 @@
     "show": {
       "all": true,
       "self": false
-    },
-    "reveal_role": {
-      "none": true
     },
     "choice_number": {
       "exactly": 1,
@@ -97,9 +83,6 @@
       "die_on_death": true,
       "self_saved_if_targeted" : true,
       "die_if_role": ["SCP-106"]
-    },
-    "applied":{
-      "end_turn": true
     }
   },
   {
@@ -131,9 +114,6 @@
     },
     "effect": {
       "kill": true
-    },
-    "applied":{
-      "end_round": true
     }
   }
 ]

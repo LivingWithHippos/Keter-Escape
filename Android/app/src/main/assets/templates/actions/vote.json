@@ -7,7 +7,7 @@
       "all": true,
       "role": [],
       "no_role": [],
-      "self": false
+      "self": true
     },
     "reveal_role": {
       "all": false,
