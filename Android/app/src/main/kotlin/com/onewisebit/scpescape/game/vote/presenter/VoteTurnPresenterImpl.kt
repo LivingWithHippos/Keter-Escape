@@ -116,6 +116,7 @@ class VoteTurnPresenterImpl(
     ): Boolean {
         var result = false
 
+        // we check from the less specific to the most specific condition
         if (settings.all == true)
             result = true
 
@@ -127,9 +128,8 @@ class VoteTurnPresenterImpl(
             if (settings.noRole!!.contains(participant.roleName))
                 result = false
 
-        if (settings.self == true)
-            if (participant.playerID == currentParticipant.playerID)
-                result = true
+        if (participant.playerID == currentParticipant.playerID)
+            result = (settings.self == true)
 
         return result
     }
