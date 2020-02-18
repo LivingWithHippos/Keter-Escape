@@ -60,7 +60,7 @@ interface ContractParticipant {
         suspend fun getCurrentParticipant(gameID: Long): Participant
         suspend fun getMissingRoundParticipants(gameID: Long): List<Participant>
         suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String)
-        suspend fun setParticipantState(gameID: Long,playerID: Long, participantState: Int)
+        suspend fun setParticipantState(gameID: Long, playerID: Long, participantState: Int)
     }
 }
 
@@ -155,6 +155,7 @@ interface ContractVote {
             votedPlayerID: Long,
             voteType: String
         )
+
         suspend fun removeCurrentTurnVote(gameId: Long, votedPlayerId: Long)
     }
 

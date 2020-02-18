@@ -24,7 +24,7 @@ open class GamePresenterImpl(
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter,
     ContractAction.PresenterAction by actionPresenter,
-    ContractVote.PresenterVote by votePresenter{
+    ContractVote.PresenterVote by votePresenter {
 
     override fun onDestroy() {
     }
@@ -70,7 +70,7 @@ open class GamePresenterImpl(
         //todo: parse here only the effects having VoteSettings.applied.end_round = true
         // and add one check after every turn for VoteSettings.applied.end_turn = true (maybe checking oldState = PlayerPower in  the activity)
         // make this more modular, something like applyEffect(action,votes), maybe move it to a EffectContract
-        val votes:MutableList<Vote> = mutableListOf()
+        val votes: MutableList<Vote> = mutableListOf()
         votes.addAll(getLastRoundVotes())
         val voteActions = getModeActions().filterIsInstance<VoteSettings>()
 
@@ -81,11 +81,11 @@ open class GamePresenterImpl(
         // players to be killed for sure, passed to view.showRoundResultFragment()
         val sureDeathPlayers: MutableSet<Long> = mutableSetOf()
         // players to be killed on another player's death. If the first one dies, so does the second.
-        val pairedDeathPlayers: MutableList<Pair<Long,Long>> = mutableListOf()
+        val pairedDeathPlayers: MutableList<Pair<Long, Long>> = mutableListOf()
 
         voteLoop@ while (votes.size > 0) {
             // I always process from the first vote, then remove all the used votes
-            val action = voteActions.first{ it.name == votes.first().voteAction }
+            val action = voteActions.first { it.name == votes.first().voteAction }
             // all the votes involved in this action that will be removed from votes in the end
             val currentVotes: MutableList<Vote> = mutableListOf()
             // players that will be affected by the action effect
@@ -99,13 +99,12 @@ open class GamePresenterImpl(
             // check vote grouping
             //todo: move to function
             val groupVote = action.voteGroup!!
-            if (groupVote.action!!){
+            if (groupVote.action!!) {
                 currentVotes.addAll(votes.filter { it.voteAction == action.name })
-            }else{
-                if (groupVote.self!!){
+            } else {
+                if (groupVote.self!!) {
                     currentVotes.add(votes.first())
-                }
-                else {
+                } else {
                     throw IllegalArgumentException("The action ${action.name} needs a setting for vote_group")
                 }
             }
@@ -116,40 +115,40 @@ open class GamePresenterImpl(
                 //todo: move to function
                 val draw = action.draw!!
 
-                if (draw.reVoteAll!! || draw.reVoteNoDrawPlayers!!){
+                if (draw.reVoteAll!! || draw.reVoteNoDrawPlayers!!) {
                     TODO("not implemented. For daily vote we need to start another day round.")
                 }
 
                 if (draw.random!!)
                     affectedPlayers.add(votedPlayersId.random())
 
-                if (draw.maxRandom!!){
+                if (draw.maxRandom!!) {
                     val voteCount = currentVotes
-                            // group by voted player id
+                        // group by voted player id
                         .groupingBy { it.votedPlayerID }
-                            // count occurrences of this player id
+                        // count occurrences of this player id
                         .eachCount()
                     // get the maximum number of votes for a player
                     val maxVotes = voteCount.maxBy { it.value }!!.value
                     affectedPlayers.add(
                         voteCount
-                                // get only the ones with a max vote
-                            .filter { it.value==maxVotes }
-                                // get the keys (voted player id)
+                            // get only the ones with a max vote
+                            .filter { it.value == maxVotes }
+                            // get the keys (voted player id)
                             .keys
-                                // get a random one
+                            // get a random one
                             .random())
                 }
 
-                if(draw.ignore!!){
+                if (draw.ignore!!) {
                     TODO("not implemented. Maybe this can be removed. Not adding affected players is like not having this option")
                 }
 
-                if(draw.notApplicable!!){
+                if (draw.notApplicable!!) {
                     TODO("not implemented. Throw an exception maybe since we shouldn't have multiple voted with this option.")
                 }
 
-            }else{
+            } else {
                 affectedPlayers.add(votedPlayersId.first())
             }
 
@@ -172,13 +171,14 @@ open class GamePresenterImpl(
 
             // add voting and voted players to paired list
             if (effect.dieOnDeath!!)
-                currentVotes.forEach{
+                currentVotes.forEach {
                     pairedDeathPlayers
-                    .add(
-                        Pair(
-                            it.votedPlayerID,
-                            it.playerID)
-                    )
+                        .add(
+                            Pair(
+                                it.votedPlayerID,
+                                it.playerID
+                            )
+                        )
                 }
 
 
@@ -186,12 +186,13 @@ open class GamePresenterImpl(
             val participantList = getAliveParticipants()
             if (!effect.dieIfRole.isNullOrEmpty())
                 currentVotes.forEach { vote ->
-                    if ( effect.dieIfRole!!
+                    if (effect.dieIfRole!!
                             .contains(
                                 participantList
-                                    .first{ vote.votedPlayerID == it.playerID }
+                                    .first { vote.votedPlayerID == it.playerID }
                                     .roleName!!
-                            ))
+                            )
+                    )
 
                         sureDeathPlayers.add(vote.playerID)
                 }
@@ -220,7 +221,7 @@ open class GamePresenterImpl(
         gameView.showRoundResultFragment(sureDeathPlayers.toList())
     }
 
-    private suspend fun killParticipants(idList: List<Long>){
+    private suspend fun killParticipants(idList: List<Long>) {
         killParticipantsList(idList)
     }
 

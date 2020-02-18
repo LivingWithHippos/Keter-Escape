@@ -62,7 +62,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
 
         adapter = VoteAdapter(
             emptyList()
-        ) { id: Long, setChecked: (checked: Boolean)-> Unit -> playerVoted(id, setChecked) }
+        ) { id: Long, setChecked: (checked: Boolean) -> Unit -> playerVoted(id, setChecked) }
 
         arguments?.let {
             roleName = it.getString(ARG_ROLE_NAME)!!

@@ -82,29 +82,28 @@ class VoteTurnPresenterImpl(
         if (action != null) {
             val votes = getCurrentPlayerVotes()
             // I'm removing a vote
-            if (votes.map { it.votedPlayerID }.contains(votedPlayerId)){
+            if (votes.map { it.votedPlayerID }.contains(votedPlayerId)) {
                 removeCurrentTurnVote(votedPlayerId)
             }
             // I`m adding a vote
-            else{
+            else {
                 //controlla choice number sulle impostazioni
                 // se "exactly": vedi se è già così
                 //se "range": [-1,-1], vedi se è al max
-                action!!.choiceNumber?.let{
+                action!!.choiceNumber?.let {
                     // has the player already reached the maximum number of votes?
-                    if (( it.exactly!! > 0 &&
-                                votes.size < it.exactly!! ) ||
-                        ( it.range!![1]>0 &&
+                    if ((it.exactly!! > 0 &&
+                                votes.size < it.exactly!!) ||
+                        (it.range!![1] > 0 &&
                                 votes.size < it.range!![1])
-                    ){
+                    ) {
                         addCurrentRoundVote(votedPlayerId, action!!.name)
                         inserted = true
                     }
                 }
             }
-        }
-        else
-            //todo: optionally add a method to model to get current turn action
+        } else
+        //todo: optionally add a method to model to get current turn action
             throw NullActionException("Stored action was null.")
 
         return inserted
@@ -144,12 +143,13 @@ class VoteTurnPresenterImpl(
 
             if (settings.exactly!! > 0)
                 if (settings.exactly!! == votes.size)
-                    enableFab =  true
+                    enableFab = true
 
             if (settings.range!![1] > 0)
-                if (votes.size >=  settings.range!![0] &&
-                    votes.size <=  settings.range!![1])
-                    enableFab =  true
+                if (votes.size >= settings.range!![0] &&
+                    votes.size <= settings.range!![1]
+                )
+                    enableFab = true
 
 
             if (settings.zeroAllowed!!)

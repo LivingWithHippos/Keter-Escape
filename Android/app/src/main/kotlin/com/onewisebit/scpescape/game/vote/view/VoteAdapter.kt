@@ -11,7 +11,7 @@ import com.onewisebit.scpescape.utilities.TYPE_VOTE
 
 class VoteAdapter(
     voteParticipants: List<VoteParticipant>,
-    private val clickListener: (Long, (Boolean) -> Unit ) -> Unit
+    private val clickListener: (Long, (Boolean) -> Unit) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -34,7 +34,7 @@ class VoteAdapter(
 
     override fun getItemViewType(position: Int): Int {
         var type = TYPE_VOTE
-        if (voteParticipants.size > position )
+        if (voteParticipants.size > position)
             type = voteParticipants[position].type
         return type
     }
@@ -57,12 +57,15 @@ class VoteAdapter(
     }
 
     class VoteHolder(vBinding: VoteListItemBinding) :
-        RecyclerView.ViewHolder(vBinding.root){
+        RecyclerView.ViewHolder(vBinding.root) {
 
         private var voteParticipant: VoteParticipant? = null
         private val binding: VoteListItemBinding = vBinding
 
-        fun bind(_voteParticipant: VoteParticipant, _clickListener: (Long, (Boolean) -> Unit) -> Unit) {
+        fun bind(
+            _voteParticipant: VoteParticipant,
+            _clickListener: (Long, (Boolean) -> Unit) -> Unit
+        ) {
             voteParticipant = _voteParticipant
 
             //TODO: add players pics
@@ -84,12 +87,14 @@ class VoteAdapter(
             if (_voteParticipant.enabledVote) {
                 binding.cvVotePlayer.isCheckable = true
                 binding.cvVotePlayer.isClickable = true
-                binding.cvVotePlayer.setOnClickListener { _clickListener(_voteParticipant.participant.playerID)
-                    { check: Boolean -> setViewChecked(check) }}
+                binding.cvVotePlayer.setOnClickListener {
+                    _clickListener(_voteParticipant.participant.playerID)
+                    { check: Boolean -> setViewChecked(check) }
+                }
             }
         }
 
-        private fun setViewChecked(checked: Boolean){
+        private fun setViewChecked(checked: Boolean) {
             binding.cvVotePlayer.isChecked = checked
         }
     }

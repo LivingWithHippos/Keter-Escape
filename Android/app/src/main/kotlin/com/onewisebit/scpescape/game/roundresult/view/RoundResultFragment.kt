@@ -1,13 +1,10 @@
 package com.onewisebit.scpescape.game.roundresult.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.onewisebit.scpescape.R
-import com.onewisebit.scpescape.databinding.FragmentRoundInfoBinding
+import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentRoundResultBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
@@ -15,7 +12,7 @@ import com.onewisebit.scpescape.game.BaseGameFragment
 /**
  * A simple [Fragment] subclass.
  */
-class RoundResultFragment (gameID: Long, private val onActionListener: (action: Action) -> Unit) :
+class RoundResultFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
     BaseGameFragment(gameID, onActionListener) {
 
 

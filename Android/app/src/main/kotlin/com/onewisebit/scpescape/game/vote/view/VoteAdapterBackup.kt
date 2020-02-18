@@ -45,7 +45,7 @@ class VoteAdapterBackup(
 
     override fun getItemViewType(position: Int): Int {
         var type = TYPE_VOTE
-        if (voteParticipants.size > position )
+        if (voteParticipants.size > position)
             type = getItem(position).type
         return type
     }
@@ -63,7 +63,7 @@ class VoteAdapterBackup(
     }
 
     class VoteHolder(vBinding: VoteListItemBinding) :
-        RecyclerView.ViewHolder(vBinding.root){
+        RecyclerView.ViewHolder(vBinding.root) {
 
         private var voteParticipant: VoteParticipant? = null
 

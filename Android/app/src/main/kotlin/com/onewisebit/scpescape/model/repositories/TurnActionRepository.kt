@@ -98,8 +98,8 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) :
     override suspend fun getCompleteModeActions(modeId: Int): List<TurnAction> {
         val partialActions = getModeActions(modeId)
         val actions: MutableList<TurnAction> = mutableListOf()
-        partialActions.forEach{
-                actions.add(mergeAction(modeId,it))
+        partialActions.forEach {
+            actions.add(mergeAction(modeId, it))
         }
         return actions
     }

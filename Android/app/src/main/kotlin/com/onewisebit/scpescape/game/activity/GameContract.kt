@@ -25,5 +25,6 @@ interface GameContract {
     }
 
     interface GameModel : ContractRound.ModelRound, ContractTurn.ModelTurn,
-        ContractParticipant.ModelParticipant, ContractPlayer.ModelPlayer, ContractAction.ModelAction, ContractVote.ModelVote
+        ContractParticipant.ModelParticipant, ContractPlayer.ModelPlayer,
+        ContractAction.ModelAction, ContractVote.ModelVote
 }
