@@ -114,6 +114,11 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         binding.fabCastVote.visibility = View.VISIBLE
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
     companion object {
         private val TAG = VoteTurnFragment::class.java.simpleName
     }
