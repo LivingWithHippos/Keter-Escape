@@ -1,6 +1,6 @@
 # DEVELOPMENT GUIDE
 
-The project is being developed entirely in [Kotlin](https://kotlinlang.org/) under Android Studio 3.6 RC-1. This version or more recent ones are needed as  [viewbinding](https://developer.android.com/topic/libraries/view-binding) is being used.
+The project is being developed entirely in [Kotlin](https://kotlinlang.org/) under Android Studio 3.6. This version or more recent ones are needed as  [viewbinding](https://developer.android.com/topic/libraries/view-binding) is being used.
 
 The project is currently using the [MVP pattern](https://www.journaldev.com/14886/android-mvp) to organize its structure.
 
