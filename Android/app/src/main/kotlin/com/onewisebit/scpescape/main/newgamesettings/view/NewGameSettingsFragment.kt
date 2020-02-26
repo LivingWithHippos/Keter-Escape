@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentNewGameSettingsBinding
 import com.onewisebit.scpescape.main.newgamesettings.GameSettingsContract
@@ -22,10 +23,8 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsView {
+class NewGameSettingsFragment : BaseSCPFragment<FragmentNewGameSettingsBinding>(), GameSettingsContract.GameSettingsView {
 
-    private var _binding: FragmentNewGameSettingsBinding? = null
-    private val binding get() = _binding!!
     private val presenter: GameSettingsContract.GameSettingsPresenter by inject { parametersOf(this) }
     private val args: NewGameSettingsFragmentArgs by navArgs()
 
@@ -106,11 +105,6 @@ class NewGameSettingsFragment : Fragment(), GameSettingsContract.GameSettingsVie
     override fun onDestroy() {
         job.cancel()
         super.onDestroy()
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 
     companion object {

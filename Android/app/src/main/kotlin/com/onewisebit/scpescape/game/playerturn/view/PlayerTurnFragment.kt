@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentPlayerTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
@@ -22,7 +23,7 @@ import org.koin.core.parameter.parametersOf
  * A simple [Fragment] subclass.
  */
 class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment(gameID, onActionListener), PlayerTurnContract.PlayerTurnView {
+    BaseGameFragment<FragmentPlayerTurnBinding>(gameID, onActionListener), PlayerTurnContract.PlayerTurnView {
 
     private val presenter: PlayerTurnContract.PlayerTurnPresenter by inject {
         parametersOf(
@@ -30,9 +31,6 @@ class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Ac
             gameID
         )
     }
-
-    private var _binding: FragmentPlayerTurnBinding? = null
-    private val binding get() = _binding!!
 
     private val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
@@ -70,10 +68,5 @@ class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Ac
         binding.tvPlayerName.text = playerName
         binding.tvPlayerRole.text = playerRoleName
         binding.tvRoleShortDescription.text = playerRoleDescription
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 }

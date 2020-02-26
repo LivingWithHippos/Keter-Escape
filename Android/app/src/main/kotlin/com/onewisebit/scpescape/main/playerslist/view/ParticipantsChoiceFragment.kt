@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentParticipantsChoiceBinding
 import com.onewisebit.scpescape.main.playerslist.PlayersContract
@@ -27,13 +28,10 @@ import org.koin.core.parameter.parametersOf
 import java.util.concurrent.TimeUnit
 
 @SuppressLint("CheckResult")
-class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
+class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBinding>(), PlayersContract.PlayersView {
 
     private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: ParticipantsAdapter
-    private var _binding: FragmentParticipantsChoiceBinding? = null
-    // This property is only valid between onCreateView and onDestroyView.
-    private val binding get() = _binding!!
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
     private val presenter: PlayersContract.PlayersPresenter by inject { parametersOf(this) }
 
@@ -126,11 +124,6 @@ class ParticipantsChoiceFragment : Fragment(), PlayersContract.PlayersView {
 
     private fun playerToggle(id: Long, add: Boolean) {
         presenter.addRemoveParticipant(args.gameID, id, add, args.totPlayers)
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 
     private fun showCreatePlayerDialog() {

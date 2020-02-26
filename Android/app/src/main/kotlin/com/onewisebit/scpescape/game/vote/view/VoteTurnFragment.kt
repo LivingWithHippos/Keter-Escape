@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.onewisebit.scpescape.databinding.FragmentVoteTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.game.vote.VoteTurnContract
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
@@ -26,7 +27,7 @@ import org.koin.core.parameter.parametersOf
  * A simple [Fragment] subclass.
  */
 class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment(gameID, onActionListener), VoteTurnContract.VoteTurnView {
+    BaseGameFragment<FragmentVoteTurnBinding>(gameID, onActionListener), VoteTurnContract.VoteTurnView {
 
     // todo: this is null here, needs to be called later or replace with navigationarguments()
     //private val args = arguments
@@ -41,9 +42,6 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
     private lateinit var roleName: String
     private lateinit var roundCode: String
     private var lastTurn: Boolean = false
-
-    private var _binding: FragmentVoteTurnBinding? = null
-    private val binding get() = _binding!!
 
     private val job = Job()
     val uiScope = CoroutineScope(Dispatchers.Main + job)
@@ -112,11 +110,6 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
     override fun setFab(visible: Boolean) {
         //if the status received is the one already present skip it
         binding.fabCastVote.visibility = View.VISIBLE
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 
     companion object {

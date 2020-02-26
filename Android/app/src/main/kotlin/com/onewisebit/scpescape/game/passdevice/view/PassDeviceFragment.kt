@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentPassDeviceBinding
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
 
@@ -15,10 +16,7 @@ import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
  * A simple [Fragment] subclass.
  */
 class PassDeviceFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment(gameID, onActionListener) {
-
-    private var _binding: FragmentPassDeviceBinding? = null
-    private val binding get() = _binding!!
+    BaseGameFragment<FragmentPassDeviceBinding>(gameID, onActionListener) {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +27,6 @@ class PassDeviceFragment(gameID: Long, private val onActionListener: (action: Ac
             ?: throw IllegalArgumentException("Couldn't load player name from arguments")
         initView(playerName)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 
     fun initView(playerName: String) {

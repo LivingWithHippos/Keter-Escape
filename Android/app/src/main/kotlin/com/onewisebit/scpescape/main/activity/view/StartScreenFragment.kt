@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.databinding.FragmentStartScreenBinding
 
 /**
@@ -13,10 +14,7 @@ import com.onewisebit.scpescape.databinding.FragmentStartScreenBinding
  * Use the [StartScreenFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class StartScreenFragment : Fragment() {
-
-    private var _binding: FragmentStartScreenBinding? = null
-    private val binding get() = _binding!!
+class StartScreenFragment : BaseSCPFragment<FragmentStartScreenBinding>() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,11 +41,6 @@ class StartScreenFragment : Fragment() {
                 StartScreenFragmentDirections.actionStartToNewGame()
             view.findNavController().navigate(action)
         }
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 
     companion object {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.databinding.FragmentNewGameBinding
 import com.onewisebit.scpescape.utilities.GAME_TYPE_PASS
 
@@ -19,13 +20,10 @@ private const val ARG_PARAM2 = "param2"
  * Use the [NewGameFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NewGameFragment : Fragment() {
+class NewGameFragment : BaseSCPFragment<FragmentNewGameBinding>() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
-    private var _binding: FragmentNewGameBinding? = null
-    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,11 +50,6 @@ class NewGameFragment : Fragment() {
             val action = NewGameFragmentDirections.actionNewGameToGameMode(gameType)
             view.findNavController().navigate(action)
         }
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 
     companion object {
