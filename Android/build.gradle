@@ -28,7 +28,7 @@ allprojects {
 
 ext {
 
-    workVersion = '2.3.2'
+    workVersion = '2.3.3'
     roomVersion = '2.2.4'
     gsonVersion = '2.8.6'
 
