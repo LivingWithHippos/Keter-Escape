@@ -72,6 +72,7 @@ open class GamePresenterImpl(
         // make this more modular, something like applyEffect(action,votes), maybe move it to a EffectContract
         val votes: MutableList<Vote> = mutableListOf()
         votes.addAll(getLastRoundVotes())
+        // load all the possible vote actions
         val voteActions = getModeActions().filterIsInstance<VoteSettings>()
 
         // players to be killed directly
