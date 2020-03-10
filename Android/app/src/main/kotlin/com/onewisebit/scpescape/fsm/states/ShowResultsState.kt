@@ -6,7 +6,7 @@ class ShowResultsState : StateGame {
     override fun consumeAction(action: Action): StateGame {
         return when (action) {
             is Action.StartRoundClicked -> RoundInfoState()
-            else -> throw IllegalStateException("Invalid action: $action passed to a ShowResults state")
+            else -> throw IllegalGameStateTransition("Invalid action: $action passed to a ShowResults state")
         }
     }
 }

@@ -8,7 +8,7 @@ class PlayerPowerState : StateGame {
         return when (action) {
             is Action.EndRoundClicked -> ShowResultsState()
             is Action.EndTurnClicked -> PassDeviceState()
-            else -> throw IllegalStateException("Invalid action: $action passed to a PlayerPower state")
+            else -> throw IllegalGameStateTransition("Invalid action: $action passed to a PlayerPower state")
         }
     }
 }

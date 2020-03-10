@@ -8,8 +8,7 @@ class PlayerTurnState : StateGame {
             is Action.EndRoundClicked -> ShowResultsState()
             is Action.EndTurnClicked -> PassDeviceState()
             is Action.PlayTurnClicked -> PlayerPowerState()
-            //todo: replace all these with illegal argument?
-            else -> throw IllegalStateException("Invalid action: $action passed to a PlayerTurn state")
+            else -> throw IllegalGameStateTransition("Invalid action: $action passed to a PlayerTurn state")
         }
     }
 }

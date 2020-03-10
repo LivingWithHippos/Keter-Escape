@@ -7,7 +7,7 @@ class RoundInfoState(val dayOrNight: Int = NIGHT) : StateGame {
     override fun consumeAction(action: Action): StateGame {
         return when (action) {
             is Action.StartRoundClicked -> PassDeviceState()
-            else -> throw IllegalStateException("Invalid action: $action passed to a RoundInfo state")
+            else -> throw IllegalGameStateTransition("Invalid action: $action passed to a RoundInfo state")
         }
     }
 }

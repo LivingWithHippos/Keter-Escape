@@ -7,7 +7,7 @@ class IntroState : StateGame {
     override fun consumeAction(action: Action): StateGame {
         return when (action) {
             is Action.StartGameClicked -> RoundInfoState(NIGHT)
-            else -> throw IllegalStateException("Invalid action: $action passed to an Intro state")
+            else -> throw IllegalGameStateTransition("Invalid action: $action passed to an Intro state")
         }
     }
 }
