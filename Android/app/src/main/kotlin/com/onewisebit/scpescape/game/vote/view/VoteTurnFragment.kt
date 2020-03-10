@@ -107,8 +107,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
     }
 
     override fun setFab(visible: Boolean) {
-        //if the status received is the one already present skip it
-        binding.fabCastVote.visibility = View.VISIBLE
+        binding.fabCastVote.visibility = if (visible) View.VISIBLE else View.INVISIBLE
     }
 
     companion object {
