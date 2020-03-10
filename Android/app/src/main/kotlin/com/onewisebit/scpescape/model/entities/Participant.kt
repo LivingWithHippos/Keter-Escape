@@ -31,7 +31,6 @@ data class Participant(
     val gameID: Long,
     @ColumnInfo(name = "player", index = true)
     val playerID: Long,
-    //todo: check if this can implemented as not nullable
     @ColumnInfo(name = "role", index = true)
     val roleName: String?,
     @ColumnInfo(name = "state")

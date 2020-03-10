@@ -35,8 +35,6 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
     private val args: ParticipantsChoiceFragmentArgs by navArgs()
     private val presenter: PlayersContract.PlayersPresenter by inject { parametersOf(this) }
 
-    //TODO: add diffutils
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
