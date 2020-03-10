@@ -6,7 +6,8 @@
     <string name="info_title_placeholder">%1s</string>
     <string name="info_description_placeholder">%1s</string>
     <string name="round_results_placeholder">%1$</string>
-    <string name="round_deaths_placeholder">%1$</string>
+    <string name="round_title_placeholder">%1$</string>
+    <string name="round_description_placeholder">%1$</string>
     <!-->end placeholders<!-->
     <string name="app_name">SCP Escape</string>
     <string name="welcome_d">Welcome to the Foundation, D Boi</string>
