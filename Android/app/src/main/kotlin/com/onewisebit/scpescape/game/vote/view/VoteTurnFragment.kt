@@ -59,7 +59,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
 
         adapter = VoteAdapter(
             emptyList()
-        ) { id: Long, setChecked: (checked: Boolean) -> Unit -> playerVoted(id, setChecked) }
+        ) { id: Long, setChecked: (checked: Boolean) -> Unit -> processVote(id, setChecked) }
 
         arguments?.let {
             roleName = it.getString(ARG_ROLE_NAME)!!
@@ -94,9 +94,8 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         adapter.updateLists(voteParticipants)
     }
 
-    private fun playerVoted(votedPlayerId: Long, setViewChecked: (Boolean) -> Unit) {
+    private fun processVote(votedPlayerId: Long, setViewChecked: (Boolean) -> Unit) {
         uiScope.launch {
-            //todo: rename, this function must also manage removal of the vote
             val voteAdded = presenter.setCurrentTurnVote(votedPlayerId)
             Log.d(TAG, "Voted player $id: added: $voteAdded")
             setViewChecked(voteAdded)
