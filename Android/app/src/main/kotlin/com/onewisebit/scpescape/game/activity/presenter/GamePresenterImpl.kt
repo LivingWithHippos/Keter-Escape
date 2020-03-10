@@ -199,7 +199,6 @@ open class GamePresenterImpl(
                 }
 
             // remove used votes
-            //todo: check if it works
             votes.removeAll(currentVotes)
         }
 
