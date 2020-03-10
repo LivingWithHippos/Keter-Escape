@@ -48,10 +48,6 @@ ext {
     cardviewVersion = '1.0.0'
 
     spotlessVersion = '3.27.2'
-
-    junitVersion = '4.13'
-    testVersion = '1.2.0'
-    espressoVersion = '3.2.0'
 }
 
 
