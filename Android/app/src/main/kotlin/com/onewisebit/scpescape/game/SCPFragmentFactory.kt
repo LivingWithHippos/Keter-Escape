@@ -8,6 +8,7 @@ import com.onewisebit.scpescape.game.intro.view.IntroFragment
 import com.onewisebit.scpescape.game.passdevice.view.PassDeviceFragment
 import com.onewisebit.scpescape.game.playerturn.view.PlayerTurnFragment
 import com.onewisebit.scpescape.game.roundinfo.view.RoundInfoFragment
+import com.onewisebit.scpescape.game.roundresult.view.RoundResultFragment
 import com.onewisebit.scpescape.game.vote.view.VoteTurnFragment
 
 class SCPFragmentFactory(
@@ -39,6 +40,10 @@ class SCPFragmentFactory(
                 onActionListener
             )
             VoteTurnFragment::class.java.name -> VoteTurnFragment(
+                gameID,
+                onActionListener
+            )
+            RoundResultFragment::class.java.name -> VoteTurnFragment(
                 gameID,
                 onActionListener
             )
