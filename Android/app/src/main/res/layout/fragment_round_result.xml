@@ -8,11 +8,11 @@
     tools:context=".game.roundresult.view.RoundResultFragment">
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvRoundResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/round_title_placeholder"
-        app:layout_constraintBottom_toTopOf="@+id/tvDescription"
+        android:text="@string/round_results_placeholder"
+        app:layout_constraintBottom_toTopOf="@+id/tvRoundDeaths"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,36 +20,16 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/tvDescription"
+        android:id="@+id/tvRoundDeaths"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/round_description_placeholder"
-        app:layout_constraintBottom_toTopOf="@id/svList"
+        android:text="@string/round_deaths_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/fabNextStep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRoundResult" />
 
-
-    <ScrollView
-        android:id="@+id/svList"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        app:layout_constraintBottom_toTopOf="@+id/fabNextStep">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDeadPpl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/vote_list_item">
-
-        </androidx.recyclerview.widget.RecyclerView>
-    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabNextStep"
