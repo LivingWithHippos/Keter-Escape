@@ -58,4 +58,5 @@
     <string name="player_picture">Player Picture</string>
     <string name="voted_by">Voted By</string>
     <string name="voted">Voted</string>
+    <string name="round_no_deaths">Everyone is still standing. But you are still not out of dangers.</string>
 </resources>
