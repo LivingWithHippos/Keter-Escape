@@ -76,7 +76,6 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         binding.rvVotes.layoutManager = layoutManager
         binding.rvVotes.adapter = adapter
 
-        //todo: rework this since it is similar to InfoTurn's one
         binding.fabCastVote.setOnClickListener {
             arguments?.let {
                 if (it.getBoolean(ARG_LAST_TURN))
