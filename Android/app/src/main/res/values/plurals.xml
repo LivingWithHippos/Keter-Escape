@@ -5,7 +5,7 @@
         <item quantity="other">Select %1d players. %2d players remaining.</item>
     </plurals>
     <plurals name="round_deaths">
-        <item quantity="one">A body hits the floor. You recognize it. It's %1s</item>
-        <item quantity="other">Luckily you're still alive. But others have fallen: %1s</item>
+        <item quantity="one">A body hits the floor. You recognize it. It\'s %1s</item>
+        <item quantity="other">Luckily you\'re still alive. But others have fallen: %1s</item>
     </plurals>
 </resources>
