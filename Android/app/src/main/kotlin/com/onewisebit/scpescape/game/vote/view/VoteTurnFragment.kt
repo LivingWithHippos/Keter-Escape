@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.onewisebit.scpescape.databinding.FragmentVoteTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.game.vote.VoteTurnContract
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
@@ -99,7 +98,7 @@ class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Acti
     private fun playerVoted(votedPlayerId: Long, setViewChecked: (Boolean) -> Unit) {
         uiScope.launch {
             //todo: rename, this function must also manage removal of the vote
-            val voteAdded = presenter.addCurrentTurnVote(votedPlayerId)
+            val voteAdded = presenter.setCurrentTurnVote(votedPlayerId)
             Log.d(TAG, "Voted player $id: added: $voteAdded")
             setViewChecked(voteAdded)
             //todo: move this in presenter.addCurrentTurnVote?

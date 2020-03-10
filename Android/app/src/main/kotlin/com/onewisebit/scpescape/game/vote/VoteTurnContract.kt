@@ -14,7 +14,7 @@ interface VoteTurnContract {
     interface VoteTurnPresenter : ContractVote.PresenterVote, ContractAction.PresenterAction,
         ContractParticipant.PresenterParticipant, ContractPlayer.PresenterPlayer {
         suspend fun loadValues(roleName: String, roundCode: String)
-        suspend fun addCurrentTurnVote(votedPlayerId: Long): Boolean
+        suspend fun setCurrentTurnVote(votedPlayerId: Long): Boolean
         suspend fun checkVotes()
     }
 

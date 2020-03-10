@@ -76,7 +76,7 @@ class VoteTurnPresenterImpl(
 
     }
 
-    override suspend fun addCurrentTurnVote(votedPlayerId: Long): Boolean {
+    override suspend fun setCurrentTurnVote(votedPlayerId: Long): Boolean {
         var inserted = false
         //check if the vote can be added
         if (action != null) {
