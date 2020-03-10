@@ -27,7 +27,7 @@ class SCPApplication : Application() {
         }
 
         //ping the db so it gets created on the first run
-        //TODO: test if it happens
+        // remove the temporary, un-started games
         val db: SCPDatabase by inject()
         db.gameDAO().deleteTemporaryGames().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
