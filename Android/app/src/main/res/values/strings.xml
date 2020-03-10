@@ -1,4 +1,13 @@
 <resources>
+    <!-->placeholders<!-->
+    <string name="player_name_placeholder">%1s</string>
+    <string name="player_role_placeholder">%1s</string>
+    <string name="player_role_description_placeholder">%1s</string>
+    <string name="info_title_placeholder">%1s</string>
+    <string name="info_description_placeholder">%1s</string>
+    <string name="round_results_placeholder">%1$</string>
+    <string name="round_deaths_placeholder">%1$</string>
+    <!-->end placeholders<!-->
     <string name="app_name">SCP Escape</string>
     <string name="welcome_d">Welcome to the Foundation, D Boi</string>
     <string name="foundation_logo">Foundation Logo</string>
@@ -49,12 +58,4 @@
     <string name="player_picture">Player Picture</string>
     <string name="voted_by">Voted By</string>
     <string name="voted">Voted</string>
-    <!-->placeholders<!-->
-    <string name="player_name_placeholder">%1s</string>
-    <string name="player_role_placeholder">%1s</string>
-    <string name="player_role_description_placeholder">%1s</string>
-    <string name="info_title_placeholder">%1s</string>
-    <string name="info_description_placeholder">%1s</string>
-    <string name="round_results_placeholder">%1$</string>
-    <string name="round_deaths_placeholder">%1$</string>
 </resources>
