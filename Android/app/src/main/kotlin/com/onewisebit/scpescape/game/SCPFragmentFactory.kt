@@ -43,7 +43,7 @@ class SCPFragmentFactory(
                 gameID,
                 onActionListener
             )
-            RoundResultFragment::class.java.name -> VoteTurnFragment(
+            RoundResultFragment::class.java.name -> RoundResultFragment(
                 gameID,
                 onActionListener
             )
