@@ -151,9 +151,9 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun showRoundResultFragment(killedPlayers: List<Long>) {
+    override fun showRoundResultFragment(killedPlayers: List<String>) {
         val arguments = Bundle()
-        arguments.putLongArray(ARG_KILLED_PLAYERS, killedPlayers.toLongArray())
+        arguments.putStringArray(ARG_KILLED_PLAYERS, killedPlayers.toTypedArray())
         supportFragmentManager.commit {
             replace<RoundResultFragment>(R.id.fragment_container_view, args = arguments)
         }

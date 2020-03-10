@@ -218,7 +218,11 @@ open class GamePresenterImpl(
         killParticipants(sureDeathPlayers.toList())
 
         // pass kill list to be shown
-        gameView.showRoundResultFragment(sureDeathPlayers.toList())
+        val deadNames = mutableListOf<String>()
+        sureDeathPlayers.forEach { id ->
+            deadNames.add(playerPresenter.getPlayer(id).name)
+        }
+        gameView.showRoundResultFragment(deadNames)
     }
 
     private suspend fun killParticipants(idList: List<Long>) {
