@@ -16,7 +16,7 @@ data class InfoSettings(
     var settings: Settings?
 ) : TurnAction {
     // see [VoteTurn.kt] for info about this
-    override fun merge(derived: Mergeable) {
+    override fun merge(derived: Mergeable, mergeSettings: MergeSettings?) {
         if (derived is InfoSettings) {
             extends = derived.extends
             name = derived.name
@@ -35,7 +35,7 @@ data class Information(
     @SerializedName("description")
     var description: String?
 ) : Mergeable {
-    override fun merge(derived: Mergeable) {
+    override fun merge(derived: Mergeable, mergeSettings: MergeSettings?) {
         if (derived is Information) {
             derived.title?.let { title = it }
             derived.description?.let { description = it }
@@ -49,7 +49,7 @@ data class Settings(
     @SerializedName("timer")
     var timer: Timer?
 ) : Mergeable {
-    override fun merge(derived: Mergeable) {
+    override fun merge(derived: Mergeable, mergeSettings: MergeSettings?) {
         if (derived is Settings) {
             derived.background?.let { background = it }
             derived.timer?.let { timer!!.merge(it) }
@@ -63,7 +63,7 @@ data class Background(
     @SerializedName("color")
     var color: String?
 ) : Mergeable {
-    override fun merge(derived: Mergeable) {
+    override fun merge(derived: Mergeable, mergeSettings: MergeSettings?) {
         if (derived is Background) {
             derived.active?.let { active = it }
             derived.color?.let { color = it }
@@ -77,7 +77,7 @@ data class Timer(
     @SerializedName("seconds")
     var seconds: Int?
 ) : Mergeable {
-    override fun merge(derived: Mergeable) {
+    override fun merge(derived: Mergeable, mergeSettings: MergeSettings?) {
         if (derived is Timer) {
             derived.active?.let { active = it }
             derived.seconds?.let { seconds = it }
