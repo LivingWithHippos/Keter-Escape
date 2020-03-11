@@ -23,6 +23,8 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) :
         if (roundsNumber > 0)
             roundsNumber += 1
 
-        roundRepository.insertRound(Round(roundsNumber, gameID, getRoundsMode(gameID), details))
+        val mode = getRoundsMode(gameID)
+
+        roundRepository.insertRound(Round(roundsNumber, gameID, mode, details))
     }
 }
