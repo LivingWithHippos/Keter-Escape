@@ -17,25 +17,31 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) :
 
     override suspend fun getRoundsMode(gameId: Long): Int = roundRepository.getRoundsMode(gameId)
 
-    override suspend fun addRound(gameID: Long, details: String) {
-        var roundsNumber = roundRepository.getRoundsNumber(gameID)
+    override suspend fun addRound(gameID: Long, details: String, roundNumber: Int) {
+        var number = roundNumber
 
-        if (roundsNumber > 0)
-            roundsNumber += 1
+        if (number < 0) {
+            number = roundRepository.getRoundsNumber(gameID)
+            if (number > 0)
+                number += 1
+        }
 
         val mode = getRoundsMode(gameID)
 
-        roundRepository.insertRound(Round(roundsNumber, gameID, mode, details))
+        roundRepository.insertRound(Round(number, gameID, mode, details))
     }
 
     /**
-     * Add a round with the opposite detail of the previous one
+     * Adds a round with the opposite detail of the previous one. Will throw an exception if there are no previous rounds.
      */
     override suspend fun addRound(gameID: Long) {
         val lastRound = roundRepository.getLastRound(gameID)
-        lastRound?.let {
+
+        if (lastRound == null)
+            throw IllegalAccessError("Null round loaded. This probably means this method was used before the creation of the first round.")
+        else {
             val details = if (lastRound.details=="lights_out" ) "lights_on" else "lights_out"
-            addRound(gameID,details)
+            addRound(gameID,details, lastRound.num+1)
         }
     }
 }
