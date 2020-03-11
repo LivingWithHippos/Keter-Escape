@@ -73,6 +73,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             is PassDeviceState -> Log.d(TAG, "Device passed clicked from PassDevice GameState")
             is PlayerTurnState -> Log.d(TAG, "Play turn clicked from PlayerTurn GameState")
             is PlayerPowerState -> Log.d(TAG, "Play turn clicked from PlayerPower GameState")
+            is ShowResultsState -> Log.d(TAG, "Play turn clicked from ShowResults GameState")
         }
         //TODO: check what can be moved to presenter/view
         when (newState) {

@@ -9,6 +9,8 @@ sealed class Action {
     class EndRoundClicked : Action()
     class StartVotePowerClicked : Action()
     class StartInfoPowerClicked : Action()
-    class StartRoundClicked : Action()
+    class VictoryReached : Action()
+    class StartDayRoundClicked : Action()
+    class StartNightRoundClicked : Action()
     class StartGameClicked : Action()
 }
