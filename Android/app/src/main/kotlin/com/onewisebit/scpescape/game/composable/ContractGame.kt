@@ -95,6 +95,7 @@ interface ContractRound {
         suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails?
         suspend fun getAllModeDetails(modeId: Int): List<RoundDetails>?
         suspend fun addRound(gameID: Long, details: String)
+        suspend fun addRound(gameID: Long)
         suspend fun getRoundsMode(gameId: Long): Int
     }
 }

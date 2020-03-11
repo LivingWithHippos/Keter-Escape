@@ -27,4 +27,15 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) :
 
         roundRepository.insertRound(Round(roundsNumber, gameID, mode, details))
     }
+
+    /**
+     * Add a round with the opposite detail of the previous one
+     */
+    override suspend fun addRound(gameID: Long) {
+        val lastRound = roundRepository.getLastRound(gameID)
+        lastRound?.let {
+            val details = if (lastRound.details=="lights_out" ) "lights_on" else "lights_out"
+            addRound(gameID,details)
+        }
+    }
 }
