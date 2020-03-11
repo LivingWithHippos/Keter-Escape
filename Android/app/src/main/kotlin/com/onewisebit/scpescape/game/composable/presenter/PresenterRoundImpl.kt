@@ -10,8 +10,9 @@ class PresenterRoundImpl(val modelRound: ContractRound.ModelRound, val gameID: L
     override suspend fun getRounds(): List<Round> = modelRound.getRounds(gameID)
 
     override suspend fun getCurrentRound(): Round {
-        return getRounds().maxBy { it.num }
+        val round = modelRound.getLastRound(gameID)
             ?: throw IllegalStateException("PresenterRound couldn't get last round from game $gameID")
+        return round
     }
 
     override suspend fun getCurrentRoundDetails(): RoundDetails? {
