@@ -18,12 +18,10 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) :
     override suspend fun getRoundsMode(gameId: Long): Int = roundRepository.getRoundsMode(gameId)
 
     override suspend fun addRound(gameID: Long, details: String) {
-        val roundsNumber = roundRepository.getRoundsNumber(gameID).run {
-            if (this == 0)
-                0
-            else
-                this + 1
-        }
+        var roundsNumber = roundRepository.getRoundsNumber(gameID)
+
+        if (roundsNumber > 0)
+            roundsNumber += 1
 
         roundRepository.insertRound(Round(roundsNumber, gameID, getRoundsMode(gameID), details))
     }
