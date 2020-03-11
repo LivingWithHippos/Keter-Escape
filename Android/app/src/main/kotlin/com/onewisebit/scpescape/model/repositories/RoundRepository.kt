@@ -72,6 +72,9 @@ class RoundRepository(
             }
         }
 
+    /**
+     * returns the number of turns in the table or zero if there are none.
+     */
     override suspend fun getRoundsNumber(gameId: Long): Int = roundDAO.getRoundsNumber(gameId)
 
     companion object {
