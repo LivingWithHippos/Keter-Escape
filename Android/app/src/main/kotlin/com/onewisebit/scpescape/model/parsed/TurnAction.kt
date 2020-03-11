@@ -7,5 +7,7 @@ interface TurnAction : Mergeable {
 }
 
 interface Mergeable {
-    fun merge(derived: Mergeable)
+    fun merge(derived: Mergeable, settings: MergeSettings? = null)
 }
+
+data class MergeSettings(val joinArrays: Boolean)
