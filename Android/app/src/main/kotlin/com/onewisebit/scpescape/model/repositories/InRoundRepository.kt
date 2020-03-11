@@ -10,6 +10,8 @@ interface InRoundRepository {
 
     suspend fun getRounds(gameID: Long): List<Round>
 
+    suspend fun getLastRound(gameID: Long): Round?
+
     fun deleteGameRounds(gameID: Long): Completable
 
     suspend fun getGameRoundInfo(gameId: Long, roundCode: String): RoundDetails?

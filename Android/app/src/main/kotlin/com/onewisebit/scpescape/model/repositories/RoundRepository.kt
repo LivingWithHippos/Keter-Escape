@@ -25,6 +25,8 @@ class RoundRepository(
 
     override suspend fun getRounds(gameID: Long): List<Round> = roundDAO.getRounds(gameID)
 
+    override suspend fun getLastRound(gameID: Long): Round? = roundDAO.getCurrentRound(gameID)
+
     override fun deleteGameRounds(gameID: Long): Completable = roundDAO.deleteGameRounds(gameID)
 
     override suspend fun getRoundsMode(gameID: Long): Int = roundDAO.getRoundMode(gameID)
