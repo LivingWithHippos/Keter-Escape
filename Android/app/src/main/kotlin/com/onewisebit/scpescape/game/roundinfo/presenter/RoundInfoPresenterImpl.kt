@@ -19,4 +19,8 @@ class RoundInfoPresenterImpl(
         }
     }
 
+    suspend fun getRoundType(): String {
+        return roundPresenter.getCurrentRound().details
+    }
+
 }
