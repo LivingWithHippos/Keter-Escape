@@ -9,6 +9,8 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) :
     ContractRound.ModelRound {
     override suspend fun getRounds(gameID: Long): List<Round> = roundRepository.getRounds(gameID)
 
+    override suspend fun getLastRound(gameID: Long): Round? = roundRepository.getLastRound(gameID)
+
     override suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails? =
         roundRepository.getRoundInfo(modeId, roundCode)
 
