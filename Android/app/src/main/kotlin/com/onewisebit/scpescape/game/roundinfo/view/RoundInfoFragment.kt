@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.onewisebit.scpescape.databinding.FragmentRoundInfoBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.game.roundinfo.RoundInfoContract
 import com.onewisebit.scpescape.model.parsed.RoundDetails
@@ -51,7 +50,8 @@ class RoundInfoFragment(gameID: Long, private val onActionListener: (action: Act
         binding.tvDescription.text = info.description
         binding.fabNextStep.setOnClickListener {
             binding.fabNextStep.isEnabled = false
-            onActionListener(Action.StartRoundClicked())
+            //todo: return the right round
+            onActionListener(Action.StartDayRoundClicked())
         }
     }
 
