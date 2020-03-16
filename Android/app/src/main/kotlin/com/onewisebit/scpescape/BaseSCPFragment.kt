@@ -2,7 +2,6 @@ package com.onewisebit.scpescape
 
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.onewisebit.scpescape.fsm.actions.Action
 
 abstract class BaseSCPFragment<T : ViewBinding> : Fragment()
 {
