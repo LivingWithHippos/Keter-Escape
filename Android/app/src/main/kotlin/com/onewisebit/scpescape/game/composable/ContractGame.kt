@@ -1,10 +1,7 @@
 package com.onewisebit.scpescape.game.composable
 
 import com.onewisebit.scpescape.model.entities.*
-import com.onewisebit.scpescape.model.parsed.ModeDataClass
-import com.onewisebit.scpescape.model.parsed.RoleDetails
-import com.onewisebit.scpescape.model.parsed.RoundDetails
-import com.onewisebit.scpescape.model.parsed.TurnAction
+import com.onewisebit.scpescape.model.parsed.*
 
 /**
  * This is an attempt to create a composable MVP, since most of the game related parts are using similar or the same things.
@@ -174,9 +171,11 @@ interface ContractVote {
 interface ContractMode {
     interface PresenterMode {
         suspend fun getMode(): ModeDataClass
+        suspend fun getVictoryConditions(): List<VictoryCondition>
     }
 
     interface ModelMode {
         suspend fun getMode(gameID: Long): ModeDataClass?
+        suspend fun getVictoryConditions(gameID: Long): List<VictoryCondition>
     }
 }
