@@ -76,6 +76,7 @@ val appModule = module {
     single<InModeJSONRepository> { ModeJSONRepository(get()) }
     single<InTurnActionRepository> { TurnActionRepository(get(), get()) }
     single<InVoteRepository> { VoteRepository(get(), get()) }
+    single<InVictoryConditionsRepository> { VictoryConditionsRepository(get()) }
 
     // Composable Game MVP, see ContractGame.kt
 
