@@ -1,0 +1,13 @@
+[
+  {
+    "type": "dead_group",
+    "first_groups": ["SCP"],
+    "message": "As the last enemy hits the floor, you fall to the ground and take a deep breath. You wonder if they're gonna give you amnestic after this.You hope at least you won't have to go on Keter duty for a long while. The sirens stop screaming."
+  },
+  {
+    "type": "less_equal_group",
+    "first_groups": ["Foundation"],
+    "second_groups": ["SCP"],
+    "message": "SCP-███ is yours. Time to flee and leave those Foundation guys to lick their wounds. They'll be back on your trails soon."
+  }
+]
