@@ -254,8 +254,8 @@ open class GamePresenterImpl(
     }
 
     private suspend fun setupNextRound() {
-        val roundType = roundPresenter.getCurrentRound().details
-        gameView.nextRound(roundType)
+        val oldRoundType = roundPresenter.getCurrentRound().details
+        gameView.nextRound(oldRoundType)
     }
 
     private suspend fun areGroupsDead(condition: VictoryCondition): Boolean {
