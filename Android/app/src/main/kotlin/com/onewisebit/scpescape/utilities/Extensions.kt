@@ -22,3 +22,7 @@ fun <T> MutableList<T>.pop(): T? {
     }
     return item
 }
+
+fun String.addNewlineOnDots(): String {
+    return replace(".",".\n")
+}
