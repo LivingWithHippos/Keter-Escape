@@ -24,6 +24,7 @@ class ModeJSONRepository(context: Context) : JSONRepository(context), InModeJSON
                     context.assets.open(path).use { inputStream ->
                         JsonReader(inputStream.reader()).use { jsonReader ->
                             val modeType = object : TypeToken<List<ModeDataClass>>() {}.type
+                            // we need to use a variable here otherwise the boolean from addAll will be returned
                             val added = modesList.addAll(Gson().fromJson(jsonReader, modeType))
                         }
                     }
