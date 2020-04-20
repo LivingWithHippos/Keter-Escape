@@ -137,7 +137,7 @@ val appModule = module {
     }
 
     factory<ContractMode.ModelMode> {
-        ModelModeImpl(get(), get())
+        ModelModeImpl(get(), get(), get())
     }
 
     factory<ContractMode.PresenterMode> { (game: Long) ->
@@ -267,6 +267,7 @@ val appModule = module {
         GamePresenterImpl(
             view,
             get(),
+            get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },

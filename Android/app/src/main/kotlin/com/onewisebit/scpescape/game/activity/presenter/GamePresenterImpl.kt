@@ -4,9 +4,9 @@ import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
 import com.onewisebit.scpescape.model.entities.Vote
 import com.onewisebit.scpescape.model.parsed.InfoSettings
+import com.onewisebit.scpescape.model.parsed.VictoryCondition
 import com.onewisebit.scpescape.model.parsed.VoteSettings
-import com.onewisebit.scpescape.utilities.POWER_INFO
-import com.onewisebit.scpescape.utilities.POWER_VOTE
+import com.onewisebit.scpescape.utilities.*
 
 open class GamePresenterImpl(
     var gameView: GameContract.GameView,
@@ -17,6 +17,7 @@ open class GamePresenterImpl(
     val playerPresenter: ContractPlayer.PresenterPlayer,
     val actionPresenter: ContractAction.PresenterAction,
     val votePresenter: ContractVote.PresenterVote,
+    val modePresenter: ContractMode.PresenterMode,
     val gameID: Long
 ) : GameContract.GamePresenter,
     ContractRound.PresenterRound by roundPresenter,
@@ -24,7 +25,8 @@ open class GamePresenterImpl(
     ContractParticipant.PresenterParticipant by participantPresenter,
     ContractPlayer.PresenterPlayer by playerPresenter,
     ContractAction.PresenterAction by actionPresenter,
-    ContractVote.PresenterVote by votePresenter {
+    ContractVote.PresenterVote by votePresenter,
+    ContractMode.PresenterMode by modePresenter {
 
     override fun onDestroy() {
     }
@@ -223,6 +225,81 @@ open class GamePresenterImpl(
             deadNames.add(playerPresenter.getPlayer(id).name)
         }
         gameView.showRoundResultFragment(deadNames)
+    }
+
+    override suspend fun checkVictory() {
+        // controlla
+        val victoryConditions: List<VictoryCondition> = modePresenter.getVictoryConditions()
+        if (victoryConditions.isEmpty())
+            throw java.lang.IllegalArgumentException("No victory conditions found for game $gameID")
+
+        // victory reached?
+        victoryConditions.forEach{condition ->
+
+            when (condition.type) {
+                DEAD_GROUP ->  if (areGroupsDead(condition)) {
+                    endGame(conditionReached = condition)
+                    return
+                }
+                WLE_GROUP, WL_GROUP, WGE_GROUP, WG_GROUP ->
+                    if (groupsNumbersReached(condition)) {
+                        endGame(conditionReached = condition)
+                        return
+                }
+                else -> throw java.lang.IllegalArgumentException ("Condition ${condition.type} not implemented.")
+            }
+        }
+        //victory not reached. Go to the next round.
+        setupNextRound()
+    }
+
+    private suspend fun setupNextRound() {
+        val roundType = roundPresenter.getCurrentRound().details
+        gameView.nextRound(roundType)
+    }
+
+    private suspend fun areGroupsDead(condition: VictoryCondition): Boolean {
+        val participants = participantPresenter.getAliveParticipants()
+        participants.forEach{participant ->
+            val group = participantPresenter.getGroup(participant.playerID)
+            if (condition.first_groups.contains(group))
+                return false
+        }
+        return true
+    }
+
+    private suspend fun groupsNumbersReached(condition: VictoryCondition): Boolean {
+        val participants = participantPresenter.getAliveParticipants()
+        var firstGroup = 0
+        var secondGroup = 0
+
+        participants.forEach{participant ->
+            val group = participantPresenter.getGroup(participant.playerID)
+            if (condition.first_groups.contains(group))
+                firstGroup += 1
+            if (condition.second_groups.contains(group))
+                secondGroup += 1
+        }
+
+        when (condition.type) {
+            WLE_GROUP -> {
+                return firstGroup <= secondGroup
+            }
+            WL_GROUP -> {
+                return firstGroup < secondGroup
+            }
+            WGE_GROUP -> {
+                return firstGroup >= secondGroup
+            }
+            WG_GROUP -> {
+                return firstGroup > secondGroup
+            }
+            else -> return false
+        }
+    }
+
+    private fun endGame(conditionReached: VictoryCondition) {
+        gameView.endGame(conditionReached.winner, conditionReached.message)
     }
 
     private suspend fun killParticipants(idList: List<Long>) {
