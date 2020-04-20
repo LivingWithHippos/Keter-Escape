@@ -52,6 +52,14 @@ const val PARTICIPANT_STATE_ALIVE = 1
 const val DAY = 0
 const val NIGHT = 1
 
+// Victory conditions type
+
+const val DEAD_GROUP = "dead_group"
+const val WLE_GROUP = "win_if_less_or_equal"
+const val WL_GROUP = "win_if_less"
+const val WGE_GROUP = "win_if_greater_or_equal"
+const val WG_GROUP = "win_if_greater"
+
 // role powers
 
 const val POWER_VOTE = "vote"
