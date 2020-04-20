@@ -31,6 +31,7 @@ class PassDeviceFragment(gameID: Long, private val onActionListener: (action: Ac
 
     fun initView(playerName: String) {
         //TODO: add player picture loading
+        //TODO: add a spinning waiting message
         binding.tvPassDevice.text = getString(R.string.pass_to_player, playerName)
         binding.bConfirmPlayer.text = getString(R.string.i_am_player, playerName)
         binding.bConfirmPlayer.setOnClickListener {
