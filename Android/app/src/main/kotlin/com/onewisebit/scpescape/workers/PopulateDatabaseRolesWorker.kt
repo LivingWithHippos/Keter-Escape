@@ -11,10 +11,9 @@ import com.onewisebit.scpescape.model.database.SCPDatabase
 import com.onewisebit.scpescape.model.entities.Role
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.parsed.RoleDetails
+import com.onewisebit.scpescape.model.parsed.VictoryCondition
 import com.onewisebit.scpescape.model.repositories.JSONRepository
-import com.onewisebit.scpescape.utilities.MODE_FILE
-import com.onewisebit.scpescape.utilities.ROLE_FILE
-import com.onewisebit.scpescape.utilities.ROLE_FOLDER
+import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.coroutineScope
 
 /**
@@ -35,7 +34,10 @@ class PopulateDatabaseRolesWorker(
         val modePaths: MutableList<String> = repo.searchFile(MODE_FILE, maxDepth = 2)
         val database = SCPDatabase.getInstance(applicationContext)
 
+        // parse all the various modes found
         for (path in modePaths) {
+
+            // parse mode details
             val modeDetails: MutableList<ModeDataClass> = mutableListOf()
             try {
                 applicationContext.assets.open(path).use { inputStream ->
@@ -49,6 +51,7 @@ class PopulateDatabaseRolesWorker(
                 Result.failure()
             }
 
+            // parse roles details
             val rolePath = path.removeSuffix(MODE_FILE).plus(ROLE_FOLDER).plus(ROLE_FILE)
 
             try {
