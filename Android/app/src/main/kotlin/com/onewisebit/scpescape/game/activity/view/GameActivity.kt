@@ -82,6 +82,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             is PlayerTurnState -> uiScope.launch { presenter.setupPlayerTurnFragment() }
             is PlayerPowerState -> uiScope.launch { presenter.setupPlayerPowerFragment() }
             is ShowResultsState -> uiScope.launch { presenter.setupRoundResultsFragment() }
+            is CheckVictoryState -> uiScope.launch { presenter.checkVictory() }
         }
 
     }
@@ -155,6 +156,28 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     override fun showRoundResultFragment(killedPlayers: List<String>) {
         val arguments = Bundle()
         arguments.putStringArray(ARG_KILLED_PLAYERS, killedPlayers.toTypedArray())
+        supportFragmentManager.commit {
+            replace<RoundResultFragment>(R.id.fragment_container_view, args = arguments)
+        }
+    }
+
+    override fun nextRound(oldRoundType: String) {
+        //todo: implement round choice from a json parameter in rounds.json, either a number in rounds or an array like "round_sequence": [day,night]
+        when (oldRoundType) {
+            "lights_out" -> {
+                actionReceived(Action.StartDayRoundClicked())
+            }
+            "lights_on" -> {
+                actionReceived(Action.StartNightRoundClicked())
+            }
+        }
+    }
+
+    override fun endGame(winner: String, message: String) {
+        // skip the state machine, the game is finished anyway
+        val arguments = Bundle()
+        arguments.putString(ARG_GAME_WINNER, winner)
+        arguments.putString(ARG_WINNING_MESSAGE, message)
         supportFragmentManager.commit {
             replace<RoundResultFragment>(R.id.fragment_container_view, args = arguments)
         }

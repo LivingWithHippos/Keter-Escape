@@ -12,6 +12,8 @@ interface GameContract {
         fun showPlayerVoteFragment(round: String, role: String, isLastTurn: Boolean = false)
         fun showPlayerInfoFragment(title: String, description: String, isLastTurn: Boolean = false)
         fun showRoundResultFragment(killedPlayers: List<String>)
+        fun nextRound(roundType: String)
+        fun endGame(winner: String, message: String)
     }
 
     interface GamePresenter : ContractRound.PresenterRound, ContractTurn.PresenterTurn,
