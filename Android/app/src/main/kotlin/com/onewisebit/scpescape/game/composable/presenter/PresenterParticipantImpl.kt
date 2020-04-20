@@ -30,4 +30,6 @@ open class PresenterParticipantImpl(
             modelParticipant.setParticipantState(gameID, it, PARTICIPANT_STATE_DEAD)
         }
     }
+
+    override suspend fun getGroup(playerId: Long): String = modelParticipant.getGroup(gameID, playerId)
 }
