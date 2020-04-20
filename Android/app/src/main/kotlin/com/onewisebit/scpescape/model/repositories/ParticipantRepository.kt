@@ -68,6 +68,9 @@ class ParticipantRepository(private val participantDAO: ParticipantDAO) :
     override fun getParticipantRole(gameID: Long, playerID: Long): Single<Role> =
         participantDAO.getParticipantRole(gameID, playerID)
 
+    override suspend fun getParticipantGroup(gameID: Long, playerID: Long): String =
+        participantDAO.getParticipantGroup(gameID, playerID)
+
     override fun insertParticipant(participant: Participant): Completable {
         return participantDAO.insertParticipant(participant)
     }

@@ -18,6 +18,7 @@ interface InParticipantRepository {
     fun getGameParticipantsID(gameID: Long): Flowable<List<Long>>
     fun getParticipantState(gameID: Long, playerID: Long): Int
     fun getParticipantRole(gameID: Long, playerID: Long): Single<Role>
+    suspend fun getParticipantGroup(gameID: Long, playerID: Long): String
     fun insertParticipant(participant: Participant): Completable
     fun updateParticipant(participant: Participant)
     fun removeParticipant(participant: Participant): Completable

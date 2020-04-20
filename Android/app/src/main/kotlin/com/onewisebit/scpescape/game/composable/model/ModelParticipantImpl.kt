@@ -25,4 +25,8 @@ open class ModelParticipantImpl(
 
     override suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int) =
         participantRepository.setParticipantState(gameID, playerID, state)
+
+    override suspend fun getGroup(gameID: Long, playerId: Long): String =
+        participantRepository.getParticipantGroup(gameID, playerId)
+
 }

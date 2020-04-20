@@ -52,6 +52,7 @@ interface ContractParticipant {
         suspend fun getCurrentParticipant(): Participant
         suspend fun getParticipant(playerId: Long): Participant
         suspend fun killParticipantsList(ids: List<Long>)
+        suspend fun getGroup(playerId: Long): String
     }
 
     interface ModelParticipant {
@@ -61,6 +62,7 @@ interface ContractParticipant {
         suspend fun getMissingRoundParticipants(gameID: Long): List<Participant>
         suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String)
         suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int)
+        suspend fun getGroup(gameID: Long, playerId: Long): String
     }
 }
 

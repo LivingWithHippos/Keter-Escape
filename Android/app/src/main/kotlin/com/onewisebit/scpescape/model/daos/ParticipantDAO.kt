@@ -70,6 +70,13 @@ interface ParticipantDAO {
     fun getParticipantRole(gameID: Long, playerID: Long): Single<Role>
 
     /**
+     * Get the group of the role of a participant from a game and player id.
+     * @return the group name from the table with a specific game and player id.
+     */
+    @Query("SELECT roles.role_group FROM roles INNER JOIN participants ON roles.role_name = participants.role WHERE participants.game = :gameID AND participants.player = :playerID")
+    suspend fun getParticipantGroup(gameID: Long, playerID: Long): String
+
+    /**
      * Set the role of a participant from a game, role and player id.
      * @return the Role from the table with a specific game and player id.
      */
