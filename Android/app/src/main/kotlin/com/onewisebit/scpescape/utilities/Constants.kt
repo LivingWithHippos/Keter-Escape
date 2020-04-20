@@ -26,6 +26,8 @@ const val ROLE_FOLDER = "roles/"
 const val ROLE_FILE = "roles.json"
 const val ROUND_FOLDER = "rounds/"
 const val ROUND_FILE = "rounds.json"
+const val VICTORY_FOLDER = "victory/"
+const val VICTORY_FILE = "victory.json"
 
 // shared preferences
 
