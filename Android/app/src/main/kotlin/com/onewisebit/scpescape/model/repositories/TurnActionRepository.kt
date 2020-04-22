@@ -183,14 +183,18 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) :
             mergingStack.add(currentAction.name)
         }
 
-        // there is at least the action we put in so we use !!
+        // this should be the template (last one inserted)
         mergedAction = actionMap[mergingStack.pop()]!!
+        val templateType = mergedAction.extends
+
         // for every action name inserted, from the last (template) to the first (our action), we launch a merge
         while (mergingStack.isNotEmpty()) {
             //todo: check if we should make merge() return the a new object instead of editing it in place. Look at kotlin data classes copy()
             mergedAction.merge(actionMap[mergingStack.pop()]!!)
         }
 
+        // to avoid errors in recognizing the action type (see GamePresenterImpl.setupPlayerPowerFragment() ) we need to set the action.extends as the template one.
+        mergedAction.extends = templateType
         return mergedAction
     }
 
