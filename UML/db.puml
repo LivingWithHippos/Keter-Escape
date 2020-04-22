@@ -1,0 +1,32 @@
+@startuml
+entity "Game" as gm {
+  *id : Long <<generated>>
+  --
+  *mode : String <<FK>>
+  temp: Boolean
+}
+
+entity "Mode" as md {
+  *name : String
+  --
+  rules: String
+  min_players: Int
+  max_players: Int
+}
+
+entity "Player" as pl {
+  *id : Long <<generated>>
+  --
+  *name : String
+  image: String
+}
+
+entity "Participant" as part {
+  *game : Long
+  *player : Long
+  *role : Long
+}
+
+gm ||--o{ md
+
+@enduml
