@@ -46,4 +46,8 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) :
             addRound(gameID,details, lastRound.num+1)
         }
     }
+
+    companion object {
+        private val TAG = ModelRoundImpl::class.java.simpleName
+    }
 }
