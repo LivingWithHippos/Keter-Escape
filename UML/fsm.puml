@@ -1,31 +1,35 @@
 @startuml
-class ShowResultsState
-class RoundInfoState
-class PlayerTurnState
-class PlayerPowerState
-class PassDeviceState
-class IntroState
-class EndGameState
-class CheckVictoryState
+hide empty description
 
-CheckVictoryState -> EndGameState: VictoryReached
-CheckVictoryState - RoundInfoState: StartDayRoundClicked,StartNightRoundClicked >
+State ShowResultsState
+State RoundInfoState
+State PlayerTurnState
+State PlayerPowerState
+State PassDeviceState
+State IntroState
+State EndGameState
+State CheckVictoryState
 
-IntroState - RoundInfoState: StartGameClicked >
 
-PassDeviceState - PlayerTurnState: PassedToPlayerClicked >
+[*] --> IntroState
+IntroState --> RoundInfoState: StartGameClicked
 
-PlayerPowerState - ShowResultsState: EndRoundClicked >
-PlayerPowerState - PassDeviceState: EndTurnClicked >
+PassDeviceState --> PlayerTurnState: PassedToPlayerClicked
 
-PlayerTurnState - ShowResultsState: EndRoundClicked >
-PlayerTurnState - PassDeviceState: EndTurnClicked >
-PlayerTurnState - PlayerPowerState: PlayTurnClicked >
+PlayerPowerState --> ShowResultsState: EndRoundClicked
+PlayerPowerState --> PassDeviceState: EndTurnClicked
 
-RoundInfoState - PassDeviceState: StartDayRoundClicked >
-RoundInfoState - PassDeviceState: StartNightRoundClicked >
+PlayerTurnState --> ShowResultsState: EndRoundClicked
+PlayerTurnState --> PassDeviceState: EndTurnClicked
+PlayerTurnState --> PlayerPowerState: PlayTurnClicked
 
-ShowResultsState - CheckVictoryState: ResultSeenClicked >
+RoundInfoState --> PassDeviceState: StartDayRoundClicked,\nStartNightRoundClicked
 
+ShowResultsState --> CheckVictoryState: ResultSeenClicked
+
+CheckVictoryState --> EndGameState: VictoryReached
+CheckVictoryState --> RoundInfoState: StartDayRoundClicked,\nStartNightRoundClicked
+
+EndGameState --> [*]
 
 @enduml
