@@ -161,16 +161,16 @@ class TurnActionRepository(context: Context, private val modeDAO: ModeDAO) :
 
         // the merged action to be returned
         val mergedAction: TurnAction
-        // the map to quickly get every action by its name
-        val actionMap: HashMap<String, TurnAction> = hashMapOf()
         // a stack to put the actions in the correct merging order.
         val mergingStack: MutableList<String> = mutableListOf()
 
         // populating the actions map with the templates and the mode's actions
         val templates = getTemplates()
+        // the map to quickly get every action by its name
+        val actionMap: HashMap<String, TurnAction> = hashMapOf()
         templates.forEach { actionMap[it.name] = it }
         getModeActions(modeId).forEach { actionMap[it.name] = it }
-
+        // at the bottom of the stack we put the Action we want to complete
         mergingStack.add(action.name)
 
         var currentAction: TurnAction = action

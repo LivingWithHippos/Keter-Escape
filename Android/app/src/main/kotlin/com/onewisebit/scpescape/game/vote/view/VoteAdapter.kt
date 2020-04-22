@@ -14,7 +14,7 @@ class VoteAdapter(
     private val clickListener: (Long, (Boolean) -> Unit) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    //TODO: add vote counter to make it easier to understand how many votes everyone got
     private var voteParticipants: List<VoteParticipant> = voteParticipants
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
