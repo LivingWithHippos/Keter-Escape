@@ -26,6 +26,8 @@ class ModelTurnImpl(val turnRepository: InTurnRepository) :
 
         // check if we're in a new round
         if (lastRoundTurn == null) {
+            //todo: fix error this return null on a new round
+            //todo: turns get deleted between a round and the next one
             val lastTurn = turnRepository.getLastTurn(gameID)
             // check if we're in the first turn of a new round (not the first one)
             if (lastTurn != null) {

@@ -31,6 +31,7 @@ interface RoundDAO {
     @Query("SELECT count(*) FROM rounds WHERE rounds.game = :gameID")
     suspend fun getRoundsNumber(gameID: Long): Int
 
+    //todo: rename method or check if it can be moved to GameDao
     /**
      * Get the rounds mode
      * @return the mode id from the game table, which will be used for all its rounds.
