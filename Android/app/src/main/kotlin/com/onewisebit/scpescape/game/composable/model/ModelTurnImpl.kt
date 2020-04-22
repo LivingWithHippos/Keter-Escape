@@ -23,26 +23,20 @@ class ModelTurnImpl(val turnRepository: InTurnRepository, val roundRepository: I
         var roundNumber: Int = 0
         var turnNumber: Int = 0
 
-        // get the last turn of the last round
-        val lastRoundTurn: Turn? = turnRepository.getLastRoundTurn(gameID)
+        // get the last played turn
+        val lastPlayedTurn: Turn? = turnRepository.getLastTurn(gameID)
+        // get the last created round
+        //todo: check if rounds are always created before turns (should be)
+        val lastRound: Round? = roundRepository.getLastRound(gameID)
 
-        // check if we're in a new round
-        if (lastRoundTurn == null) {
-            //todo: fix error this return null on a new round
-            //todo: turns get deleted between a round and the next one
-            val lastTurn = turnRepository.getLastTurn(gameID)
-            // check if we're in the first turn of a new round (not the first one)
-            if (lastTurn != null) {
-                roundNumber = lastTurn.roundNumber + 1
-                turnNumber = lastTurn.turnNumber + 1
-            }
-            // we don't use else here to account for the first turn of the game because roundNumber and turnNumber are already zero
-        }
-        // we're in a new turn of the same round
-        else {
-            roundNumber = lastRoundTurn.roundNumber
-            turnNumber = lastRoundTurn.turnNumber + 1
-        }
+        if (lastPlayedTurn != null)
+            turnNumber = lastPlayedTurn.turnNumber + 1
+
+        if (lastRound!= null)
+            roundNumber = lastRound.num
+        else
+            throw IllegalArgumentException("Failed to load last Round")
+
 
         turnRepository.insertTurn(
             Turn(
