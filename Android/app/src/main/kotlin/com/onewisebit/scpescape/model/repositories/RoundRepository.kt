@@ -55,21 +55,21 @@ class RoundRepository(
                 ?: throw IllegalArgumentException("No mode found for mode id $modeId")
 
             val roundPath: String = modePath.plus(ROUND_FOLDER).plus(ROUND_FILE)
-
+            //todo: replace with not nullable value and return empty list instead of null
+            var roundList: List<RoundDetails>? = null
             try {
                 // retrieving round details
                 context.assets.open(roundPath).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
                         val roundType = object : TypeToken<List<RoundDetails>>() {}.type
-                        val roundList: List<RoundDetails> = Gson().fromJson(jsonReader, roundType)
-
-                        roundList
+                        roundList = Gson().fromJson(jsonReader, roundType)
                     }
                 }
             } catch (ex: Exception) {
                 Log.e(TAG, "Error reading round details", ex)
-                null
             }
+            //todo: check if it works
+            roundList
         }
 
     /**
