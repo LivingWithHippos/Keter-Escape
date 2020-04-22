@@ -6,7 +6,7 @@ import io.reactivex.Completable
 
 interface InRoundRepository {
 
-    suspend fun insertRound(round: Round)
+    suspend fun insertRound(round: Round): Long
 
     suspend fun getRounds(gameID: Long): List<Round>
 

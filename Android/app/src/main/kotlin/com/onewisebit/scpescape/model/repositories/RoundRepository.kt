@@ -21,7 +21,7 @@ class RoundRepository(
     context: Context
 ) : JSONRepository(context), InRoundRepository {
 
-    override suspend fun insertRound(round: Round) = roundDAO.insertRound(round)
+    override suspend fun insertRound(round: Round): Long = roundDAO.insertRound(round)
 
     override suspend fun getRounds(gameID: Long): List<Round> = roundDAO.getRounds(gameID)
 

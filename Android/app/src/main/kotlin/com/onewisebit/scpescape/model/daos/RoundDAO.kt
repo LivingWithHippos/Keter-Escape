@@ -15,7 +15,7 @@ interface RoundDAO {
      * @param round the Round to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRound(round: Round)
+    suspend fun insertRound(round: Round): Long
 
     /**
      * Get all of the rounds from a game id.
