@@ -12,6 +12,7 @@ import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.utilities.DATABASE_NAME
 import com.onewisebit.scpescape.workers.PopulateDatabaseModesWorker
 import com.onewisebit.scpescape.workers.PopulateDatabaseRolesWorker
+import com.onewisebit.scpescape.workers.PopulateDebugDataWorker
 
 /**
  * The Room database that contains the Users table
@@ -62,6 +63,9 @@ abstract class SCPDatabase : RoomDatabase() {
                         val modeRequest =
                             OneTimeWorkRequestBuilder<PopulateDatabaseModesWorker>().build()
                         manager.enqueue(modeRequest)
+                        val debugDataRequest =
+                            OneTimeWorkRequestBuilder<PopulateDebugDataWorker>().build()
+                        manager.enqueue(debugDataRequest)
                     }
                 })
                 .build()
