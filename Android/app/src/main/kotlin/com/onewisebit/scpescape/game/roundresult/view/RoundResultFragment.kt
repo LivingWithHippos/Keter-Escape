@@ -45,6 +45,7 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
     private fun setupWithDeaths(killedPlayers: Array<String>){
 
         val names = killedPlayers.joinToString(", ")
+        //todo: take these values from rounds.json/ action.json so they can be customized (need to add it)
         binding.tvRoundResult.text = resources.getQuantityString(
             R.plurals.round_deaths,
             killedPlayers.size,
