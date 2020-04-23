@@ -29,6 +29,13 @@ interface PlayerDAO {
     fun insertPlayer(player: Player): Completable
 
     /**
+     * Insert a player in the database. If the player already exists, replace it.
+     * @param player the player to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPlayerCoroutine(player: Player): Long
+
+    /**
      * Update a player in the database.
      * @param player the player to be updated.
      */
