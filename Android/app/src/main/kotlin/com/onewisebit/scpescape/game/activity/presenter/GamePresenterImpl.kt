@@ -119,16 +119,16 @@ open class GamePresenterImpl(
                 // count occurrences of this player id
                 .eachCount()
 
+            // get the maximum number of votes for a player
+            val maxVotes: Int = votesCount.maxBy { it.value }!!.value
+
             if (votesCount.size > 1) {
                 //todo: move to function
                 val draw = action.draw!!
 
                 if (draw.reVoteAll!! || draw.reVoteNoDrawPlayers!!) {
-                    val votes = hashSetOf<Int>()
-                    votesCount.values.forEach { votesNumber ->
-                        if(!votes.add(votesNumber)) {
+                    if(votesCount.filter { it.value == maxVotes }.size>1) {
                             TODO("Implement restarting the current vote round.")
-                        }
                     }
                 }
 
@@ -136,8 +136,6 @@ open class GamePresenterImpl(
                     affectedPlayers.add(votesCount.keys.random())
 
                 if (draw.maxRandom!!) {
-                    // get the maximum number of votes for a player
-                    val maxVotes = votesCount.maxBy { it.value }!!.value
                     affectedPlayers.add(
                         votesCount
                             // get only the ones with a max vote
