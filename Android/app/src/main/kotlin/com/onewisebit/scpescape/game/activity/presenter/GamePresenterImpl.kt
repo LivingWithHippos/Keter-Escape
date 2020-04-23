@@ -111,30 +111,35 @@ open class GamePresenterImpl(
                     throw IllegalArgumentException("The action ${action.name} needs a setting for vote_group")
                 }
             }
-            // check if it's a draw and what to do in that case
-            val votedPlayersId: HashSet<Long> = hashSetOf()
-            votedPlayersId.addAll(currentVotes.map { it.votedPlayerID })
-            if (votedPlayersId.size > 1) {
+
+            // create a Map with <playerID,number of votes for that Player>
+            val votesCount = currentVotes
+                // group by voted player id
+                .groupingBy { it.votedPlayerID }
+                // count occurrences of this player id
+                .eachCount()
+
+            if (votesCount.size > 1) {
                 //todo: move to function
                 val draw = action.draw!!
 
                 if (draw.reVoteAll!! || draw.reVoteNoDrawPlayers!!) {
-                    TODO("not implemented. For daily vote we need to start another day round.")
+                    val votes = hashSetOf<Int>()
+                    votesCount.values.forEach { votesNumber ->
+                        if(!votes.add(votesNumber)) {
+                            TODO("Implement restarting the current vote round.")
+                        }
+                    }
                 }
 
                 if (draw.random!!)
-                    affectedPlayers.add(votedPlayersId.random())
+                    affectedPlayers.add(votesCount.keys.random())
 
                 if (draw.maxRandom!!) {
-                    val voteCount = currentVotes
-                        // group by voted player id
-                        .groupingBy { it.votedPlayerID }
-                        // count occurrences of this player id
-                        .eachCount()
                     // get the maximum number of votes for a player
-                    val maxVotes = voteCount.maxBy { it.value }!!.value
+                    val maxVotes = votesCount.maxBy { it.value }!!.value
                     affectedPlayers.add(
-                        voteCount
+                        votesCount
                             // get only the ones with a max vote
                             .filter { it.value == maxVotes }
                             // get the keys (voted player id)
@@ -152,7 +157,7 @@ open class GamePresenterImpl(
                 }
 
             } else {
-                affectedPlayers.add(votedPlayersId.first())
+                affectedPlayers.add(votesCount.keys.first())
             }
 
             // add to corresponding lists
