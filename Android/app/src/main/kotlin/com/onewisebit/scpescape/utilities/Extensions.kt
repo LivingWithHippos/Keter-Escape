@@ -26,3 +26,11 @@ fun <T> MutableList<T>.pop(): T? {
 fun String.addNewlineOnDots(): String {
     return replace(".",".\n")
 }
+
+fun MutableList<String>.containsIgnoreCase(element: String): Boolean {
+    this.forEach {
+        if(it.equals(element, ignoreCase = true))
+            return true
+    }
+    return false
+}
