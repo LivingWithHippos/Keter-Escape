@@ -1,11 +1,11 @@
 package com.onewisebit.scpescape.game.activity.presenter
 
+import android.util.Log
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
+import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Vote
-import com.onewisebit.scpescape.model.parsed.InfoSettings
-import com.onewisebit.scpescape.model.parsed.VictoryCondition
-import com.onewisebit.scpescape.model.parsed.VoteSettings
+import com.onewisebit.scpescape.model.parsed.*
 import com.onewisebit.scpescape.utilities.*
 
 open class GamePresenterImpl(
@@ -72,8 +72,11 @@ open class GamePresenterImpl(
         //todo: parse here only the effects having VoteSettings.applied.end_round = true
         // and add one check after every turn for VoteSettings.applied.end_turn = true (maybe checking oldState = PlayerPower in  the activity)
         // make this more modular, something like applyEffect(action,votes), maybe move it to a EffectContract
-        val votes: MutableList<Vote> = mutableListOf()
-        votes.addAll(getLastRoundVotes())
+        val roundVotes: MutableList<Vote> = mutableListOf()
+        roundVotes.addAll(getLastRoundVotes())
+        roundVotes.forEach {
+            Log.d(TAG,"round vote: $it")
+        }
         // load all the possible vote actions
         val voteActions = getModeActions().filterIsInstance<VoteSettings>()
 
@@ -86,11 +89,12 @@ open class GamePresenterImpl(
         // players to be killed on another player's death. If the first one dies, so does the second.
         val pairedDeathPlayers: MutableList<Pair<Long, Long>> = mutableListOf()
 
-        voteLoop@ while (votes.size > 0) {
+        voteLoop@ while (roundVotes.size > 0) {
+            val currentVote = roundVotes.first()
             // I always process from the first vote, then remove all the used votes
-            val action = voteActions.first { it.name == votes.first().voteAction }
+            val action = voteActions.first { it.name == currentVote.voteAction }
             // all the votes involved in this action that will be removed from votes in the end
-            val currentVotes: MutableList<Vote> = mutableListOf()
+            val currentVotes: MutableSet<Vote> = mutableSetOf()
             // players that will be affected by the action effect
             val affectedPlayers: MutableList<Long> = mutableListOf()
             /*
@@ -99,18 +103,18 @@ open class GamePresenterImpl(
             controlla effetto "effect"
             controlla quando applicare "applied"
              */
-            // check vote grouping
-            //todo: move to function
+            // check votes grouping
             val groupVote = action.voteGroup!!
-            if (groupVote.action!!) {
-                currentVotes.addAll(votes.filter { it.voteAction == action.name })
-            } else {
-                if (groupVote.self!!) {
-                    currentVotes.add(votes.first())
-                } else {
-                    throw IllegalArgumentException("The action ${action.name} needs a setting for vote_group")
-                }
+            Log.d(TAG,"self: $groupVote.self")
+            currentVotes.addAll(groupVotes(groupVote,roundVotes,currentVote))
+
+            currentVotes.forEach {
+                Log.d(TAG,"current vote : $it")
             }
+
+            if (currentVotes.isNullOrEmpty())
+                throw IllegalArgumentException("The current vote action is probably missing a group_vote option")
+
 
             // create a Map with <playerID,number of votes for that Player>
             val votesCount = currentVotes
@@ -118,49 +122,31 @@ open class GamePresenterImpl(
                 .groupingBy { it.votedPlayerID }
                 // count occurrences of this player id
                 .eachCount()
+            votesCount.keys.forEach { playerID ->
+                Log.d(TAG,"$playerID got votes : ${votesCount[playerID]}")
+            }
 
             // get the maximum number of votes for a player
             val maxVotes: Int = votesCount.maxBy { it.value }!!.value
+            Log.d(TAG,"maxVotes : $maxVotes")
             // TODO: fix bug: decide how to group vote action types.
             // the problem here is that the SCP Daily vote doesn't get grouped with the Foundation Daily Vote.
             // Solutions:
             // 1. Remove the Daily SCP vote since it just changes the description and you see what your ally voted
             // 2. Add a field to check what actions to group
             // 3. group by something else, we need to be careful with this because it needs to work correctly with every power (like MTF protection or SCP kill)
-            if (votesCount.size > 1) {
-                //todo: move to function
+            // are there more than one player who got the max votes? (e.g. A got 2 votes, B got 5, C got 5, D got 4)
+            if(votesCount.filter { it.value == maxVotes }.size > 1) {
                 val draw = action.draw!!
 
-                if (draw.reVoteAll!! || draw.reVoteNoDrawPlayers!!) {
-                    if(votesCount.filter { it.value == maxVotes }.size>1) {
-                            TODO("Implement restarting the current vote round.")
-                    }
+                if (draw.reVoteAll == true || draw.reVoteNoDrawPlayers == true) {
+                    TODO("Implement restarting the current vote round.")
                 }
 
-                if (draw.random!!)
-                    affectedPlayers.add(votesCount.keys.random())
-
-                if (draw.maxRandom!!) {
-                    affectedPlayers.add(
-                        votesCount
-                            // get only the ones with a max vote
-                            .filter { it.value == maxVotes }
-                            // get the keys (voted player id)
-                            .keys
-                            // get a random one
-                            .random())
-                }
-
-                if (draw.ignore!!) {
-                    TODO("not implemented. Maybe this can be removed. Not adding affected players is like not having this option")
-                }
-
-                if (draw.notApplicable!!) {
-                    TODO("not implemented. Throw an exception maybe since we shouldn't have multiple voted with this option.")
-                }
+                affectedPlayers.addAll(choosePlayerOnDraw(draw,votesCount))
 
             } else {
-                affectedPlayers.add(votesCount.keys.first())
+                affectedPlayers.add(votesCount.filter { it.value == maxVotes }.keys.first())
             }
 
             // add to corresponding lists
@@ -195,21 +181,23 @@ open class GamePresenterImpl(
 
             // add voting players to kill list
             val participantList = getAliveParticipants()
-            if (!effect.dieIfRole.isNullOrEmpty())
-                currentVotes.forEach { vote ->
-                    if (effect.dieIfRole!!
-                            .contains(
-                                participantList
-                                    .first { vote.votedPlayerID == it.playerID }
-                                    .roleName!!
-                            )
+            effect.dieIfRole?.let { deadlyRoleList ->
+                if (deadlyRoleList.isNotEmpty()){
+                    // check players with roles in deadly roles list
+                    val killers: List<Long> = participantList.filter {
+                            player -> deadlyRoleList.contains(player.roleName)
+                    }.map { it.playerID }
+                    // add to death list players who voted players with these roles
+                    sureDeathPlayers.addAll(
+                        currentVotes.filter {vote ->
+                            killers.contains(vote.votedPlayerID)
+                        }.map { it.playerID }
                     )
-
-                        sureDeathPlayers.add(vote.playerID)
                 }
+            }
 
             // remove used votes
-            votes.removeAll(currentVotes)
+            roundVotes.removeAll(currentVotes)
         }
 
         // populate kill list with the complete data from all the votes
@@ -235,15 +223,41 @@ open class GamePresenterImpl(
         gameView.showRoundResultFragment(deadNames)
     }
 
-    fun groupVotes(grouping: VoteGroup, roundVotes: List<Vote>, currentVote: Vote): List<Vote> {
+    private fun groupVotes(grouping: VoteGroup, roundVotes: List<Vote>, currentVote: Vote): List<Vote> {
         val votes: MutableList<Vote> = mutableListOf()
         if (!grouping.actions.isNullOrEmpty())
             votes.addAll(roundVotes.filter{vote->
+                //todo: use containsIgnoreCase from my extension (test it first)
                 grouping.actions!!.contains(vote.voteAction)
             })
         if (grouping.self == true)
             votes.add(currentVote)
         return votes
+    }
+
+    private fun choosePlayerOnDraw(drawSettings: Draw,votesCount: Map<Long,Int>): List<Long> {
+
+        if (votesCount.size < 2)
+            throw IllegalArgumentException("At least 2 players must have been voted for a tie to happen.")
+
+        val players: MutableList<Long> = mutableListOf()
+
+        if (drawSettings.random!!)
+            players.add(votesCount.keys.random())
+
+        if (drawSettings.maxRandom!!) {
+            val maxVotes: Int = votesCount.maxBy { it.value }!!.value
+            players.add(votesCount.filter { it.value==maxVotes }.keys.random())
+        }
+
+        if (drawSettings.ignore!!) {
+            TODO("not implemented. Maybe this can be removed. Not adding affected players is like not having this option")
+        }
+
+        if (drawSettings.notApplicable!!)
+            throw IllegalArgumentException("There was a tie in the votes, this shouldn't have happened (draw settings notApplicable=true)")
+
+        return players
     }
 
     override suspend fun checkVictory() {
