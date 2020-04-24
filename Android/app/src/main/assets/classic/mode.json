@@ -1,6 +1,7 @@
 [
   {
     "id": 0,
+    "version": 0,
     "name": "Classic",
     "short_description": "Play as Guards, Scientists and MTF against SCP-106",
     "description": "The Serpent Hand has hit Site-[REDACTED], unleashing a powerful memetic hazard and destroying several generators, causing various SCPs to breach containment. You are one of the unlucky few trapped with SCP-173. You can stop him by using SCP-[REDACTED], but the memetic in place is masking him as one of yours, and the backup generator keeps on hiccuping, leaving you in the dark... Play as a Scientist, MTF operative, Guard or even SCP-173. And don't get you neck snapped.",

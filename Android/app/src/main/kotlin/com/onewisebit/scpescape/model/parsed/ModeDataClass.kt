@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class ModeDataClass(
     @SerializedName("id")
     val id: Int,
+    @SerializedName("version")
+    val version: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("short_description")
