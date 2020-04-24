@@ -34,4 +34,28 @@ class Vote(
     val votedPlayerID: Long,
     @ColumnInfo(name = "vote_action")
     val voteAction: String
-)
+) {
+    override fun toString(): String {
+        return "Vote(id=$id, gameID=$gameID, roundNumber=$roundNumber, turnNumber=$turnNumber, playerID=$playerID, votedPlayerID=$votedPlayerID, voteAction='$voteAction')"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Vote
+
+        if (id != other.id) return false
+        if (gameID != other.gameID) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + gameID.hashCode()
+        return result
+    }
+
+
+}
