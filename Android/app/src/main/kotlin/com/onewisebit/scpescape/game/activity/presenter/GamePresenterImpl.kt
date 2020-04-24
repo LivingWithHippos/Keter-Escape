@@ -121,7 +121,12 @@ open class GamePresenterImpl(
 
             // get the maximum number of votes for a player
             val maxVotes: Int = votesCount.maxBy { it.value }!!.value
-
+            // TODO: fix bug: decide how to group vote action types.
+            // the problem here is that the SCP Daily vote doesn't get grouped with the Foundation Daily Vote.
+            // Solutions:
+            // 1. Remove the Daily SCP vote since it just changes the description and you see what your ally voted
+            // 2. Add a field to check what actions to group
+            // 3. group by something else, we need to be careful with this because it needs to work correctly with every power (like MTF protection or SCP kill)
             if (votesCount.size > 1) {
                 //todo: move to function
                 val draw = action.draw!!
