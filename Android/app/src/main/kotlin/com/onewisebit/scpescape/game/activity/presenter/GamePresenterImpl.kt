@@ -92,12 +92,7 @@ open class GamePresenterImpl(
             val currentVotes: MutableSet<Vote> = mutableSetOf()
             // players that will be affected by the action effect
             val affectedPlayers: MutableList<Long> = mutableListOf()
-            /*
-            controlla raggruppamento "vote_group"
-            controlla parità "draw"
-            controlla effetto "effect"
-            controlla quando applicare "applied"
-             */
+
             // check votes grouping
             val groupVote = action.voteGroup!!
             currentVotes.addAll(groupVotes(groupVote, roundVotes, currentVote))
@@ -246,7 +241,7 @@ open class GamePresenterImpl(
     }
 
     override suspend fun checkVictory() {
-        // controlla
+        // todo: check this code
         val victoryConditions: List<VictoryCondition> = modePresenter.getVictoryConditions()
         if (victoryConditions.isEmpty())
             throw java.lang.IllegalArgumentException("No victory conditions found for game $gameID")
