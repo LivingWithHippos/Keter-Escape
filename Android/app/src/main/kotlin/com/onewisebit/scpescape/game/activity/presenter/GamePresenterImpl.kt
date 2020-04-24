@@ -230,6 +230,17 @@ open class GamePresenterImpl(
         gameView.showRoundResultFragment(deadNames)
     }
 
+    fun groupVotes(grouping: VoteGroup, roundVotes: List<Vote>, currentVote: Vote): List<Vote> {
+        val votes: MutableList<Vote> = mutableListOf()
+        if (!grouping.actions.isNullOrEmpty())
+            votes.addAll(roundVotes.filter{vote->
+                grouping.actions!!.contains(vote.voteAction)
+            })
+        if (grouping.self == true)
+            votes.add(currentVote)
+        return votes
+    }
+
     override suspend fun checkVictory() {
         // controlla
         val victoryConditions: List<VictoryCondition> = modePresenter.getVictoryConditions()
