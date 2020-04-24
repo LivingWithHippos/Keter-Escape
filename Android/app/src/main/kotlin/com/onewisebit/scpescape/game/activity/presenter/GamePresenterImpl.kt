@@ -1,6 +1,5 @@
 package com.onewisebit.scpescape.game.activity.presenter
 
-import android.util.Log
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
 import com.onewisebit.scpescape.model.entities.Vote
@@ -73,9 +72,6 @@ open class GamePresenterImpl(
         // make this more modular, something like applyEffect(action,votes), maybe move it to a EffectContract
         val roundVotes: MutableList<Vote> = mutableListOf()
         roundVotes.addAll(getLastRoundVotes())
-        roundVotes.forEach {
-            Log.d(TAG, "round vote: $it")
-        }
         // load all the possible vote actions
         val voteActions = getModeActions().filterIsInstance<VoteSettings>()
 
@@ -104,12 +100,7 @@ open class GamePresenterImpl(
              */
             // check votes grouping
             val groupVote = action.voteGroup!!
-            Log.d(TAG, "self: $groupVote.self")
             currentVotes.addAll(groupVotes(groupVote, roundVotes, currentVote))
-
-            currentVotes.forEach {
-                Log.d(TAG, "current vote : $it")
-            }
 
             if (currentVotes.isNullOrEmpty())
                 throw IllegalArgumentException("The current vote action is probably missing a group_vote option")
@@ -121,19 +112,10 @@ open class GamePresenterImpl(
                 .groupingBy { it.votedPlayerID }
                 // count occurrences of this player id
                 .eachCount()
-            votesCount.keys.forEach { playerID ->
-                Log.d(TAG, "$playerID got votes : ${votesCount[playerID]}")
-            }
 
             // get the maximum number of votes for a player
             val maxVotes: Int = votesCount.maxBy { it.value }!!.value
-            Log.d(TAG, "maxVotes : $maxVotes")
-            // TODO: fix bug: decide how to group vote action types.
-            // the problem here is that the SCP Daily vote doesn't get grouped with the Foundation Daily Vote.
-            // Solutions:
-            // 1. Remove the Daily SCP vote since it just changes the description and you see what your ally voted
-            // 2. Add a field to check what actions to group
-            // 3. group by something else, we need to be careful with this because it needs to work correctly with every power (like MTF protection or SCP kill)
+
             // are there more than one player who got the max votes? (e.g. A got 2 votes, B got 5, C got 5, D got 4)
             if (votesCount.filter { it.value == maxVotes }.size > 1) {
                 val draw = action.draw!!
