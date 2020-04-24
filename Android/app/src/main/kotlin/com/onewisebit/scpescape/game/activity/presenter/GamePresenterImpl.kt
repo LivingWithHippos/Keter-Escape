@@ -255,7 +255,7 @@ open class GamePresenterImpl(
                     return
                 }
                 WLE_GROUP, WL_GROUP, WGE_GROUP, WG_GROUP ->
-                    if (groupsNumbersReached(condition)) {
+                    if (winningGroupsNumbersReached(condition)) {
                         endGame(conditionReached = condition)
                         return
                     }
@@ -281,7 +281,7 @@ open class GamePresenterImpl(
         return true
     }
 
-    private suspend fun groupsNumbersReached(condition: VictoryCondition): Boolean {
+    private suspend fun winningGroupsNumbersReached(condition: VictoryCondition): Boolean {
         val participants = participantPresenter.getAliveParticipants()
         var firstGroup = 0
         var secondGroup = 0
