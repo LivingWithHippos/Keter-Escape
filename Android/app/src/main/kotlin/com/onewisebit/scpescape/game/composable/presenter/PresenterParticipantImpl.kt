@@ -31,5 +31,6 @@ open class PresenterParticipantImpl(
         }
     }
 
-    override suspend fun getGroup(playerId: Long): String = modelParticipant.getGroup(gameID, playerId)
+    override suspend fun getGroup(playerId: Long): String =
+        modelParticipant.getGroup(gameID, playerId)
 }

@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -23,7 +22,8 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class NewGameSettingsFragment : BaseSCPFragment<FragmentNewGameSettingsBinding>(), GameSettingsContract.GameSettingsView {
+class NewGameSettingsFragment : BaseSCPFragment<FragmentNewGameSettingsBinding>(),
+    GameSettingsContract.GameSettingsView {
 
     private val presenter: GameSettingsContract.GameSettingsPresenter by inject { parametersOf(this) }
     private val args: NewGameSettingsFragmentArgs by navArgs()
@@ -94,7 +94,8 @@ class NewGameSettingsFragment : BaseSCPFragment<FragmentNewGameSettingsBinding>(
                     if (rolediv.default)
                         lastLine = getString(R.string.remaining_players, rolediv.role)
                     else
-                        builder.append(rolediv.quantity).append(" ").append(rolediv.role).append("\n")
+                        builder.append(rolediv.quantity).append(" ").append(rolediv.role)
+                            .append("\n")
                 }
                 builder.append(lastLine)
                 binding.tvRoles.text = builder.toString()

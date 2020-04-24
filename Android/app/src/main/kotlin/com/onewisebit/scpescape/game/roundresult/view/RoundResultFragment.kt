@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentRoundResultBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.BaseSCPFragment
-import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.utilities.ARG_KILLED_PLAYERS
 
@@ -29,7 +28,7 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-           val killedPlayers = it.getStringArray(ARG_KILLED_PLAYERS)!!
+            val killedPlayers = it.getStringArray(ARG_KILLED_PLAYERS)!!
             if (killedPlayers.isNotEmpty())
                 setupWithDeaths(killedPlayers)
             else
@@ -42,7 +41,7 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
     }
 
     // todo: add contract to this fragment
-    private fun setupWithDeaths(killedPlayers: Array<String>){
+    private fun setupWithDeaths(killedPlayers: Array<String>) {
 
         val names = killedPlayers.joinToString(", ")
         //todo: take these values from rounds.json/ action.json so they can be customized (need to add it)
@@ -53,7 +52,7 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
         )
     }
 
-    private fun setupNoDeaths(){
+    private fun setupNoDeaths() {
         binding.tvRoundResult.text = getString(R.string.round_no_deaths)
     }
 

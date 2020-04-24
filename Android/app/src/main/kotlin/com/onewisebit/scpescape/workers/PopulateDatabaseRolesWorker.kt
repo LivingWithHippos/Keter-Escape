@@ -11,9 +11,10 @@ import com.onewisebit.scpescape.model.database.SCPDatabase
 import com.onewisebit.scpescape.model.entities.Role
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.model.parsed.RoleDetails
-import com.onewisebit.scpescape.model.parsed.VictoryCondition
 import com.onewisebit.scpescape.model.repositories.JSONRepository
-import com.onewisebit.scpescape.utilities.*
+import com.onewisebit.scpescape.utilities.MODE_FILE
+import com.onewisebit.scpescape.utilities.ROLE_FILE
+import com.onewisebit.scpescape.utilities.ROLE_FOLDER
 import kotlinx.coroutines.coroutineScope
 
 /**

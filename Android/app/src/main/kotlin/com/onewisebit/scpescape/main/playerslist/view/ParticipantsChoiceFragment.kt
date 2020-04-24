@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -28,7 +27,8 @@ import org.koin.core.parameter.parametersOf
 import java.util.concurrent.TimeUnit
 
 @SuppressLint("CheckResult")
-class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBinding>(), PlayersContract.PlayersView {
+class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBinding>(),
+    PlayersContract.PlayersView {
 
     private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: ParticipantsAdapter

@@ -11,6 +11,7 @@ interface InVoteRepository {
     suspend fun getGameVotes(gameID: Long): List<Vote>
 
     suspend fun getRoundVotes(gameID: Long, roundNumber: Int): List<Vote>
+
     // todo: check if these two methods are the same
     suspend fun getCurrentPlayerVotes(gameID: Long): List<Vote>
 

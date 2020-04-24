@@ -26,7 +26,8 @@ import org.koin.core.parameter.parametersOf
  * A simple [Fragment] subclass.
  */
 class VoteTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment<FragmentVoteTurnBinding>(gameID, onActionListener), VoteTurnContract.VoteTurnView {
+    BaseGameFragment<FragmentVoteTurnBinding>(gameID, onActionListener),
+    VoteTurnContract.VoteTurnView {
 
     // todo: this is null here, needs to be called later/lateinited or replaced with navigationarguments()
     //private val args = arguments

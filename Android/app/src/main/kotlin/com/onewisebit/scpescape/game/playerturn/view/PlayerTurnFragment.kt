@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentPlayerTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.game.playerturn.PlayerTurnContract
 import com.onewisebit.scpescape.utilities.ARG_PLAYER_NAME
@@ -23,7 +22,8 @@ import org.koin.core.parameter.parametersOf
  * A simple [Fragment] subclass.
  */
 class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Action) -> Unit) :
-    BaseGameFragment<FragmentPlayerTurnBinding>(gameID, onActionListener), PlayerTurnContract.PlayerTurnView {
+    BaseGameFragment<FragmentPlayerTurnBinding>(gameID, onActionListener),
+    PlayerTurnContract.PlayerTurnView {
 
     private val presenter: PlayerTurnContract.PlayerTurnPresenter by inject {
         parametersOf(

@@ -6,7 +6,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.onewisebit.scpescape.model.parsed.VictoryCondition
-import com.onewisebit.scpescape.utilities.*
+import com.onewisebit.scpescape.utilities.VICTORY_FILE
+import com.onewisebit.scpescape.utilities.VICTORY_FOLDER
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

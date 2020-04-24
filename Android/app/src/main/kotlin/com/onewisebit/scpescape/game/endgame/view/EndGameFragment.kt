@@ -1,16 +1,13 @@
 package com.onewisebit.scpescape.game.endgame.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.onewisebit.scpescape.R
+import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentEndGameBinding
-import com.onewisebit.scpescape.databinding.FragmentRoundResultBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
-import com.onewisebit.scpescape.utilities.ARG_KILLED_PLAYERS
 import com.onewisebit.scpescape.utilities.ARG_WINNING_MESSAGE
 
 
@@ -32,7 +29,7 @@ class EndGameFragment(gameID: Long, private val onActionListener: (action: Actio
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let {args ->
+        arguments?.let { args ->
             args.getString(ARG_WINNING_MESSAGE)?.let { initFragment(it) }
         }
 

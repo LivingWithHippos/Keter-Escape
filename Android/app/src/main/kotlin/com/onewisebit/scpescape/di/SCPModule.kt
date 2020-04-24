@@ -125,7 +125,7 @@ val appModule = module {
     }
 
     factory<ContractTurn.ModelTurn> {
-        ModelTurnImpl(get(),get())
+        ModelTurnImpl(get(), get())
     }
 
     factory<ContractTurn.PresenterTurn> { (game: Long) ->

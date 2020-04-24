@@ -32,7 +32,7 @@ class ModelTurnImpl(val turnRepository: InTurnRepository, val roundRepository: I
         if (lastPlayedTurn != null)
             turnNumber = lastPlayedTurn.turnNumber + 1
 
-        if (lastRound!= null)
+        if (lastRound != null)
             roundNumber = lastRound.num
         else
             throw IllegalArgumentException("Failed to load last Round")

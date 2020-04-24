@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.databinding.FragmentInfoTurnBinding
 import com.onewisebit.scpescape.fsm.actions.Action
-import com.onewisebit.scpescape.BaseSCPFragment
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.utilities.ARG_ACTION_INFO_TITLE
 import com.onewisebit.scpescape.utilities.ARG_ACTION_INFO_TITLE_DESCRIPTION

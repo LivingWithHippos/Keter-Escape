@@ -12,5 +12,6 @@ class PresenterModeImpl(val modelMode: ContractMode.ModelMode, val gameID: Long)
             ?: throw IllegalArgumentException("Couldn't load mode from game $gameID")
     }
 
-    override suspend fun getVictoryConditions(): List<VictoryCondition> = modelMode.getVictoryConditions(gameID)
+    override suspend fun getVictoryConditions(): List<VictoryCondition> =
+        modelMode.getVictoryConditions(gameID)
 }

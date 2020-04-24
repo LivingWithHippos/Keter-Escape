@@ -6,4 +6,4 @@ interface StateGame {
     fun consumeAction(action: Action): StateGame
 }
 
-class IllegalGameStateTransition(message: String): IllegalStateException(message)
+class IllegalGameStateTransition(message: String) : IllegalStateException(message)

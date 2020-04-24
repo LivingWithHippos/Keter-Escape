@@ -3,7 +3,6 @@ package com.onewisebit.scpescape.game.activity.presenter
 import android.util.Log
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
-import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.Vote
 import com.onewisebit.scpescape.model.parsed.*
 import com.onewisebit.scpescape.utilities.*
@@ -75,7 +74,7 @@ open class GamePresenterImpl(
         val roundVotes: MutableList<Vote> = mutableListOf()
         roundVotes.addAll(getLastRoundVotes())
         roundVotes.forEach {
-            Log.d(TAG,"round vote: $it")
+            Log.d(TAG, "round vote: $it")
         }
         // load all the possible vote actions
         val voteActions = getModeActions().filterIsInstance<VoteSettings>()
@@ -105,11 +104,11 @@ open class GamePresenterImpl(
              */
             // check votes grouping
             val groupVote = action.voteGroup!!
-            Log.d(TAG,"self: $groupVote.self")
-            currentVotes.addAll(groupVotes(groupVote,roundVotes,currentVote))
+            Log.d(TAG, "self: $groupVote.self")
+            currentVotes.addAll(groupVotes(groupVote, roundVotes, currentVote))
 
             currentVotes.forEach {
-                Log.d(TAG,"current vote : $it")
+                Log.d(TAG, "current vote : $it")
             }
 
             if (currentVotes.isNullOrEmpty())
@@ -123,12 +122,12 @@ open class GamePresenterImpl(
                 // count occurrences of this player id
                 .eachCount()
             votesCount.keys.forEach { playerID ->
-                Log.d(TAG,"$playerID got votes : ${votesCount[playerID]}")
+                Log.d(TAG, "$playerID got votes : ${votesCount[playerID]}")
             }
 
             // get the maximum number of votes for a player
             val maxVotes: Int = votesCount.maxBy { it.value }!!.value
-            Log.d(TAG,"maxVotes : $maxVotes")
+            Log.d(TAG, "maxVotes : $maxVotes")
             // TODO: fix bug: decide how to group vote action types.
             // the problem here is that the SCP Daily vote doesn't get grouped with the Foundation Daily Vote.
             // Solutions:
@@ -136,14 +135,14 @@ open class GamePresenterImpl(
             // 2. Add a field to check what actions to group
             // 3. group by something else, we need to be careful with this because it needs to work correctly with every power (like MTF protection or SCP kill)
             // are there more than one player who got the max votes? (e.g. A got 2 votes, B got 5, C got 5, D got 4)
-            if(votesCount.filter { it.value == maxVotes }.size > 1) {
+            if (votesCount.filter { it.value == maxVotes }.size > 1) {
                 val draw = action.draw!!
 
                 if (draw.reVoteAll == true || draw.reVoteNoDrawPlayers == true) {
                     TODO("Implement restarting the current vote round.")
                 }
 
-                affectedPlayers.addAll(choosePlayerOnDraw(draw,votesCount))
+                affectedPlayers.addAll(choosePlayerOnDraw(draw, votesCount))
 
             } else {
                 affectedPlayers.add(votesCount.filter { it.value == maxVotes }.keys.first())
@@ -182,14 +181,14 @@ open class GamePresenterImpl(
             // add voting players to kill list
             val participantList = getAliveParticipants()
             effect.dieIfRole?.let { deadlyRoleList ->
-                if (deadlyRoleList.isNotEmpty()){
+                if (deadlyRoleList.isNotEmpty()) {
                     // check players with roles in deadly roles list
-                    val killers: List<Long> = participantList.filter {
-                            player -> deadlyRoleList.contains(player.roleName)
+                    val killers: List<Long> = participantList.filter { player ->
+                        deadlyRoleList.contains(player.roleName)
                     }.map { it.playerID }
                     // add to death list players who voted players with these roles
                     sureDeathPlayers.addAll(
-                        currentVotes.filter {vote ->
+                        currentVotes.filter { vote ->
                             killers.contains(vote.votedPlayerID)
                         }.map { it.playerID }
                     )
@@ -223,10 +222,14 @@ open class GamePresenterImpl(
         gameView.showRoundResultFragment(deadNames)
     }
 
-    private fun groupVotes(grouping: VoteGroup, roundVotes: List<Vote>, currentVote: Vote): List<Vote> {
+    private fun groupVotes(
+        grouping: VoteGroup,
+        roundVotes: List<Vote>,
+        currentVote: Vote
+    ): List<Vote> {
         val votes: MutableList<Vote> = mutableListOf()
         if (!grouping.actions.isNullOrEmpty())
-            votes.addAll(roundVotes.filter{vote->
+            votes.addAll(roundVotes.filter { vote ->
                 //todo: use containsIgnoreCase from my extension (test it first)
                 grouping.actions!!.contains(vote.voteAction)
             })
@@ -235,7 +238,7 @@ open class GamePresenterImpl(
         return votes
     }
 
-    private fun choosePlayerOnDraw(drawSettings: Draw,votesCount: Map<Long,Int>): List<Long> {
+    private fun choosePlayerOnDraw(drawSettings: Draw, votesCount: Map<Long, Int>): List<Long> {
 
         if (votesCount.size < 2)
             throw IllegalArgumentException("At least 2 players must have been voted for a tie to happen.")
@@ -247,7 +250,7 @@ open class GamePresenterImpl(
 
         if (drawSettings.maxRandom!!) {
             val maxVotes: Int = votesCount.maxBy { it.value }!!.value
-            players.add(votesCount.filter { it.value==maxVotes }.keys.random())
+            players.add(votesCount.filter { it.value == maxVotes }.keys.random())
         }
 
         if (drawSettings.ignore!!) {
@@ -267,10 +270,10 @@ open class GamePresenterImpl(
             throw java.lang.IllegalArgumentException("No victory conditions found for game $gameID")
 
         // victory reached?
-        victoryConditions.forEach{condition ->
+        victoryConditions.forEach { condition ->
 
             when (condition.type) {
-                DEAD_GROUP ->  if (areGroupsDead(condition)) {
+                DEAD_GROUP -> if (areGroupsDead(condition)) {
                     endGame(conditionReached = condition)
                     return
                 }
@@ -278,8 +281,8 @@ open class GamePresenterImpl(
                     if (groupsNumbersReached(condition)) {
                         endGame(conditionReached = condition)
                         return
-                }
-                else -> throw java.lang.IllegalArgumentException ("Condition ${condition.type} not implemented.")
+                    }
+                else -> throw java.lang.IllegalArgumentException("Condition ${condition.type} not implemented.")
             }
         }
         //victory not reached. Go to the next round.
@@ -293,7 +296,7 @@ open class GamePresenterImpl(
 
     private suspend fun areGroupsDead(condition: VictoryCondition): Boolean {
         val participants = participantPresenter.getAliveParticipants()
-        participants.forEach{participant ->
+        participants.forEach { participant ->
             val group = participantPresenter.getGroup(participant.playerID)
             if (condition.first_groups.contains(group))
                 return false
@@ -306,7 +309,7 @@ open class GamePresenterImpl(
         var firstGroup = 0
         var secondGroup = 0
 
-        participants.forEach{participant ->
+        participants.forEach { participant ->
             val group = participantPresenter.getGroup(participant.playerID)
             if (condition.first_groups.contains(group))
                 firstGroup += 1

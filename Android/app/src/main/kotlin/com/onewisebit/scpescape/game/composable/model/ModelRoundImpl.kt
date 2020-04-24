@@ -1,7 +1,6 @@
 package com.onewisebit.scpescape.game.composable.model
 
 import android.util.Log
-import com.onewisebit.scpescape.di.SCPApplication
 import com.onewisebit.scpescape.game.composable.ContractRound
 import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.parsed.RoundDetails
@@ -49,8 +48,8 @@ class ModelRoundImpl(val roundRepository: InRoundRepository) :
         if (lastRound == null)
             throw IllegalAccessError("Null round loaded. This probably means this method was used before the creation of the first round.")
         else {
-            val details = if (lastRound.details=="lights_out" ) "lights_on" else "lights_out"
-            addRound(gameID,details, lastRound.num+1)
+            val details = if (lastRound.details == "lights_out") "lights_on" else "lights_out"
+            addRound(gameID, details, lastRound.num + 1)
         }
     }
 
