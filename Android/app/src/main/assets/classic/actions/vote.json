@@ -15,7 +15,7 @@
       "zero_allowed": false
     },
     "vote_group": {
-      "action": true
+      "actions": ["Daily Vote","Daily SCP vote"]
     },
     "draw": {
       "re_vote_all": true
@@ -107,7 +107,7 @@
       "zero_allowed": false
     },
     "vote_group": {
-      "action": true
+      "actions": ["SCP 106 attack"]
     },
     "draw": {
       "max_random": true

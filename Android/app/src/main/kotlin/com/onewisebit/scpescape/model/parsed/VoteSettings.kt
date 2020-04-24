@@ -64,6 +64,10 @@ data class VoteSettings(
         } else
             throw IllegalArgumentException("Merging class was not a VoteTurn one but $derived")
     }
+
+    override fun toString(): String {
+        return "VoteSettings(extends='$extends', name='$name', description='$description', show=$show, revealRole=$revealRole, revealVote=$revealVote, choiceEnabled=$choiceEnabled, choiceNumber=$choiceNumber, voteGroup=$voteGroup, draw=$draw, effect=$effect, applied=$applied)"
+    }
 }
 
 //todo: add onlyAlive boolean? Could add powers over dead people
@@ -110,14 +114,14 @@ data class ChoiceNumber(
 // while the scp attack vote may be shared only among them
 //TODO: rename to GroupVote or something else
 data class VoteGroup(
-    @SerializedName("action")
-    var action: Boolean?,
+    @SerializedName("actions")
+    var actions: List<String>?,
     @SerializedName("self")
     var self: Boolean?
 ) : Mergeable {
     override fun merge(derived: Mergeable, mergeSettings: MergeSettings?) {
         if (derived is VoteGroup) {
-            derived.action?.let { action = it }
+            derived.actions?.let { actions = it }
             derived.self?.let { self = it }
         }
     }

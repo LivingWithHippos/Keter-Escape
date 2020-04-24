@@ -33,7 +33,7 @@
       "zero_allowed": false
     },
     "vote_group": {
-      "action": false,
+      "actions": [],
       "self": false
     },
     "draw": {
