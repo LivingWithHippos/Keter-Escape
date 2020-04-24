@@ -15,7 +15,7 @@
       "zero_allowed": false
     },
     "vote_group": {
-      "actions": ["Daily Vote","Daily SCP vote"]
+      "actions": ["Daily vote","Daily SCP vote"]
     },
     "draw": {
       "re_vote_all": true
