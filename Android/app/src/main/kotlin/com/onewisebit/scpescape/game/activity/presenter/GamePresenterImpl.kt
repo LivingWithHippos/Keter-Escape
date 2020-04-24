@@ -320,4 +320,8 @@ open class GamePresenterImpl(
         return gameModel.getPlayerName(playerID)
             ?: throw IllegalArgumentException("No player's name found for player id $playerID")
     }
+
+    companion object {
+        private val TAG = GamePresenterImpl::class.java.simpleName
+    }
 }
