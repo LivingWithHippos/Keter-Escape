@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.game
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.onewisebit.scpescape.fsm.actions.Action
+import com.onewisebit.scpescape.game.endgame.view.EndGameFragment
 import com.onewisebit.scpescape.game.infoturn.view.InfoTurnFragment
 import com.onewisebit.scpescape.game.intro.view.IntroFragment
 import com.onewisebit.scpescape.game.passdevice.view.PassDeviceFragment
@@ -44,6 +45,10 @@ class SCPFragmentFactory(
                 onActionListener
             )
             RoundResultFragment::class.java.name -> RoundResultFragment(
+                gameID,
+                onActionListener
+            )
+            EndGameFragment::class.java.name -> EndGameFragment(
                 gameID,
                 onActionListener
             )

@@ -13,6 +13,7 @@ import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.fsm.states.*
 import com.onewisebit.scpescape.game.SCPFragmentFactory
 import com.onewisebit.scpescape.game.activity.GameContract
+import com.onewisebit.scpescape.game.endgame.view.EndGameFragment
 import com.onewisebit.scpescape.game.infoturn.view.InfoTurnFragment
 import com.onewisebit.scpescape.game.intro.view.IntroFragment
 import com.onewisebit.scpescape.game.passdevice.view.PassDeviceFragment
@@ -179,7 +180,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         arguments.putString(ARG_GAME_WINNER, winner)
         arguments.putString(ARG_WINNING_MESSAGE, message)
         supportFragmentManager.commit {
-            replace<RoundResultFragment>(R.id.fragment_container_view, args = arguments)
+            replace<EndGameFragment>(R.id.fragment_container_view, args = arguments)
         }
     }
 
