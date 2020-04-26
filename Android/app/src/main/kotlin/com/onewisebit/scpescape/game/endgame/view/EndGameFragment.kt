@@ -34,7 +34,7 @@ class EndGameFragment(gameID: Long, private val onActionListener: (action: Actio
         }
 
         binding.bEndGame.setOnClickListener {
-            onActionListener(Action.EndGameClicked())
+            onActionListener(Action.CloseGameClicked())
         }
     }
 

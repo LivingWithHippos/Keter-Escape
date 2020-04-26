@@ -2,7 +2,7 @@ package com.onewisebit.scpescape.fsm.actions
 
 sealed class Action {
     class EndTurnClicked : Action()
-    class EndGameClicked : Action()
+    class CloseGameClicked : Action()
     class PassedToPlayerClicked : Action()
     class PlayTurnClicked : Action()
     class VoteCasted : Action()
