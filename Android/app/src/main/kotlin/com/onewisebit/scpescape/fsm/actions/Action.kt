@@ -11,7 +11,6 @@ sealed class Action {
     class StartVotePowerClicked : Action()
     class StartInfoPowerClicked : Action()
     class VictoryReached : Action()
-    class StartDayRoundClicked : Action()
-    class StartNightRoundClicked : Action()
+    class StartNextRoundClicked : Action()
     class StartGameClicked : Action()
 }

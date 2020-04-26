@@ -83,7 +83,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
         //TODO: check what can be moved to presenter/view
         when (newState) {
-            is RoundInfoState -> setupRoundInfoFragment(newState.dayOrNight)
+            is RoundInfoState -> setupRoundInfoFragment()
             is PassDeviceState -> setupPassDeviceFragment()
             is PlayerTurnState -> uiScope.launch { presenter.setupPlayerTurnFragment() }
             is PlayerPowerState -> uiScope.launch { presenter.setupPlayerPowerFragment() }
@@ -111,11 +111,9 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    private fun setupRoundInfoFragment(dayOrNight: Int) {
+    private fun setupRoundInfoFragment() {
         uiScope.launch {
-            //TODO: replace with round state managing
-            val roundCode = if (dayOrNight == NIGHT) "lights_out" else "lights_on"
-            presenter.addRound(roundCode)
+            presenter.addRound()
             supportFragmentManager.commit {
                 replace<RoundInfoFragment>(R.id.fragment_container_view)
             }
@@ -132,7 +130,6 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             }
         }
     }
-
 
     override fun showPlayerTurnFragment(name: String, role: String, description: String) {
         uiScope.launch {
@@ -175,16 +172,8 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun nextRound(oldRoundType: String) {
-        //todo: implement round choice from a json parameter in rounds.json, either a number in rounds or an array like "round_sequence": [day,night]
-        when (oldRoundType) {
-            "lights_out" -> {
-                actionReceived(Action.StartDayRoundClicked())
-            }
-            "lights_on" -> {
-                actionReceived(Action.StartNightRoundClicked())
-            }
-        }
+    override fun nextRound() {
+        actionReceived(Action.StartNextRoundClicked())
     }
 
     override fun endGame(winner: String, message: String) {

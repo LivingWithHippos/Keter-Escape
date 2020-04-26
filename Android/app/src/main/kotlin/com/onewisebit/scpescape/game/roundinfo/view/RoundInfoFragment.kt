@@ -51,8 +51,7 @@ class RoundInfoFragment(gameID: Long, private val onActionListener: (action: Act
         binding.tvDescription.text = info.description
         binding.fabNextStep.setOnClickListener {
             binding.fabNextStep.isEnabled = false
-            //todo: return the right round
-            onActionListener(Action.StartDayRoundClicked())
+            onActionListener(Action.StartNextRoundClicked())
         }
     }
 

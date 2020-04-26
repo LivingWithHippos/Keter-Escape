@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.game.roundinfo
 
+import com.onewisebit.scpescape.game.composable.ContractMode
 import com.onewisebit.scpescape.game.composable.ContractRound
 import com.onewisebit.scpescape.model.parsed.RoundDetails
 
@@ -11,7 +12,7 @@ interface RoundInfoContract {
         fun initView(info: RoundDetails)
     }
 
-    interface RoundInfoPresenter : ContractRound.PresenterRound {
+    interface RoundInfoPresenter : ContractRound.PresenterRound,ContractMode.PresenterMode {
         suspend fun loadRoundInfo()
     }
 }

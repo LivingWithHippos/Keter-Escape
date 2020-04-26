@@ -114,7 +114,7 @@ val appModule = module {
     }
 
     factory<ContractRound.ModelRound> {
-        ModelRoundImpl(get())
+        ModelRoundImpl(get(),get())
     }
 
     factory<ContractRound.PresenterRound> { (game: Long) ->
@@ -310,6 +310,7 @@ val appModule = module {
         RoundInfoPresenterImpl(
             view,
             get(),
+            get { parametersOf(game) },
             get { parametersOf(game) },
             game
         )

@@ -12,7 +12,7 @@ interface GameContract {
         fun showPlayerVoteFragment(round: String, role: String, isLastTurn: Boolean = false)
         fun showPlayerInfoFragment(title: String, description: String, isLastTurn: Boolean = false)
         fun showRoundResultFragment(killedPlayers: List<String>)
-        fun nextRound(roundType: String)
+        fun nextRound()
         fun endGame(winner: String, message: String)
     }
 

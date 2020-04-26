@@ -9,8 +9,7 @@ class CheckVictoryState : StateGame {
         return when (action) {
             is Action.VictoryReached -> EndGameState()
             //todo: these actions are already used, maybe change them? see [fsm.puml]
-            is Action.StartDayRoundClicked -> RoundInfoState(DAY)
-            is Action.StartNightRoundClicked -> RoundInfoState(NIGHT)
+            is Action.StartNextRoundClicked -> RoundInfoState()
             else -> throw IllegalGameStateTransition("Invalid action: $action passed to a PassDevice state")
         }
     }

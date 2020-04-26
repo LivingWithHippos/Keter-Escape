@@ -34,7 +34,7 @@ open class GamePresenterImpl(
         val playerId = turnPresenter.getLatestTurn().playerID
         val playerName = playerPresenter.getPlayer(playerId).name
         val roleName: String = participantPresenter.getParticipant(playerId).roleName!!
-        val roundName = roundPresenter.getCurrentRound().details
+        val roundName = roundPresenter.getCurrentRound()!!.details
         val actionDescription = actionPresenter.getPartialAction(roleName, roundName).description
 
         gameView.showPlayerTurnFragment(playerName, roleName, actionDescription)
@@ -43,8 +43,10 @@ open class GamePresenterImpl(
     override suspend fun setupPlayerPowerFragment() {
 
         val playerId = turnPresenter.getLatestTurn().playerID
+        // role shouldn't be null at this point
         val roleName: String = participantPresenter.getParticipant(playerId).roleName!!
-        val roundName = roundPresenter.getCurrentRound().details
+        // round shouldn't be null at this point
+        val roundName = roundPresenter.getCurrentRound()!!.details
         val action = actionPresenter.getAction(roleName, roundName)
         val lastTurn: Boolean = turnPresenter.isLastTurn()
 
@@ -267,8 +269,7 @@ open class GamePresenterImpl(
     }
 
     private suspend fun setupNextRound() {
-        val oldRoundType = roundPresenter.getCurrentRound().details
-        gameView.nextRound(oldRoundType)
+        gameView.nextRound()
     }
 
     private suspend fun areGroupsDead(condition: VictoryCondition): Boolean {

@@ -9,18 +9,19 @@ class PresenterRoundImpl(val modelRound: ContractRound.ModelRound, val gameID: L
 
     override suspend fun getRounds(): List<Round> = modelRound.getRounds(gameID)
 
-    override suspend fun getCurrentRound(): Round {
-        val round = modelRound.getLastRound(gameID)
-            ?: throw IllegalStateException("PresenterRound couldn't get last round from game $gameID")
-        return round
-    }
+    override suspend fun getCurrentRound(): Round? =
+        modelRound.getLastRound(gameID)
 
-    override suspend fun getCurrentRoundDetails(): RoundDetails? {
+
+    override suspend fun getCurrentRoundDetails(): RoundDetails {
         val round = getCurrentRound()
-        return getRoundDetail(round.details)
+        if (round == null)
+            throw IllegalStateException("Obtained a null round in getCurrentRoundDetails.")
+        else
+            return getRoundDetail(round.details)
     }
-
-    override suspend fun getRoundDetail(roundCode: String): RoundDetails? {
+    //todo: rename details and code here to match
+    override suspend fun getRoundDetail(roundCode: String): RoundDetails {
         val modeId = modelRound.getRoundsMode(gameID)
         return modelRound.getRoundDetail(modeId, roundCode)
     }
@@ -30,6 +31,7 @@ class PresenterRoundImpl(val modelRound: ContractRound.ModelRound, val gameID: L
         return modelRound.getAllModeDetails(modeId)
     }
 
-    override suspend fun addRound(details: String) = modelRound.addRound(gameID, details)
+    override suspend fun addRound() =
+        modelRound.addRound(gameID)
 
 }
