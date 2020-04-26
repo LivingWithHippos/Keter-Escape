@@ -28,5 +28,7 @@ data class Round(
     @ColumnInfo(name = "mode")
     val modeID: Int,
     @ColumnInfo(name = "details")
-    val details: String
+    val details: String,
+    @ColumnInfo(name = "replay")
+    val replay: Boolean?
 )
