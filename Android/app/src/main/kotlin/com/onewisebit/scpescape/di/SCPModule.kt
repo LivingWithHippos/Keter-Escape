@@ -73,7 +73,7 @@ val appModule = module {
     single<InTurnRepository> { TurnRepository(get()) }
     // TODO: remove when/if Mode is removed
     single { ModeRepository(get()) }
-    single<InModeJSONRepository> { ModeJSONRepository(get()) }
+    single<InModeJSONRepository> { ModeJSONRepository(get(), get()) }
     single<InTurnActionRepository> { TurnActionRepository(get(), get()) }
     single<InVoteRepository> { VoteRepository(get(), get()) }
     single<InVictoryConditionsRepository> { VictoryConditionsRepository(get()) }

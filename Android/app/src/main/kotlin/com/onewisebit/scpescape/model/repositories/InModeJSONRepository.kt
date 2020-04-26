@@ -5,5 +5,6 @@ import com.onewisebit.scpescape.model.parsed.ModeDataClass
 interface InModeJSONRepository {
 
     suspend fun getMode(id: Int): ModeDataClass?
+    suspend fun getGameMode(gameID: Long): ModeDataClass?
     suspend fun getAllModes(): List<ModeDataClass>?
 }

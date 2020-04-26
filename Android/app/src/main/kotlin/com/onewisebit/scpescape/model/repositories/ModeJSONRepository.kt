@@ -5,12 +5,13 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
+import com.onewisebit.scpescape.model.daos.GameDAO
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.utilities.MODE_FILE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ModeJSONRepository(context: Context) : JSONRepository(context), InModeJSONRepository {
+class ModeJSONRepository(context: Context, private val gameDAO: GameDAO) : JSONRepository(context), InModeJSONRepository {
 
     override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {
@@ -37,6 +38,11 @@ class ModeJSONRepository(context: Context) : JSONRepository(context), InModeJSON
 
     override suspend fun getMode(id: Int): ModeDataClass? {
         return getAllModes()?.firstOrNull { it.id == id }
+    }
+
+    override suspend fun getGameMode(gameID: Long): ModeDataClass? {
+        val modeID=gameDAO.getGameByIdBlocking(gameID).modeID
+        return getMode(modeID)
     }
 
     companion object {
