@@ -33,6 +33,9 @@ class EndGameFragment(gameID: Long, private val onActionListener: (action: Actio
             args.getString(ARG_WINNING_MESSAGE)?.let { initFragment(it) }
         }
 
+        binding.bEndGame.setOnClickListener {
+            onActionListener(Action.EndGameClicked())
+        }
     }
 
     private fun initFragment(message: String) {

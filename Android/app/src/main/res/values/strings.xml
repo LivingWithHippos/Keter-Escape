@@ -60,4 +60,5 @@
     <string name="voted_by">Voted By</string>
     <string name="voted">Voted</string>
     <string name="round_no_deaths">Everyone is still standing. But you are still not out of dangers.</string>
+    <string name="end_game">End Game</string>
 </resources>
