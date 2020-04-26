@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.game.activity.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.commit
@@ -21,6 +22,7 @@ import com.onewisebit.scpescape.game.playerturn.view.PlayerTurnFragment
 import com.onewisebit.scpescape.game.roundinfo.view.RoundInfoFragment
 import com.onewisebit.scpescape.game.roundresult.view.RoundResultFragment
 import com.onewisebit.scpescape.game.vote.view.VoteTurnFragment
+import com.onewisebit.scpescape.main.activity.view.MainActivity
 import com.onewisebit.scpescape.utilities.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -67,8 +69,9 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
 
-        //TODO: remove logs
-        when (oldState) {
+        /*
+        * if necessary we can check the previous state
+         when (oldState) {
             is IntroState -> Log.d(TAG, "Play clicked from Intro GameState")
             is RoundInfoState -> Log.d(TAG, "Start round clicked from RoundInfo GameState")
             is PassDeviceState -> Log.d(TAG, "Device passed clicked from PassDevice GameState")
@@ -76,6 +79,8 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             is PlayerPowerState -> Log.d(TAG, "Play turn clicked from PlayerPower GameState")
             is ShowResultsState -> Log.d(TAG, "Play turn clicked from ShowResults GameState")
         }
+         */
+
         //TODO: check what can be moved to presenter/view
         when (newState) {
             is RoundInfoState -> setupRoundInfoFragment(newState.dayOrNight)
@@ -84,8 +89,16 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             is PlayerPowerState -> uiScope.launch { presenter.setupPlayerPowerFragment() }
             is ShowResultsState -> uiScope.launch { presenter.setupRoundResultsFragment() }
             is CheckVictoryState -> uiScope.launch { presenter.checkVictory() }
+            is EndGameState -> Log.d(TAG, "Reached End Game State")
+            is CloseGameState -> goToMainActivity()
+            else -> throw IllegalStateException("The FSM has reached an unknown state: $newState from state: $oldState")
         }
 
+    }
+
+    private fun goToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun actionReceived(action: Action) {
@@ -176,6 +189,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     override fun endGame(winner: String, message: String) {
         // skip the state machine, the game is finished anyway
+        actionReceived(Action.VictoryReached())
         val arguments = Bundle()
         arguments.putString(ARG_GAME_WINNER, winner)
         arguments.putString(ARG_WINNING_MESSAGE, message)
