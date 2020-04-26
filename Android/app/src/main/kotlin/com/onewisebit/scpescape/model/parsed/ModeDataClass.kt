@@ -19,6 +19,8 @@ data class ModeDataClass(
     val min: Int,
     @SerializedName("max")
     val max: Int,
+    @SerializedName("rounds_sequence")
+    val roundsSequence: List<String>,
     @SerializedName("roles_division")
     val rolesDivision: List<RolesDivision>
 )
