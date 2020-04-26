@@ -9,6 +9,7 @@ State PassDeviceState
 State IntroState
 State EndGameState
 State CheckVictoryState
+state CloseGameState
 
 
 [*] --> IntroState
@@ -30,6 +31,8 @@ ShowResultsState --> CheckVictoryState: ResultSeenClicked
 CheckVictoryState --> EndGameState: VictoryReached
 CheckVictoryState --> RoundInfoState: StartDayRoundClicked,\nStartNightRoundClicked
 
-EndGameState --> [*]
+EndGameState --> CloseGameState: CloseGameClicked
+
+CloseGameState --> [*]
 
 @enduml
