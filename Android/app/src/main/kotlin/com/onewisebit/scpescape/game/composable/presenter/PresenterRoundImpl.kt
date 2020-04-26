@@ -34,4 +34,13 @@ class PresenterRoundImpl(val modelRound: ContractRound.ModelRound, val gameID: L
     override suspend fun addRound() =
         modelRound.addRound(gameID)
 
+    override suspend fun setCurrentRoundReplayable() {
+        val round = getCurrentRound()
+        if (round == null)
+            throw IllegalStateException("Current round was null while setting replay")
+        else {
+            modelRound.setRoundReplay(round.gameID,round.num, true)
+        }
+    }
+
 }

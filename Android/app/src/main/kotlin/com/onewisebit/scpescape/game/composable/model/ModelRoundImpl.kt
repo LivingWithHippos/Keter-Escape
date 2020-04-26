@@ -27,7 +27,9 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
 
     override suspend fun getRoundsMode(gameId: Long): Int = roundRepository.getRoundsMode(gameId)
 
-    override suspend fun addRound(gameID: Long, details: String, roundNumber: Int) {
+    override suspend fun setRoundReplay(gameId: Long, roundNumber: Int, replay: Boolean) = roundRepository.setRoundReplayable(gameId, roundNumber, replay)
+
+    override suspend fun addRound(gameID: Long, details: String, roundNumber: Int, replay: Boolean) {
         var number: Int = roundNumber
         if (number < 0) {
             // if roundNumber is less than zero we check how many rows are in the Round table (hehe) for this game
@@ -42,7 +44,7 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
 
         val mode = getRoundsMode(gameID)
 
-        val row = roundRepository.insertRound(Round(number, gameID, mode, details))
+        val row = roundRepository.insertRound(Round(number, gameID, mode, details,replay))
         Log.d(TAG, "Inserted Round's row is $row")
     }
 
@@ -67,9 +69,16 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
                 if (modeIndex < 0)
                     throw IllegalArgumentException("Round type not found for ${lastRound.details} in sequence $roundSequence")
                 else
-                    // get the next round mode from the round sequence
-                    //todo: add replay round check here
-                    newRoundModeIndex = (modeIndex+1) % roundSequence.size
+                // get the next round mode from the round sequence
+                {
+                    // does the last round type need to be repeated (ties, etc)?
+                    if (round.replay == true) {
+                        newRoundModeIndex = modeIndex
+                        roundRepository.setRoundReplayable(gameID, round.num, false)
+                    }
+                    else
+                        newRoundModeIndex = (modeIndex+1) % roundSequence.size
+                }
                 //if the round is replayed it needs a bigger number anyway
                 newRoundNumber = round.num + 1
             }
