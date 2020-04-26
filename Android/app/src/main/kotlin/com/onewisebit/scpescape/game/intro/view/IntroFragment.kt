@@ -49,6 +49,7 @@ class IntroFragment(gameID: Long, private val onActionListener: (action: Action)
                 binding.tvDescription.text = mode.description
                 binding.tvRules.text = mode.rules
                 binding.fabPlay.setOnClickListener {
+                    binding.fabPlay.isEnabled = false
                     uiScope.launch {
                         binding.fabPlay.isEnabled = false
                         presenter.assignRoles()

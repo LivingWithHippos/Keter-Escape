@@ -34,6 +34,7 @@ class InfoTurnFragment(gameID: Long, private val onActionListener: (action: Acti
         binding.tvInfoDescription.text = arguments?.getString(ARG_ACTION_INFO_TITLE_DESCRIPTION)
 
         binding.fabEndTurn.setOnClickListener {
+            binding.fabEndTurn.isEnabled = false
             arguments?.let {
                 if (it.getBoolean(ARG_LAST_TURN))
                     onActionListener(Action.EndRoundClicked())

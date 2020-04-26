@@ -79,6 +79,7 @@ class NewGameSettingsFragment : BaseSCPFragment<FragmentNewGameSettingsBinding>(
 
         // create a new game in the db
         binding.fabChoosePlayers.setOnClickListener {
+            binding.fabChoosePlayers.isEnabled = false
             //TODO: check if there's a better way to do this without using two presenter methods (createNewGame, onNewGame)
             presenter.createNewGame(args.gameMode, args.gameType)
         }

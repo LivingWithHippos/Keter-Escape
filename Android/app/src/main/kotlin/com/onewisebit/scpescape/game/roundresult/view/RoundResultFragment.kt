@@ -36,6 +36,7 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
         }
 
         binding.fabNextStep.setOnClickListener {
+            binding.fabNextStep.isEnabled = false
             onActionListener(Action.ResultSeenClicked())
         }
     }

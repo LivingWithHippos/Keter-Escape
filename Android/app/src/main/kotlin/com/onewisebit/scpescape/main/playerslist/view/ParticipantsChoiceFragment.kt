@@ -59,6 +59,7 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
             showCreatePlayerDialog()
         }
         binding.fabStartGame.setOnClickListener {
+            binding.fabStartGame.isEnabled = false
 
             presenter.setGameTemporary(args.gameID, false)
                 .subscribeOn(Schedulers.io())

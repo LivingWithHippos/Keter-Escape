@@ -56,7 +56,10 @@ class PlayerTurnFragment(gameID: Long, private val onActionListener: (action: Ac
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.fabPlayTurn.setOnClickListener { onActionListener(Action.PlayTurnClicked()) }
+        binding.fabPlayTurn.setOnClickListener {
+            binding.fabPlayTurn.isEnabled = false
+            onActionListener(Action.PlayTurnClicked())
+        }
     }
 
     override fun initView(
