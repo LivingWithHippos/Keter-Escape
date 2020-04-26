@@ -31,6 +31,8 @@ class RoundRepository(
 
     override suspend fun getRoundsMode(gameID: Long): Int = roundDAO.getRoundMode(gameID)
 
+    override suspend fun setRoundReplayable(gameID: Long, num: Int, replay: Boolean) = roundDAO.setReplayable(gameID, num, replay)
+
     override suspend fun getGameRoundInfo(
         gameId: Long,
         roundCode: String

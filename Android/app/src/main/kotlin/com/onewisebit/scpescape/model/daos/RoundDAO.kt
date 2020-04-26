@@ -65,4 +65,11 @@ interface RoundDAO {
      */
     @Query("DELETE FROM rounds WHERE rounds.game = :gameID")
     fun deleteGameRounds(gameID: Long): Completable
+
+    /**
+     * Set a round replay value
+     */
+    //todo: check if replay is accepted as boolean or it needs to be converted to 0/1
+    @Query("UPDATE rounds SET `replay` = :replay  WHERE game = :gameID AND number = :num")
+    suspend fun setReplayable(gameID: Long, num: Int, replay: Boolean)
 }
