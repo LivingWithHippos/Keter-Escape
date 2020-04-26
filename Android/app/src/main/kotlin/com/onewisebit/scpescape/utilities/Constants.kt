@@ -77,6 +77,7 @@ const val ARG_ACTION_INFO_TITLE = "info_title"
 const val ARG_ACTION_INFO_TITLE_DESCRIPTION = "info_description"
 const val ARG_LAST_TURN = "last_turn"
 const val ARG_KILLED_PLAYERS = "killed_players"
+const val ARG_ROUND_MESSAGE = "round_message"
 const val ARG_GAME_WINNER = "game_winner"
 const val ARG_WINNING_MESSAGE = "winning_message"
 

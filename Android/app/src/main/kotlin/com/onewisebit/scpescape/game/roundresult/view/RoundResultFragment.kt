@@ -10,6 +10,7 @@ import com.onewisebit.scpescape.databinding.FragmentRoundResultBinding
 import com.onewisebit.scpescape.fsm.actions.Action
 import com.onewisebit.scpescape.game.BaseGameFragment
 import com.onewisebit.scpescape.utilities.ARG_KILLED_PLAYERS
+import com.onewisebit.scpescape.utilities.ARG_ROUND_MESSAGE
 
 /**
  * A simple [Fragment] subclass.
@@ -28,11 +29,21 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            val killedPlayers = it.getStringArray(ARG_KILLED_PLAYERS)!!
-            if (killedPlayers.isNotEmpty())
-                setupWithDeaths(killedPlayers)
-            else
-                setupNoDeaths()
+            val killedPlayers = it.getStringArray(ARG_KILLED_PLAYERS)
+            val message = it.getString(ARG_ROUND_MESSAGE)
+            if (killedPlayers == null && message == null)
+                throw IllegalArgumentException("No messages found for Round Result Fragment")
+
+            killedPlayers?.let{players ->
+                if (players.isNotEmpty())
+                    setupWithDeaths(players)
+                else
+                    setupNoDeaths()
+            }
+
+            message?.let{msg ->
+                setupMessage(msg)
+            }
         }
 
         binding.fabNextStep.setOnClickListener {
@@ -55,6 +66,10 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
 
     private fun setupNoDeaths() {
         binding.tvRoundResult.text = getString(R.string.round_no_deaths)
+    }
+
+    private fun setupMessage(message: String) {
+        binding.tvRoundResult.text = message
     }
 
 }

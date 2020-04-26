@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.game.activity.presenter
 
+import android.os.Bundle
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
 import com.onewisebit.scpescape.model.entities.Vote
@@ -85,6 +86,8 @@ open class GamePresenterImpl(
         val sureDeathPlayers: MutableSet<Long> = mutableSetOf()
         // players to be killed on another player's death. If the first one dies, so does the second.
         val pairedDeathPlayers: MutableList<Pair<Long, Long>> = mutableListOf()
+        // used to control flow if round is to be replayed. Currently all effects will be skipped
+        var replayRound = false
 
         voteLoop@ while (roundVotes.size > 0) {
             val currentVote = roundVotes.first()
@@ -118,7 +121,9 @@ open class GamePresenterImpl(
                 val draw = action.draw!!
 
                 if (draw.reVoteAll == true || draw.reVoteNoDrawPlayers == true) {
-                    TODO("Implement restarting the current vote round.")
+                    roundPresenter.setCurrentRoundReplayable()
+                    replayRound = true
+                    break@voteLoop
                 }
 
                 affectedPlayers.addAll(choosePlayerOnDraw(draw, votesCount))
@@ -127,7 +132,7 @@ open class GamePresenterImpl(
                 affectedPlayers.add(votesCount.filter { it.value == maxVotes }.keys.first())
             }
 
-            // add to corresponding lists
+            // add players to corresponding effect lists
 
             //todo: move to function
             val effect = action.effect!!
@@ -177,28 +182,32 @@ open class GamePresenterImpl(
             // remove used votes
             roundVotes.removeAll(currentVotes)
         }
+        val message = mutableListOf<String>()
+        if (!replayRound) {
+            // populate kill list with the complete data from all the votes
 
-        // populate kill list with the complete data from all the votes
+            deathCandidates.forEach { candidate ->
+                if (!safePlayers.contains(candidate))
+                    sureDeathPlayers.add(candidate)
+            }
 
-        deathCandidates.forEach { candidate ->
-            if (!safePlayers.contains(candidate))
-                sureDeathPlayers.add(candidate)
+            pairedDeathPlayers.forEach { playersPair ->
+                if (sureDeathPlayers.contains(playersPair.first))
+                    sureDeathPlayers.add(playersPair.second)
+            }
+
+            // kill players
+            killParticipants(sureDeathPlayers.toList())
+
+            // pass kill list to be shown
+            sureDeathPlayers.forEach { id ->
+                message.add(playerPresenter.getPlayer(id).name)
+            }
+        } else {
+            //todo: read message from database/JSON
+            message.add("Round to be replayed, tied votes")
         }
-
-        pairedDeathPlayers.forEach { playersPair ->
-            if (sureDeathPlayers.contains(playersPair.first))
-                sureDeathPlayers.add(playersPair.second)
-        }
-
-        // kill players
-        killParticipants(sureDeathPlayers.toList())
-
-        // pass kill list to be shown
-        val deadNames = mutableListOf<String>()
-        sureDeathPlayers.forEach { id ->
-            deadNames.add(playerPresenter.getPlayer(id).name)
-        }
-        gameView.showRoundResultFragment(deadNames)
+        gameView.showRoundResultFragment(message, replayRound)
     }
 
     private fun groupVotes(

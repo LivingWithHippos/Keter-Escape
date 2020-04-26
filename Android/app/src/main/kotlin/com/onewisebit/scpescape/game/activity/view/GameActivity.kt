@@ -164,9 +164,13 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun showRoundResultFragment(killedPlayers: List<String>) {
+    override fun showRoundResultFragment(roundMessage: List<String>, replayRound: Boolean) {
         val arguments = Bundle()
-        arguments.putStringArray(ARG_KILLED_PLAYERS, killedPlayers.toTypedArray())
+        //todo: add different types of round info. replayRound -> round_message_type with different options
+        if (!replayRound)
+            arguments.putStringArray(ARG_KILLED_PLAYERS, roundMessage.toTypedArray())
+        else
+            arguments.putString(ARG_ROUND_MESSAGE, roundMessage.first())
         supportFragmentManager.commit {
             replace<RoundResultFragment>(R.id.fragment_container_view, args = arguments)
         }
