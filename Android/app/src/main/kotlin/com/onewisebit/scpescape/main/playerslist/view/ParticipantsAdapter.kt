@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scpescape.databinding.ParticipantListItemBinding
 import com.onewisebit.scpescape.databinding.PlayerListItemBinding
+import com.onewisebit.scpescape.list.NoSuchRecyclerItemType
 import com.onewisebit.scpescape.model.entities.Player
 
 
@@ -90,12 +91,6 @@ class ParticipantsAdapter(
         return TYPE_PLAYER
     }
 
-    companion object {
-        private val TAG = ParticipantsAdapter::class.java.simpleName
-        const val TYPE_PLAYER: Int = 0
-        const val TYPE_PARTICIPANT: Int = 1
-    }
-
     class PlayerHolder(pBinding: PlayerListItemBinding) : RecyclerView.ViewHolder(pBinding.root) {
 
         private var player: Player? = null
@@ -123,6 +118,10 @@ class ParticipantsAdapter(
         }
 
     }
-}
 
-class NoSuchRecyclerItemType(message: String) : RuntimeException(message)
+    companion object {
+        private val TAG = ParticipantsAdapter::class.java.simpleName
+        const val TYPE_PLAYER: Int = 0
+        const val TYPE_PARTICIPANT: Int = 1
+    }
+}

@@ -5,3 +5,5 @@ interface RecyclerItem {
     val type: Int
     override fun equals(other: Any?): Boolean
 }
+
+class NoSuchRecyclerItemType(message: String) : RuntimeException(message)

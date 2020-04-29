@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scpescape.databinding.VoteListItemBinding
+import com.onewisebit.scpescape.list.NoSuchRecyclerItemType
 import com.onewisebit.scpescape.list.RecyclerItem
-import com.onewisebit.scpescape.main.playerslist.view.NoSuchRecyclerItemType
 import com.onewisebit.scpescape.model.parsed.VoteParticipant
 import com.onewisebit.scpescape.utilities.TYPE_VOTE
 
