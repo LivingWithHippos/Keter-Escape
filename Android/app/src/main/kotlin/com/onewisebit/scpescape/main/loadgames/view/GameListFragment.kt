@@ -5,12 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.onewisebit.scpescape.BaseSCPFragment
+import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentGameListBinding
 import com.onewisebit.scpescape.main.loadgames.GamesListContract
 import com.onewisebit.scpescape.model.entities.Game
+import com.onewisebit.scpescape.utilities.GAME_ID
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -51,10 +54,24 @@ class GameListFragment : BaseSCPFragment<FragmentGameListBinding>(), GamesListCo
         })
     }
 
-    private fun onGameClicked(gameID: Long, action: Boolean) {}
+    private fun onGameClicked(gameID: Long, action: Boolean) {
+
+        val args = Bundle().apply {
+            //todo: add other necessary string info
+            putLong(GAME_ID,gameID)
+        }
+
+        val loadGameDialog = LoadGameDialog().apply {
+            arguments = args
+        }
+
+        parentFragmentManager.let { loadGameDialog.show(it, "LoadGameDialog") }
+
+    }
 
     companion object {
         private val TAG = GameListFragment::class.java.simpleName
     }
+
 
 }
