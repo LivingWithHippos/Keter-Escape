@@ -69,6 +69,10 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
 
+        uiScope.launch {
+            presenter.saveGameState(oldState, newState)
+        }
+
         /*
         * if necessary we can check the previous state
          when (oldState) {

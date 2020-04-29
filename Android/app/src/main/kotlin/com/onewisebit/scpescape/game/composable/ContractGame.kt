@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.game.composable
 
+import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.model.entities.*
 import com.onewisebit.scpescape.model.parsed.*
 
@@ -34,11 +35,13 @@ interface ContractGame {
 
     interface PresenterGame {
         suspend fun getGame(): Game
+        suspend fun saveGameState(oldState: StateGame, newState: StateGame)
     }
 
     interface ModelGame {
         suspend fun getGame(gameID: Long): Game
         suspend fun setGameEnded(gameID: Long)
+        suspend fun setGameStates(gameID: Long, oldState: String, newState: String)
     }
 }
 

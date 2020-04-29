@@ -11,4 +11,6 @@ class ModelGameImpl(
     override suspend fun getGame(gameID: Long): Game = gameRepository.getGameBlocking(gameID)
 
     override suspend fun setGameEnded(gameID: Long) = gameRepository.endGame(gameID)
+
+    override suspend fun setGameStates(gameID: Long, oldState: String, newState: String) = gameRepository.setGameStates(gameID, oldState, newState)
 }

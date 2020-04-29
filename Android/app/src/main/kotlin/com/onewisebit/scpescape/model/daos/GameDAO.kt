@@ -104,4 +104,10 @@ interface GameDAO {
     @Query("UPDATE games SET ended = :ended  WHERE game_ID = :id")
     suspend fun setEndGame(id: Long, ended: Boolean)
 
+    /**
+     * Saves the game's finite state machine states.
+     */
+    @Query("UPDATE games SET state_machine_old = :oldState, state_machine_new = :newState  WHERE game_ID = :gameID")
+    suspend fun setMachineStates(gameID: Long, oldState: String, newState: String)
+
 }

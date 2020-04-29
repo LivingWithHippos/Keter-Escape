@@ -31,4 +31,6 @@ interface InGameRepository {
 
     fun setTemporary(gameID: Long, isTemp: Boolean): Completable
 
+    suspend fun setGameStates(gameID: Long, oldState: String, newState: String)
+
 }
