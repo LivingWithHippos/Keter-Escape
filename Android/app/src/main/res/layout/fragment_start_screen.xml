@@ -49,6 +49,13 @@
             android:text="@string/new_game" />
 
         <Button
+            android:id="@+id/bLoadGame"
+            android:layout_width="@dimen/buttons_start_menu_width"
+            android:layout_height="@dimen/buttons_start_menu_height"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/load_game" />
+
+        <Button
             android:id="@+id/bSettings"
             android:layout_width="@dimen/buttons_start_menu_width"
             android:layout_height="@dimen/buttons_start_menu_height"
