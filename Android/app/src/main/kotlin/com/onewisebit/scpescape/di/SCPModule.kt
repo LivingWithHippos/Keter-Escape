@@ -259,6 +259,7 @@ val appModule = module {
             get(),
             get(),
             get(),
+            get(),
             get()
         )
     }
@@ -267,6 +268,7 @@ val appModule = module {
         GamePresenterImpl(
             view,
             get(),
+            get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },
             get { parametersOf(game) },

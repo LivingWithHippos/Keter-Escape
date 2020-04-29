@@ -38,6 +38,7 @@ interface ContractGame {
 
     interface ModelGame {
         suspend fun getGame(gameID: Long): Game
+        suspend fun setGameEnded(gameID: Long)
     }
 }
 

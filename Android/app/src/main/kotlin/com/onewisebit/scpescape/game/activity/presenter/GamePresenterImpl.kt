@@ -10,6 +10,7 @@ import com.onewisebit.scpescape.utilities.*
 open class GamePresenterImpl(
     var gameView: GameContract.GameView,
     val gameModel: GameContract.GameModel,
+    val gamePresenter: ContractGame.PresenterGame,
     val roundPresenter: ContractRound.PresenterRound,
     val turnPresenter: ContractTurn.PresenterTurn,
     val participantPresenter: ContractParticipant.PresenterParticipant,
@@ -19,6 +20,7 @@ open class GamePresenterImpl(
     val modePresenter: ContractMode.PresenterMode,
     val gameID: Long
 ) : GameContract.GamePresenter,
+    ContractGame.PresenterGame by gamePresenter,
     ContractRound.PresenterRound by roundPresenter,
     ContractTurn.PresenterTurn by turnPresenter,
     ContractParticipant.PresenterParticipant by participantPresenter,
@@ -321,7 +323,8 @@ open class GamePresenterImpl(
         }
     }
 
-    private fun endGame(conditionReached: VictoryCondition) {
+    private suspend fun endGame(conditionReached: VictoryCondition) {
+        gameModel.setGameEnded(gameID)
         gameView.endGame(conditionReached.winner, conditionReached.message)
     }
 

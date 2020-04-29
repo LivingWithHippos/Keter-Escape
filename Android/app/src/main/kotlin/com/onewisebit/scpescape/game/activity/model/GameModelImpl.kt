@@ -4,6 +4,7 @@ import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
 
 open class GameModelImpl(
+    val gameModel: ContractGame.ModelGame,
     val roundModel: ContractRound.ModelRound,
     val turnModel: ContractTurn.ModelTurn,
     val participantModel: ContractParticipant.ModelParticipant,
@@ -11,6 +12,7 @@ open class GameModelImpl(
     val actionModel: ContractAction.ModelAction,
     val voteModel: ContractVote.ModelVote
 ) : GameContract.GameModel,
+    ContractGame.ModelGame by gameModel,
     ContractRound.ModelRound by roundModel,
     ContractTurn.ModelTurn by turnModel,
     ContractParticipant.ModelParticipant by participantModel,

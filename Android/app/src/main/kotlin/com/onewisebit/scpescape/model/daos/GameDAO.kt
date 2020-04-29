@@ -4,6 +4,7 @@ import androidx.room.*
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Mode
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 @Dao
@@ -88,5 +89,19 @@ interface GameDAO {
      */
     @Query("DELETE FROM games WHERE `temporary` = 1")
     fun deleteTemporaryGames(): Completable
+
+    /**
+     * Get the list of games.
+     * @return the games from the table.
+     */
+    @Query("SELECT * FROM games where games.ended = 0 AND games.`temporary` = 0")
+    fun getUnfinishedGames(): Flowable<List<Game>>
+
+
+    /**
+     * Mark a game as ended or not
+     */
+    @Query("UPDATE games SET ended = :ended  WHERE game_ID = :id")
+    suspend fun setEndGame(id: Long, ended: Boolean)
 
 }
