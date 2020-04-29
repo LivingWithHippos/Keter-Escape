@@ -62,4 +62,6 @@
     <string name="round_no_deaths">Everyone is still standing. But you are still not out of dangers.</string>
     <string name="end_game">End Game</string>
     <string name="load_game">Load Game</string>
+    <string name="load_game_message">Do you want to load game X started on Y, Z players still standing?</string>
+    <string name="load">Load</string>
 </resources>

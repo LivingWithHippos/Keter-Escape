@@ -38,6 +38,7 @@ const val CURRENT_THEME = "preference_current_theme"
 
 // game values
 
+const val GAME_ID = "game_id"
 const val GAME_TYPE = "game_type"
 const val GAME_TYPE_PASS = 0
 const val GAME_TYPE_LOCAL = 1

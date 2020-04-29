@@ -1,4 +1,4 @@
-package com.onewisebit.scpescape.main.playerslist.view
+package com.onewisebit.scpescape.main.loadgames.view
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,49 +6,51 @@ import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.onewisebit.scpescape.R
-import com.onewisebit.scpescape.databinding.DialogCreatePlayerBinding
+import com.onewisebit.scpescape.databinding.DialogLoadGameBinding
 import com.onewisebit.scpescape.utilities.GAME_ID
-import com.onewisebit.scpescape.utilities.GAME_TYPE
 
-class CreatePlayerDialogFragment : DialogFragment() {
+class LoadGameDialog : DialogFragment() {
 
-    private var _binding: DialogCreatePlayerBinding? = null
+    private var _binding: DialogLoadGameBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var listener: NewPlayerDialogListener
+    private lateinit var listener: LoadGameListener
+    private var gameID: Long = 0L
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
 
             val inflater = requireActivity().layoutInflater
-            _binding = DialogCreatePlayerBinding.inflate(inflater)
+            _binding = DialogLoadGameBinding.inflate(inflater)
 
+            arguments?.let {args ->
+                gameID = args.getLong(GAME_ID)
+            }
 
             builder.setView(binding.root)
-                .setTitle(R.string.new_player)
-                .setPositiveButton(
-                    R.string.save
-                ) { _, _ ->
-                    listener.onPositiveDialogClick(binding.etNewPlayerName.text.toString())
+                .setTitle(R.string.load_game)
+                .setPositiveButton( R.string.load ) { _, _ ->
+                    listener.onLoadGameClick(gameID)
                 }
                 .setNegativeButton(
                     R.string.cancel
                 ) { _, _ ->
-                    // For now do nothing on cancel
+                    dialog?.cancel()
                 }
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            listener = context as NewPlayerDialogListener
+            listener = context as LoadGameListener
         } catch (e: ClassCastException) {
             throw ClassCastException(
                 (context.toString() +
-                        " must implement NewPlayerDialogListener")
+                        " must implement LoadGameListener")
             )
         }
     }
@@ -58,8 +60,7 @@ class CreatePlayerDialogFragment : DialogFragment() {
         super.onDestroyView()
     }
 
-    interface NewPlayerDialogListener {
-        //TODO: also pass avatar bitmap link
-        fun onPositiveDialogClick(playerName: String)
+    interface LoadGameListener {
+        fun onLoadGameClick(gameID: Long)
     }
 }
