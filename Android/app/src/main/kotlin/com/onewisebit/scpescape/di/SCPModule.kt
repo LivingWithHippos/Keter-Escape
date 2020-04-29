@@ -25,6 +25,9 @@ import com.onewisebit.scpescape.game.vote.presenter.VoteTurnPresenterImpl
 import com.onewisebit.scpescape.main.activity.StartContract
 import com.onewisebit.scpescape.main.activity.model.StartActivityModel
 import com.onewisebit.scpescape.main.activity.presenter.StartActivityPresenterImpl
+import com.onewisebit.scpescape.main.loadgames.GamesListContract
+import com.onewisebit.scpescape.main.loadgames.model.GamesListModelImpl
+import com.onewisebit.scpescape.main.loadgames.presenter.GamesListPresenterImpl
 import com.onewisebit.scpescape.main.modesList.GameModesContract
 import com.onewisebit.scpescape.main.modesList.model.GameModesModelImpl
 import com.onewisebit.scpescape.main.modesList.presenter.GameModesPresenterImpl
@@ -169,6 +172,21 @@ val appModule = module {
             get()
         )
     }
+
+    // LoadGames Fragment
+    factory<GamesListContract.GamesListModel> {
+        GamesListModelImpl(
+            get()
+        )
+    }
+
+    factory<GamesListContract.GamesListPresenter> { (view: GamesListContract.GamesListView) ->
+        GamesListPresenterImpl(
+            view,
+            get()
+        )
+    }
+
 
 
     factory<GameSettingsContract.GameSettingsPresenter> { (view: GameSettingsContract.GameSettingsView) ->
