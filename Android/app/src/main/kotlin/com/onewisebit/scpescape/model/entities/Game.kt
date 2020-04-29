@@ -18,5 +18,7 @@ data class Game(
     @ColumnInfo(name = "game_type")
     val type: Int,
     @ColumnInfo(name = "temporary", defaultValue = "true")
-    val temp: Boolean
+    val temp: Boolean,
+    @ColumnInfo(name = "ended", defaultValue = "false")
+    val ended: Boolean
 )
