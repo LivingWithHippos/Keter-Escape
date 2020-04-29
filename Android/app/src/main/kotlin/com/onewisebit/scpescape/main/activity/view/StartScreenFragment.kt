@@ -31,6 +31,11 @@ class StartScreenFragment : BaseSCPFragment<FragmentStartScreenBinding>() {
                 StartScreenFragmentDirections.actionStartToAbout()
             view.findNavController().navigate(action)
         }
+        binding.bLoadGame.setOnClickListener {
+            val action =
+                StartScreenFragmentDirections.actionStartToLoadGame()
+            view.findNavController().navigate(action)
+        }
         binding.bSettings.setOnClickListener {
             val action =
                 StartScreenFragmentDirections.actionStartToSettings()

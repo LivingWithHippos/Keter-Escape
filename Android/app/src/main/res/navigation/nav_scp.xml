@@ -21,6 +21,9 @@
         <action
             android:id="@+id/actionStartToNewGame"
             app:destination="@id/newGameFragment" />
+        <action
+            android:id="@+id/actionStartToLoadGame"
+            app:destination="@id/gameListFragment" />
     </fragment>
 
     <fragment
@@ -94,4 +97,9 @@
             android:name="gameID"
             app:argType="long" />
     </activity>
+    <fragment
+        android:id="@+id/gameListFragment"
+        android:name="com.onewisebit.scpescape.main.loadgames.view.GameListFragment"
+        android:label="fragment_game_list"
+        tools:layout="@layout/fragment_game_list" />
 </navigation>
