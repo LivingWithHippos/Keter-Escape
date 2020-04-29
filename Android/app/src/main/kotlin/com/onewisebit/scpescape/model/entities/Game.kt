@@ -20,5 +20,9 @@ data class Game(
     @ColumnInfo(name = "temporary", defaultValue = "true")
     val temp: Boolean,
     @ColumnInfo(name = "ended", defaultValue = "false")
-    val ended: Boolean
+    val ended: Boolean,
+    @ColumnInfo(name = "state_machine_old")
+    val stateMachineOld: String?,
+    @ColumnInfo(name = "state_machine_new")
+    val stateMachineNew: String?
 )
