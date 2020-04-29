@@ -9,6 +9,7 @@ interface StartContract {
     interface StartPresenter {
         fun setView(view: StartView)
         fun addPlayer(name: String)
+        fun loadGame(gameID: Long)
     }
 
     interface StartModel {

@@ -13,7 +13,6 @@ interface GamesListContract {
 
     interface GamesListPresenter {
         fun initializeGamesList()
-        fun loadGame(gameID: Long)
         fun deleteGame(gameID: Long)
     }
 

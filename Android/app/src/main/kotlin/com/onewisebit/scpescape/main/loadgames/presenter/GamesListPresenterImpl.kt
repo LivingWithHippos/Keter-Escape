@@ -31,10 +31,6 @@ class GamesListPresenterImpl(
             )
     }
 
-    override fun loadGame(gameID: Long) {
-        TODO("Not yet implemented")
-    }
-
     override fun deleteGame(gameID: Long) {
         model.deleteGameByID(gameID)
     }

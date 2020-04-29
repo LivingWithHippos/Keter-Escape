@@ -5,12 +5,13 @@ import com.onewisebit.scpescape.BaseSCPActivity
 import com.onewisebit.scpescape.databinding.ActivityMainBinding
 import com.onewisebit.scpescape.main.activity.StartContract
 import com.onewisebit.scpescape.main.activity.StartContract.StartView
+import com.onewisebit.scpescape.main.loadgames.view.LoadGameDialog
 import com.onewisebit.scpescape.main.playerslist.view.CreatePlayerDialogFragment
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
 class MainActivity : BaseSCPActivity(), StartView,
-    CreatePlayerDialogFragment.NewPlayerDialogListener {
+    CreatePlayerDialogFragment.NewPlayerDialogListener, LoadGameDialog.LoadGameListener {
 
     private val presenter: StartContract.StartPresenter by inject { parametersOf(this) }
 
@@ -40,5 +41,9 @@ class MainActivity : BaseSCPActivity(), StartView,
 
     override fun onPositiveDialogClick(playerName: String) {
         presenter.addPlayer(playerName)
+    }
+
+    override fun onLoadGameClick(gameID: Long) {
+        presenter.loadGame(gameID)
     }
 }
