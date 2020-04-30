@@ -14,11 +14,7 @@ class RoundInfoPresenterImpl(
 
     override suspend fun loadRoundInfo() {
         val info = roundPresenter.getCurrentRoundDetails()
-        if (info != null) {
-            roundiInfoView.initView(info)
-        } else {
-            throw IllegalArgumentException("Loaded round info were null. Game $gameID.")
-        }
+        roundiInfoView.initView(info)
     }
 
     suspend fun getRoundType(): String {
