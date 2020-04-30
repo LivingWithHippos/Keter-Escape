@@ -66,6 +66,7 @@ val appModule = module {
     single { get<SCPDatabase>().roundDAO() }
     single { get<SCPDatabase>().turnDAO() }
     single { get<SCPDatabase>().voteDAO() }
+    single { get<SCPDatabase>().saveDAO() }
 
     // Repositories
 

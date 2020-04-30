@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d883a986d2ddf727e7fd9b64c870d9a9",
+    "identityHash": "bcb0956c09777abfe6a3f4d2239dcafb",
     "entities": [
       {
         "tableName": "players",
@@ -98,7 +98,7 @@
       },
       {
         "tableName": "games",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode` INTEGER NOT NULL, `game_type` INTEGER NOT NULL, `temporary` INTEGER NOT NULL DEFAULT true, `ended` INTEGER NOT NULL DEFAULT false, `state_machine_old` TEXT, `state_machine_new` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode` INTEGER NOT NULL, `game_type` INTEGER NOT NULL, `temporary` INTEGER NOT NULL DEFAULT true, `ended` INTEGER NOT NULL DEFAULT false)",
         "fields": [
           {
             "fieldPath": "id",
@@ -131,18 +131,6 @@
             "affinity": "INTEGER",
             "notNull": true,
             "defaultValue": "false"
-          },
-          {
-            "fieldPath": "stateMachineOld",
-            "columnName": "state_machine_old",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "stateMachineNew",
-            "columnName": "state_machine_new",
-            "affinity": "TEXT",
-            "notNull": false
           }
         ],
         "primaryKey": {
@@ -562,12 +550,69 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "saves",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game` INTEGER NOT NULL, `state_machine_old` TEXT, `state_machine_new` TEXT, `player` INTEGER, `state_processed` INTEGER NOT NULL DEFAULT false, PRIMARY KEY(`game`), FOREIGN KEY(`game`) REFERENCES `games`(`game_ID`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "game",
+            "columnName": "game",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stateMachineOld",
+            "columnName": "state_machine_old",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "stateMachineNew",
+            "columnName": "state_machine_new",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "player",
+            "columnName": "player",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "stateProcessed",
+            "columnName": "state_processed",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "false"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "game"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "games",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "game"
+            ],
+            "referencedColumns": [
+              "game_ID"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd883a986d2ddf727e7fd9b64c870d9a9')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bcb0956c09777abfe6a3f4d2239dcafb')"
     ]
   }
 }
