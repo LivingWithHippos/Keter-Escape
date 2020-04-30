@@ -18,11 +18,12 @@ class GameSettingsModelImpl(
 
     //TODO: check if returned game is needed
     override fun createGame(gameMode: Int, gameType: Int): Single<Long> {
-        val game = Game(0, gameMode, gameType,
+        val game = Game(
+            0,
+            gameMode,
+            gameType,
             temp = true,
-            ended = false,
-            stateMachineOld = null,
-            stateMachineNew = null
+            ended = false
         )
         return gameRepo.insertGame(game)
     }

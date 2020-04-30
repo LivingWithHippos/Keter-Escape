@@ -51,9 +51,6 @@ class GameRepository(private val gameDAO: GameDAO) :
     override fun setTemporary(gameID: Long, isTemp: Boolean): Completable =
         gameDAO.setTemporary(gameID, isTemp)
 
-    override suspend fun setGameStates(gameID: Long, oldState: String, newState: String) = gameDAO.setMachineStates(gameID, oldState, newState)
-
-
     companion object {
         private val TAG = PlayerRepository::class.java.simpleName
     }
