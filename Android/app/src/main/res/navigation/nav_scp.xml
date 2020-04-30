@@ -96,10 +96,18 @@
         <argument
             android:name="gameID"
             app:argType="long" />
+        <argument
+            android:name="isLoading"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </activity>
     <fragment
         android:id="@+id/gameListFragment"
         android:name="com.onewisebit.scpescape.main.loadgames.view.GameListFragment"
         android:label="fragment_game_list"
-        tools:layout="@layout/fragment_game_list" />
+        tools:layout="@layout/fragment_game_list" >
+        <action
+            android:id="@+id/loadGameToGameActivity"
+            app:destination="@id/gameActivity" />
+    </fragment>
 </navigation>

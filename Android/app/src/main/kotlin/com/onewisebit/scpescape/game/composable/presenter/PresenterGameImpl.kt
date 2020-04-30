@@ -8,8 +8,10 @@ class PresenterGameImpl(val model: ContractGame.ModelGame, val gameId: Long) :
     ContractGame.PresenterGame {
     override suspend fun getGame(): Game = model.getGame(gameId)
     override suspend fun saveGameState(oldState: StateGame, newState: StateGame) {
-        val oldS = oldState::class::simpleName.toString()
-        val newS = newState::class::simpleName.toString()
+        //todo: use getName()
+
+        val oldS = oldState::class.java.simpleName
+        val newS = newState::class.java.simpleName
         model.setGameStates(gameId, oldS, newS)
     }
 }

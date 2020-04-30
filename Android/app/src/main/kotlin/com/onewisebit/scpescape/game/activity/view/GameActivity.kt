@@ -45,8 +45,11 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     // not really necessary since we have the callback but nice to learn this
     private var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
-        manageGameState(old, new)
+        if(!skipMachine)
+            manageGameState(old, new)
     })
+
+    private var skipMachine = false
 
     private val factory: SCPFragmentFactory by inject {
         parametersOf(
@@ -63,10 +66,19 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         _binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupIntroFragment()
+        //  loading game or start IntroFragment
+
+        if (args.isLoading) {
+            uiScope.launch {
+                presenter.loadGame()
+            }
+        }
+        else
+            setupIntroFragment()
 
     }
 
+    //todo: move everything inside uiScope.launch?
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
 
         uiScope.launch {
@@ -182,6 +194,13 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     override fun nextRound() {
         actionReceived(Action.StartNextRoundClicked())
+    }
+
+    override suspend fun loadGameState(oldState: StateGame, newState: StateGame) {
+        skipMachine = true
+        currentState = oldState
+        skipMachine = false
+        currentState = newState
     }
 
     override fun endGame(winner: String, message: String) {

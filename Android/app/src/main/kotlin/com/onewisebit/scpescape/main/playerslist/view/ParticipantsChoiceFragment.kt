@@ -68,7 +68,8 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
                     {
                         val action =
                             ParticipantsChoiceFragmentDirections.actionParticipantsChoiceToGameActivity(
-                                args.gameID
+                                args.gameID,
+                                false
                             )
                         view.findNavController().navigate(action)
                     },

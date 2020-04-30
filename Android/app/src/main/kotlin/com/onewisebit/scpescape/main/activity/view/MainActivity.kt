@@ -1,12 +1,19 @@
 package com.onewisebit.scpescape.main.activity.view
 
 import android.os.Bundle
+import android.util.Log
+import androidx.navigation.findNavController
 import com.onewisebit.scpescape.BaseSCPActivity
+import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.ActivityMainBinding
+import com.onewisebit.scpescape.game.activity.view.GameActivity
 import com.onewisebit.scpescape.main.activity.StartContract
 import com.onewisebit.scpescape.main.activity.StartContract.StartView
+import com.onewisebit.scpescape.main.loadgames.view.GameListFragmentDirections
 import com.onewisebit.scpescape.main.loadgames.view.LoadGameDialog
 import com.onewisebit.scpescape.main.playerslist.view.CreatePlayerDialogFragment
+import com.onewisebit.scpescape.main.playerslist.view.ParticipantsChoiceFragmentDirections
+import kotlinx.android.synthetic.main.activity_main.view.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -44,6 +51,16 @@ class MainActivity : BaseSCPActivity(), StartView,
     }
 
     override fun onLoadGameClick(gameID: Long) {
-        presenter.loadGame(gameID)
+        Log.d(TAG, "onLoadGameClick() called with: gameID = $gameID")
+        val action = GameListFragmentDirections.loadGameToGameActivity(
+                gameID,
+                true
+            )
+        findNavController(R.id.nav_host).navigate(action)
+
+    }
+
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
     }
 }

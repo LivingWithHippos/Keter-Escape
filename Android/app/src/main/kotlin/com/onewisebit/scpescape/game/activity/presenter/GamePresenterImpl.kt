@@ -1,6 +1,6 @@
 package com.onewisebit.scpescape.game.activity.presenter
 
-import android.os.Bundle
+import com.onewisebit.scpescape.fsm.states.*
 import com.onewisebit.scpescape.game.activity.GameContract
 import com.onewisebit.scpescape.game.composable.*
 import com.onewisebit.scpescape.model.entities.Vote
@@ -277,6 +277,34 @@ open class GamePresenterImpl(
         }
         //victory not reached. Go to the next round.
         setupNextRound()
+    }
+
+    override suspend fun loadGame() {
+        val game = gamePresenter.getGame()
+        val oldStateName = game.stateMachineOld
+        val newStateName = game.stateMachineNew
+        if (oldStateName != null && newStateName != null) {
+            val oldState = getStateFromName(oldStateName)
+            val newState = getStateFromName(newStateName)
+            gameView.loadGameState(oldState, newState)
+        } else
+            throw IllegalStateException("One of the game state was null for game $gameID: old state $oldStateName, new state $newStateName")
+    }
+
+    private fun getStateFromName(name: String): StateGame {
+
+        return when (name) {
+            CheckVictoryState().getName() -> CheckVictoryState()
+            CloseGameState().getName() -> CloseGameState()
+            EndGameState().getName() -> EndGameState()
+            IntroState().getName() -> IntroState()
+            PassDeviceState().getName() -> PassDeviceState()
+            PlayerPowerState().getName() -> PlayerPowerState()
+            PlayerTurnState().getName() -> PlayerTurnState()
+            RoundInfoState().getName() -> RoundInfoState()
+            ShowResultsState().getName() -> ShowResultsState()
+            else -> throw IllegalArgumentException("No state found with name $name")
+        }
     }
 
     private suspend fun setupNextRound() {

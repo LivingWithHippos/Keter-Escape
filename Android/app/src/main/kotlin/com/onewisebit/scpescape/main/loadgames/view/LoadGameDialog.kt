@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.DialogLoadGameBinding
 import com.onewisebit.scpescape.utilities.GAME_ID
@@ -41,7 +42,6 @@ class LoadGameDialog : DialogFragment() {
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

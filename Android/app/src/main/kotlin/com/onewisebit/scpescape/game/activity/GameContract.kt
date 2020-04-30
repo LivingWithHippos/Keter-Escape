@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.game.activity
 
+import com.onewisebit.scpescape.fsm.states.StateGame
 import com.onewisebit.scpescape.game.composable.*
 
 /**
@@ -13,6 +14,7 @@ interface GameContract {
         fun showPlayerInfoFragment(title: String, description: String, isLastTurn: Boolean = false)
         fun showRoundResultFragment(roundMessage: List<String>, replayRound: Boolean)
         fun nextRound()
+        suspend fun loadGameState(oldState: StateGame, newState: StateGame)
         fun endGame(winner: String, message: String)
     }
 
@@ -25,6 +27,7 @@ interface GameContract {
         suspend fun newPlayerTurn(): String
         suspend fun setupRoundResultsFragment()
         suspend fun checkVictory()
+        suspend fun loadGame()
     }
 
     interface GameModel : ContractRound.ModelRound, ContractTurn.ModelTurn,
