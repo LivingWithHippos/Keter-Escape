@@ -6,7 +6,7 @@ import com.onewisebit.scpescape.model.entities.Player
 import io.reactivex.Flowable
 
 interface GamesListContract {
-    
+
     interface GamesListView {
         fun initView(games: LiveData<List<Game>>)
     }

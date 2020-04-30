@@ -25,7 +25,6 @@ class StartActivityPresenterImpl(
     }
 
 
-
     override fun loadGame(gameID: Long) {
         /** LOAD A GAME
          * get the Game entity

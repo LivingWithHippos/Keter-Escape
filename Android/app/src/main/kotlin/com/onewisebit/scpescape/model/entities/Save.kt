@@ -1,6 +1,9 @@
 package com.onewisebit.scpescape.model.entities
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "saves",
@@ -12,7 +15,7 @@ import androidx.room.*
             onDelete = ForeignKey.CASCADE
         )]
 )
-data class Save (
+data class Save(
     @PrimaryKey
     @ColumnInfo(name = "game")
     val game: Long,

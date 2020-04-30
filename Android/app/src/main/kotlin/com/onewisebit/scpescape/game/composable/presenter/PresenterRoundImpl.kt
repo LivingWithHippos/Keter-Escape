@@ -20,6 +20,7 @@ class PresenterRoundImpl(val modelRound: ContractRound.ModelRound, val gameID: L
         else
             return getRoundDetail(round.details)
     }
+
     //todo: rename details and code here to match
     override suspend fun getRoundDetail(roundCode: String): RoundDetails {
         val modeId = modelRound.getRoundsMode(gameID)
@@ -39,7 +40,7 @@ class PresenterRoundImpl(val modelRound: ContractRound.ModelRound, val gameID: L
         if (round == null)
             throw IllegalStateException("Current round was null while setting replay")
         else {
-            modelRound.setRoundReplay(round.gameID,round.num, true)
+            modelRound.setRoundReplay(round.gameID, round.num, true)
         }
     }
 

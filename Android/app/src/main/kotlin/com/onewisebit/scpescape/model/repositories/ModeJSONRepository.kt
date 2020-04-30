@@ -11,7 +11,8 @@ import com.onewisebit.scpescape.utilities.MODE_FILE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ModeJSONRepository(context: Context, private val gameDAO: GameDAO) : JSONRepository(context), InModeJSONRepository {
+class ModeJSONRepository(context: Context, private val gameDAO: GameDAO) : JSONRepository(context),
+    InModeJSONRepository {
 
     override suspend fun getAllModes(): List<ModeDataClass>? =
         withContext(Dispatchers.IO) {
@@ -41,7 +42,7 @@ class ModeJSONRepository(context: Context, private val gameDAO: GameDAO) : JSONR
     }
 
     override suspend fun getGameMode(gameID: Long): ModeDataClass? {
-        val modeID=gameDAO.getGameByIdBlocking(gameID).modeID
+        val modeID = gameDAO.getGameByIdBlocking(gameID).modeID
         return getMode(modeID)
     }
 

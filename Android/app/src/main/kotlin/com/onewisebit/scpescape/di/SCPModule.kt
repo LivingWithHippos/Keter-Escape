@@ -86,7 +86,7 @@ val appModule = module {
     // Composable Game MVP, see ContractGame.kt
 
     factory<ContractGame.ModelGame> {
-        ModelGameImpl(get(),get())
+        ModelGameImpl(get(), get())
     }
 
     factory<ContractGame.PresenterGame> { (game: Long) ->
@@ -119,7 +119,7 @@ val appModule = module {
     }
 
     factory<ContractRound.ModelRound> {
-        ModelRoundImpl(get(),get())
+        ModelRoundImpl(get(), get())
     }
 
     factory<ContractRound.PresenterRound> { (game: Long) ->

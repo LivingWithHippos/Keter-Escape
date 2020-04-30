@@ -1,15 +1,13 @@
 package com.onewisebit.scpescape.main.loadgames.view
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.onewisebit.scpescape.BaseSCPFragment
-import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.FragmentGameListBinding
 import com.onewisebit.scpescape.main.loadgames.GamesListContract
 import com.onewisebit.scpescape.model.entities.Game
@@ -20,7 +18,8 @@ import org.koin.core.parameter.parametersOf
 /**
  * A fragment representing a list of Items.
  */
-class GameListFragment : BaseSCPFragment<FragmentGameListBinding>(), GamesListContract.GamesListView {
+class GameListFragment : BaseSCPFragment<FragmentGameListBinding>(),
+    GamesListContract.GamesListView {
 
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var adapter: GameListAdapter
@@ -37,7 +36,7 @@ class GameListFragment : BaseSCPFragment<FragmentGameListBinding>(), GamesListCo
         _binding = FragmentGameListBinding.inflate(layoutInflater)
         layoutManager = LinearLayoutManager(context)
         adapter = GameListAdapter(emptyList())
-            { id: Long, action: Boolean -> onGameClicked(id, action) }
+        { id: Long, action: Boolean -> onGameClicked(id, action) }
         return binding.root
     }
 
@@ -58,7 +57,7 @@ class GameListFragment : BaseSCPFragment<FragmentGameListBinding>(), GamesListCo
 
         val args = Bundle().apply {
             //todo: add other necessary string info
-            putLong(GAME_ID,gameID)
+            putLong(GAME_ID, gameID)
         }
 
         val loadGameDialog = LoadGameDialog().apply {

@@ -23,11 +23,22 @@ class ModelGameImpl(
         stateMachineNew: String?,
         player: Long?,
         stateProcessed: Boolean
-    ) = saveRepository.insertSave(Save(gameID,stateMachineOld, stateMachineNew, player, stateProcessed))
+    ) = saveRepository.insertSave(
+        Save(
+            gameID,
+            stateMachineOld,
+            stateMachineNew,
+            player,
+            stateProcessed
+        )
+    )
 
-    override suspend fun saveMachineStates(gameID: Long, oldState: String, newState: String) = saveRepository.setMachineStates(gameID, oldState, newState)
+    override suspend fun saveMachineStates(gameID: Long, oldState: String, newState: String) =
+        saveRepository.setMachineStates(gameID, oldState, newState)
 
-    override suspend fun saveCurrentPlayer(gameID: Long, playerID: Long) = saveRepository.setCurrentPlayer(gameID, playerID)
+    override suspend fun saveCurrentPlayer(gameID: Long, playerID: Long) =
+        saveRepository.setCurrentPlayer(gameID, playerID)
 
-    override suspend fun saveStateProcessed(gameID: Long, processed: Boolean) = saveRepository.setStateProcessed(gameID, processed)
+    override suspend fun saveStateProcessed(gameID: Long, processed: Boolean) =
+        saveRepository.setStateProcessed(gameID, processed)
 }

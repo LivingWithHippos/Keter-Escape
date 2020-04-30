@@ -6,7 +6,7 @@ import com.onewisebit.scpescape.model.entities.Player
 import com.onewisebit.scpescape.model.repositories.InGameRepository
 import io.reactivex.Flowable
 
-class GamesListModelImpl (
+class GamesListModelImpl(
     gameRepository: InGameRepository
 ) : GamesListContract.GamesListModel {
 

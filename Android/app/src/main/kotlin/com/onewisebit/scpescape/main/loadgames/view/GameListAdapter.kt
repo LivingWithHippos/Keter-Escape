@@ -1,18 +1,16 @@
 package com.onewisebit.scpescape.main.loadgames.view
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.onewisebit.scpescape.databinding.GameListItemBinding
-import com.onewisebit.scpescape.game.vote.view.VoteAdapter
 import com.onewisebit.scpescape.list.NoSuchRecyclerItemType
-
 import com.onewisebit.scpescape.model.entities.Game
 
 /**
  * [RecyclerView.Adapter] that can display a [Game]
  */
-class GameListAdapter (
+class GameListAdapter(
     private val games: List<Game>,
     private val clickListener: (Long, Boolean) -> Unit
 ) : RecyclerView.Adapter<GameListAdapter.GameHolder>() {
@@ -21,7 +19,7 @@ class GameListAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameListAdapter.GameHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        when(viewType) {
+        when (viewType) {
             TYPE_GAME -> {
                 val gameBinding = GameListItemBinding.inflate(layoutInflater, parent, false)
                 return GameHolder(gameBinding)
@@ -42,12 +40,15 @@ class GameListAdapter (
         notifyDataSetChanged()
     }
 
-    inner class GameHolder(private val gBinding: GameListItemBinding) : RecyclerView.ViewHolder(gBinding.root) {
+    inner class GameHolder(private val gBinding: GameListItemBinding) :
+        RecyclerView.ViewHolder(gBinding.root) {
 
         private var game: Game? = null
 
-        fun bind(_game: Game,
-                 _clickListener: (Long, Boolean) -> Unit) {
+        fun bind(
+            _game: Game,
+            _clickListener: (Long, Boolean) -> Unit
+        ) {
             game = _game
             gBinding.apply {
                 this.gameId.text = "ID: ${_game.id}"

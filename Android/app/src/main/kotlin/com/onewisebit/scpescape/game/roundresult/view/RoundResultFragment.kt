@@ -34,14 +34,14 @@ class RoundResultFragment(gameID: Long, private val onActionListener: (action: A
             if (killedPlayers == null && message == null)
                 throw IllegalArgumentException("No messages found for Round Result Fragment")
 
-            killedPlayers?.let{players ->
+            killedPlayers?.let { players ->
                 if (players.isNotEmpty())
                     setupWithDeaths(players)
                 else
                     setupNoDeaths()
             }
 
-            message?.let{msg ->
+            message?.let { msg ->
                 setupMessage(msg)
             }
         }

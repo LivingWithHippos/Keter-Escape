@@ -25,9 +25,12 @@ class PresenterGameImpl(val model: ContractGame.ModelGame, val gameId: Long) :
         stateProcessed: Boolean
     ) = model.saveGame(gameId, stateMachineOld, stateMachineNew, player, stateProcessed)
 
-    override suspend fun saveMachineStates(oldState: String, newState: String) = model.saveMachineStates(gameId, oldState, newState)
+    override suspend fun saveMachineStates(oldState: String, newState: String) =
+        model.saveMachineStates(gameId, oldState, newState)
 
-    override suspend fun saveCurrentPlayer(playerID: Long) = model.saveCurrentPlayer(gameId, playerID)
+    override suspend fun saveCurrentPlayer(playerID: Long) =
+        model.saveCurrentPlayer(gameId, playerID)
 
-    override suspend fun saveStateProcessed(processed: Boolean) = model.saveStateProcessed(gameId, processed)
+    override suspend fun saveStateProcessed(processed: Boolean) =
+        model.saveStateProcessed(gameId, processed)
 }

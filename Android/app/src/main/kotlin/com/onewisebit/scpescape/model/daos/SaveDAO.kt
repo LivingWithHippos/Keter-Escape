@@ -1,7 +1,6 @@
 package com.onewisebit.scpescape.model.daos
 
 import androidx.room.*
-import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Save
 
 @Dao

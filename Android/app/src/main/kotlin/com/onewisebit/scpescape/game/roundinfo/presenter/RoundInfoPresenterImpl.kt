@@ -10,7 +10,8 @@ class RoundInfoPresenterImpl(
     val roundPresenter: ContractRound.PresenterRound,
     val modePresenter: ContractMode.PresenterMode,
     val gameID: Long
-) : RoundInfoContract.RoundInfoPresenter, ContractRound.PresenterRound by roundPresenter, ContractMode.PresenterMode by modePresenter {
+) : RoundInfoContract.RoundInfoPresenter, ContractRound.PresenterRound by roundPresenter,
+    ContractMode.PresenterMode by modePresenter {
 
     override suspend fun loadRoundInfo() {
         val info = roundPresenter.getCurrentRoundDetails()

@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.DialogLoadGameBinding
 import com.onewisebit.scpescape.utilities.GAME_ID
@@ -25,13 +24,13 @@ class LoadGameDialog : DialogFragment() {
             val inflater = requireActivity().layoutInflater
             _binding = DialogLoadGameBinding.inflate(inflater)
 
-            arguments?.let {args ->
+            arguments?.let { args ->
                 gameID = args.getLong(GAME_ID)
             }
 
             builder.setView(binding.root)
                 .setTitle(R.string.load_game)
-                .setPositiveButton( R.string.load ) { _, _ ->
+                .setPositiveButton(R.string.load) { _, _ ->
                     listener.onLoadGameClick(gameID)
                 }
                 .setNegativeButton(

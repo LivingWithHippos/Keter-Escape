@@ -12,7 +12,7 @@ interface RoundInfoContract {
         fun initView(info: RoundDetails)
     }
 
-    interface RoundInfoPresenter : ContractRound.PresenterRound,ContractMode.PresenterMode {
+    interface RoundInfoPresenter : ContractRound.PresenterRound, ContractMode.PresenterMode {
         suspend fun loadRoundInfo()
     }
 }

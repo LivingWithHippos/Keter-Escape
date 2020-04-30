@@ -7,8 +7,6 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.onewisebit.scpescape.R
 import com.onewisebit.scpescape.databinding.DialogCreatePlayerBinding
-import com.onewisebit.scpescape.utilities.GAME_ID
-import com.onewisebit.scpescape.utilities.GAME_TYPE
 
 class CreatePlayerDialogFragment : DialogFragment() {
 

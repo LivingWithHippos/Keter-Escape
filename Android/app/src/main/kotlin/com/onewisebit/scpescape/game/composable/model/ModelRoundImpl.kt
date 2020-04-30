@@ -5,17 +5,19 @@ import com.onewisebit.scpescape.game.composable.ContractRound
 import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.parsed.RoundDetails
 import com.onewisebit.scpescape.model.repositories.InModeJSONRepository
-import com.onewisebit.scpescape.model.repositories.InModeRepository
 import com.onewisebit.scpescape.model.repositories.InRoundRepository
 
-class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository: InModeJSONRepository) :
+class ModelRoundImpl(
+    val roundRepository: InRoundRepository,
+    val modeRepository: InModeJSONRepository
+) :
     ContractRound.ModelRound {
     override suspend fun getRounds(gameID: Long): List<Round> = roundRepository.getRounds(gameID)
 
     override suspend fun getLastRound(gameID: Long): Round? = roundRepository.getLastRound(gameID)
 
     override suspend fun getRoundDetail(modeId: Int, roundCode: String): RoundDetails {
-        val details =  roundRepository.getRoundInfo(modeId, roundCode)
+        val details = roundRepository.getRoundInfo(modeId, roundCode)
         if (details == null)
             throw IllegalStateException("Loaded null round details from roundRepository for mode $modeId, round $roundCode")
         else
@@ -27,9 +29,15 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
 
     override suspend fun getRoundsMode(gameId: Long): Int = roundRepository.getRoundsMode(gameId)
 
-    override suspend fun setRoundReplay(gameId: Long, roundNumber: Int, replay: Boolean) = roundRepository.setRoundReplayable(gameId, roundNumber, replay)
+    override suspend fun setRoundReplay(gameId: Long, roundNumber: Int, replay: Boolean) =
+        roundRepository.setRoundReplayable(gameId, roundNumber, replay)
 
-    override suspend fun addRound(gameID: Long, details: String, roundNumber: Int, replay: Boolean) {
+    override suspend fun addRound(
+        gameID: Long,
+        details: String,
+        roundNumber: Int,
+        replay: Boolean
+    ) {
         var number: Int = roundNumber
         if (number < 0) {
             // if roundNumber is less than zero we check how many rows are in the Round table (hehe) for this game
@@ -44,7 +52,7 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
 
         val mode = getRoundsMode(gameID)
 
-        val row = roundRepository.insertRound(Round(number, gameID, mode, details,replay))
+        val row = roundRepository.insertRound(Round(number, gameID, mode, details, replay))
         Log.d(TAG, "Inserted Round's row is $row")
     }
 
@@ -55,7 +63,7 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
         val lastRound = roundRepository.getLastRound(gameID)
         val mode = modeRepository.getGameMode(gameID)
 
-        if (mode ==null)
+        if (mode == null)
             throw IllegalAccessError("Null mode ($mode) loaded in addRound")
         else {
             val roundSequence = mode.roundsSequence
@@ -63,7 +71,7 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
             var newRoundModeIndex = 0
             var newRoundNumber = 0
             // are we in a round after the first?
-            lastRound?.let {round->
+            lastRound?.let { round ->
                 // get the last round mode
                 val modeIndex = roundSequence.indexOf(round.details)
                 if (modeIndex < 0)
@@ -75,9 +83,8 @@ class ModelRoundImpl(val roundRepository: InRoundRepository, val modeRepository:
                     if (round.replay == true) {
                         newRoundModeIndex = modeIndex
                         roundRepository.setRoundReplayable(gameID, round.num, false)
-                    }
-                    else
-                        newRoundModeIndex = (modeIndex+1) % roundSequence.size
+                    } else
+                        newRoundModeIndex = (modeIndex + 1) % roundSequence.size
                 }
                 //if the round is replayed it needs a bigger number anyway
                 newRoundNumber = round.num + 1

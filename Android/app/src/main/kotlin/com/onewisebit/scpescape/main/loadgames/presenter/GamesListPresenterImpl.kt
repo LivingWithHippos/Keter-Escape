@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 class GamesListPresenterImpl(
     gView: GamesListContract.GamesListView,
     gModel: GamesListContract.GamesListModel
-): GamesListContract.GamesListPresenter {
+) : GamesListContract.GamesListPresenter {
 
     private var view: GamesListContract.GamesListView = gView
     private var model: GamesListContract.GamesListModel = gModel

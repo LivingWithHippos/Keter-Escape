@@ -45,7 +45,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     // not really necessary since we have the callback but nice to learn this
     private var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
-        if(!skipMachine)
+        if (!skipMachine)
             manageGameState(old, new)
     })
 
@@ -72,8 +72,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             uiScope.launch {
                 presenter.loadGame()
             }
-        }
-        else
+        } else
             setupIntroFragment()
 
     }

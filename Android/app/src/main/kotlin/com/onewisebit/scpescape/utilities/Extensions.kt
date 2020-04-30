@@ -2,7 +2,6 @@ package com.onewisebit.scpescape.utilities
 
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.onewisebit.scpescape.fsm.states.StateGame
 
 fun View.hideKeyboard() {
     context?.let {
