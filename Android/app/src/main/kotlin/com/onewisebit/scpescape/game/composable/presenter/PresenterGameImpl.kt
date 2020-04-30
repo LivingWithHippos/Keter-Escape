@@ -8,12 +8,13 @@ import com.onewisebit.scpescape.model.entities.Save
 class PresenterGameImpl(val model: ContractGame.ModelGame, val gameId: Long) :
     ContractGame.PresenterGame {
     override suspend fun getGame(): Game = model.getGame(gameId)
-    override suspend fun saveGameState(oldState: StateGame, newState: StateGame) {
-        //todo: use getName()
 
+    override suspend fun saveGameState(oldState: StateGame, newState: StateGame) {
+
+        //todo: use getName()
         val oldS = oldState::class.java.simpleName
         val newS = newState::class.java.simpleName
-        model.saveMachineStates(gameId, oldS, newS)
+        saveGame(oldS,newS)
     }
 
     override suspend fun getSave(): Save = model.getSave(gameId)
