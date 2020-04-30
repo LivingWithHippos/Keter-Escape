@@ -81,6 +81,7 @@ val appModule = module {
     single<InTurnActionRepository> { TurnActionRepository(get(), get()) }
     single<InVoteRepository> { VoteRepository(get(), get()) }
     single<InVictoryConditionsRepository> { VictoryConditionsRepository(get()) }
+    single<InSaveRepository> { SaveRepository(get()) }
 
     // Composable Game MVP, see ContractGame.kt
 
