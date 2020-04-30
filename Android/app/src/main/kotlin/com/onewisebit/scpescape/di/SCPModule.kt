@@ -86,7 +86,7 @@ val appModule = module {
     // Composable Game MVP, see ContractGame.kt
 
     factory<ContractGame.ModelGame> {
-        ModelGameImpl(get())
+        ModelGameImpl(get(),get())
     }
 
     factory<ContractGame.PresenterGame> { (game: Long) ->

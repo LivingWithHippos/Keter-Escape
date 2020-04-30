@@ -280,9 +280,9 @@ open class GamePresenterImpl(
     }
 
     override suspend fun loadGame() {
-        val game = gamePresenter.getGame()
-        val oldStateName = game.stateMachineOld
-        val newStateName = game.stateMachineNew
+        val save = gamePresenter.getSave()
+        val oldStateName = save.stateMachineOld
+        val newStateName = save.stateMachineNew
         if (oldStateName != null && newStateName != null) {
             val oldState = getStateFromName(oldStateName)
             val newState = getStateFromName(newStateName)

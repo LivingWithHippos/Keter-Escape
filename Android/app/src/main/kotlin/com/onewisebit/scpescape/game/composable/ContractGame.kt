@@ -32,16 +32,25 @@ import com.onewisebit.scpescape.model.parsed.*
 interface ContractGame {
 
     interface ViewGame
-
+    //todo: decide how to implement composable mvp to avoid repetition here
     interface PresenterGame {
         suspend fun getGame(): Game
         suspend fun saveGameState(oldState: StateGame, newState: StateGame)
+        suspend fun getSave(): Save
+        suspend fun saveGame(stateMachineOld: String?, stateMachineNew: String?, player: Long? = null, stateProcessed: Boolean = false)
+        suspend fun saveMachineStates(oldState: String, newState: String)
+        suspend fun saveCurrentPlayer(playerID: Long)
+        suspend fun saveStateProcessed(processed: Boolean)
     }
 
     interface ModelGame {
         suspend fun getGame(gameID: Long): Game
         suspend fun setGameEnded(gameID: Long)
-        suspend fun setGameStates(gameID: Long, oldState: String, newState: String)
+        suspend fun getSave(gameID: Long): Save
+        suspend fun saveGame(gameID: Long, stateMachineOld: String?, stateMachineNew: String?, player: Long? = null, stateProcessed: Boolean = false)
+        suspend fun saveMachineStates(gameID: Long, oldState: String, newState: String)
+        suspend fun saveCurrentPlayer(gameID: Long, playerID: Long)
+        suspend fun saveStateProcessed(gameID: Long, processed: Boolean)
     }
 }
 
