@@ -4,11 +4,11 @@ import com.onewisebit.scpescape.game.composable.ContractGame
 import com.onewisebit.scpescape.model.entities.Game
 import com.onewisebit.scpescape.model.entities.Save
 import com.onewisebit.scpescape.model.repositories.InGameRepository
-import com.onewisebit.scpescape.model.repositories.SaveRepository
+import com.onewisebit.scpescape.model.repositories.InSaveRepository
 
 class ModelGameImpl(
     val gameRepository: InGameRepository,
-    val saveRepository: SaveRepository
+    val saveRepository: InSaveRepository
 ) : ContractGame.ModelGame {
 
     override suspend fun getGame(gameID: Long): Game = gameRepository.getGameBlocking(gameID)
