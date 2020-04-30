@@ -8,23 +8,26 @@ import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 @Entity(
     tableName = "participants",
     primaryKeys = ["game", "player"],
-    foreignKeys = [ForeignKey(
-        entity = Game::class,
-        parentColumns = ["game_ID"],
-        childColumns = ["game"],
-        //TODO: implement logic to manage the deletion of a player with a saved/running game
-        onDelete = ForeignKey.CASCADE
-    ), ForeignKey(
-        entity = Player::class,
-        parentColumns = ["player_ID"],
-        childColumns = ["player"],
-        onDelete = ForeignKey.NO_ACTION
-    ), ForeignKey(
-        entity = Role::class,
-        parentColumns = ["role_name"],
-        childColumns = ["role"],
-        onDelete = ForeignKey.NO_ACTION
-    )]
+    foreignKeys = [
+        ForeignKey(
+            entity = Game::class,
+            parentColumns = ["game_ID"],
+            childColumns = ["game"],
+            //TODO: implement logic to manage the deletion of a player with a saved/running game
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Player::class,
+            parentColumns = ["player_ID"],
+            childColumns = ["player"],
+            onDelete = ForeignKey.NO_ACTION
+        ),
+        ForeignKey(
+            entity = Role::class,
+            parentColumns = ["role_name"],
+            childColumns = ["role"],
+            onDelete = ForeignKey.NO_ACTION
+        )]
 )
 data class Participant(
     @ColumnInfo(name = "game")
