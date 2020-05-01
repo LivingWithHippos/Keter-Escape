@@ -77,36 +77,25 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     }
 
-    //todo: move everything inside uiScope.launch?
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
 
         uiScope.launch {
+
             presenter.saveGameState(oldState, newState)
-        }
 
-        /*
-        * if necessary we can check the previous state
-         when (oldState) {
-            is IntroState -> Log.d(TAG, "Play clicked from Intro GameState")
-            is RoundInfoState -> Log.d(TAG, "Start round clicked from RoundInfo GameState")
-            is PassDeviceState -> Log.d(TAG, "Device passed clicked from PassDevice GameState")
-            is PlayerTurnState -> Log.d(TAG, "Play turn clicked from PlayerTurn GameState")
-            is PlayerPowerState -> Log.d(TAG, "Play turn clicked from PlayerPower GameState")
-            is ShowResultsState -> Log.d(TAG, "Play turn clicked from ShowResults GameState")
-        }
-         */
-
-        //TODO: check what can be moved to presenter/view
-        when (newState) {
-            is RoundInfoState -> setupRoundInfoFragment()
-            is PassDeviceState -> setupPassDeviceFragment()
-            is PlayerTurnState -> uiScope.launch { presenter.setupPlayerTurnFragment() }
-            is PlayerPowerState -> uiScope.launch { presenter.setupPlayerPowerFragment() }
-            is ShowResultsState -> uiScope.launch { presenter.setupRoundResultsFragment() }
-            is CheckVictoryState -> uiScope.launch { presenter.checkVictory() }
-            is EndGameState -> Log.d(TAG, "Reached End Game State")
-            is CloseGameState -> goToMainActivity()
-            else -> throw IllegalStateException("The FSM has reached an unknown state: $newState from state: $oldState")
+            //todo: add support for loading to these setups
+            //TODO: check what can be moved to presenter/view
+            when (newState) {
+                is RoundInfoState -> setupRoundInfoFragment()
+                is PassDeviceState -> setupPassDeviceFragment()
+                is PlayerTurnState -> presenter.setupPlayerTurnFragment()
+                is PlayerPowerState -> presenter.setupPlayerPowerFragment()
+                is ShowResultsState -> presenter.setupRoundResultsFragment()
+                is CheckVictoryState -> presenter.checkVictory()
+                is EndGameState -> Log.d(TAG, "Reached End Game State")
+                is CloseGameState -> goToMainActivity()
+                else -> throw IllegalStateException("The FSM has reached an unknown state: $newState from state: $oldState")
+            }
         }
 
     }
