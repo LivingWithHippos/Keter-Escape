@@ -45,8 +45,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     // not really necessary since we have the callback but nice to learn this
     private var currentState by Delegates.observable<StateGame>(IntroState(), { _, old, new ->
-        if (!skipMachine)
-            manageGameState(old, new)
+        manageGameState(old, new)
     })
 
     private var skipMachine = false
@@ -78,26 +77,28 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
     }
 
     private fun manageGameState(oldState: StateGame, newState: StateGame) {
-
-        uiScope.launch {
-
-            presenter.saveGameState(oldState, newState)
-
-            //todo: add support for loading to these setups
-            //TODO: check what can be moved to presenter/view
-            when (newState) {
-                is RoundInfoState -> setupRoundInfoFragment()
-                is PassDeviceState -> setupPassDeviceFragment()
-                is PlayerTurnState -> presenter.setupPlayerTurnFragment()
-                is PlayerPowerState -> presenter.setupPlayerPowerFragment()
-                is ShowResultsState -> presenter.setupRoundResultsFragment()
-                is CheckVictoryState -> presenter.checkVictory()
-                is EndGameState -> Log.d(TAG, "Reached End Game State")
-                is CloseGameState -> goToMainActivity()
-                else -> throw IllegalStateException("The FSM has reached an unknown state: $newState from state: $oldState")
+        if (!skipMachine)
+            uiScope.launch {
+                presenter.saveGameState(oldState, newState)
+                setupFragment(newState)
             }
-        }
+    }
 
+    private suspend fun setupFragment(state: StateGame) {
+        //todo: add support for loading to these setups
+        //TODO: check what can be moved to presenter/view
+        //todo: if we use gameVIew functions we have default values
+        when (state) {
+            is RoundInfoState -> setupRoundInfoFragment()
+            is PassDeviceState -> setupPassDeviceFragment()
+            is PlayerTurnState -> presenter.setupPlayerTurnFragment()
+            is PlayerPowerState -> presenter.setupPlayerPowerFragment()
+            is ShowResultsState -> presenter.setupRoundResultsFragment()
+            is CheckVictoryState -> presenter.checkVictory()
+            is EndGameState -> Log.d(TAG, "Reached End Game State")
+            is CloseGameState -> goToMainActivity()
+            else -> throw IllegalStateException("The FSM has reached an unknown state: $state")
+        }
     }
 
     private fun goToMainActivity() {
