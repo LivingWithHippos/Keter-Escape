@@ -85,3 +85,13 @@ const val ARG_WINNING_MESSAGE = "winning_message"
 // list item types
 
 const val TYPE_VOTE: Int = R.layout.vote_list_item
+
+/**
+ * [State] list
+ */
+
+const val STATE_DEAD = "state_dead"
+const val STATE_SAFE = "state_safe"
+
+
+
