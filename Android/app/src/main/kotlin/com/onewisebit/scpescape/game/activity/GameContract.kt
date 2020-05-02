@@ -15,6 +15,7 @@ interface GameContract {
         fun showRoundResultFragment(roundMessage: List<String>, replayRound: Boolean)
         fun nextRound()
         suspend fun loadGameState(oldState: StateGame, newState: StateGame)
+        fun setGameState(state: StateGame, skipMachine: Boolean = false)
         fun endGame(winner: String, message: String)
     }
 

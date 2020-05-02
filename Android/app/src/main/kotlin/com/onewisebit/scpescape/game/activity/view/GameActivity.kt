@@ -192,6 +192,15 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         currentState = newState
     }
 
+    override fun setGameState(state: StateGame, skipMachine: Boolean) {
+        if (skipMachine) {
+            this.skipMachine = true
+            currentState = state
+            this.skipMachine = false
+        } else
+            currentState = state
+    }
+
     override fun endGame(winner: String, message: String) {
         // skip the state machine, the game is finished anyway
         actionReceived(Action.VictoryReached())
