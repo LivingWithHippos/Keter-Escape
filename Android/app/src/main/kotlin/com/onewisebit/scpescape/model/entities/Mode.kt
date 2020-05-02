@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-//TODO: if ModeDataClass works better remove this, repository and dao
+//TODO: if ModeDataClass works better remove this and the dao
 @Entity(tableName = "modes")
 data class Mode(
     @PrimaryKey

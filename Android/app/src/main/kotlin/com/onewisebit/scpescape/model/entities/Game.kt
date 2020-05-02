@@ -13,6 +13,7 @@ data class Game(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "game_ID")
     val id: Long,
+    //todo: add Foreign key on mode
     @ColumnInfo(name = "mode")
     val modeID: Int,
     @ColumnInfo(name = "game_type")

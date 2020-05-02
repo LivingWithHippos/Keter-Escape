@@ -62,7 +62,7 @@ class ModelRoundImpl(
     override suspend fun addRound(gameID: Long) {
         val lastRound = roundRepository.getLastRound(gameID)
         val mode = modeRepository.getGameMode(gameID)
-
+        
         if (mode == null)
             throw IllegalAccessError("Null mode ($mode) loaded in addRound")
         else {
