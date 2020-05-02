@@ -30,7 +30,7 @@ class Vote(
     val turnNumber: Int,
     @ColumnInfo(name = "player", index = true)
     val playerID: Long,
-    @ColumnInfo(name = "player_voted")
+    @ColumnInfo(name = "player_voted", index = true)
     val votedPlayerID: Long,
     @ColumnInfo(name = "vote_action")
     val voteAction: String

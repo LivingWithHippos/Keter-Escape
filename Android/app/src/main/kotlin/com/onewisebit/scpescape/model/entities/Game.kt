@@ -9,14 +9,16 @@ import androidx.room.*
             entity = Mode::class,
             parentColumns = ["mode_ID"],
             childColumns = ["mode"],
-            onDelete = ForeignKey.NO_ACTION )]
+            onDelete = ForeignKey.NO_ACTION
+        )],
+    indices = [Index(value = ["game_ID", "mode"], unique = true)]
 )
 data class Game(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "game_ID")
     val id: Long,
     //todo: add Foreign key on mode
-    @ColumnInfo(name = "mode")
+    @ColumnInfo(name = "mode", index = true)
     val modeID: Int,
     @ColumnInfo(name = "game_type")
     val type: Int,
