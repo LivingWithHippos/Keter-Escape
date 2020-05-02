@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bcb0956c09777abfe6a3f4d2239dcafb",
+    "identityHash": "9cd24f3c11fa204b4198c4623d006cb0",
     "entities": [
       {
         "tableName": "players",
@@ -98,7 +98,7 @@
       },
       {
         "tableName": "games",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode` INTEGER NOT NULL, `game_type` INTEGER NOT NULL, `temporary` INTEGER NOT NULL DEFAULT true, `ended` INTEGER NOT NULL DEFAULT false)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`game_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mode` INTEGER NOT NULL, `game_type` INTEGER NOT NULL, `temporary` INTEGER NOT NULL DEFAULT true, `ended` INTEGER NOT NULL DEFAULT false, FOREIGN KEY(`mode`) REFERENCES `modes`(`mode_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -148,9 +148,29 @@
               "mode"
             ],
             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_games_game_ID_mode` ON `${TABLE_NAME}` (`game_ID`, `mode`)"
+          },
+          {
+            "name": "index_games_mode",
+            "unique": false,
+            "columnNames": [
+              "mode"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_games_mode` ON `${TABLE_NAME}` (`mode`)"
           }
         ],
-        "foreignKeys": []
+        "foreignKeys": [
+          {
+            "table": "modes",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "mode"
+            ],
+            "referencedColumns": [
+              "mode_ID"
+            ]
+          }
+        ]
       },
       {
         "tableName": "modes",
@@ -518,6 +538,14 @@
               "player"
             ],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_votes_player` ON `${TABLE_NAME}` (`player`)"
+          },
+          {
+            "name": "index_votes_player_voted",
+            "unique": false,
+            "columnNames": [
+              "player_voted"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_votes_player_voted` ON `${TABLE_NAME}` (`player_voted`)"
           }
         ],
         "foreignKeys": [
@@ -607,12 +635,112 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "states",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `game` INTEGER NOT NULL, `round` INTEGER NOT NULL, `turn` INTEGER, `affected_player` INTEGER NOT NULL, `active` INTEGER NOT NULL DEFAULT true, FOREIGN KEY(`game`, `round`) REFERENCES `rounds`(`game`, `number`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`affected_player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameID",
+            "columnName": "game",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "num",
+            "columnName": "round",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "turnNumber",
+            "columnName": "turn",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "affectedPlayerID",
+            "columnName": "affected_player",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "active",
+            "columnName": "active",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "true"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_states_game_round",
+            "unique": false,
+            "columnNames": [
+              "game",
+              "round"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_states_game_round` ON `${TABLE_NAME}` (`game`, `round`)"
+          },
+          {
+            "name": "index_states_affected_player",
+            "unique": false,
+            "columnNames": [
+              "affected_player"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_states_affected_player` ON `${TABLE_NAME}` (`affected_player`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "rounds",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "game",
+              "round"
+            ],
+            "referencedColumns": [
+              "game",
+              "number"
+            ]
+          },
+          {
+            "table": "players",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "affected_player"
+            ],
+            "referencedColumns": [
+              "player_ID"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bcb0956c09777abfe6a3f4d2239dcafb')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9cd24f3c11fa204b4198c4623d006cb0')"
     ]
   }
 }
