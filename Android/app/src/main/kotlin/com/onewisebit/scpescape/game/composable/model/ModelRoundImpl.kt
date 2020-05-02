@@ -32,6 +32,8 @@ class ModelRoundImpl(
     override suspend fun setRoundReplay(gameId: Long, roundNumber: Int, replay: Boolean) =
         roundRepository.setRoundReplayable(gameId, roundNumber, replay)
 
+    override suspend fun getRoundReplay(gameID: Long, num: Int): Boolean = roundRepository.getRoundReplayable(gameID, num)
+
     override suspend fun addRound(
         gameID: Long,
         details: String,
