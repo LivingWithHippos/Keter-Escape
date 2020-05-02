@@ -72,4 +72,10 @@ interface RoundDAO {
     //todo: check if replay is accepted as boolean or it needs to be converted to 0/1
     @Query("UPDATE rounds SET `replay` = :replay  WHERE game = :gameID AND number = :num")
     suspend fun setReplayable(gameID: Long, num: Int, replay: Boolean)
+
+    /**
+     * Get a round replay value
+     */
+    @Query("SELECT replay FROM rounds WHERE game = :gameID AND number = :num")
+    suspend fun getReplayable(gameID: Long, num: Int): Boolean?
 }

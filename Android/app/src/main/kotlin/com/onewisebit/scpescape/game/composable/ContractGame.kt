@@ -115,6 +115,7 @@ interface ContractRound {
         suspend fun getAllModeDetails(): List<RoundDetails>?
         suspend fun addRound()
         suspend fun setCurrentRoundReplayable()
+        suspend fun isCurrentRoundReplayable(): Boolean
     }
 
     interface ModelRound {
@@ -128,10 +129,10 @@ interface ContractRound {
             roundNumber: Int = -1,
             replay: Boolean = false
         )
-
         suspend fun addRound(gameID: Long)
         suspend fun getRoundsMode(gameId: Long): Int
         suspend fun setRoundReplay(gameId: Long, roundNumber: Int, replay: Boolean)
+        suspend fun getRoundReplay(gameID: Long, num: Int): Boolean
     }
 }
 
