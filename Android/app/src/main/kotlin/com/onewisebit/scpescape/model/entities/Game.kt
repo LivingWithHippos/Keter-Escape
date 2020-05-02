@@ -1,13 +1,15 @@
 package com.onewisebit.scpescape.model.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(
     tableName = "games",
-    indices = [Index(value = ["game_ID", "mode"], unique = true)]
+    foreignKeys = [
+        ForeignKey(
+            entity = Mode::class,
+            parentColumns = ["mode_ID"],
+            childColumns = ["mode"],
+            onDelete = ForeignKey.NO_ACTION )]
 )
 data class Game(
     @PrimaryKey(autoGenerate = true)
