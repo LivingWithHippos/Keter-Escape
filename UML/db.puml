@@ -3,30 +3,100 @@ entity "Game" as gm {
   *id : Long <<generated>>
   --
   *mode : String <<FK>>
+  val type: Int
   temp: Boolean
+  ended: Boolean
 }
 
 entity "Mode" as md {
-  *name : String
+  *mode_ID: Int,
   --
-  rules: String
+  mode_name : String
+  mode_description: String
+  mode_rules: String
   min_players: Int
   max_players: Int
+  --
+  Partial entity.
+  Complete one parsed from JSON.
 }
 
 entity "Player" as pl {
-  *id : Long <<generated>>
+  *player_ID : Long <<generated>>
   --
-  *name : String
-  image: String
+  player_name : String
+  player_image: String
 }
 
 entity "Participant" as part {
-  *game : Long
-  *player : Long
-  *role : Long
+  *game : Long <<FK>>
+  *player : Long <<FK>>
+  *role : Long <<FK>>
+  --
+  state: Int
+}
+
+entity "Role" as role {
+  *mode : Int <<FK>>
+  *role_name : String
+  --
+  role_description : String
+  group: String
+  --
+  Partial entity.
+  Complete one parsed from JSON.
+}
+
+entity "Round" as round {
+  *number : Int
+  *gameID : Long <<FK>>
+  --
+  mode : Int <<FK>>
+  details: String
+  replay: Boolean?
+  --
+  Partial entity.
+  Complete one parsed from JSON.
+}
+
+entity "Save" as save {
+  *game : Long <<FK>>
+  --
+  state_machine_old : String?
+  state_machine_new : String?
+  player: Long?,
+  stateProcessed: Boolean
+}
+
+entity "Turn" as turn {
+  *game : Long <<FK>>
+  *round : Int <<FK>>
+  *playerID: Long <<FK>>
+  --
+  turn_number : Int
+}
+
+entity "Vote" as vote {
+  *vote_ID : Long <<generated>>
+  --
+  game : Long <<FK>>
+  round : Int <<FK>>
+  playerID: Long <<FK>>
+  turn_number : Int <<FK>>
+  player_voted: Long <<FK>>
+  vote_action: String
 }
 
 gm ||--o{ md
+part ||--|{ gm
+part ||--o{ pl
+part ||--o{ role
+role ||--|{ md
+round ||--o{ gm
+save ||--|| gm
+turn ||--o{ round
+turn ||--o{ pl
+vote ||--o{ turn
+vote ||--o{ pl
 
 @enduml
