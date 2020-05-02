@@ -32,6 +32,7 @@ abstract class SCPDatabase : RoomDatabase() {
     abstract fun turnDAO(): TurnDAO
     abstract fun voteDAO(): VoteDAO
     abstract fun saveDAO(): SaveDAO
+    abstract fun stateDAO(): StateDAO
 
     companion object {
 
