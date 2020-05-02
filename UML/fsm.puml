@@ -16,6 +16,7 @@ state CloseGameState
 IntroState --> RoundInfoState: StartGameClicked
 
 PassDeviceState --> PlayerTurnState: PassedToPlayerClicked
+PassDeviceState : turns created/loaded here
 
 PlayerPowerState --> ShowResultsState: EndRoundClicked
 PlayerPowerState --> PassDeviceState: EndTurnClicked
@@ -25,6 +26,7 @@ PlayerTurnState --> PassDeviceState: EndTurnClicked
 PlayerTurnState --> PlayerPowerState: PlayTurnClicked
 
 RoundInfoState --> PassDeviceState: StartDayRoundClicked,\nStartNightRoundClicked
+RoundInfoState : rounds created/loaded here
 
 ShowResultsState --> CheckVictoryState: ResultSeenClicked
 
