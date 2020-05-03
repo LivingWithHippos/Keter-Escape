@@ -99,7 +99,7 @@ val appModule = module {
     }
 
     factory<ContractParticipant.ModelParticipant> {
-        ModelParticipantImpl(get())
+        ModelParticipantImpl(get(),get())
     }
 
     factory<ContractParticipant.PresenterParticipant> { (game: Long) ->

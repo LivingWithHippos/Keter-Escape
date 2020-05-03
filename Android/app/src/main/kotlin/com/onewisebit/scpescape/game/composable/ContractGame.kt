@@ -77,6 +77,15 @@ interface ContractParticipant {
         suspend fun getParticipant(playerId: Long): Participant
         suspend fun killParticipantsList(ids: List<Long>)
         suspend fun getGroup(playerId: Long): String
+        suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State>
+        suspend fun getAllParticipantsActiveStates(gameID: Long): List<State>
+        suspend fun getAllParticipantsStates(gameID: Long): List<State>
+        suspend fun getParticipantsDeadStates(gameID: Long): List<State>
+        suspend fun getRoundStates(gameID: Long, roundNumber: Int): List<State>
+        suspend fun getActiveRoundStates(gameID: Long, roundNumber: Int): List<State>
+        suspend fun insertState(state: State): Long
+        suspend fun setStateActive(stateID: Long, active: Boolean)
+        suspend fun removeState(state: State)
     }
 
     interface ModelParticipant {
@@ -87,6 +96,15 @@ interface ContractParticipant {
         suspend fun setGameParticipantRole(gameID: Long, playerID: Long, roleName: String)
         suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int)
         suspend fun getGroup(gameID: Long, playerId: Long): String
+        suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State>
+        suspend fun getAllParticipantsActiveStates(gameID: Long): List<State>
+        suspend fun getAllParticipantsStates(gameID: Long): List<State>
+        suspend fun getParticipantsDeadStates(gameID: Long): List<State>
+        suspend fun getRoundStates(gameID: Long, roundNumber: Int): List<State>
+        suspend fun getActiveRoundStates(gameID: Long, roundNumber: Int): List<State>
+        suspend fun insertState(state: State): Long
+        suspend fun setStateActive(stateID: Long, active: Boolean)
+        suspend fun removeState(state: State)
     }
 }
 
