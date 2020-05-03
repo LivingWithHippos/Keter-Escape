@@ -14,17 +14,17 @@ class StateRepository(private val stateDAO: StateDAO): InStateRepository {
         return states ?: emptyList()
     }
 
-    override suspend fun getAllGameActiveStates(gameID: Long): List<State> {
+    override suspend fun getAllParticipantsActiveStates(gameID: Long): List<State> {
         val states = stateDAO.getAllGameActiveStates(gameID)
         return states ?: emptyList()
     }
 
-    override suspend fun getAllGameStates(gameID: Long): List<State> {
+    override suspend fun getAllParticipantsStates(gameID: Long): List<State> {
         val states = stateDAO.getAllGameStates(gameID)
         return states ?: emptyList()
     }
 
-    override suspend fun getGameDeadStates(gameID: Long): List<State> {
+    override suspend fun getParticipantsDeadStates(gameID: Long): List<State> {
         val states = stateDAO.getGameDeadStates(gameID)
         return states ?: emptyList()
     }
@@ -43,6 +43,6 @@ class StateRepository(private val stateDAO: StateDAO): InStateRepository {
 
     override suspend fun setStateActive(stateID: Long, active: Boolean) = stateDAO.setStateActive(stateID, active)
 
-    override suspend fun removeParticipant(state: State) = stateDAO.removeParticipant(state)
+    override suspend fun removeState(state: State) = stateDAO.removeState(state)
 
 }

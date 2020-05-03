@@ -82,5 +82,5 @@ interface StateDAO {
      * Remove a state from the database.
      */
     @Delete
-    suspend fun removeParticipant(state: State)
+    suspend fun removeState(state: State)
 }
