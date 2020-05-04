@@ -31,7 +31,7 @@ open class ModelParticipantImpl(
     override suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int) =
         participantRepository.setParticipantState(gameID, playerID, state)
 
-    override suspend fun setParticipantStateRound(round: Round, playerID: Long, stateName: String) {
+    override suspend fun setParticipantStateRound(round: Round, playerID: Long, stateName: String) : Long =
         stateRepository.insertState(State(
             0,
             stateName,
@@ -41,7 +41,6 @@ open class ModelParticipantImpl(
             playerID,
             true
         ))
-    }
 
     override suspend fun setParticipantStateTurn(turn: Turn, playerID: Long, stateName: String) {
         stateRepository.insertState(State(
