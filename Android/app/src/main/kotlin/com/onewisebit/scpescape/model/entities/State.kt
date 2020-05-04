@@ -7,20 +7,27 @@ import androidx.room.*
     //primaryKeys = ["game", "round","affected_player"],
     foreignKeys = [
         ForeignKey(
+            entity = Participant::class,
+            parentColumns = ["game", "player"],
+            childColumns = ["game", "affected_player"],
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
             entity = Round::class,
             parentColumns = ["game","number"],
             childColumns = ["game","round"],
             onDelete = ForeignKey.CASCADE
         ),
-    ForeignKey(
-        entity = Player::class,
-        parentColumns = ["player_ID"],
-        childColumns = ["affected_player"],
-        onDelete = ForeignKey.NO_ACTION )
+        ForeignKey(
+            entity = Turn::class,
+            parentColumns = ["turn_number", "round", "game", "player"],
+            childColumns = ["turn", "round", "game", "affected_player"],
+            onDelete = ForeignKey.CASCADE
+        )
     ],
-    indices = [Index(value = ["game", "round"]), Index(value = ["affected_player"])]
+    indices = [Index(value = ["game", "affected_player"]), Index(value = ["turn", "round", "game", "affected_player"]), Index(value = ["game","round"])]
 )
-data class State (
+data class State(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Long,
@@ -29,7 +36,7 @@ data class State (
     @ColumnInfo(name = "game")
     val gameID: Long,
     @ColumnInfo(name = "round")
-    val num: Int,
+    val roundNumber: Int,
     //this is not a Turn foreign key because there are two effect (maybe)
     //effect applied on turn and effect applied on the end of the round.
     // For those last ones turn is null

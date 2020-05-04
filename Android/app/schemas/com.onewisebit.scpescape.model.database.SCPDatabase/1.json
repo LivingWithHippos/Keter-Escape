@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9cd24f3c11fa204b4198c4623d006cb0",
+    "identityHash": "2f592a299e70b8ce9107b913f8d7fe31",
     "entities": [
       {
         "tableName": "players",
@@ -638,7 +638,7 @@
       },
       {
         "tableName": "states",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `game` INTEGER NOT NULL, `round` INTEGER NOT NULL, `turn` INTEGER, `affected_player` INTEGER NOT NULL, `active` INTEGER NOT NULL DEFAULT true, FOREIGN KEY(`game`, `round`) REFERENCES `rounds`(`game`, `number`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`affected_player`) REFERENCES `players`(`player_ID`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `game` INTEGER NOT NULL, `round` INTEGER NOT NULL, `turn` INTEGER, `affected_player` INTEGER NOT NULL, `active` INTEGER NOT NULL DEFAULT true, FOREIGN KEY(`game`, `affected_player`) REFERENCES `participants`(`game`, `player`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`game`, `round`) REFERENCES `rounds`(`game`, `number`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`turn`, `round`, `game`, `affected_player`) REFERENCES `turns`(`turn_number`, `round`, `game`, `player`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -692,6 +692,26 @@
         },
         "indices": [
           {
+            "name": "index_states_game_affected_player",
+            "unique": false,
+            "columnNames": [
+              "game",
+              "affected_player"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_states_game_affected_player` ON `${TABLE_NAME}` (`game`, `affected_player`)"
+          },
+          {
+            "name": "index_states_turn_round_game_affected_player",
+            "unique": false,
+            "columnNames": [
+              "turn",
+              "round",
+              "game",
+              "affected_player"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_states_turn_round_game_affected_player` ON `${TABLE_NAME}` (`turn`, `round`, `game`, `affected_player`)"
+          },
+          {
             "name": "index_states_game_round",
             "unique": false,
             "columnNames": [
@@ -699,17 +719,22 @@
               "round"
             ],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_states_game_round` ON `${TABLE_NAME}` (`game`, `round`)"
-          },
-          {
-            "name": "index_states_affected_player",
-            "unique": false,
-            "columnNames": [
-              "affected_player"
-            ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_states_affected_player` ON `${TABLE_NAME}` (`affected_player`)"
           }
         ],
         "foreignKeys": [
+          {
+            "table": "participants",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "game",
+              "affected_player"
+            ],
+            "referencedColumns": [
+              "game",
+              "player"
+            ]
+          },
           {
             "table": "rounds",
             "onDelete": "CASCADE",
@@ -724,14 +749,20 @@
             ]
           },
           {
-            "table": "players",
-            "onDelete": "NO ACTION",
+            "table": "turns",
+            "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
+              "turn",
+              "round",
+              "game",
               "affected_player"
             ],
             "referencedColumns": [
-              "player_ID"
+              "turn_number",
+              "round",
+              "game",
+              "player"
             ]
           }
         ]
@@ -740,7 +771,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9cd24f3c11fa204b4198c4623d006cb0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2f592a299e70b8ce9107b913f8d7fe31')"
     ]
   }
 }
