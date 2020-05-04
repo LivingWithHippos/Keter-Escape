@@ -2,7 +2,9 @@ package com.onewisebit.scpescape.game.composable.model
 
 import com.onewisebit.scpescape.game.composable.ContractParticipant
 import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.entities.State
+import com.onewisebit.scpescape.model.entities.Turn
 import com.onewisebit.scpescape.model.repositories.InParticipantRepository
 import com.onewisebit.scpescape.model.repositories.InStateRepository
 
@@ -28,6 +30,30 @@ open class ModelParticipantImpl(
 
     override suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int) =
         participantRepository.setParticipantState(gameID, playerID, state)
+
+    override suspend fun setParticipantStateRound(round: Round, playerID: Long, stateName: String) {
+        stateRepository.insertState(State(
+            0,
+            stateName,
+            round.gameID,
+            round.num,
+            null,
+            playerID,
+            true
+        ))
+    }
+
+    override suspend fun setParticipantStateTurn(turn: Turn, playerID: Long, stateName: String) {
+        stateRepository.insertState(State(
+            0,
+            stateName,
+            turn.gameID,
+            turn.roundNumber,
+            turn.turnNumber,
+            playerID,
+            true
+        ))
+    }
 
     override suspend fun getGroup(gameID: Long, playerId: Long): String =
         participantRepository.getParticipantGroup(gameID, playerId)

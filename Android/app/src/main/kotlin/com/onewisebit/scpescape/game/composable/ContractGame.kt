@@ -97,6 +97,8 @@ interface ContractParticipant {
         suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int)
         suspend fun getGroup(gameID: Long, playerId: Long): String
         suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State>
+        suspend fun setParticipantStateRound(round: Round, playerID: Long, stateName: String)
+        suspend fun setParticipantStateTurn(turn: Turn, playerID: Long, stateName: String)
         suspend fun getAllParticipantsActiveStates(gameID: Long): List<State>
         suspend fun getAllParticipantsStates(gameID: Long): List<State>
         suspend fun getParticipantsDeadStates(gameID: Long): List<State>
