@@ -2,9 +2,11 @@ package com.onewisebit.scpescape.game.composable.presenter
 
 import com.onewisebit.scpescape.game.composable.ContractParticipant
 import com.onewisebit.scpescape.model.entities.Participant
+import com.onewisebit.scpescape.model.entities.Round
 import com.onewisebit.scpescape.model.entities.State
 import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_ALIVE
 import com.onewisebit.scpescape.utilities.PARTICIPANT_STATE_DEAD
+import com.onewisebit.scpescape.utilities.STATE_DEAD
 
 open class PresenterParticipantImpl(
     val modelParticipant: ContractParticipant.ModelParticipant,
@@ -26,9 +28,15 @@ open class PresenterParticipantImpl(
     override suspend fun getParticipant(playerId: Long): Participant =
         modelParticipant.getParticipant(gameID, playerId)
 
-    override suspend fun killParticipantsList(ids: List<Long>) {
+    override suspend fun killParticipantsList(ids: List<Long>, currentRound: Round?) {
+        //todo: use only the new State entity
         ids.forEach {
             modelParticipant.setParticipantState(gameID, it, PARTICIPANT_STATE_DEAD)
+        }
+        currentRound?.let{round ->
+            ids.forEach {player->
+                modelParticipant.setParticipantStateRound(round,player, STATE_DEAD)
+            }
         }
     }
 

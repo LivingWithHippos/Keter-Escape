@@ -75,7 +75,7 @@ interface ContractParticipant {
         suspend fun getAliveParticipants(): List<Participant>
         suspend fun getCurrentParticipant(): Participant
         suspend fun getParticipant(playerId: Long): Participant
-        suspend fun killParticipantsList(ids: List<Long>)
+        suspend fun killParticipantsList(ids: List<Long>, currentRound: Round? = null)
         suspend fun getGroup(playerId: Long): String
         suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State>
         suspend fun getAllParticipantsActiveStates(gameID: Long): List<State>
