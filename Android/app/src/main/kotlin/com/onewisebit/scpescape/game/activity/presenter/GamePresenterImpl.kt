@@ -313,7 +313,7 @@ open class GamePresenterImpl(
             /**
              * if the current state is [PassDeviceState], [PlayerTurnState] or [PlayerPowerState] -> go to [PassDeviceState] to avoid spoilers
              */
-            when (newState){
+            when (newState) {
                 // todo: directly use the setupFragmentX functions from gameView. to avoid adding logic to the activity. Just use a method to change the currentState without activating manageState
                 //
                 is PlayerTurnState -> {
@@ -343,7 +343,7 @@ open class GamePresenterImpl(
                     setupRoundResultsFragment(isLoading = true)
                 }
                 else -> {
-                   gameView.loadGameState(oldState, newState)
+                    gameView.loadGameState(oldState, newState)
                 }
 
             }

@@ -28,5 +28,5 @@ interface InRoundRepository {
 
     suspend fun setRoundReplayable(gameID: Long, num: Int, replay: Boolean)
 
-    suspend fun getRoundReplayable(gameID: Long, num: Int) : Boolean
+    suspend fun getRoundReplayable(gameID: Long, num: Int): Boolean
 }

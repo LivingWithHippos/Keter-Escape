@@ -31,47 +31,62 @@ open class ModelParticipantImpl(
     override suspend fun setParticipantState(gameID: Long, playerID: Long, state: Int) =
         participantRepository.setParticipantState(gameID, playerID, state)
 
-    override suspend fun setParticipantStateRound(round: Round, playerID: Long, stateName: String) : Long =
-        stateRepository.insertState(State(
-            0,
-            stateName,
-            round.gameID,
-            round.num,
-            null,
-            playerID,
-            true
-        ))
+    override suspend fun setParticipantStateRound(
+        round: Round,
+        playerID: Long,
+        stateName: String
+    ): Long =
+        stateRepository.insertState(
+            State(
+                0,
+                stateName,
+                round.gameID,
+                round.num,
+                null,
+                playerID,
+                true
+            )
+        )
 
     override suspend fun setParticipantStateTurn(turn: Turn, playerID: Long, stateName: String) {
-        stateRepository.insertState(State(
-            0,
-            stateName,
-            turn.gameID,
-            turn.roundNumber,
-            turn.turnNumber,
-            playerID,
-            true
-        ))
+        stateRepository.insertState(
+            State(
+                0,
+                stateName,
+                turn.gameID,
+                turn.roundNumber,
+                turn.turnNumber,
+                playerID,
+                true
+            )
+        )
     }
 
     override suspend fun getGroup(gameID: Long, playerId: Long): String =
         participantRepository.getParticipantGroup(gameID, playerId)
 
-    override suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State> = stateRepository.getParticipantStates(gameID, playerID)
+    override suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State> =
+        stateRepository.getParticipantStates(gameID, playerID)
 
-    override suspend fun getAllParticipantsActiveStates(gameID: Long): List<State>  = stateRepository.getAllParticipantsActiveStates(gameID)
+    override suspend fun getAllParticipantsActiveStates(gameID: Long): List<State> =
+        stateRepository.getAllParticipantsActiveStates(gameID)
 
-    override suspend fun getAllParticipantsStates(gameID: Long): List<State> = stateRepository.getAllParticipantsStates(gameID)
+    override suspend fun getAllParticipantsStates(gameID: Long): List<State> =
+        stateRepository.getAllParticipantsStates(gameID)
 
-    override suspend fun getParticipantsDeadStates(gameID: Long): List<State> = stateRepository.getParticipantsDeadStates(gameID)
+    override suspend fun getParticipantsDeadStates(gameID: Long): List<State> =
+        stateRepository.getParticipantsDeadStates(gameID)
 
-    override suspend fun getRoundStates(gameID: Long, roundNumber: Int): List<State> = stateRepository.getRoundStates(gameID, roundNumber)
+    override suspend fun getRoundStates(gameID: Long, roundNumber: Int): List<State> =
+        stateRepository.getRoundStates(gameID, roundNumber)
 
-    override suspend fun getActiveRoundStates(gameID: Long, roundNumber: Int): List<State> = stateRepository.getActiveRoundStates(gameID, roundNumber)
+    override suspend fun getActiveRoundStates(gameID: Long, roundNumber: Int): List<State> =
+        stateRepository.getActiveRoundStates(gameID, roundNumber)
 
     override suspend fun insertState(state: State): Long = stateRepository.insertState(state)
 
-    override suspend fun setStateActive(stateID: Long, active: Boolean) = stateRepository.setStateActive(stateID, active)
+    override suspend fun setStateActive(stateID: Long, active: Boolean) =
+        stateRepository.setStateActive(stateID, active)
 
     override suspend fun removeState(state: State) = stateRepository.removeState(state)
 

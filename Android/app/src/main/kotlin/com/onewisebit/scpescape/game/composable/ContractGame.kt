@@ -149,6 +149,7 @@ interface ContractRound {
             roundNumber: Int = -1,
             replay: Boolean = false
         )
+
         suspend fun addRound(gameID: Long)
         suspend fun getRoundsMode(gameId: Long): Int
         suspend fun setRoundReplay(gameId: Long, roundNumber: Int, replay: Boolean)

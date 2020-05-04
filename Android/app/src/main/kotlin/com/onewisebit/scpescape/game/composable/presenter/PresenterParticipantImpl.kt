@@ -33,9 +33,9 @@ open class PresenterParticipantImpl(
         ids.forEach {
             modelParticipant.setParticipantState(gameID, it, PARTICIPANT_STATE_DEAD)
         }
-        currentRound?.let{round ->
-            ids.forEach {player->
-                modelParticipant.setParticipantStateRound(round,player, STATE_DEAD)
+        currentRound?.let { round ->
+            ids.forEach { player ->
+                modelParticipant.setParticipantStateRound(round, player, STATE_DEAD)
             }
         }
     }
@@ -43,21 +43,28 @@ open class PresenterParticipantImpl(
     override suspend fun getGroup(playerId: Long): String =
         modelParticipant.getGroup(gameID, playerId)
 
-    override suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State> = modelParticipant.getParticipantStates(gameID, playerID)
+    override suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State> =
+        modelParticipant.getParticipantStates(gameID, playerID)
 
-    override suspend fun getAllParticipantsActiveStates(gameID: Long): List<State>  = modelParticipant.getAllParticipantsActiveStates(gameID)
+    override suspend fun getAllParticipantsActiveStates(gameID: Long): List<State> =
+        modelParticipant.getAllParticipantsActiveStates(gameID)
 
-    override suspend fun getAllParticipantsStates(gameID: Long): List<State> = modelParticipant.getAllParticipantsStates(gameID)
+    override suspend fun getAllParticipantsStates(gameID: Long): List<State> =
+        modelParticipant.getAllParticipantsStates(gameID)
 
-    override suspend fun getParticipantsDeadStates(gameID: Long): List<State> = modelParticipant.getParticipantsDeadStates(gameID)
+    override suspend fun getParticipantsDeadStates(gameID: Long): List<State> =
+        modelParticipant.getParticipantsDeadStates(gameID)
 
-    override suspend fun getRoundStates(gameID: Long, roundNumber: Int): List<State> = modelParticipant.getRoundStates(gameID, roundNumber)
+    override suspend fun getRoundStates(gameID: Long, roundNumber: Int): List<State> =
+        modelParticipant.getRoundStates(gameID, roundNumber)
 
-    override suspend fun getActiveRoundStates(gameID: Long, roundNumber: Int): List<State> = modelParticipant.getActiveRoundStates(gameID, roundNumber)
+    override suspend fun getActiveRoundStates(gameID: Long, roundNumber: Int): List<State> =
+        modelParticipant.getActiveRoundStates(gameID, roundNumber)
 
     override suspend fun insertState(state: State): Long = modelParticipant.insertState(state)
 
-    override suspend fun setStateActive(stateID: Long, active: Boolean) = modelParticipant.setStateActive(stateID, active)
+    override suspend fun setStateActive(stateID: Long, active: Boolean) =
+        modelParticipant.setStateActive(stateID, active)
 
     override suspend fun removeState(state: State) = modelParticipant.removeState(state)
 }

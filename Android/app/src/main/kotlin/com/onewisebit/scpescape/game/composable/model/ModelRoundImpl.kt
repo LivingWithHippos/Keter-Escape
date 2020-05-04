@@ -32,7 +32,8 @@ class ModelRoundImpl(
     override suspend fun setRoundReplay(gameId: Long, roundNumber: Int, replay: Boolean) =
         roundRepository.setRoundReplayable(gameId, roundNumber, replay)
 
-    override suspend fun getRoundReplay(gameID: Long, num: Int): Boolean = roundRepository.getRoundReplayable(gameID, num)
+    override suspend fun getRoundReplay(gameID: Long, num: Int): Boolean =
+        roundRepository.getRoundReplayable(gameID, num)
 
     override suspend fun addRound(
         gameID: Long,
@@ -64,7 +65,7 @@ class ModelRoundImpl(
     override suspend fun addRound(gameID: Long) {
         val lastRound = roundRepository.getLastRound(gameID)
         val mode = modeRepository.getGameMode(gameID)
-        
+
         if (mode == null)
             throw IllegalAccessError("Null mode ($mode) loaded in addRound")
         else {

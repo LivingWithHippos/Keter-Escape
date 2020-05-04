@@ -116,7 +116,7 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun setupRoundInfoFragment(isLoading : Boolean) {
+    override fun setupRoundInfoFragment(isLoading: Boolean) {
         uiScope.launch {
             // if we are loading a round we don't need to create a new one
             if (!isLoading)
@@ -126,8 +126,9 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             }
         }
     }
+
     //todo: rename all these functions as setupFragmentX or showFragmentX
-    override fun setupPassDeviceFragment(isLoading : Boolean) {
+    override fun setupPassDeviceFragment(isLoading: Boolean) {
         uiScope.launch {
             val playerName =
                 if (!isLoading)

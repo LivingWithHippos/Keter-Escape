@@ -17,8 +17,8 @@ interface GameContract {
         suspend fun loadGameState(oldState: StateGame, newState: StateGame)
         fun setGameState(state: StateGame, skipMachine: Boolean = false)
         fun endGame(winner: String, message: String)
-        fun setupRoundInfoFragment(isLoading : Boolean = false)
-        fun setupPassDeviceFragment(isLoading : Boolean = false)
+        fun setupRoundInfoFragment(isLoading: Boolean = false)
+        fun setupPassDeviceFragment(isLoading: Boolean = false)
     }
 
     interface GamePresenter : ContractRound.PresenterRound, ContractTurn.PresenterTurn,

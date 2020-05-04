@@ -1,10 +1,8 @@
 package com.onewisebit.scpescape.model.daos
 
 import androidx.room.*
-import com.onewisebit.scpescape.model.entities.Participant
 import com.onewisebit.scpescape.model.entities.State
 import com.onewisebit.scpescape.utilities.STATE_DEAD
-import io.reactivex.Completable
 
 @Dao
 interface StateDAO {

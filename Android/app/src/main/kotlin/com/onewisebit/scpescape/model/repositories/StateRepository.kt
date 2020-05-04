@@ -3,7 +3,7 @@ package com.onewisebit.scpescape.model.repositories
 import com.onewisebit.scpescape.model.daos.StateDAO
 import com.onewisebit.scpescape.model.entities.State
 
-class StateRepository(private val stateDAO: StateDAO): InStateRepository {
+class StateRepository(private val stateDAO: StateDAO) : InStateRepository {
     override suspend fun getParticipantStates(gameID: Long, playerID: Long): List<State> {
         val states = stateDAO.getParticipantStates(gameID, playerID)
         return states ?: emptyList()
@@ -41,7 +41,8 @@ class StateRepository(private val stateDAO: StateDAO): InStateRepository {
 
     override suspend fun insertState(state: State): Long = stateDAO.insertState(state)
 
-    override suspend fun setStateActive(stateID: Long, active: Boolean) = stateDAO.setStateActive(stateID, active)
+    override suspend fun setStateActive(stateID: Long, active: Boolean) =
+        stateDAO.setStateActive(stateID, active)
 
     override suspend fun removeState(state: State) = stateDAO.removeState(state)
 

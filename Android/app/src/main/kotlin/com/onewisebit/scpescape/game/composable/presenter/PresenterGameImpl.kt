@@ -13,7 +13,7 @@ class PresenterGameImpl(val model: ContractGame.ModelGame, val gameId: Long) :
 
         val oldS = oldState.getName()
         val newS = newState.getName()
-        saveGame(oldS,newS)
+        saveGame(oldS, newS)
     }
 
     override suspend fun getSave(): Save = model.getSave(gameId)

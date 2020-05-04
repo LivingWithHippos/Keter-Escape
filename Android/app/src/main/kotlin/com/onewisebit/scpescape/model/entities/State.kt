@@ -14,8 +14,8 @@ import androidx.room.*
         ),
         ForeignKey(
             entity = Round::class,
-            parentColumns = ["game","number"],
-            childColumns = ["game","round"],
+            parentColumns = ["game", "number"],
+            childColumns = ["game", "round"],
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
@@ -25,7 +25,9 @@ import androidx.room.*
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["game", "affected_player"]), Index(value = ["turn", "round", "game", "affected_player"]), Index(value = ["game","round"])]
+    indices = [Index(value = ["game", "affected_player"]), Index(value = ["turn", "round", "game", "affected_player"]), Index(
+        value = ["game", "round"]
+    )]
 )
 data class State(
     @PrimaryKey(autoGenerate = true)
