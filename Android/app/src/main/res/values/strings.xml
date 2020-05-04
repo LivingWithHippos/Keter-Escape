@@ -64,4 +64,7 @@
     <string name="load_game">Load Game</string>
     <string name="load_game_message">Do you want to load game X started on Y, Z players still standing?</string>
     <string name="load">Load</string>
+    <string name="resume">Resume</string>
+    <string name="close_game">Close Game</string>
+    <string name="pause_menu">Pause Menu</string>
 </resources>
