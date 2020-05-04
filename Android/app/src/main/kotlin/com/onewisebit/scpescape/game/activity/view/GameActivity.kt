@@ -3,6 +3,7 @@ package com.onewisebit.scpescape.game.activity.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.navigation.NavController
@@ -18,6 +19,7 @@ import com.onewisebit.scpescape.game.endgame.view.EndGameFragment
 import com.onewisebit.scpescape.game.infoturn.view.InfoTurnFragment
 import com.onewisebit.scpescape.game.intro.view.IntroFragment
 import com.onewisebit.scpescape.game.passdevice.view.PassDeviceFragment
+import com.onewisebit.scpescape.game.pause.view.PauseDialog
 import com.onewisebit.scpescape.game.playerturn.view.PlayerTurnFragment
 import com.onewisebit.scpescape.game.roundinfo.view.RoundInfoFragment
 import com.onewisebit.scpescape.game.roundresult.view.RoundResultFragment
@@ -32,7 +34,7 @@ import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import kotlin.properties.Delegates
 
-class GameActivity : BaseSCPActivity(), GameContract.GameView {
+class GameActivity : BaseSCPActivity(), GameContract.GameView, PauseDialog.PauseMenuListener {
 
     private val args: GameActivityArgs by navArgs()
     private val presenter: GameContract.GamePresenter by inject { parametersOf(this, args.gameID) }
@@ -73,6 +75,13 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
             }
         } else
             setupIntroFragment()
+
+        // Handle the back button event
+        val callback = onBackPressedDispatcher.addCallback(this) {
+            val pauseDialog = PauseDialog()
+            pauseDialog.show(supportFragmentManager, "pause")
+
+        }
 
     }
 
@@ -239,6 +248,11 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
 
     companion object {
         private val TAG = GameActivity::class.java.simpleName
+    }
+
+    override fun onCloseGameClick() {
+        finish()
+        // todo: return to main activity
     }
 
 }
