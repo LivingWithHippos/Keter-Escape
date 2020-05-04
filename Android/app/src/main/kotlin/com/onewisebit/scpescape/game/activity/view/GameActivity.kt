@@ -116,18 +116,25 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    private fun setupRoundInfoFragment() {
+    override fun setupRoundInfoFragment(isLoading : Boolean) {
         uiScope.launch {
-            presenter.addRound()
+            // if we are loading a round we don't need to create a new one
+            if (!isLoading)
+                presenter.addRound()
             supportFragmentManager.commit {
                 replace<RoundInfoFragment>(R.id.fragment_container_view)
             }
         }
     }
-
-    private fun setupPassDeviceFragment() {
+    //todo: rename all these functions as setupFragmentX or showFragmentX
+    override fun setupPassDeviceFragment(isLoading : Boolean) {
         uiScope.launch {
-            val playerName: String = presenter.newPlayerTurn()
+            val playerName =
+                if (!isLoading)
+                    presenter.newPlayerTurn()
+                else
+                    presenter.getPlayer(presenter.getCurrentParticipant().playerID).name
+
             val arguments = Bundle()
             arguments.putString(ARG_PLAYER_NAME, playerName)
             supportFragmentManager.commit {
@@ -169,7 +176,10 @@ class GameActivity : BaseSCPActivity(), GameContract.GameView {
         }
     }
 
-    override fun showRoundResultFragment(roundMessage: List<String>, replayRound: Boolean) {
+    override fun showRoundResultFragment(
+        roundMessage: List<String>,
+        replayRound: Boolean
+    ) {
         val arguments = Bundle()
         //todo: add different types of round info. replayRound -> round_message_type with different options
         if (!replayRound)

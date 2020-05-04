@@ -71,144 +71,166 @@ open class GamePresenterImpl(
 
     }
 
-    override suspend fun setupRoundResultsFragment() {
+    override suspend fun setupRoundResultsFragment(isLoading: Boolean) {
         //todo: parse here only the effects having VoteSettings.applied.end_round = true
         // and add one check after every turn for VoteSettings.applied.end_turn = true (maybe checking oldState = PlayerPower in  the activity)
         // make this more modular, something like applyEffect(action,votes), maybe move it to a EffectContract
-        val roundVotes: MutableList<Vote> = mutableListOf()
-        roundVotes.addAll(getLastRoundVotes())
-        // load all the possible vote actions
-        val voteActions = getModeActions().filterIsInstance<VoteSettings>()
 
-        // players to be killed directly
-        val deathCandidates: MutableList<Long> = mutableListOf()
-        // players to be protected on direct hit
-        val safePlayers: MutableList<Long> = mutableListOf()
-        // players to be killed for sure, passed to view.showRoundResultFragment()
-        val sureDeathPlayers: MutableSet<Long> = mutableSetOf()
-        // players to be killed on another player's death. If the first one dies, so does the second.
-        val pairedDeathPlayers: MutableList<Pair<Long, Long>> = mutableListOf()
-        // used to control flow if round is to be replayed. Currently all effects will be skipped
+        //todo: use the new State Entity
+        val message = mutableListOf<String>()
+
         var replayRound = false
 
-        voteLoop@ while (roundVotes.size > 0) {
-            val currentVote = roundVotes.first()
-            // I always process from the first vote, then remove all the used votes
-            val action = voteActions.first { it.name == currentVote.voteAction }
-            // all the votes involved in this action that will be removed from votes in the end
-            val currentVotes: MutableSet<Vote> = mutableSetOf()
-            // players that will be affected by the action effect
-            val affectedPlayers: MutableList<Long> = mutableListOf()
+        if (!isLoading) {
+            val roundVotes: MutableList<Vote> = mutableListOf()
+            roundVotes.addAll(getLastRoundVotes())
+            // load all the possible vote actions
+            val voteActions = getModeActions().filterIsInstance<VoteSettings>()
 
-            // check votes grouping
-            val groupVote = action.voteGroup!!
-            currentVotes.addAll(groupVotes(groupVote, roundVotes, currentVote))
+            // players to be killed directly
+            val deathCandidates: MutableList<Long> = mutableListOf()
+            // players to be protected on direct hit
+            val safePlayers: MutableList<Long> = mutableListOf()
+            // players to be killed for sure, passed to view.showRoundResultFragment()
+            val sureDeathPlayers: MutableSet<Long> = mutableSetOf()
+            // players to be killed on another player's death. If the first one dies, so does the second.
+            val pairedDeathPlayers: MutableList<Pair<Long, Long>> = mutableListOf()
+            // used to control flow if round is to be replayed. Currently all effects will be skipped
 
-            if (currentVotes.isNullOrEmpty())
-                throw IllegalArgumentException("The current vote action is probably missing a group_vote option")
+            voteLoop@ while (roundVotes.size > 0) {
+                val currentVote = roundVotes.first()
+                // I always process from the first vote, then remove all the used votes
+                val action = voteActions.first { it.name == currentVote.voteAction }
+                // all the votes involved in this action that will be removed from votes in the end
+                val currentVotes: MutableSet<Vote> = mutableSetOf()
+                // players that will be affected by the action effect
+                val affectedPlayers: MutableList<Long> = mutableListOf()
+
+                // check votes grouping
+                val groupVote = action.voteGroup!!
+                currentVotes.addAll(groupVotes(groupVote, roundVotes, currentVote))
+
+                if (currentVotes.isNullOrEmpty())
+                    throw IllegalArgumentException("The current vote action is probably missing a group_vote option")
 
 
-            // create a Map with <playerID,number of votes for that Player>
-            val votesCount = currentVotes
-                // group by voted player id
-                .groupingBy { it.votedPlayerID }
-                // count occurrences of this player id
-                .eachCount()
+                // create a Map with <playerID,number of votes for that Player>
+                val votesCount = currentVotes
+                    // group by voted player id
+                    .groupingBy { it.votedPlayerID }
+                    // count occurrences of this player id
+                    .eachCount()
 
-            // get the maximum number of votes for a player
-            val maxVotes: Int = votesCount.maxBy { it.value }!!.value
+                // get the maximum number of votes for a player
+                val maxVotes: Int = votesCount.maxBy { it.value }!!.value
 
-            // are there more than one player who got the max votes? (e.g. A got 2 votes, B got 5, C got 5, D got 4)
-            if (votesCount.filter { it.value == maxVotes }.size > 1) {
-                val draw = action.draw!!
+                // are there more than one player who got the max votes? (e.g. A got 2 votes, B got 5, C got 5, D got 4)
+                if (votesCount.filter { it.value == maxVotes }.size > 1) {
+                    val draw = action.draw!!
 
-                if (draw.reVoteAll == true || draw.reVoteNoDrawPlayers == true) {
-                    roundPresenter.setCurrentRoundReplayable()
-                    replayRound = true
-                    break@voteLoop
+                    if (draw.reVoteAll == true || draw.reVoteNoDrawPlayers == true) {
+                        roundPresenter.setCurrentRoundReplayable()
+                        replayRound = true
+                        break@voteLoop
+                    }
+
+                    affectedPlayers.addAll(choosePlayerOnDraw(draw, votesCount))
+
+                } else {
+                    affectedPlayers.add(votesCount.filter { it.value == maxVotes }.keys.first())
                 }
 
-                affectedPlayers.addAll(choosePlayerOnDraw(draw, votesCount))
+                // add players to corresponding effect lists
 
-            } else {
-                affectedPlayers.add(votesCount.filter { it.value == maxVotes }.keys.first())
-            }
+                //todo: move to function
+                val effect = action.effect!!
 
-            // add players to corresponding effect lists
+                // add voted players to kill list
+                if (effect.kill!!)
+                    deathCandidates.addAll(affectedPlayers)
 
-            //todo: move to function
-            val effect = action.effect!!
+                // add voted players to safe list
+                if (effect.saveOnDeath!!)
+                    safePlayers.addAll(affectedPlayers)
 
-            // add voted players to kill list
-            if (effect.kill!!)
-                deathCandidates.addAll(affectedPlayers)
+                // add voting players to safe list
+                if (effect.selfSavedIfTargeted!!)
+                    safePlayers.addAll(currentVotes.map { it.playerID })
 
-            // add voted players to safe list
-            if (effect.saveOnDeath!!)
-                safePlayers.addAll(affectedPlayers)
-
-            // add voting players to safe list
-            if (effect.selfSavedIfTargeted!!)
-                safePlayers.addAll(currentVotes.map { it.playerID })
-
-            // add voting and voted players to paired list
-            if (effect.dieOnDeath!!)
-                currentVotes.forEach {
-                    pairedDeathPlayers
-                        .add(
-                            Pair(
-                                it.votedPlayerID,
-                                it.playerID
+                // add voting and voted players to paired list
+                if (effect.dieOnDeath!!)
+                    currentVotes.forEach {
+                        pairedDeathPlayers
+                            .add(
+                                Pair(
+                                    it.votedPlayerID,
+                                    it.playerID
+                                )
                             )
-                        )
-                }
+                    }
 
 
-            // add voting players to kill list
-            val participantList = getAliveParticipants()
-            effect.dieIfRole?.let { deadlyRoleList ->
-                if (deadlyRoleList.isNotEmpty()) {
-                    // check players with roles in deadly roles list
-                    val killers: List<Long> = participantList.filter { player ->
-                        deadlyRoleList.contains(player.roleName)
-                    }.map { it.playerID }
-                    // add to death list players who voted players with these roles
-                    sureDeathPlayers.addAll(
-                        currentVotes.filter { vote ->
-                            killers.contains(vote.votedPlayerID)
+                // add voting players to kill list
+                val participantList = getAliveParticipants()
+                effect.dieIfRole?.let { deadlyRoleList ->
+                    if (deadlyRoleList.isNotEmpty()) {
+                        // check players with roles in deadly roles list
+                        val killers: List<Long> = participantList.filter { player ->
+                            deadlyRoleList.contains(player.roleName)
                         }.map { it.playerID }
-                    )
+                        // add to death list players who voted players with these roles
+                        sureDeathPlayers.addAll(
+                            currentVotes.filter { vote ->
+                                killers.contains(vote.votedPlayerID)
+                            }.map { it.playerID }
+                        )
+                    }
                 }
+
+                // remove used votes
+                roundVotes.removeAll(currentVotes)
             }
+            if (!replayRound) {
+                // populate kill list with the complete data from all the votes
 
-            // remove used votes
-            roundVotes.removeAll(currentVotes)
-        }
-        val message = mutableListOf<String>()
-        if (!replayRound) {
-            // populate kill list with the complete data from all the votes
+                deathCandidates.forEach { candidate ->
+                    if (!safePlayers.contains(candidate))
+                        sureDeathPlayers.add(candidate)
+                }
 
-            deathCandidates.forEach { candidate ->
-                if (!safePlayers.contains(candidate))
-                    sureDeathPlayers.add(candidate)
-            }
+                pairedDeathPlayers.forEach { playersPair ->
+                    if (sureDeathPlayers.contains(playersPair.first))
+                        sureDeathPlayers.add(playersPair.second)
+                }
 
-            pairedDeathPlayers.forEach { playersPair ->
-                if (sureDeathPlayers.contains(playersPair.first))
-                    sureDeathPlayers.add(playersPair.second)
-            }
+                // kill players
+                killParticipantsList(sureDeathPlayers.toList())
 
-            // kill players
-            killParticipants(sureDeathPlayers.toList())
-
-            // pass kill list to be shown
-            sureDeathPlayers.forEach { id ->
-                message.add(playerPresenter.getPlayer(id).name)
+                // pass kill list to be shown
+                sureDeathPlayers.forEach { id ->
+                    message.add(playerPresenter.getPlayer(id).name)
+                }
+            } else {
+                //todo: read message from database/JSON
+                message.add("Round to be replayed, tied votes")
             }
         } else {
-            //todo: read message from database/JSON
-            message.add("Round to be replayed, tied votes")
+            //check if the round was replayable
+            replayRound = roundPresenter.isCurrentRoundReplayable()
+            if (replayRound)
+                message.add("Round to be replayed, tied votes")
+            else {
+                //gets the dead people
+                participantPresenter.getParticipantsDeadStates(gameID)
+                    // filter only those dead in the last round
+                    .filter { it.roundNumber == roundPresenter.getCurrentRound()!!.num }
+                    // add their name to the message list
+                    .forEach {
+                        message.add(playerPresenter.getPlayer(it.affectedPlayerID).name)
+                    }
+            }
         }
+        //todo: maybe we could somehow remove message? We could calculate everything in the RoundResult Fragment with the round, state and player repository
         gameView.showRoundResultFragment(message, replayRound)
     }
 
@@ -280,13 +302,51 @@ open class GamePresenterImpl(
     }
 
     override suspend fun loadGame() {
+        //asd
         val save = gamePresenter.getSave()
         val oldStateName = save.stateMachineOld
         val newStateName = save.stateMachineNew
         if (oldStateName != null && newStateName != null) {
             val oldState = getStateFromName(oldStateName)
-            val newState = getStateFromName(newStateName)
-            gameView.loadGameState(oldState, newState)
+            var newState = getStateFromName(newStateName)
+            /**
+             * if the current state is [PassDeviceState], [PlayerTurnState] or [PlayerPowerState] -> go to [PassDeviceState] to avoid spoilers
+             */
+            when (newState){
+                // todo: directly use the setupFragmentX functions from gameView. to avoid adding logic to the activity. Just use a method to change the currentState without activating manageState
+                //
+                is PlayerTurnState -> {
+                    newState = PassDeviceState()
+                    // set the correct [currentState]
+                    gameView.setGameState(newState, skipMachine = true)
+                    // load the correct Fragment
+                    gameView.setupPassDeviceFragment(isLoading = true)
+                }
+                is PlayerPowerState -> {
+                    newState = PassDeviceState()
+                    // set the correct [currentState]
+                    gameView.setGameState(newState, skipMachine = true)
+                    // load the correct Fragment
+                    gameView.setupPassDeviceFragment(isLoading = true)
+                }
+                is PassDeviceState -> {
+                    // set the correct [currentState]
+                    gameView.setGameState(newState, skipMachine = true)
+                    // load the correct Fragment
+                    gameView.setupPassDeviceFragment(isLoading = true)
+                }
+                is ShowResultsState -> {
+                    // set the correct [currentState]
+                    gameView.setGameState(newState, skipMachine = true)
+                    // load the correct Fragment
+                    setupRoundResultsFragment(isLoading = true)
+                }
+                else -> {
+                   gameView.loadGameState(oldState, newState)
+                }
+
+            }
+
         } else
             throw IllegalStateException("One of the game state was null for game $gameID: old state $oldStateName, new state $newStateName")
     }
@@ -354,10 +414,6 @@ open class GamePresenterImpl(
     private suspend fun endGame(conditionReached: VictoryCondition) {
         gameModel.setGameEnded(gameID)
         gameView.endGame(conditionReached.winner, conditionReached.message)
-    }
-
-    private suspend fun killParticipants(idList: List<Long>) {
-        killParticipantsList(idList)
     }
 
     override suspend fun newPlayerTurn(): String {
