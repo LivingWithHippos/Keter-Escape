@@ -204,7 +204,8 @@ open class GamePresenterImpl(
                 }
 
                 // kill players
-                killParticipantsList(sureDeathPlayers.toList())
+                val currentRound = roundPresenter.getCurrentRound()
+                killParticipantsList(sureDeathPlayers.toList(), currentRound)
 
                 // pass kill list to be shown
                 sureDeathPlayers.forEach { id ->
