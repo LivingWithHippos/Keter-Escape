@@ -7,15 +7,19 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.onewisebit.scpescape.model.parsed.ModeDataClass
 import com.onewisebit.scpescape.utilities.MODE_FILE
+import com.onewisebit.scpescape.utilities.smartList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+//todo: many functions here could be moved to an extension, see [Extensions.kt]
 open class JSONRepository(val context: Context) {
 
     private val systemAssetFolders: Array<String> = arrayOf("images", "webkit")
 
     fun getFiles(path: String): Array<String>? {
-        return context.assets.list(path)
+        // on some phones the path works with / at the end, on others not.
+        //val result = context.assets.list(path)
+        return context.assets.smartList(path)
     }
 
     //TODO: check if this returns true also for empty directories

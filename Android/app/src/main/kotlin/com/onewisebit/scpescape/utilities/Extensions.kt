@@ -1,5 +1,6 @@
 package com.onewisebit.scpescape.utilities
 
+import android.content.res.AssetManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 
@@ -34,4 +35,17 @@ fun MutableList<String>.containsIgnoreCase(element: String): Boolean {
             return true
     }
     return false
+}
+
+/**
+ * This function returns the list of files and folder found in a path of the assets folder,
+ * it removes the "/" mat the end and checks again if no files are found.
+ */
+fun AssetManager.smartList(path: String) : Array<String>?  {
+    val result = this.list(path)
+    if (result.isNullOrEmpty()) {
+        if (path.endsWith("/"))
+            return this.list(path.dropLast(1))
+    }
+    return result
 }
