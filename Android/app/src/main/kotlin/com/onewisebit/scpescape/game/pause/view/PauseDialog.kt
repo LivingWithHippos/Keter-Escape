@@ -22,6 +22,7 @@ class PauseDialog: DialogFragment() {
             val inflater = requireActivity().layoutInflater
             _binding = DialogPauseBinding.inflate(inflater)
 
+            // adding these here because they don't work in onViewCreated
             binding.bCloseGame.setOnClickListener {
                 listener.onCloseGameClick()
                 dialog?.dismiss()
