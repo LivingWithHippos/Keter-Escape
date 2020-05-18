@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Vertical Bar with a tint -->
     <style name="VerticalBar">
         <item name="android:layout_width">11dp</item>
