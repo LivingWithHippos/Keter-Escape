@@ -1,2 +1,3 @@
+include ':scpUI'
 include ':app'
 rootProject.name='SCP Escape'
