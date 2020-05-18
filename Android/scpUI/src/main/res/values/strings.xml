@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--SCP card Values -->
+    <string name="scp_item_number">Item #:</string>
+
     <string name="scp_containment">Containment Class:</string>
     <string name="scp_containment_safe">Safe</string>
     <string name="scp_containment_euclid">Euclid</string>
@@ -27,5 +29,8 @@
     <string name="scp_clearance_level">Level: %d</string>
     <string name="scp_clearance_level_unrestricted">Unrestricted</string>
     <string name="scp_clearance_level_restricted">Restricted</string>
+    <string name="play">Play</string>
+    <string name="grade">Grade</string>
+    <string name="clearance">Clearance</string>
 
 </resources>
