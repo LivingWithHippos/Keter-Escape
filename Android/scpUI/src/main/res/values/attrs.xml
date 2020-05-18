@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (C) 2019 The Android Open Source Project
+~
+~ Licensed under the Apache License, Version 2.0 (the "License");
+~ you may not use this file except in compliance with the License.
+~ You may obtain a copy of the License at
+~
+~      http://www.apache.org/licenses/LICENSE-2.0
+~
+~ Unless required by applicable law or agreed to in writing, software
+~ distributed under the License is distributed on an "AS IS" BASIS,
+~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~ See the License for the specific language governing permissions and
+~ limitations under the License.
+-->
+
+<resources>
+
+    <!--Common attributes-->
+    <attr name="colorFillColor" format="color"/>
+    <attr name="colorStrokeColor" format="color"/>
+
+    <!--Label view attributes-->
+    <declare-styleable name="LabelLinkView">
+        <attr name="android:text" />
+        <attr name="leadingIcon" format="integer" />
+        <attr name="linkUrl" format="string" />
+    </declare-styleable>
+
+    <!--Color attribute view attributes-->
+    <declare-styleable name="ColorAttributeView">
+        <attr name="android:text"/>
+        <attr name="colorFillColor"/>
+        <attr name="colorStrokeColor"/>
+    </declare-styleable>
+
+    <!--Color dot view attributes-->
+    <declare-styleable name="ColorDotView">
+        <attr name="colorFillColor"/>
+        <attr name="colorStrokeColor"/>
+    </declare-styleable>
+
+    <!--Type attribute view attributes-->
+    <declare-styleable name="TypeAttributeView">
+        <attr name="android:text"/>
+        <attr name="previewText" format="string"/>
+        <attr name="previewTextAppearance" format="reference"/>
+        <attr name="previewTextColor" format="reference"/>
+    </declare-styleable>
+
+    <!--Shape attribute view attributes-->
+    <declare-styleable name="ShapeAttributeView">
+        <attr name="android:text"/>
+        <attr name="shapeSizeLetter" format="string"/>
+        <attr name="shapeFillColor" format="color"/>
+        <attr name="shapeStrokeColor" format="color"/>
+        <attr name="shapeAppearanceAttr" format="reference"/>
+    </declare-styleable>
+
+    <!--Foundation Card View attributes-->
+    <declare-styleable name="FoundationCardView">
+        <attr name="android:text"/>
+        <attr name="roleText" format="string"/>
+        <attr name="gradeText" format="string"/>
+        <attr name="clearanceText" format="string"/>
+        <attr name="rolePicture" format="reference"/>
+    </declare-styleable>
+
+    <!--SCP Secondary Class View attributes (like disruption and risk) -->
+    <declare-styleable name="SCPSecondaryClassView">
+        <attr name="classTitleText" format="string"/>
+        <attr name="classBodyText" format="string"/>
+        <attr name="classNumber" format="string"/>
+        <attr name="circlePicture" format="reference"/>
+        <attr name="darkColor" format="color"/>
+        <attr name="lightColor" format="color"/>
+        <!-- optional values -->
+        <attr name="mode" format="enum">
+            <enum name="containment" value="0"/>
+            <enum name="disruption" value="1"/>
+            <enum name="risk" value="2"/>
+        </attr>
+        <attr name="classPicture" format="reference"/>
+        <attr name="backgroundPicture" format="reference"/>
+        <attr name="backgroundColor" format="color"/>
+    </declare-styleable>
+
+    <!--SCP id card View attributes -->
+    <declare-styleable name="SCPCardView">
+        <attr name="containment" format="enum">
+            <enum name="safe" value="0"/>
+            <enum name="euclid" value="1"/>
+            <enum name="keter" value="2"/>
+            <enum name="esoteric" value="3"/>
+            <enum name="neutralized" value="4"/>
+            <enum name="pending" value="5"/>
+            <enum name="explained" value="6"/>
+        </attr>
+        <!-- these start from 1 on purpose so they match their level -->
+        <attr name="disruption" format="enum">
+            <enum name="dark" value="1"/>
+            <enum name="vlam" value="2"/>
+            <enum name="keneq" value="3"/>
+            <enum name="ekhi" value="4"/>
+            <enum name="amida" value="5"/>
+        </attr>
+        <attr name="risk" format="enum">
+            <enum name="notice" value="1"/>
+            <enum name="caution" value="2"/>
+            <enum name="warning" value="3"/>
+            <enum name="danger" value="4"/>
+            <enum name="critical" value="5"/>
+        </attr>
+        <attr name="clearance" format="enum">
+            <enum name="unrestricted" value="1"/>
+            <enum name="restricted" value="2"/>
+            <enum name="confidential" value="3"/>
+            <enum name="secret" value="4"/>
+            <enum name="top_secret" value="5"/>
+            <enum name="cosmic_top_secret" value="6"/>
+        </attr>
+        <attr name="scpNumber" format="string"/>
+        <attr name="scpDescription" format="string"/>
+    </declare-styleable>
+</resources>

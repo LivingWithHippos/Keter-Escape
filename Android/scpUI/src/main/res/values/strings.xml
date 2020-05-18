@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--SCP card Values -->
+    <string name="scp_containment">Containment Class:</string>
+    <string name="scp_containment_safe">Safe</string>
+    <string name="scp_containment_euclid">Euclid</string>
+    <string name="scp_containment_keter">Keter</string>
+    <string name="scp_containment_esoteric">Esoteric</string>
+    <string name="scp_containment_neutralized">Neutralized</string>
+    <string name="scp_containment_pending">Pending</string>
+    <string name="scp_containment_explained">Explained</string>
+
+    <string name="scp_disruption">Disruption Class:</string>
+    <string name="scp_disruption_dark">Dark</string>
+    <string name="scp_disruption_vlam">VLAM</string>
+    <string name="scp_disruption_keneq">Keneq</string>
+    <string name="scp_disruption_ekhi">Ekhi</string>
+    <string name="scp_disruption_amida">Amida</string>
+
+    <string name="scp_risk">Risk Class:</string>
+    <string name="scp_risk_notice">Notice</string>
+    <string name="scp_risk_caution">Caution</string>
+    <string name="scp_risk_warning">Warning</string>
+    <string name="scp_risk_danger">Danger</string>
+    <string name="scp_risk_critical">Critical</string>
+
+    <string name="scp_clearance_level">Level: %d</string>
+    <string name="scp_clearance_level_unrestricted">Unrestricted</string>
+    <string name="scp_clearance_level_restricted">Restricted</string>
+
+</resources>

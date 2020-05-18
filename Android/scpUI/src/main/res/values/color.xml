@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SCP Lore related colors -->
+
+    <!-- Containment -->
+    <color name="safe">#009f6b</color>
+    <color name="safe_secondary">#d6eee6</color>
+    <color name="euclid">#ffd300</color>
+    <color name="euclid_secondary">#fcf6d6</color>
+    <color name="keter">#c40233</color>
+    <color name="keter_secondary">#f4d7de</color>
+    <color name="neutralized">#424248</color>
+    <color name="neutralized_light">#cdcdcf</color>
+    <!-- this technically has an inverted color -->
+    <color name="pending">#0c0c0c</color>
+    <color name="pending_secondary">#fcfcfc</color>
+    <color name="explained">#0c0c0c</color>
+    <color name="explained_secondary">#fcfcfc</color>
+    <color name="esoteric">#0c0c0c</color>
+    <color name="esoteric_secondary">#fcfcfc</color>
+    <!-- Disruptions -->
+    <color name="dark">#009f6b</color>
+    <color name="dark_secondary">#d6eee6</color>
+    <color name="vlam">#0087bd</color>
+    <color name="vlam_secondary">#d6ebf3</color>
+    <color name="keneq">#ffd300</color>
+    <color name="keneq_secondary">#fcf6d6</color>
+    <color name="ekhi">#ff6d00</color>
+    <color name="ekhi_secondary">#fce7d6</color>
+    <color name="amida">#c40233</color>
+    <color name="amida_secondary">#f4d7de</color>
+    <!-- Risks -->
+    <color name="notice">#009f6b</color>
+    <color name="notice_secondary">#d6eee6</color>
+    <color name="caution">#0087bd</color>
+    <color name="caution_secondary">#d6ebf3</color>
+    <color name="warning">#ffd300</color>
+    <color name="warning_secondary">#fcf6d6</color>
+    <color name="danger">#ff6d00</color>
+    <color name="danger_secondary">#fce7d6</color>
+    <color name="critical">#c40233</color>
+    <color name="critical_secondary">#f4d7de</color>
+
+</resources>

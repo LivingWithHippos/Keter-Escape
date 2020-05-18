@@ -12,4 +12,19 @@
     <color name="color_background">#2B2B2B</color>
     <color name="color_primary_variant">#323232</color>
     <color name="color_on_primary">#D8D8D8</color>
+
+    <color name="purple_500">#0D0D0D</color> <!--Color primary -->
+    <color name="purple_700">#424248</color> <!--Color primary variant -->
+    <color name="red_600">#850005</color> <!--Color error -->
+
+    <color name="green_200">#232325</color> <!--Color secondary-->
+    <color name="green_500">#757D85</color> <!--Color secondary variant-->
+
+
+    <!--Color surface, color on error  -->
+    <color name="white_50">#fcfcfc</color>
+
+    <!--Color on secondary, color on background-->
+    <!--color on surface-->
+    <color name="black_900">#303034</color>
 </resources>
