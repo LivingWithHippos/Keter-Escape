@@ -1,3 +1,16 @@
 <resources>
 
+    <!-- Vertical Bar with a tint -->
+    <style name="VerticalBar">
+        <item name="android:layout_width">11dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <!-- Horizontal Bar with a tint -->
+    <style name="HorizontalBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
 </resources>
