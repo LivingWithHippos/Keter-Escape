@@ -9,30 +9,21 @@
     android:paddingEnd="@dimen/keyline_4"
     android:paddingBottom="@dimen/keyline_5">
 
-    <io.material.materialthemebuilder.widget.LabelLinkView
-        android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/scp_id"
-        app:linkUrl="http://www.scp-wiki.net/component:anomaly-class-bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/scpCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/component_label_horizontal_margin"
+        android:layout_marginTop="@dimen/keyline_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rootLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <io.material.materialthemebuilder.widget.SCPSecondaryClassView
+            <scp.libraries.ui.views.SCPSecondaryClassView
                 android:id="@+id/containment"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
@@ -40,14 +31,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:mode="containment"
-                app:classTitleText="@string/containment_class"
-                app:classBodyText="@string/euclid"
+                app:classTitleText="@string/scp_containment"
                 app:classPicture="@drawable/scp_containment_euclid_icon"
                 app:darkColor="#ffd300"
                 app:lightColor="#fcf5d6"
                 />
 
-            <io.material.materialthemebuilder.widget.SCPSecondaryClassView
+            <scp.libraries.ui.views.SCPSecondaryClassView
                 android:id="@+id/disruption"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -55,15 +45,10 @@
                 app:layout_constraintTop_toBottomOf="@id/containment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:classTitleText="@string/disruption_title"
-                app:classBodyText="@string/vlam"
-                app:classNumber="2"
-                app:classPicture="@drawable/scp_disruption_vlam_icon"
-                app:darkColor="#0087bd"
-                app:lightColor="#d6eaf2"
+                app:classTitleText="@string/scp_disruption"
                 />
 
-            <io.material.materialthemebuilder.widget.SCPSecondaryClassView
+            <scp.libraries.ui.views.SCPSecondaryClassView
                 android:id="@+id/risk"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -71,12 +56,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/disruption"
-                app:classTitleText="@string/risk_title"
-                app:classBodyText="@string/Notice"
-                app:classNumber="1"
-                app:classPicture="@drawable/risk_notice"
-                app:darkColor="#009f6b"
-                app:lightColor="#d6eee6"
+                app:classTitleText="@string/scp_risk"
                 />
 
             <TextView
@@ -85,7 +65,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/keyline_4"
                 android:layout_marginTop="@dimen/keyline_4"
-                android:text="@string/group_scp_example"
                 android:textAppearance="?attr/textAppearanceOverline"
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/keyline_4"
                 android:firstBaselineToTopHeight="40dp"
-                android:text="@string/item_number"
+                android:text="@string/scp_item_number"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@color/material_on_surface_emphasis_high_type"
@@ -109,7 +88,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="@string/scp_2105"
                 android:textAppearance="?attr/textAppearanceHeadline4"
                 android:textColor="@color/material_on_surface_emphasis_high_type"
                 android:textStyle="bold"
@@ -122,7 +100,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/keyline_4"
-                android:text="@string/level_restricted"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/material_on_surface_emphasis_high_type"
@@ -136,7 +113,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/keyline_4"
-                android:text="@string/level_2"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textColor="@color/material_on_surface_emphasis_high_type"
@@ -179,7 +155,6 @@
                 android:layout_marginEnd="@dimen/keyline_4"
                 android:firstBaselineToTopHeight="@dimen/keyline_5"
                 android:justificationMode="inter_word"
-                android:text="@string/scp_2105_lore"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 app:layout_constraintEnd_toEndOf="parent"
