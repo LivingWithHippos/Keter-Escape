@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FABs -->
+    <style name="Widget.Foundation.FloatingActionButton.CornerFAB" parent="Widget.MaterialComponents.FloatingActionButton" >
+        <item name="android:backgroundTint">@color/black_500</item>
+        <item name="android:src">@drawable/play_arrow</item>
+        <item name="android:layout_marginEnd">@dimen/fab_margin</item>
+        <item name="android:layout_marginBottom">@dimen/fab_margin</item>
+        <!--
+        android:clickable="true"
+        android:focusable="true"
+        -->
+    </style>
+</resources>
