@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Black and White colors -->
+
+    <color name="black_500">#0d0d0d</color>
+    <color name="white_500">#fafafa</color>
 
     <!-- SCP Lore related colors -->
 
