@@ -25,7 +25,7 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="30dp"
         android:text="@string/welcome_d"
         android:textColor="@color/white_500"
         app:layout_constraintBottom_toTopOf="@+id/llButtons"
@@ -50,6 +50,9 @@
             android:layout_width="@dimen/buttons_start_menu_width"
             android:layout_height="@dimen/buttons_start_menu_height"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_background_transparent"
+            android:textAllCaps="false"
             android:text="@string/new_game" />
 
         <Button
@@ -57,6 +60,9 @@
             android:layout_width="@dimen/buttons_start_menu_width"
             android:layout_height="@dimen/buttons_start_menu_height"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background_transparent"
             android:text="@string/load_game" />
 
         <Button
@@ -64,6 +70,9 @@
             android:layout_width="@dimen/buttons_start_menu_width"
             android:layout_height="@dimen/buttons_start_menu_height"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background_transparent"
             android:text="@string/settings" />
 
         <Button
@@ -71,6 +80,8 @@
             android:layout_width="@dimen/buttons_start_menu_width"
             android:layout_height="@dimen/buttons_start_menu_height"
             android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background_transparent"
             android:text="@string/about" />
     </LinearLayout>
 
