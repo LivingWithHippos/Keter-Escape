@@ -33,7 +33,7 @@
     <color name="white_200">#fdfdfd</color>
     <color name="white_300">#fcfcfc</color> <!--Color surface, color on error  -->
     <color name="white_400">#fbfbfb</color>
-    <color name="white_500">#fafafa</color>
+    <color name="white_500">#fafafa</color> <!--Color secondary -->
     <color name="white_600">#f9f9f9</color>
     <color name="white_700">#f9f9f9</color>
     <color name="white_800">#f8f8f8</color>
