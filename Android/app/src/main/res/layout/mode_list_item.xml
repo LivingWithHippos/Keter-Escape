@@ -82,7 +82,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvModePiece" />
 
-
+        <!--TODO: add other info? Player count would be useful-->
         <ImageView
             android:id="@+id/ivMode"
             android:layout_width="60dp"
