@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvNewGamePass"
-        android:layout_width="320dp"
+        android:layout_width="260dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
@@ -46,7 +46,7 @@
                 android:textSize="30sp"
                 app:layout_constraintEnd_toStartOf="@+id/ivPassPlay"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toBottomOf="@+id/ivPassPlay" />
 
             <TextView
                 android:id="@+id/tvPassPlayDescription"
