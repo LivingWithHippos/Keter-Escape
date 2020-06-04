@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_900"
+    app:layoutDescription="@xml/fragment_new_game_scene"
     tools:context=".main.activity.view.NewGameFragment">
 
     <com.google.android.material.card.MaterialCardView
@@ -13,12 +14,14 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        app:strokeColor="@color/black_100"
-        app:strokeWidth="1dp"
         app:cardCornerRadius="4dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/black_100"
+        app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -67,5 +70,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
-</FrameLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
 
