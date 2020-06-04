@@ -33,6 +33,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/black_500"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintTop_toTopOf="@+id/tvModePiece"
+            app:layout_constraintBottom_toBottomOf="@+id/tvModePiece"
+            app:layout_constraintStart_toStartOf="@id/tvModeName"
+            app:layout_constraintEnd_toStartOf="@+id/tvModePiece"/>
+
+        <TextView
+            android:id="@+id/tvModePiece"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/space_mono"
+            android:textAllCaps="true"
+            android:text="@string/mode"
+            android:textAlignment="center"
+            android:textColor="@color/black_500"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvModeName" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/black_500"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toTopOf="@+id/tvModePiece"
+            app:layout_constraintBottom_toBottomOf="@+id/tvModePiece"
+            app:layout_constraintStart_toEndOf="@id/tvModePiece"
+            app:layout_constraintEnd_toEndOf="@id/tvModeName"/>
+
         <TextView
             android:id="@+id/tvModeDescription"
             android:layout_width="0dp"
@@ -46,7 +80,7 @@
             android:textColor="@color/black_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvModeName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvModePiece" />
 
 
         <ImageView
