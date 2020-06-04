@@ -8,6 +8,17 @@
     app:layoutDescription="@xml/fragment_new_game_scene"
     tools:context=".main.activity.view.NewGameFragment">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/picture_black_stone_big"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvNewGamePass"
         android:layout_width="280dp"
