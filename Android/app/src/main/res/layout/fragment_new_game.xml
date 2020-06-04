@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,42 +11,57 @@
         android:layout_width="320dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="10dp">
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/ivPassPlay"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="@dimen/margin_cardview_content"
+                android:layout_marginEnd="@dimen/margin_cardview_content"
                 android:contentDescription="@string/pass_play"
                 android:src="@drawable/pass_play"
-                android:tint="#fff"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintLeft_toLeftOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvPassPlay"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_cardview_content"
+                android:layout_marginTop="@dimen/margin_cardview_content"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/black_500"
                 android:text="@string/pass_play"
-                card_view:layout_constraintStart_toEndOf="@+id/ivPassPlay"
-                card_view:layout_constraintTop_toTopOf="@+id/ivPassPlay" />
+                android:textSize="30sp"
+                app:layout_constraintEnd_toStartOf="@+id/ivPassPlay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvPassPlayDescription"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:minLines="2"
+                android:layout_marginTop="10dp"
+                android:minLines="3"
+                android:textColor="@color/black_500"
                 android:text="@string/pass_play_description"
-                card_view:layout_constraintStart_toEndOf="@+id/tvPassPlay"
-                card_view:layout_constraintStart_toStartOf="@+id/tvPassPlay"
-                card_view:layout_constraintTop_toBottomOf="@+id/tvPassPlay" />
+                app:layout_constraintStart_toEndOf="@+id/tvPassPlay"
+                app:layout_constraintStart_toStartOf="@+id/tvPassPlay"
+                app:layout_constraintTop_toBottomOf="@+id/tvPassPlay" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 </FrameLayout>
+
