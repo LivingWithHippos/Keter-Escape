@@ -44,22 +44,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_cardview_content"
-                android:layout_marginTop="@dimen/margin_cardview_content"
                 android:layout_marginEnd="5dp"
-                android:textColor="@color/black_500"
+                android:fontFamily="@font/space_mono"
                 android:text="@string/pass_play"
+                android:textColor="@color/black_500"
                 android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivPassPlay"
                 app:layout_constraintEnd_toStartOf="@+id/ivPassPlay"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/ivPassPlay" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvPassPlayDescription"
-                android:layout_height="wrap_content"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black_300"
+                android:fontFamily="@font/space_mono"
                 android:text="@string/pass_play_description"
+                android:textColor="@color/black_300"
                 app:layout_constraintEnd_toEndOf="@+id/ivPassPlay"
                 app:layout_constraintStart_toStartOf="@+id/tvPassPlay"
                 app:layout_constraintTop_toBottomOf="@+id/tvPassPlay" />
