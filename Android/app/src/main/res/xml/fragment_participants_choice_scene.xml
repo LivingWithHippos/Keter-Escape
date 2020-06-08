@@ -7,13 +7,28 @@
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
+
+        <OnSwipe
+            motion:dragDirection="dragStart"
+            motion:touchAnchorId="@+id/svPlayersList"
+            motion:touchAnchorSide="right" />
+
        <KeyFrameSet>
        </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@id/iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/iv_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:translationX="20dp"/>
     </ConstraintSet>
 </MotionScene>
