@@ -8,6 +8,15 @@
     app:layoutDescription="@xml/fragment_participants_choice_scene"
     tools:context=".main.playerslist.view.ParticipantsChoiceFragment">
 
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/picture_stairs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvSelectPlayersTitle"
         android:layout_width="wrap_content"
