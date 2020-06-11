@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <bitmap
+            android:src="@drawable/scp_foundation_logo_bitmap_small"
+            android:tileMode="repeat"
+            />
+    </item>
+</layer-list>
