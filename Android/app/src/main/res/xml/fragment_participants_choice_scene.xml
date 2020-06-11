@@ -6,7 +6,7 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="10000"
+        motion:duration="5000"
         motion:motionInterpolator="easeInOut">
         <!--
         <OnClick
