@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:importantForAutofill="noExcludeDescendants"
+    app:layoutDescription="@xml/fragment_participants_choice_scene"
     tools:context=".main.playerslist.view.ParticipantsChoiceFragment">
+
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/picture_black_stone_big"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tvSelectPlayersTitle"
@@ -51,26 +62,19 @@
     </LinearLayout>
 
 
-    <ScrollView
-        android:id="@+id/svPlayersList"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlayers"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:layout_constraintBottom_toTopOf="@+id/fabStartGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+        android:layout_margin="20dp"
+        tools:listitem="@layout/player_list_item">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPlayers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteY="422dp"
-            tools:listitem="@layout/player_list_item">
-
-        </androidx.recyclerview.widget.RecyclerView>
-    </ScrollView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabStartGame"
@@ -85,4 +89,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
