@@ -32,7 +32,7 @@
     <string name="players_count_error">This should\'t have happened. Please report immediately to your supervisor.</string>
     <string name="player_name">Player Name</string>
     <string name="tap_for_pic">Tap here to add a profile pic.</string>
-    <string name="create_player">Create New Player</string>
+    <string name="create_player">New Player</string>
     <string name="player_name_filter">Filter Players By Name</string>
     <string name="game_id_required">Game ID required</string>
     <string name="enter_player_name">Enter Player\'s Name</string>
