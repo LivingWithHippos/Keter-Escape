@@ -80,7 +80,8 @@
             android:scaleType="centerCrop"
             android:alpha="0.05"
             android:tint="#123456"
-            android:src="@drawable/scp_logo"/>
+            android:src="@drawable/scp_logo"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
