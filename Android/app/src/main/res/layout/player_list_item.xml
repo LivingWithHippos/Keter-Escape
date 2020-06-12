@@ -69,6 +69,19 @@
             />
 
         <ImageView
+            android:id="@+id/ivChip"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:elevation="3dp"
+            app:layout_constraintStart_toEndOf="@+id/tvRecruitedOn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvRecruitedOn"
+            app:layout_constraintBottom_toBottomOf="@id/tvRecruitedOn"
+            android:scaleType="fitXY"
+            android:src="@drawable/chip"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
             android:id="@+id/ivLogoBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
