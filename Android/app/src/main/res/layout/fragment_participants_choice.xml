@@ -38,7 +38,7 @@
             android:iconifiedByDefault="false"
             android:imeOptions="actionDone"
             android:inputType="textPersonName"
-            android:queryHint="@string/players_filter" />
+            android:queryHint="@string/player_search_hint" />
 
         <Button
             android:id="@+id/bCreatePlayer"
