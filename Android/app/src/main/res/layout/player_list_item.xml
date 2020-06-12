@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:elevation="3dp"
             android:text="@string/player_name"
-            android:textSize="15sp"
+            android:fontFamily="@font/space_mono"
+            android:textSize="14sp"
             android:layout_margin="5dp"
             android:gravity="center"
             android:minLines="2"
@@ -52,31 +53,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-        <TextView
-            android:id="@+id/tvRecruitedOn"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/ivQRCode"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:elevation="3dp"
-            android:text="@string/issue_date"
-            android:textSize="12sp"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:minLines="2"
-            android:textColor="@color/black_500"
             app:layout_constraintTop_toBottomOf="@+id/ivPlayerPic"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ivPlayerPic"
+            app:layout_constraintEnd_toEndOf="@id/ivPlayerPic"
+            android:scaleType="fitStart"
+            android:src="@drawable/qr_code"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/ivChip"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="26dp"
             android:elevation="3dp"
-            app:layout_constraintStart_toEndOf="@+id/tvRecruitedOn"
+            android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvRecruitedOn"
-            app:layout_constraintBottom_toBottomOf="@id/tvRecruitedOn"
-            android:scaleType="fitStart"
+            app:layout_constraintBottom_toBottomOf="@id/ivQRCode"
+            android:scaleType="fitXY"
+            android:background="@color/white_800"
             android:src="@drawable/chip"
             tools:ignore="ContentDescription" />
 
@@ -84,7 +83,7 @@
             android:id="@+id/ivLogoBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="1dp"
+            android:elevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivPlayerPic"
