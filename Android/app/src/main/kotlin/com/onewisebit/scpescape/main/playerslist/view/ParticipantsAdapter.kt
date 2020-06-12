@@ -113,7 +113,7 @@ class ParticipantsAdapter(
 
         fun bind(_player: Player, _clickListener: (Long, Boolean) -> Unit) {
             player = _player
-            binding.tvParticipantName.text = _player.name
+            binding.tvPlayerName.text = _player.name
             binding.cvParticipant.setOnClickListener { _clickListener(_player.id, false) }
         }
 
