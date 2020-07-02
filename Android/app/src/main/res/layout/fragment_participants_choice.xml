@@ -26,7 +26,7 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/svPlayersList"
+        app:layout_constraintBottom_toTopOf="@+id/rvPlayers"
         app:layout_constraintTop_toTopOf="parent">
 
         <SearchView
