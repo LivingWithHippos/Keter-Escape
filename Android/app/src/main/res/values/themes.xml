@@ -19,7 +19,7 @@
     <!--Top level DayNight theme to be used in AndroidManifest.xml-->
     <style name="Theme.Foundation" parent="Base.SCPTheme" />
     <!--Base custom theme which will be shared between both light and dark theme variants-->
-    <style name="Base.SCPTheme" parent="Base.Theme.MaterialThemeBuilder">
+    <style name="Base.SCPTheme" parent="Base.SCPTheme.MaterialThemeBuilder">
         <!--Material color attributes (main theme) -->
         <!--colorPrimary colors map to components and elements, such as app bars and buttons. -->
         <item name="colorPrimary">@color/white_500</item>
@@ -69,7 +69,7 @@
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
     </style>
 
-    <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.SCPTheme.MaterialThemeBuilder" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">
