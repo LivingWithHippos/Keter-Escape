@@ -86,7 +86,7 @@
         android:layout_marginBottom="@dimen/fab_margin"
         android:clickable="true"
         android:focusable="true"
-        android:src="@android:drawable/ic_media_play"
+        android:src="@drawable/play_arrow"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
