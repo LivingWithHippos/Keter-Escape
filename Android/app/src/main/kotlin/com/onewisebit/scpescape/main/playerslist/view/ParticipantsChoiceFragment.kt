@@ -100,10 +100,13 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
                 missingPlayers
             )
 
-            if (participantsList.size == totPlayers)
-                binding.fabStartGame.visibility = View.VISIBLE
-            else
-                binding.fabStartGame.visibility = View.INVISIBLE
+                if (participantsList.size == totPlayers && binding.fabStartGame.visibility != View.VISIBLE)
+                    binding.fabStartGame.visibility = View.VISIBLE
+                else
+                    if (binding.fabStartGame.visibility != View.INVISIBLE)
+                        binding.fabStartGame.visibility = View.INVISIBLE
+
+
         })
     }
 
