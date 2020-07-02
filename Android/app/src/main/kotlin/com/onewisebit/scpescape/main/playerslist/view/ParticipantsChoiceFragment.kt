@@ -83,6 +83,7 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
         players: LiveData<List<Player>>,
         participants: LiveData<List<Participant>>
     ) {
+        val totPlayers: Int = args.totPlayers
 
         players.observe(this, Observer<List<Player>> { playersList ->
             adapter.setPlayers(playersList)
@@ -91,7 +92,6 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
         participants.observe(this, Observer<List<Participant>> { participantsList ->
             adapter.setParticipants(participantsList.map { it.playerID })
 
-            val totPlayers: Int = args.totPlayers
             val missingPlayers = totPlayers - participantsList.size
             binding.tvSelectPlayersTitle.text = resources.getQuantityString(
                 R.plurals.select_players,
@@ -100,7 +100,7 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
                 missingPlayers
             )
 
-            if (participantsList.size == args.totPlayers)
+            if (participantsList.size == totPlayers)
                 binding.fabStartGame.visibility = View.VISIBLE
             else
                 binding.fabStartGame.visibility = View.INVISIBLE
