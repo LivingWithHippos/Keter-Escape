@@ -122,7 +122,7 @@ open class GamePresenterImpl(
                     .eachCount()
 
                 // get the maximum number of votes for a player
-                val maxVotes: Int = votesCount.maxBy { it.value }!!.value
+                val maxVotes: Int = votesCount.maxByOrNull { it.value }!!.value
 
                 // are there more than one player who got the max votes? (e.g. A got 2 votes, B got 5, C got 5, D got 4)
                 if (votesCount.filter { it.value == maxVotes }.size > 1) {
@@ -262,7 +262,7 @@ open class GamePresenterImpl(
             players.add(votesCount.keys.random())
 
         if (drawSettings.maxRandom!!) {
-            val maxVotes: Int = votesCount.maxBy { it.value }!!.value
+            val maxVotes: Int = votesCount.maxByOrNull { it.value }!!.value
             players.add(votesCount.filter { it.value == maxVotes }.keys.random())
         }
 

@@ -15,7 +15,7 @@ class TurnRepository(private val turnDAO: TurnDAO) : InTurnRepository {
         turnDAO.getLastTurn(gameID)
 
     override suspend fun getLastRoundTurn(gameID: Long): Turn? {
-        return turnDAO.getLatestRoundTurns(gameID)?.maxBy { it.turnNumber }
+        return turnDAO.getLatestRoundTurns(gameID)?.maxByOrNull { it.turnNumber }
     }
 
     override fun getPlayerTurns(gameID: Long, playerID: Long): Flowable<List<Turn>> =

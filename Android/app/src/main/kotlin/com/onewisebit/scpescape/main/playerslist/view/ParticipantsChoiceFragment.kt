@@ -39,7 +39,7 @@ class ParticipantsChoiceFragment : BaseSCPFragment<FragmentParticipantsChoiceBin
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentParticipantsChoiceBinding.inflate(layoutInflater)
         layoutManager = GridLayoutManager(this.context, 2)
         adapter = ParticipantsAdapter(

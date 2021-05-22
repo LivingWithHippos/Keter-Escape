@@ -19,7 +19,7 @@ class NewGameFragment : BaseSCPFragment<FragmentNewGameBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNewGameBinding.inflate(layoutInflater)
         return binding.root
     }
